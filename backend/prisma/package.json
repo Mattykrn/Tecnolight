@@ -1,0 +1,8 @@
+{
+  "name": "tecnolight-prisma",
+  "version": "1.0.0",
+  "description": "Configuración de Prisma ORM para Tecnolight",
+  "prisma": {
+    "seed": "node database/seeds/seed.js"
+  }
+}
