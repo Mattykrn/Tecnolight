@@ -161,4 +161,4 @@ NEXT_PUBLIC_API_URL=http://localhost:5001
 
 ## 📄 Licencia
 
-MIT © Tecnolight SRL
+MIT © Tecnolight SRL# Tecnoligth
