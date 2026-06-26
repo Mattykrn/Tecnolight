@@ -1,8 +1,9 @@
-# Backend API - Tecnolight
+<<<<<<< HEAD
+# Tecnolight
+=======
+# Tecnolight (versión del remoto)
+>>>>>>> origin/main
 
-API REST para el sitio web institucional de Tecnolight (Santa Fe, Argentina).
-
-## 🚀 Tecnologías
 
 - **Node.js** + **Express** - Servidor web
 - **PostgreSQL** - Base de datos
