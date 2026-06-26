@@ -29,7 +29,7 @@ async function main() {
       slug: 'senal-pare',
       description: 'Señal reglamentaria de alto estándar fabricada en chapa de aluminio reflectivo. Cumple con normativas viales argentinas. Ideal para intersecciones y controles de tránsito.',
       category: 'Reglamentarias',
-      image: '/images/products/senal-pare.jpg',
+      images: ['/images/products/senal-pare.jpg'],
       price: 45000,
       specs: 'Material: Chapa de aluminio 0.8mm\nReflectivo: Grado engineering\nDimensiones: 60x60cm\nSoporte: Caño estructural 2"'
     },
@@ -38,7 +38,7 @@ async function main() {
       slug: 'senal-velocidad-maxima-40',
       description: 'Señal de velocidad máxima para zonas urbanas y rurales. Reflectivo de alta visibilidad para garantizar cumplimiento.',
       category: 'Reglamentarias',
-      image: '/images/products/senal-velocidad-40.jpg',
+      images: ['/images/products/senal-velocidad-40.jpg'],
       price: 38000,
       specs: 'Material: Chapa de aluminio\nReflectivo: Diamond grade\nDimensiones: 60x60cm\nNormativa: Ley 24.449'
     },
@@ -47,7 +47,7 @@ async function main() {
       slug: 'senal-curva-peligrosa',
       description: 'Señal preventiva para curvas cerradas y tramos peligrosos. Fabricada con materiales duraderos para exterior.',
       category: 'Preventivas',
-      image: '/images/products/senal-curva.jpg',
+      images: ['/images/products/senal-curva.jpg'],
       price: 42000,
       specs: 'Material: Chapa de aluminio\nReflectivo: Grado engineering\nDimensiones: 75x75cm\nIncluye: Kit de fijación'
     },
@@ -56,7 +56,7 @@ async function main() {
       slug: 'senal-desvio',
       description: 'Señal informativa para desvíos y desvíos temporales. Ideal para obras viales y desvíos programados.',
       category: 'Informativas',
-      image: '/images/products/senal-desvio.jpg',
+      images: ['/images/products/senal-desvio.jpg'],
       price: 35000,
       specs: 'Material: Chapa de aluminio\nReflectivo: Grado engineering\nDimensiones: 90x60cm\nPersonalizable'
     },
@@ -65,7 +65,7 @@ async function main() {
       slug: 'cartel-inmobiliario-premium',
       description: 'Cartel inmobiliario de alta gama con estructura metálica. Diseño profesional para maximizar visibilidad de propiedades.',
       category: 'Cartelería Comercial',
-      image: '/images/products/cartel-inmobiliario.jpg',
+      images: ['/images/products/cartel-inmobiliario.jpg'],
       price: 180000,
       specs: 'Estructura: Caño estructural 3"\nPlaca: Aluminio composite\nDimensiones: 3x2m\nIncluye: Instalación'
     },
@@ -74,7 +74,7 @@ async function main() {
       slug: 'senal-prohibido-estacionar',
       description: 'Señal reglamentaria para zonas de estacionamiento restringido. Fabricada con materiales de primera calidad.',
       category: 'Reglamentarias',
-      image: '/images/products/senal-no-estacionar.jpg',
+      images: ['/images/products/senal-no-estacionar.jpg'],
       price: 40000,
       specs: 'Material: Chapa de aluminio\nReflectivo: Diamond grade\nDimensiones: 60x60cm\nNormativa: Ley 24.449'
     }

@@ -1,0 +1,120 @@
+.container {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.loginCard {
+  background-color: var(--color-surface-card);
+  border: 1px solid var(--color-border);
+  width: 100%;
+  max-width: 440px;
+  border-radius: var(--border-radius);
+  padding: 3rem;
+  box-shadow: var(--shadow-premium);
+}
+
+.logoArea {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.logoIcon {
+  width: 50px;
+  height: 50px;
+  background-color: var(--color-primary);
+  border: 3px solid #000;
+  transform: rotate(45deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 15px rgba(255, 183, 3, 0.3);
+}
+
+.logoText {
+  transform: rotate(-45deg);
+  color: #000;
+  font-weight: 900;
+  font-size: 1.25rem;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--color-text-main);
+  margin-top: 0.5rem;
+}
+
+.subtitle {
+  font-size: 0.8rem;
+  color: var(--color-primary);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 600;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  position: relative;
+}
+
+.formGroup label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text-main);
+}
+
+.input {
+  background-color: var(--color-bg-dark);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-main);
+  padding: 0.85rem 1rem;
+  border-radius: 6px;
+  transition: var(--transition-smooth);
+  width: 100%;
+}
+
+.input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 10px rgba(255, 183, 3, 0.15);
+}
+
+.errorMsg {
+  display: none;
+  color: var(--color-error);
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+  font-weight: 500;
+}
+
+.alert {
+  background-color: var(--color-error-bg);
+  border: 1px solid var(--color-error);
+  color: #FF8F8F;
+  padding: 1rem;
+  border-radius: 6px;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 480px) {
+  .loginCard {
+    padding: 2rem 1.5rem;
+  }
+}

@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+
+# Bloquear panel de administración de bots
+Disallow: /admin/
+Disallow: /admin/login
+Disallow: /admin/dashboard
+
+# Bloquear rutas de API desde el frontend
+Disallow: /api/
+
+# Sitemap
+Sitemap: https://tecnolight.com.ar/sitemap.xml
