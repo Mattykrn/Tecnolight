@@ -26,7 +26,6 @@ import {
   Mail, Package, Compass, LogOut, Check, Trash2, Plus, Edit, X, Eye, 
   MapPin, User, ShieldAlert, FileText, Shield, Smartphone, Key
 } from 'lucide-react'; // Iconos
-import styles from '../../styles/Dashboard.module.css';
 
 /**
  * Componente principal del dashboard
@@ -353,55 +352,55 @@ export default function Dashboard() {
   }
 
   return (
-    <div className={styles.dashboardContainer}>
+    <div className="flex min-h-screen">
       <Head>
         <title>Panel de Administración | Tecnolight</title>
         <meta name="robots" content="noindex, nofollow" />
       </Head>
 
       {/* Sidebar Navigation */}
-      <aside className={styles.sidebar}>
-        <div className={styles.sidebarHeader}>
-          <span className={styles.brand}>TECNOLIGHT</span>
-          <span className={styles.brandSubtitle}>Administración</span>
+      <aside className="w-64 bg-bg-surface border-r border-border flex flex-col shrink-0">
+        <div className="p-6 border-b border-border text-center">
+          <span className="text-xl font-extrabold tracking-wider text-primary block">TECNOLIGHT</span>
+          <span className="text-xs text-text-muted uppercase tracking-widest block mt-0.5">Administración</span>
         </div>
 
         {user && (
-          <div className={styles.userProfile}>
-            <span className={styles.userName}>{user.name}</span>
-            <span className={styles.userRole}>Nivel: {user.role}</span>
+          <div className="px-6 py-4 border-b border-border">
+            <span className="block text-sm font-semibold text-text-main">{user.name}</span>
+            <span className="block text-xs text-text-muted mt-0.5">Nivel: {user.role}</span>
           </div>
         )}
 
-        <nav className={styles.nav}>
+        <nav className="flex-1 flex flex-col p-3 gap-1">
           <button 
-            className={`${styles.tabBtn} ${activeTab === 'contacts' ? styles.tabBtnActive : ''}`}
+            className={`flex items-center gap-3 w-full px-4 py-2.5 text-sm font-medium rounded-lg transition-all duration-200 text-left ${activeTab === 'contacts' ? 'bg-bg-card text-primary' : 'text-text-muted hover:bg-bg-card hover:text-text-main'}`}
             onClick={() => setActiveTab('contacts')}
           >
             <Mail size={18} /> Consultas ({contacts.filter(c => !c.read).length})
           </button>
           <button 
-            className={`${styles.tabBtn} ${activeTab === 'products' ? styles.tabBtnActive : ''}`}
+            className={`flex items-center gap-3 w-full px-4 py-2.5 text-sm font-medium rounded-lg transition-all duration-200 text-left ${activeTab === 'products' ? 'bg-bg-card text-primary' : 'text-text-muted hover:bg-bg-card hover:text-text-main'}`}
             onClick={() => setActiveTab('products')}
           >
             <Package size={18} /> Productos ({products.length})
           </button>
           <button 
-            className={`${styles.tabBtn} ${activeTab === 'projects' ? styles.tabBtnActive : ''}`}
+            className={`flex items-center gap-3 w-full px-4 py-2.5 text-sm font-medium rounded-lg transition-all duration-200 text-left ${activeTab === 'projects' ? 'bg-bg-card text-primary' : 'text-text-muted hover:bg-bg-card hover:text-text-main'}`}
             onClick={() => setActiveTab('projects')}
           >
             <Compass size={18} /> Proyectos ({projects.length})
           </button>
           
           <button 
-            className={`${styles.tabBtn} ${activeTab === 'settings' ? styles.tabBtnActive : ''}`}
+            className={`flex items-center gap-3 w-full px-4 py-2.5 text-sm font-medium rounded-lg transition-all duration-200 text-left ${activeTab === 'settings' ? 'bg-bg-card text-primary' : 'text-text-muted hover:bg-bg-card hover:text-text-main'}`}
             onClick={() => setActiveTab('settings')}
           >
             <Shield size={18} /> Seguridad
           </button>
 
           <button 
-            className={`${styles.tabBtn} ${styles.logoutBtn}`}
+            className="flex items-center gap-3 w-full px-4 py-2.5 text-sm font-medium rounded-lg transition-all duration-200 text-left mt-auto text-error hover:bg-error/10"
             onClick={handleLogout}
           >
             <LogOut size={18} /> Cerrar Sesión
@@ -410,7 +409,7 @@ export default function Dashboard() {
       </aside>
 
       {/* Main Panel Content */}
-      <main className={styles.mainPanel}>
+      <main className="flex-1 p-8 overflow-y-auto">
         {error && (
           <div style={{ backgroundColor: 'var(--color-error-bg)', border: '1px solid var(--color-error)', color: '#FF7F7F', padding: '1rem', borderRadius: '6px', marginBottom: '2rem' }}>
             {error}
@@ -420,60 +419,62 @@ export default function Dashboard() {
         {/* Tab 1: Contacts Management */}
         {activeTab === 'contacts' && (
           <div>
-            <div className={styles.panelHeader}>
+            <div className="flex items-center justify-between mb-8">
               <h1>Consultas Recibidas</h1>
             </div>
             
-            <div className={styles.tableWrapper}>
-              <table className={styles.table}>
+            <div className="bg-bg-card border border-border rounded-xl overflow-hidden">
+              <table className="w-full text-left">
                 <thead>
-                  <tr>
-                    <th>Fecha</th>
-                    <th>Remitente</th>
-                    <th>Email</th>
-                    <th>Mensaje</th>
-                    <th>Estado</th>
-                    <th>Acciones</th>
+                  <tr className="bg-bg-surface">
+                    <th className="px-4 py-3 text-xs font-semibold uppercase tracking-wider text-text-muted">Fecha</th>
+                    <th className="px-4 py-3 text-xs font-semibold uppercase tracking-wider text-text-muted">Remitente</th>
+                    <th className="px-4 py-3 text-xs font-semibold uppercase tracking-wider text-text-muted">Email</th>
+                    <th className="px-4 py-3 text-xs font-semibold uppercase tracking-wider text-text-muted">Mensaje</th>
+                    <th className="px-4 py-3 text-xs font-semibold uppercase tracking-wider text-text-muted">Estado</th>
+                    <th className="px-4 py-3 text-xs font-semibold uppercase tracking-wider text-text-muted">Acciones</th>
                   </tr>
                 </thead>
                 <tbody>
                   {contacts.map((contact) => (
-                    <tr key={contact.id} style={{ opacity: contact.read ? 0.75 : 1 }}>
-                      <td>{new Date(contact.createdAt).toLocaleDateString('es-AR')}</td>
-                      <td style={{ fontWeight: contact.read ? 500 : 700 }}>{contact.name}</td>
-                      <td>{contact.email}</td>
-                      <td>
-                        <div className={styles.contactMessageBlock}>{contact.message}</div>
+                    <tr key={contact.id} className="border-b border-border last:border-b-0 transition-colors hover:bg-bg-surface/50" style={{ opacity: contact.read ? 0.75 : 1 }}>
+                      <td className="px-4 py-3 text-sm text-text-main">{new Date(contact.createdAt).toLocaleDateString('es-AR')}</td>
+                      <td className="px-4 py-3 text-sm" style={{ fontWeight: contact.read ? 500 : 700 }}>{contact.name}</td>
+                      <td className="px-4 py-3 text-sm text-text-main">{contact.email}</td>
+                      <td className="px-4 py-3 text-sm">
+                        <div className="max-w-[250px] truncate text-text-muted">{contact.message}</div>
                       </td>
-                      <td>
-                        <span className={`${styles.badge} ${contact.read ? styles.badgeSuccess : styles.badgeWarn}`}>
+                      <td className="px-4 py-3">
+                        <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${contact.read ? 'bg-success/10 text-success' : 'bg-primary/10 text-primary'}`}>
                           {contact.read ? 'Leído' : 'Pendiente'}
                         </span>
                       </td>
-                      <td className={styles.actionsCell}>
-                        <button 
-                          className={styles.actionIconBtn} 
-                          title="Ver Mensaje"
-                          onClick={() => setContactViewModal({ open: true, data: contact })}
-                        >
-                          <Eye size={18} />
-                        </button>
-                        {!contact.read && (
+                      <td className="px-4 py-3">
+                        <div className="flex items-center gap-1">
                           <button 
-                            className={styles.actionIconBtn} 
-                            title="Marcar Leído"
-                            onClick={() => handleMarkContactRead(contact.id)}
+                            className="inline-flex items-center justify-center w-8 h-8 rounded-lg text-text-muted hover:bg-bg-surface hover:text-text-main transition-colors" 
+                            title="Ver Mensaje"
+                            onClick={() => setContactViewModal({ open: true, data: contact })}
                           >
-                            <Check size={18} color="var(--color-success)" />
+                            <Eye size={18} />
                           </button>
-                        )}
-                        <button 
-                          className={`${styles.actionIconBtn} ${styles.actionIconBtnDelete}`}
-                          title="Eliminar"
-                          onClick={() => handleDeleteContact(contact.id)}
-                        >
-                          <Trash2 size={18} />
-                        </button>
+                          {!contact.read && (
+                            <button 
+                              className="inline-flex items-center justify-center w-8 h-8 rounded-lg text-text-muted hover:bg-bg-surface hover:text-text-main transition-colors" 
+                              title="Marcar Leído"
+                              onClick={() => handleMarkContactRead(contact.id)}
+                            >
+                              <Check size={18} color="var(--color-success)" />
+                            </button>
+                          )}
+                          <button 
+                            className="inline-flex items-center justify-center w-8 h-8 rounded-lg text-text-muted hover:bg-error/10 hover:text-error transition-colors"
+                            title="Eliminar"
+                            onClick={() => handleDeleteContact(contact.id)}
+                          >
+                            <Trash2 size={18} />
+                          </button>
+                        </div>
                       </td>
                     </tr>
                   ))}
@@ -493,7 +494,7 @@ export default function Dashboard() {
         {/* Tab 2: Products CRUD Management */}
         {activeTab === 'products' && (
           <div>
-            <div className={styles.panelHeader}>
+            <div className="flex items-center justify-between mb-8">
               <h1>Base de Productos</h1>
               <button 
                 className="btn-primary" 
@@ -504,43 +505,45 @@ export default function Dashboard() {
               </button>
             </div>
 
-            <div className={styles.tableWrapper}>
-              <table className={styles.table}>
+            <div className="bg-bg-card border border-border rounded-xl overflow-hidden">
+              <table className="w-full text-left">
                 <thead>
-                  <tr>
-                    <th>Nombre</th>
-                    <th>Categoría</th>
-                    <th>Precio</th>
-                    <th>Estado</th>
-                    <th>Acciones</th>
+                  <tr className="bg-bg-surface">
+                    <th className="px-4 py-3 text-xs font-semibold uppercase tracking-wider text-text-muted">Nombre</th>
+                    <th className="px-4 py-3 text-xs font-semibold uppercase tracking-wider text-text-muted">Categoría</th>
+                    <th className="px-4 py-3 text-xs font-semibold uppercase tracking-wider text-text-muted">Precio</th>
+                    <th className="px-4 py-3 text-xs font-semibold uppercase tracking-wider text-text-muted">Estado</th>
+                    <th className="px-4 py-3 text-xs font-semibold uppercase tracking-wider text-text-muted">Acciones</th>
                   </tr>
                 </thead>
                 <tbody>
                   {products.map((product) => (
-                    <tr key={product.id}>
-                      <td style={{ fontWeight: 600 }}>{product.name}</td>
-                      <td>{product.category}</td>
-                      <td>{product.price ? `$${product.price.toLocaleString('es-AR')}` : 'Cotizar'}</td>
-                      <td>
-                        <span className={`${styles.badge} ${product.active ? styles.badgeSuccess : styles.badgeWarn}`}>
+                    <tr key={product.id} className="border-b border-border last:border-b-0 transition-colors hover:bg-bg-surface/50">
+                      <td className="px-4 py-3 text-sm" style={{ fontWeight: 600 }}>{product.name}</td>
+                      <td className="px-4 py-3 text-sm text-text-main">{product.category}</td>
+                      <td className="px-4 py-3 text-sm text-text-main">{product.price ? `$${product.price.toLocaleString('es-AR')}` : 'Cotizar'}</td>
+                      <td className="px-4 py-3">
+                        <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${product.active ? 'bg-success/10 text-success' : 'bg-primary/10 text-primary'}`}>
                           {product.active ? 'Activo' : 'Pausado'}
                         </span>
                       </td>
-                      <td className={styles.actionsCell}>
-                        <button 
-                          className={styles.actionIconBtn} 
-                          title="Editar"
-                          onClick={() => setProductModal({ open: true, mode: 'edit', data: product })}
-                        >
-                          <Edit size={18} />
-                        </button>
-                        <button 
-                          className={`${styles.actionIconBtn} ${styles.actionIconBtnDelete}`}
-                          title="Eliminar"
-                          onClick={() => handleDeleteProduct(product.id)}
-                        >
-                          <Trash2 size={18} />
-                        </button>
+                      <td className="px-4 py-3">
+                        <div className="flex items-center gap-1">
+                          <button 
+                            className="inline-flex items-center justify-center w-8 h-8 rounded-lg text-text-muted hover:bg-bg-surface hover:text-text-main transition-colors" 
+                            title="Editar"
+                            onClick={() => setProductModal({ open: true, mode: 'edit', data: product })}
+                          >
+                            <Edit size={18} />
+                          </button>
+                          <button 
+                            className="inline-flex items-center justify-center w-8 h-8 rounded-lg text-text-muted hover:bg-error/10 hover:text-error transition-colors"
+                            title="Eliminar"
+                            onClick={() => handleDeleteProduct(product.id)}
+                          >
+                            <Trash2 size={18} />
+                          </button>
+                        </div>
                       </td>
                     </tr>
                   ))}
@@ -560,7 +563,7 @@ export default function Dashboard() {
         {/* Tab 3: Projects CRUD Management */}
         {activeTab === 'projects' && (
           <div>
-            <div className={styles.panelHeader}>
+            <div className="flex items-center justify-between mb-8">
               <h1>Gestión de Proyectos</h1>
               <button 
                 className="btn-primary" 
@@ -571,43 +574,45 @@ export default function Dashboard() {
               </button>
             </div>
 
-            <div className={styles.tableWrapper}>
-              <table className={styles.table}>
+            <div className="bg-bg-card border border-border rounded-xl overflow-hidden">
+              <table className="w-full text-left">
                 <thead>
-                  <tr>
-                    <th>Proyecto</th>
-                    <th>Cliente</th>
-                    <th>Ubicación</th>
-                    <th>Estado</th>
-                    <th>Acciones</th>
+                  <tr className="bg-bg-surface">
+                    <th className="px-4 py-3 text-xs font-semibold uppercase tracking-wider text-text-muted">Proyecto</th>
+                    <th className="px-4 py-3 text-xs font-semibold uppercase tracking-wider text-text-muted">Cliente</th>
+                    <th className="px-4 py-3 text-xs font-semibold uppercase tracking-wider text-text-muted">Ubicación</th>
+                    <th className="px-4 py-3 text-xs font-semibold uppercase tracking-wider text-text-muted">Estado</th>
+                    <th className="px-4 py-3 text-xs font-semibold uppercase tracking-wider text-text-muted">Acciones</th>
                   </tr>
                 </thead>
                 <tbody>
                   {projects.map((project) => (
-                    <tr key={project.id}>
-                      <td style={{ fontWeight: 600 }}>{project.title}</td>
-                      <td>{project.client}</td>
-                      <td>{project.location}</td>
-                      <td>
-                        <span className={`${styles.badge} ${project.active ? styles.badgeSuccess : styles.badgeWarn}`}>
+                    <tr key={project.id} className="border-b border-border last:border-b-0 transition-colors hover:bg-bg-surface/50">
+                      <td className="px-4 py-3 text-sm" style={{ fontWeight: 600 }}>{project.title}</td>
+                      <td className="px-4 py-3 text-sm text-text-main">{project.client}</td>
+                      <td className="px-4 py-3 text-sm text-text-main">{project.location}</td>
+                      <td className="px-4 py-3">
+                        <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${project.active ? 'bg-success/10 text-success' : 'bg-primary/10 text-primary'}`}>
                           {project.active ? 'Activo' : 'Pausado'}
                         </span>
                       </td>
-                      <td className={styles.actionsCell}>
-                        <button 
-                          className={styles.actionIconBtn} 
-                          title="Editar"
-                          onClick={() => setProjectModal({ open: true, mode: 'edit', data: project })}
-                        >
-                          <Edit size={18} />
-                        </button>
-                        <button 
-                          className={`${styles.actionIconBtn} ${styles.actionIconBtnDelete}`}
-                          title="Eliminar"
-                          onClick={() => handleDeleteProject(project.id)}
-                        >
-                          <Trash2 size={18} />
-                        </button>
+                      <td className="px-4 py-3">
+                        <div className="flex items-center gap-1">
+                          <button 
+                            className="inline-flex items-center justify-center w-8 h-8 rounded-lg text-text-muted hover:bg-bg-surface hover:text-text-main transition-colors" 
+                            title="Editar"
+                            onClick={() => setProjectModal({ open: true, mode: 'edit', data: project })}
+                          >
+                            <Edit size={18} />
+                          </button>
+                          <button 
+                            className="inline-flex items-center justify-center w-8 h-8 rounded-lg text-text-muted hover:bg-error/10 hover:text-error transition-colors"
+                            title="Eliminar"
+                            onClick={() => handleDeleteProject(project.id)}
+                          >
+                            <Trash2 size={18} />
+                          </button>
+                        </div>
                       </td>
                     </tr>
                   ))}
@@ -627,13 +632,13 @@ export default function Dashboard() {
         {/* Tab 4: Security Settings */}
         {activeTab === 'settings' && (
           <div>
-            <div className={styles.panelHeader}>
+            <div className="flex items-center justify-between mb-8">
               <h1>Configuración de Seguridad</h1>
             </div>
 
             <div style={{ maxWidth: '600px', display: 'flex', flexDirection: 'column', gap: '2rem' }}>
               {/* 2FA Section */}
-              <div className={styles.card}>
+              <div className="bg-bg-card border border-border rounded-xl p-6">
                 <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.5rem' }}>
                   <Smartphone size={32} style={{ color: 'var(--color-primary)' }} />
                   <div>
@@ -646,7 +651,7 @@ export default function Dashboard() {
 
                 <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '1rem', borderRadius: '8px', background: 'var(--color-bg-dark)', border: '1px solid var(--color-border)' }}>
                   <span style={{ fontWeight: 600, flex: 1 }}>Estado</span>
-                  <span className={`${styles.badge} ${twoFactorEnabled ? styles.badgeSuccess : styles.badgeWarn}`}>
+                  <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${twoFactorEnabled ? 'bg-success/10 text-success' : 'bg-primary/10 text-primary'}`}>
                     {twoFactorEnabled ? 'Activado' : 'Desactivado'}
                   </span>
                 </div>
@@ -711,42 +716,42 @@ export default function Dashboard() {
 
       {/* Modal 1: Product Modal CRUD */}
       {productModal.open && (
-        <div className={styles.modalBackdrop}>
-          <div className={styles.modalContent}>
-            <div className={styles.modalHeader}>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm">
+          <div className="bg-bg-surface border border-border rounded-2xl w-full max-w-xl max-h-[90vh] overflow-y-auto shadow-premium">
+            <div className="flex items-center justify-between p-6 border-b border-border">
               <h2>{productModal.mode === 'create' ? 'Agregar Producto' : 'Editar Producto'}</h2>
-              <button onClick={() => setProductModal({ open: false, mode: 'create', data: null })}>
+              <button className="text-text-muted hover:text-text-main transition-colors" onClick={() => setProductModal({ open: false, mode: 'create', data: null })}>
                 <X size={20} />
               </button>
             </div>
             
-            <form onSubmit={handleProductSubmit} className={styles.modalForm}>
-              <div className={styles.formGroup}>
-                <label>Nombre del Producto *</label>
+            <form onSubmit={handleProductSubmit} className="p-6 flex flex-col gap-5">
+              <div className="flex flex-col gap-1.5">
+                <label className="text-sm font-medium text-text-muted">Nombre del Producto *</label>
                 <input 
                   type="text" 
                   name="name" 
-                  className={styles.input} 
+                  className="w-full bg-bg-dark border border-border rounded-lg px-4 py-2.5 text-sm text-text-main placeholder:text-text-muted/50 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" 
                   required 
                   defaultValue={productModal.data?.name || ''} 
                 />
               </div>
 
-              <div className={styles.formGroup}>
-                <label>Slug de URL (Único) *</label>
+              <div className="flex flex-col gap-1.5">
+                <label className="text-sm font-medium text-text-muted">Slug de URL (Único) *</label>
                 <input 
                   type="text" 
                   name="slug" 
-                  className={styles.input} 
+                  className="w-full bg-bg-dark border border-border rounded-lg px-4 py-2.5 text-sm text-text-main placeholder:text-text-muted/50 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" 
                   required 
                   placeholder="ej: senal-pare"
                   defaultValue={productModal.data?.slug || ''} 
                 />
               </div>
 
-              <div className={styles.formGroup}>
-                <label>Categoría *</label>
-                <select name="category" className={styles.select} required defaultValue={productModal.data?.category || 'Reglamentarias'}>
+              <div className="flex flex-col gap-1.5">
+                <label className="text-sm font-medium text-text-muted">Categoría *</label>
+                <select name="category" className="w-full bg-bg-dark border border-border rounded-lg px-4 py-2.5 text-sm text-text-main focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors appearance-none" required defaultValue={productModal.data?.category || 'Reglamentarias'}>
                   <option value="Reglamentarias">Reglamentarias</option>
                   <option value="Preventivas">Preventivas</option>
                   <option value="Informativas">Informativas</option>
@@ -754,47 +759,47 @@ export default function Dashboard() {
                 </select>
               </div>
 
-              <div className={styles.formGroup}>
-                <label>Precio Unitario (ARS)</label>
+              <div className="flex flex-col gap-1.5">
+                <label className="text-sm font-medium text-text-muted">Precio Unitario (ARS)</label>
                 <input 
                   type="number" 
                   step="0.01" 
                   name="price" 
-                  className={styles.input} 
+                  className="w-full bg-bg-dark border border-border rounded-lg px-4 py-2.5 text-sm text-text-main placeholder:text-text-muted/50 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" 
                   placeholder="Dejar vacío para 'Cotizar'"
                   defaultValue={productModal.data?.price || ''} 
                 />
               </div>
 
-              <div className={styles.formGroup}>
-                <label>Descripción General *</label>
+              <div className="flex flex-col gap-1.5">
+                <label className="text-sm font-medium text-text-muted">Descripción General *</label>
                 <textarea 
                   name="description" 
-                  className={styles.textarea} 
+                  className="w-full bg-bg-dark border border-border rounded-lg px-4 py-2.5 text-sm text-text-main placeholder:text-text-muted/50 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors resize-y min-h-[100px]" 
                   required 
                   defaultValue={productModal.data?.description || ''}
                 ></textarea>
               </div>
 
-              <div className={styles.formGroup}>
-                <label>Especificaciones Técnicas (Un valor por línea)</label>
+              <div className="flex flex-col gap-1.5">
+                <label className="text-sm font-medium text-text-muted">Especificaciones Técnicas (Un valor por línea)</label>
                 <textarea 
                   name="specs" 
-                  className={styles.textarea} 
+                  className="w-full bg-bg-dark border border-border rounded-lg px-4 py-2.5 text-sm text-text-main placeholder:text-text-muted/50 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors resize-y min-h-[100px]" 
                   placeholder="ej:&#10;Material: Aluminio&#10;Reflectivo: Grado Ingeniería"
                   defaultValue={productModal.data?.specs || ''}
                 ></textarea>
               </div>
 
-              <div className={styles.formGroup}>
-                <label>Visibilidad catálogo</label>
-                <select name="active" className={styles.select} defaultValue={productModal.data ? String(productModal.data.active) : 'true'}>
+              <div className="flex flex-col gap-1.5">
+                <label className="text-sm font-medium text-text-muted">Visibilidad catálogo</label>
+                <select name="active" className="w-full bg-bg-dark border border-border rounded-lg px-4 py-2.5 text-sm text-text-main focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors appearance-none" defaultValue={productModal.data ? String(productModal.data.active) : 'true'}>
                   <option value="true">Activo / Visible</option>
                   <option value="false">Oculto / Pausado</option>
                 </select>
               </div>
 
-              <div className={styles.modalFormActions}>
+              <div className="flex items-center justify-end gap-3 pt-5 border-t border-border">
                 <button 
                   type="button" 
                   className="btn-secondary" 
@@ -813,90 +818,90 @@ export default function Dashboard() {
 
       {/* Modal 2: Project Modal CRUD */}
       {projectModal.open && (
-        <div className={styles.modalBackdrop}>
-          <div className={styles.modalContent}>
-            <div className={styles.modalHeader}>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm">
+          <div className="bg-bg-surface border border-border rounded-2xl w-full max-w-xl max-h-[90vh] overflow-y-auto shadow-premium">
+            <div className="flex items-center justify-between p-6 border-b border-border">
               <h2>{projectModal.mode === 'create' ? 'Agregar Proyecto' : 'Editar Proyecto'}</h2>
-              <button onClick={() => setProjectModal({ open: false, mode: 'create', data: null })}>
+              <button className="text-text-muted hover:text-text-main transition-colors" onClick={() => setProjectModal({ open: false, mode: 'create', data: null })}>
                 <X size={20} />
               </button>
             </div>
             
-            <form onSubmit={handleProjectSubmit} className={styles.modalForm}>
-              <div className={styles.formGroup}>
-                <label>Título del Proyecto *</label>
+            <form onSubmit={handleProjectSubmit} className="p-6 flex flex-col gap-5">
+              <div className="flex flex-col gap-1.5">
+                <label className="text-sm font-medium text-text-muted">Título del Proyecto *</label>
                 <input 
                   type="text" 
                   name="title" 
-                  className={styles.input} 
+                  className="w-full bg-bg-dark border border-border rounded-lg px-4 py-2.5 text-sm text-text-main placeholder:text-text-muted/50 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" 
                   required 
                   defaultValue={projectModal.data?.title || ''} 
                 />
               </div>
 
-              <div className={styles.formGroup}>
-                <label>Slug de URL (Único) *</label>
+              <div className="flex flex-col gap-1.5">
+                <label className="text-sm font-medium text-text-muted">Slug de URL (Único) *</label>
                 <input 
                   type="text" 
                   name="slug" 
-                  className={styles.input} 
+                  className="w-full bg-bg-dark border border-border rounded-lg px-4 py-2.5 text-sm text-text-main placeholder:text-text-muted/50 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" 
                   required 
                   placeholder="ej: senalizacion-autopista"
                   defaultValue={projectModal.data?.slug || ''} 
                 />
               </div>
 
-              <div className={styles.formGroup}>
-                <label>Cliente (Empresa/Municipio) *</label>
+              <div className="flex flex-col gap-1.5">
+                <label className="text-sm font-medium text-text-muted">Cliente (Empresa/Municipio) *</label>
                 <input 
                   type="text" 
                   name="client" 
-                  className={styles.input} 
+                  className="w-full bg-bg-dark border border-border rounded-lg px-4 py-2.5 text-sm text-text-main placeholder:text-text-muted/50 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" 
                   required 
                   defaultValue={projectModal.data?.client || ''} 
                 />
               </div>
 
-              <div className={styles.formGroup}>
-                <label>Ubicación (Provincia/Ciudad) *</label>
+              <div className="flex flex-col gap-1.5">
+                <label className="text-sm font-medium text-text-muted">Ubicación (Provincia/Ciudad) *</label>
                 <input 
                   type="text" 
                   name="location" 
-                  className={styles.input} 
+                  className="w-full bg-bg-dark border border-border rounded-lg px-4 py-2.5 text-sm text-text-main placeholder:text-text-muted/50 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" 
                   required 
                   placeholder="ej: Santa Fe, Argentina"
                   defaultValue={projectModal.data?.location || ''} 
                 />
               </div>
 
-              <div className={styles.formGroup}>
-                <label>Descripción de los trabajos *</label>
+              <div className="flex flex-col gap-1.5">
+                <label className="text-sm font-medium text-text-muted">Descripción de los trabajos *</label>
                 <textarea 
                   name="description" 
-                  className={styles.textarea} 
+                  className="w-full bg-bg-dark border border-border rounded-lg px-4 py-2.5 text-sm text-text-main placeholder:text-text-muted/50 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors resize-y min-h-[100px]" 
                   required 
                   defaultValue={projectModal.data?.description || ''}
                 ></textarea>
               </div>
 
-              <div className={styles.formGroup}>
-                <label>Testimonio del Cliente</label>
+              <div className="flex flex-col gap-1.5">
+                <label className="text-sm font-medium text-text-muted">Testimonio del Cliente</label>
                 <textarea 
                   name="testimonial" 
-                  className={styles.textarea} 
+                  className="w-full bg-bg-dark border border-border rounded-lg px-4 py-2.5 text-sm text-text-main placeholder:text-text-muted/50 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors resize-y min-h-[100px]" 
                   defaultValue={projectModal.data?.testimonial || ''}
                 ></textarea>
               </div>
 
-              <div className={styles.formGroup}>
-                <label>Estado</label>
-                <select name="active" className={styles.select} defaultValue={projectModal.data ? String(projectModal.data.active) : 'true'}>
+              <div className="flex flex-col gap-1.5">
+                <label className="text-sm font-medium text-text-muted">Estado</label>
+                <select name="active" className="w-full bg-bg-dark border border-border rounded-lg px-4 py-2.5 text-sm text-text-main focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors appearance-none" defaultValue={projectModal.data ? String(projectModal.data.active) : 'true'}>
                   <option value="true">Activo / Visible</option>
                   <option value="false">Oculto / Pausado</option>
                 </select>
               </div>
 
-              <div className={styles.modalFormActions}>
+              <div className="flex items-center justify-end gap-3 pt-5 border-t border-border">
                 <button 
                   type="button" 
                   className="btn-secondary" 
@@ -915,16 +920,16 @@ export default function Dashboard() {
 
       {/* Modal 3: View Contact Message Details */}
       {contactViewModal.open && contactViewModal.data && (
-        <div className={styles.modalBackdrop}>
-          <div className={styles.modalContent}>
-            <div className={styles.modalHeader}>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm">
+          <div className="bg-bg-surface border border-border rounded-2xl w-full max-w-xl max-h-[90vh] overflow-y-auto shadow-premium">
+            <div className="flex items-center justify-between p-6 border-b border-border">
               <h2>Detalles de Consulta</h2>
-              <button onClick={() => setContactViewModal({ open: false, data: null })}>
+              <button className="text-text-muted hover:text-text-main transition-colors" onClick={() => setContactViewModal({ open: false, data: null })}>
                 <X size={20} />
               </button>
             </div>
             
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+            <div className="p-6 flex flex-col gap-6">
               <div>
                 <span style={{ fontSize: '0.8rem', color: 'var(--color-text-muted)', display: 'block', marginBottom: '0.25rem' }}>Fecha de Recepción</span>
                 <span style={{ fontSize: '0.95rem' }}>{new Date(contactViewModal.data.createdAt).toLocaleString('es-AR')}</span>
@@ -959,9 +964,9 @@ export default function Dashboard() {
                 </p>
               </div>
 
-              <div className={styles.modalFormActions} style={{ borderTop: '1px solid var(--color-border)', paddingTop: '1.5rem' }}>
+              <div className="flex items-center justify-end gap-3 pt-5 border-t border-border">
                 <button 
-                  className={`${styles.actionIconBtn} btn-secondary`} 
+                  className="btn-secondary" 
                   style={{ color: '#FF7F7F', borderColor: '#FF5A5A33', marginRight: 'auto' }}
                   onClick={() => handleDeleteContact(contactViewModal.data.id)}
                 >
