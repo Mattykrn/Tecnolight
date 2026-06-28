@@ -60,6 +60,107 @@ model Contact {
   createdAt DateTime @default(now())
 }
 
+model Client {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  phone     String?
+  company   String?
+  address   String?
+  city      String?
+  province  String?
+  notes     String?
+  quotes    Quote[]
+  orders    Order[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum QuoteStatus {
+  DRAFT
+  SENT
+  APPROVED
+  REJECTED
+  EXPIRED
+}
+
+model Quote {
+  id          String      @id @default(cuid())
+  number      Int         @default(autoincrement())
+  clientId    String
+  client      Client      @relation(fields: [clientId], references: [id])
+  items       QuoteItem[]
+  subtotal    Float       @default(0)
+  tax         Float       @default(0)
+  total       Float       @default(0)
+  status      QuoteStatus @default(DRAFT)
+  notes       String?
+  validUntil  DateTime?
+  pdfUrl      String?
+  createdBy   String?
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  @@index([clientId])
+  @@index([status])
+  @@index([number])
+}
+
+model QuoteItem {
+  id          String @id @default(cuid())
+  quoteId     String
+  quote       Quote  @relation(fields: [quoteId], references: [id], onDelete: Cascade)
+  description String
+  quantity    Int    @default(1)
+  unitPrice   Float  @default(0)
+  total       Float  @default(0)
+
+  @@index([quoteId])
+}
+
+enum OrderStatus {
+  PENDING
+  CONFIRMED
+  IN_PRODUCTION
+  READY
+  DELIVERED
+  CANCELLED
+}
+
+model Order {
+  id          String       @id @default(cuid())
+  number      Int          @default(autoincrement())
+  clientId    String
+  client      Client       @relation(fields: [clientId], references: [id])
+  items       OrderItem[]
+  subtotal    Float        @default(0)
+  tax         Float        @default(0)
+  total       Float        @default(0)
+  status      OrderStatus  @default(PENDING)
+  notes       String?
+  quoteId     String?
+  deliveryDate DateTime?
+  createdBy   String?
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+
+  @@index([clientId])
+  @@index([status])
+  @@index([number])
+}
+
+model OrderItem {
+  id          String @id @default(cuid())
+  orderId     String
+  order       Order  @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  description String
+  quantity    Int    @default(1)
+  unitPrice   Float  @default(0)
+  total       Float  @default(0)
+
+  @@index([orderId])
+}
+
 model ActivityLog {
   id        String   @id @default(cuid())
   action    String

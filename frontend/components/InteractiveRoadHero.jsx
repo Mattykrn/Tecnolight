@@ -1,9 +1,17 @@
+// ============================================================
+// INTERACTIVE ROAD HERO — Hero animado con ruta 3D
+// Efecto de carretera en movimiento, señales flotantes,
+// estadísticas y parallax scroll.
+// ============================================================
 import React, { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { motion, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion';
 import { ArrowRight, Shield, Award, MapPin } from 'lucide-react';
 import { twMerge } from 'tailwind-merge';
 
+// -------------------------------------------------------
+// Señal flotante animada (flota arriba/abajo)
+// -------------------------------------------------------
 function FloatingSign({ icon, label, className, delay = 0 }) {
   return (
     <motion.div
@@ -15,19 +23,22 @@ function FloatingSign({ icon, label, className, delay = 0 }) {
       <motion.div
         animate={{ y: [0, -8, 0] }}
         transition={{ duration: 3.5 + delay, repeat: Infinity, ease: 'easeInOut' }}
-        className="flex flex-col items-center gap-1.5 px-[18px] py-3.5 bg-[rgba(255,255,255,0.04)] border border-[rgba(245,180,0,0.2)] rounded-xl backdrop-blur-[8px] shadow-[0_8px_32px_rgba(0,0,0,0.4),inset_0_1px_0_rgba(255,255,255,0.06)]"
+        className="flex flex-col items-center gap-1.5 px-[18px] py-3.5 bg-[rgba(255,255,255,0.04)] border border-[rgba(255,90,31,0.2)] rounded-xl backdrop-blur-[8px] shadow-[0_8px_32px_rgba(0,0,0,0.4),inset_0_1px_0_rgba(255,255,255,0.06)]"
       >
         <span className="text-[1.75rem] leading-none max-sm:text-[1.4rem]">{icon}</span>
-        <span className="text-[0.65rem] font-semibold tracking-wider uppercase text-primary opacity-90">{label}</span>
+        <span className="text-[0.65rem] font-semibold tracking-wider uppercase text-[#FF5A1F] opacity-90">{label}</span>
       </motion.div>
     </motion.div>
   );
 }
 
+// -------------------------------------------------------
+// Línea de carretera animada (se mueve horizontalmente)
+// -------------------------------------------------------
 function RoadDash({ index }) {
   return (
     <motion.div
-      className="w-15 h-1 bg-gradient-to-r from-transparent via-primary to-transparent rounded absolute bottom-[28%]"
+      className="w-15 h-1 bg-gradient-to-r from-transparent via-[#FF5A1F] to-transparent rounded absolute bottom-[28%]"
       initial={{ x: '-5%' }}
       animate={{ x: '110%' }}
       transition={{
@@ -40,17 +51,20 @@ function RoadDash({ index }) {
   );
 }
 
+// -------------------------------------------------------
+// Badge de estadística con animación de entrada
+// -------------------------------------------------------
 function StatBadge({ value, label, icon: Icon, delay }) {
   return (
     <motion.div
-      className="flex items-center gap-2.5 px-4 py-2.5 bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.07)] rounded-xl flex-1 min-w-[160px] transition-colors duration-200 hover:border-[rgba(245,180,0,0.3)] max-md:min-w-[140px] max-md:justify-center"
+      className="flex items-center gap-2.5 px-4 py-2.5 bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.07)] rounded-xl flex-1 min-w-[160px] transition-colors duration-200 hover:border-[rgba(255,90,31,0.3)] max-md:min-w-[140px] max-md:justify-center"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
     >
-      <span className="text-primary flex items-center shrink-0"><Icon size={18} /></span>
-      <span className="text-base font-bold text-text-main whitespace-nowrap">{value}</span>
-      <span className="text-xs text-text-muted whitespace-nowrap">{label}</span>
+      <span className="text-[#FF5A1F] flex items-center shrink-0"><Icon size={18} /></span>
+      <span className="text-base font-bold text-white whitespace-nowrap">{value}</span>
+      <span className="text-xs text-white/50 whitespace-nowrap">{label}</span>
     </motion.div>
   );
 }
@@ -89,9 +103,9 @@ export default function InteractiveRoadHero() {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden py-32 pb-24 max-md:min-h-auto max-md:py-28 max-md:pb-20" ref={heroRef}>
       <motion.div className="absolute inset-[-10%] w-[120%] h-[120%] will-change-transform max-md:will-change-auto" style={{ y: bgY }}>
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_0%,rgba(245,180,0,0.12)_0%,transparent_60%),linear-gradient(180deg,#0A0B0D_0%,#0A0B0D_40%,#12141C_100%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_0%,rgba(255,90,31,0.15)_0%,transparent_60%),linear-gradient(180deg,#0A0B0D_0%,#0A0B0D_40%,#12141C_100%)]" />
         <div className="absolute inset-0 perspective-[800px] overflow-hidden opacity-45">
-          <div className="absolute bottom-[-20%] left-1/2 -translate-x-1/2 w-[300%] h-[200%] bg-[linear-gradient(rgba(245,180,0,0.15)_1px,transparent_1px),linear-gradient(90deg,rgba(245,180,0,0.08)_1px,transparent_1px)] bg-[size:80px_80px] [transform-origin:bottom_center] [transform:translateX(-50%)_rotateX(72deg)] max-md:[transform:none]" />
+          <div className="absolute bottom-[-20%] left-1/2 -translate-x-1/2 w-[300%] h-[200%] bg-[linear-gradient(rgba(255,90,31,0.15)_1px,transparent_1px),linear-gradient(90deg,rgba(255,90,31,0.08)_1px,transparent_1px)] bg-[size:80px_80px] [transform-origin:bottom_center] [transform:translateX(-50%)_rotateX(72deg)] max-md:[transform:none]" />
         </div>
         <div className="relative w-full h-1">
           {Array.from({ length: 7 }).map((_, i) => (
@@ -99,8 +113,8 @@ export default function InteractiveRoadHero() {
           ))}
         </div>
         <motion.div
-          className="absolute top-[-10%] left-1/2 -translate-x-1/2 w-3/5 h-1/2 bg-[radial-gradient(ellipse,rgba(245,180,0,0.06)_0%,transparent_70%)] pointer-events-none animate-glow-pulse"
-          style={{ animationDuration: '4s' }}
+          className="absolute top-[-10%] left-1/2 -translate-x-1/2 w-3/5 h-1/2 bg-[radial-gradient(ellipse,rgba(255,90,31,0.08)_0%,transparent_70%)] pointer-events-none"
+          style={{ animation: 'pulse 4s ease-in-out infinite' }}
         />
       </motion.div>
 
@@ -117,17 +131,17 @@ export default function InteractiveRoadHero() {
           initial="hidden"
           animate="visible"
         >
-          <motion.div className="inline-flex items-center gap-2 px-[1.1rem] py-[0.45rem] bg-[rgba(245,180,0,0.1)] border border-[rgba(245,180,0,0.35)] rounded-full text-[0.8rem] font-semibold tracking-wider uppercase text-primary" variants={itemVariants}>
-            <span className="w-[7px] h-[7px] rounded-full bg-primary animate-pulse-slow" />
+          <motion.div className="inline-flex items-center gap-2 px-[1.1rem] py-[0.45rem] bg-[rgba(255,90,31,0.12)] border border-[rgba(255,90,31,0.35)] rounded-full text-[0.8rem] font-semibold tracking-wider uppercase text-[#FF5A1F]" variants={itemVariants}>
+            <span className="w-[7px] h-[7px] rounded-full bg-[#FF5A1F] animate-pulse" />
             +30 Años de Trayectoria en Santa Fe
           </motion.div>
 
-          <motion.h1 className="text-[clamp(2.5rem,5.5vw,4.25rem)] font-extrabold leading-[1.1] tracking-[-0.02em] text-text-main m-0" variants={itemVariants}>
+          <motion.h1 className="text-[clamp(2.5rem,5.5vw,4.25rem)] font-extrabold leading-[1.1] tracking-[-0.02em] text-white m-0" variants={itemVariants}>
             Seguridad Vial,{' '}
-            <span className="relative text-primary inline-block">
+            <span className="relative text-[#FF5A1F] inline-block">
               Calidad
               <motion.span
-                className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-primary to-transparent rounded origin-left"
+                className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-[#FF5A1F] to-transparent rounded origin-left"
                 initial={{ scaleX: 0 }}
                 animate={{ scaleX: 1 }}
                 transition={{ delay: 0.9, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
@@ -136,7 +150,7 @@ export default function InteractiveRoadHero() {
             <br />y Confianza Garantizada
           </motion.h1>
 
-          <motion.p className="text-[clamp(1rem,1.8vw,1.2rem)] leading-relaxed text-text-muted max-w-[580px] m-0 max-md:text-center" variants={itemVariants}>
+          <motion.p className="text-[clamp(1rem,1.8vw,1.2rem)] leading-relaxed text-white/60 max-w-[580px] m-0 max-md:text-center" variants={itemVariants}>
             Fabricamos e instalamos cartelería vial reglamentaria, preventiva e informativa
             con materiales reflectivos homologados. La empresa líder en señalización vial
             de la región.
@@ -146,7 +160,7 @@ export default function InteractiveRoadHero() {
             <Link href="/catalog" className="btn-primary">
               Explorar Catálogo <ArrowRight size={18} />
             </Link>
-            <Link href="/contact" className="btn-secondary">
+            <Link href="/contact" className="inline-flex items-center gap-2 bg-transparent text-white font-semibold px-5 py-2.5 rounded-lg border border-white/30 text-sm transition-all duration-300 hover:bg-white/10 hover:border-white/50 hover:-translate-y-0.5">
               Solicitar Cotización
             </Link>
           </motion.div>
@@ -166,7 +180,7 @@ export default function InteractiveRoadHero() {
         transition={{ delay: 1.8 }}
       >
         <motion.div
-          className="w-[6px] h-[6px] rounded-full bg-primary opacity-70"
+          className="w-[6px] h-[6px] rounded-full bg-[#FF5A1F] opacity-70"
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
         />

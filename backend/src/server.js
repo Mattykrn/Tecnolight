@@ -24,6 +24,19 @@
 require('dotenv').config();
 
 // ============================================
+// VALIDACIÓN DE ENTORNO
+// ============================================
+const REQUIRED_ENV = ['JWT_SECRET', 'DATABASE_URL'];
+const missing = REQUIRED_ENV.filter(k => !process.env[k]);
+if (missing.length) {
+  console.error(`❌ Faltan variables de entorno requeridas: ${missing.join(', ')}`);
+  process.exit(1);
+}
+if (process.env.JWT_SECRET === 'your-super-secret-jwt-key-change-in-production' || !process.env.JWT_SECRET || process.env.JWT_SECRET.length < 32) {
+  console.warn('⚠️  JWT_SECRET débil. Usá una clave de al menos 32 caracteres en producción.');
+}
+
+// ============================================
 // IMPORTACIONES
 // ============================================
 const express = require('express');           // Framework web para Node.js
@@ -78,6 +91,18 @@ const contactRoutes = require('../routes/contact');
 const instagramRoutes = require('../routes/instagram');
 const uploadRoutes = require('../routes/upload');
 
+/**
+ * Rutas de ventas (sales suite):
+ * - /api/clients - CRUD de clientes
+ * - /api/quotes - CRUD de cotizaciones + PDF
+ * - /api/orders - CRUD de pedidos
+ * - /api/sales - Dashboard de métricas
+ */
+const clientRoutes = require('../routes/clients');
+const quoteRoutes = require('../routes/quotes');
+const orderRoutes = require('../routes/orders');
+const salesRoutes = require('../routes/sales');
+
 // ============================================
 // INICIALIZACIÓN DE LA APP
 // ============================================
@@ -130,6 +155,10 @@ app.use('/api/projects', projectRoutes);   // CRUD de proyectos del portfolio
 app.use('/api/contact', contactRoutes);    // Formulario de contacto y gestión de consultas
 app.use('/api/instagram', instagramRoutes); // Galería de Instagram
 app.use('/api/upload', uploadRoutes);      // Subida de imágenes
+app.use('/api/clients', clientRoutes);     // CRUD de clientes (ventas)
+app.use('/api/quotes', quoteRoutes);       // CRUD de cotizaciones + PDF
+app.use('/api/orders', orderRoutes);       // CRUD de pedidos
+app.use('/api/sales', salesRoutes);        // Métricas de ventas
 
 // Servir archivos estáticos (imágenes subidas)
 app.use('/uploads', express.static('uploads'));

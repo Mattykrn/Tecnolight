@@ -170,26 +170,28 @@ async function logLoginAttempt(email, success, ip, userAgent) {
     userAgent
   });
 
-  // Si hay muchos intentos fallidos, alertar
+  // Si hay muchos intentos fallidos, alertar (solo desde archivo de logs)
   if (!success) {
-    const oneHourAgo = new Date();
-    oneHourAgo.setHours(oneHourAgo.getHours() - 1);
-
-    const failedAttempts = await global.prisma.activityLog.count({
-      where: {
-        action: 'login_failed',
-        email,
-        createdAt: {
-          gt: oneHourAgo
-        }
+    const oneHourAgo = Date.now() - 3600000;
+    try {
+      const fs = require('fs').promises;
+      const logFile = path.join(LOGS_DIR, `activity-${new Date().toISOString().split('T')[0]}.log`);
+      let failedAttempts = 0;
+      try {
+        const content = await fs.readFile(logFile, 'utf8');
+        const lines = content.trim().split('\n');
+        const recent = lines.filter(line => {
+          try {
+            const entry = JSON.parse(line);
+            return entry.action === 'login_failed' && entry.email === email && new Date(entry.timestamp).getTime() > oneHourAgo;
+          } catch { return false; }
+        });
+        failedAttempts = recent.length;
+      } catch {}
+      if (failedAttempts >= 5) {
+        console.warn(`⚠️  ALERTA: ${failedAttempts} intentos de login fallidos para ${email} en la última hora`);
       }
-    });
-
-    if (failedAttempts >= 5) {
-      console.warn(`⚠️  ALERTA: ${failedAttempts} intentos de login fallidos para ${email} en la última hora`);
-      
-      // Futuro: enviar email de alerta al administrador
-    }
+    } catch {}
   }
 }
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
-import { MessageSquare } from 'lucide-react';
-import InstagramGallery from '../../components/InstagramGallery';
+import { ArrowRight } from 'lucide-react';
+import Link from 'next/link';
 
 export default function Projects({ projects }) {
   return (
@@ -12,27 +12,32 @@ export default function Projects({ projects }) {
       </Head>
 
       <div className="text-center max-w-[600px] mx-auto mb-16">
-        <span className="text-primary font-semibold tracking-wider uppercase text-sm">Obras y Trayectoria</span>
-        <h1 className="text-[2.5rem] font-bold mt-2 mb-4 max-md:text-3xl">Proyectos Realizados</h1>
-        <p className="text-text-muted">Trabajamos junto a organismos gubernamentales y empresas privadas para equipar rutas, avenidas y desarrollos comerciales con señalización duradera y conforme a las regulaciones nacionales.</p>
+        <span className="text-[#FF5A1F] font-semibold tracking-wider uppercase text-sm">Obras y Trayectoria</span>
+        <h1 className="text-[2.5rem] font-bold mt-2 mb-4 max-md:text-3xl text-gray-900">Proyectos Realizados</h1>
+        <p className="text-gray-500">Trabajamos junto a organismos gubernamentales y empresas privadas para equipar rutas, avenidas y desarrollos comerciales con señalización duradera y conforme a las regulaciones nacionales.</p>
       </div>
 
       {projects.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project) => (
-            <div key={project.id} className="bg-bg-card border border-border rounded-xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 hover:border-primary hover:shadow-premium group">
-              <div className="relative h-52 bg-bg-surface flex items-center justify-center">
-                <span className="absolute top-3 left-3 bg-bg-dark/80 backdrop-blur-sm text-xs font-medium px-2.5 py-1 rounded-full text-text-main">{project.location}</span>
-                <span className="absolute top-3 right-3 bg-primary/20 text-primary text-xs font-medium px-2.5 py-1 rounded-full">{project.client}</span>
-                <div className="text-6xl">🚧</div>
+            <div key={project.id} className="bg-white border border-gray-100 rounded-xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 hover:border-[#FF5A1F] hover:shadow-card-hover group">
+              <div className="relative h-52 bg-gray-50 flex items-center justify-center overflow-hidden">
+                {project.image ? (
+                  <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
+                ) : (
+                  <div className="text-6xl opacity-30">🚧</div>
+                )}
+                <span className="absolute top-3 left-3 bg-white/90 text-gray-700 text-xs font-medium px-2.5 py-1 rounded-full">{project.location || 'Santa Fe'}</span>
+                {project.client && (
+                  <span className="absolute top-3 right-3 bg-[#FF5A1F]/10 text-[#FF5A1F] text-xs font-medium px-2.5 py-1 rounded-full">{project.client}</span>
+                )}
               </div>
               <div className="p-6">
-                <h2 className="font-bold text-lg mb-2">{project.title}</h2>
-                <p className="text-text-muted text-sm leading-relaxed">{project.description}</p>
+                <h2 className="font-bold text-lg mb-2 text-gray-900">{project.title}</h2>
+                <p className="text-gray-500 text-sm leading-relaxed">{project.description}</p>
                 {project.testimonial && (
-                  <div className="mt-4 pt-4 border-t border-border">
-                    <p className="text-text-muted text-xs italic">
-                      <MessageSquare size={14} className="inline text-primary mr-1 align-middle" />
+                  <div className="mt-4 pt-4 border-t border-gray-100">
+                    <p className="text-gray-500 text-xs italic">
                       &ldquo;{project.testimonial}&rdquo;
                     </p>
                   </div>
@@ -43,12 +48,16 @@ export default function Projects({ projects }) {
         </div>
       ) : (
         <div className="text-center py-20">
-          <h3 className="text-xl font-bold mb-2">No se encontraron proyectos</h3>
-          <p className="text-text-muted">Intentá nuevamente más tarde.</p>
+          <h3 className="text-xl font-bold mb-2 text-gray-900">No se encontraron proyectos</h3>
+          <p className="text-gray-500">Intentá nuevamente más tarde.</p>
         </div>
       )}
 
-      <InstagramGallery />
+      <div className="text-center mt-12">
+        <Link href="/contact" className="btn-primary">
+          Solicitar Presupuesto <ArrowRight size={18} />
+        </Link>
+      </div>
     </div>
   );
 }

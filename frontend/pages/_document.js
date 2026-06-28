@@ -104,7 +104,7 @@ export default function Document() {
               ],
               sameAs: [
                 'https://www.facebook.com/tecnolight',
-                'https://www.instagram.com/tecnolight',
+                'https://www.instagram.com/tecnolight.srl',
               ],
             }),
           }}

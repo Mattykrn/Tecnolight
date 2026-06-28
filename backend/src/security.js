@@ -7,23 +7,30 @@ const helmetConfig = {
   contentSecurityPolicy: {
     directives: {
       defaultSrc: ["'self'"],
-      styleSrc: ["'self'", "'unsafe-inline'", "fonts.googleapis.com"],
-      scriptSrc: ["'self'", "'unsafe-inline'"],
-      imgSrc: ["'self'", "data:", "https://localhost:3000"],
-      connectSrc: ["'self'", "http://localhost:5000", "http://localhost:3000"],
-      fontSrc: ["'self'"],
+      styleSrc: ["'self'", "'unsafe-inline'", "fonts.googleapis.com", "fonts.gstatic.com"],
+      scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'"],
+      imgSrc: ["'self'", "data:", "blob:", "https://*.google.com", "https://*.gstatic.com"],
+      connectSrc: ["'self'", "http://localhost:5000", "http://localhost:3000", "https://*.google.com"],
+      fontSrc: ["'self'", "fonts.googleapis.com", "fonts.gstatic.com"],
       objectSrc: ["'none'"],
       mediaSrc: ["'self'"],
-      frameSrc: ["'none'"]
+      frameSrc: ["'self'", "https://www.google.com"],
+      frameAncestors: ["'none'"],
+      formAction: ["'self'"],
+      upgradeInsecureRequests: []
     }
   },
   crossOriginEmbedderPolicy: false,
+  crossOriginOpenerPolicy: { policy: 'same-origin' },
+  crossOriginResourcePolicy: { policy: 'same-origin' },
   strictTransportSecurity: { maxAge: 31536000, includeSubDomains: true, preload: true },
   noSniff: true,
   frameguard: { action: 'deny' },
   xssFilter: true,
   hidePoweredBy: true,
-  referrerPolicy: { policy: 'strict-origin-when-cross-origin' }
+  referrerPolicy: { policy: 'strict-origin-when-cross-origin' },
+  originAgentCluster: true,
+  dnsPrefetchControl: { allow: false }
 };
 
 const corsConfig = {
@@ -59,6 +66,40 @@ const validators = {
     body('email').isEmail().normalizeEmail(),
     body('phone').optional().isMobilePhone('es-AR'),
     body('message').isLength({ min: 10, max: 2000 }).trim()
+  ],
+  client: [
+    body('name').isLength({ min: 2, max: 200 }).trim(),
+    body('email').isEmail().normalizeEmail(),
+    body('phone').optional().isLength({ max: 50 }).trim(),
+    body('company').optional().isLength({ max: 200 }).trim(),
+    body('address').optional().isLength({ max: 300 }).trim(),
+    body('city').optional().isLength({ max: 100 }).trim(),
+    body('province').optional().isLength({ max: 100 }).trim(),
+    body('notes').optional().isLength({ max: 2000 }).trim()
+  ],
+  quote: [
+    body('clientId').isString().isLength({ min: 1 }),
+    body('items').isArray({ min: 1 }),
+    body('items.*.description').isLength({ min: 1, max: 500 }).trim(),
+    body('items.*.quantity').isInt({ min: 1, max: 999999 }),
+    body('items.*.unitPrice').isFloat({ min: 0, max: 999999999 }),
+    body('notes').optional().isLength({ max: 2000 }).trim(),
+    body('validUntil').optional().isISO8601()
+  ],
+  quoteStatus: [
+    body('status').isIn(['DRAFT', 'SENT', 'APPROVED', 'REJECTED', 'EXPIRED'])
+  ],
+  order: [
+    body('clientId').isString().isLength({ min: 1 }),
+    body('items').isArray({ min: 1 }),
+    body('items.*.description').isLength({ min: 1, max: 500 }).trim(),
+    body('items.*.quantity').isInt({ min: 1, max: 999999 }),
+    body('items.*.unitPrice').isFloat({ min: 0, max: 999999999 }),
+    body('notes').optional().isLength({ max: 2000 }).trim(),
+    body('deliveryDate').optional().isISO8601()
+  ],
+  orderStatus: [
+    body('status').isIn(['PENDING', 'CONFIRMED', 'IN_PRODUCTION', 'READY', 'DELIVERED', 'CANCELLED'])
   ]
 };
 
@@ -132,6 +173,11 @@ module.exports = {
   validateMiddleware: {
     product: [...validators.product, validate],
     project: [...validators.project, validate],
-    contact: [...validators.contact, validate]
+    contact: [...validators.contact, validate],
+    client: [...validators.client, validate],
+    quote: [...validators.quote, validate],
+    quoteStatus: [...validators.quoteStatus, validate],
+    order: [...validators.order, validate],
+    orderStatus: [...validators.orderStatus, validate]
   }
 };

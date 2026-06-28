@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import { AnimatePresence, motion } from 'framer-motion';
 import '../styles/globals.css';
 import Layout from '../components/Layout';
+import { ToastProvider } from '../components/Toast';
 
 // ─── Google Analytics ───────────────────────────────────────
 const GA_ID = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID;
@@ -48,7 +49,7 @@ function MyApp({ Component, pageProps }) {
     <>
       {isAdminPage ? (
         // Admin pages: sin Layout público, sin animaciones de transición
-        <Component {...pageProps} />
+        <ToastProvider><Component {...pageProps} /></ToastProvider>
       ) : (
         <Layout>
           <AnimatePresence mode="wait" initial={false}>
