@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FAFAFA"/>
+      <stop offset="100%" stop-color="#F0EFEF"/>
+    </linearGradient>
+    <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+      <rect width="60" height="60" fill="none"/>
+      <rect width="60" height="60" fill="none" stroke="#FF5A1F" stroke-width="0.5" opacity="0.04"/>
+    </pattern>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#bg)"/>
+  <rect width="1920" height="1080" fill="url(#grid)"/>
+  <g opacity="0.03">
+    <line x1="0" y1="200" x2="1920" y2="200" stroke="#FF5A1F" stroke-width="1"/>
+    <line x1="0" y1="400" x2="1920" y2="400" stroke="#FF5A1F" stroke-width="0.5"/>
+    <line x1="0" y1="600" x2="1920" y2="600" stroke="#FF5A1F" stroke-width="0.3"/>
+  </g>
+  <g opacity="0.04">
+    <circle cx="960" cy="300" r="100" fill="none" stroke="#FF5A1F" stroke-width="2"/>
+    <circle cx="960" cy="300" r="60" fill="none" stroke="#FF5A1F" stroke-width="1"/>
+    <rect x="460" y="200" width="40" height="40" rx="4" fill="#FF5A1F" transform="rotate(45 480 220)"/>
+    <rect x="1460" y="200" width="40" height="40" rx="4" fill="#FF5A1F" transform="rotate(45 1480 220)"/>
+  </g>
+  <g opacity="0.025">
+    <rect x="200" y="500" width="4" height="200" rx="2" fill="#333"/>
+    <rect x="202" y="480" width="60" height="30" rx="4" fill="#FF5A1F"/>
+    <rect x="1700" y="550" width="4" height="200" rx="2" fill="#333"/>
+    <rect x="1702" y="530" width="60" height="30" rx="4" fill="#FF5A1F"/>
+  </g>
+</svg>

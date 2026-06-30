@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+  <defs>
+    <radialGradient id="skyGlow" cx="50%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#FF5A1F" stop-opacity="0.12"/>
+      <stop offset="40%" stop-color="#1a1a2e" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#0A0B0D" stop-opacity="1"/>
+    </radialGradient>
+    <linearGradient id="roadGrad" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="#0A0B0D"/>
+      <stop offset="30%" stop-color="#12141C"/>
+      <stop offset="100%" stop-color="#1a1c28"/>
+    </linearGradient>
+    <linearGradient id="line" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="transparent"/>
+      <stop offset="50%" stop-color="#FF5A1F" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="transparent"/>
+    </linearGradient>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#roadGrad)"/>
+  <rect width="1920" height="1080" fill="url(#skyGlow)"/>
+  <g opacity="0.04">
+    <line x1="300" y1="1080" x2="700" y2="400" stroke="#FF5A1F" stroke-width="1"/>
+    <line x1="500" y1="1080" x2="780" y2="400" stroke="#FF5A1F" stroke-width="1"/>
+    <line x1="700" y1="1080" x2="860" y2="400" stroke="#FF5A1F" stroke-width="1"/>
+    <line x1="900" y1="1080" x2="940" y2="400" stroke="#FF5A1F" stroke-width="1"/>
+    <line x1="1100" y1="1080" x2="1020" y2="400" stroke="#FF5A1F" stroke-width="1"/>
+    <line x1="1300" y1="1080" x2="1100" y2="400" stroke="#FF5A1F" stroke-width="1"/>
+    <line x1="1500" y1="1080" x2="1180" y2="400" stroke="#FF5A1F" stroke-width="1"/>
+  </g>
+  <g opacity="0.08">
+    <line x1="0" y1="300" x2="1920" y2="300" stroke="white" stroke-width="0.5"/>
+    <line x1="0" y1="500" x2="1920" y2="500" stroke="white" stroke-width="0.3"/>
+    <line x1="0" y1="700" x2="1920" y2="700" stroke="white" stroke-width="0.2"/>
+  </g>
+  <g opacity="0.06">
+    <rect x="200" y="100" width="3" height="60" rx="1.5" fill="#FF5A1F"/>
+    <rect x="600" y="150" width="3" height="60" rx="1.5" fill="#FF5A1F"/>
+    <rect x="1000" y="80" width="3" height="60" rx="1.5" fill="#FF5A1F"/>
+    <rect x="1400" y="120" width="3" height="60" rx="1.5" fill="#FF5A1F"/>
+  </g>
+  <g opacity="0.03">
+    <circle cx="300" cy="200" r="2" fill="white"/>
+    <circle cx="700" cy="150" r="1.5" fill="white"/>
+    <circle cx="1100" cy="250" r="1" fill="white"/>
+    <circle cx="1500" cy="180" r="2" fill="white"/>
+    <circle cx="500" cy="100" r="1.5" fill="white"/>
+    <circle cx="1300" cy="90" r="1" fill="white"/>
+    <circle cx="1700" cy="220" r="1.5" fill="white"/>
+    <circle cx="400" cy="280" r="1" fill="white"/>
+    <circle cx="1600" cy="150" r="2" fill="white"/>
+    <circle cx="900" cy="180" r="1.5" fill="white"/>
+  </g>
+</svg>

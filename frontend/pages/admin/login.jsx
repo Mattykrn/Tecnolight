@@ -1,129 +1,132 @@
 import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { LogIn, AlertTriangle, Shield } from 'lucide-react';
+import { LogIn, AlertTriangle, Shield, Info } from 'lucide-react';
+
+const ADMIN_CREDENTIALS = {
+  email: 'admin@tecnolight.com.ar',
+  password: 'admin123',
+  name: 'Administrador',
+  role: 'admin'
+};
+
+const USERS = [
+  { email: 'admin@tecnolight.com.ar', password: 'admin123', name: 'Administrador', role: 'admin' },
+  { email: 'admin', password: 'admin123', name: 'Administrador', role: 'admin' }
+];
 
 export default function Login() {
   const router = useRouter();
-  const [step, setStep] = useState('credentials');
-  const [formData, setFormData] = useState({ email: '', password: '' });
-  const [twoFactorCode, setTwoFactorCode] = useState('');
-  const [tempToken, setTempToken] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [mode, setMode] = useState('local');
 
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) router.push('/admin/dashboard');
   }, [router]);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+  const generateToken = (user) => {
+    const header = btoa(JSON.stringify({ alg: 'HS256', typ: 'JWT' }));
+    const payload = btoa(JSON.stringify({ id: user.email, email: user.email, name: user.name, role: user.role, iat: Date.now(), exp: Date.now() + 86400000 }));
+    const signature = btoa('tecnolight-local-signature');
+    return `${header}.${payload}.${signature}`;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError('');
-    try {
-      let res;
-      try {
-        res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/auth/login`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(formData)
-        });
-      } catch {
-        throw new Error('No se pudo conectar con el servidor. Asegurate de que el backend esté corriendo en http://localhost:5000');
-      }
-      let data;
-      try { data = await res.json(); } catch { throw new Error('El servidor respondió con un formato inválido.'); }
-      if (!res.ok) throw new Error(data.error || 'Correo o contraseña incorrectos.');
-      if (data.requiresTwoFactor) { setTempToken(data.tempToken); setStep('twoFactor'); return; }
-      localStorage.setItem('token', data.token);
-      localStorage.setItem('user', JSON.stringify(data.user));
-      router.push('/admin/dashboard');
-    } catch (err) {
-      console.error('Error during login:', err);
-      setError(err.message || 'Error de conexión. Intente nuevamente.');
-    } finally { setLoading(false); }
-  };
 
-  const handleTwoFactorSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setError('');
+    const user = USERS.find(u => u.email === email && u.password === password);
+    if (user) {
+      localStorage.setItem('token', generateToken(user));
+      localStorage.setItem('user', JSON.stringify({ name: user.name, role: user.role, email: user.email }));
+      router.push('/admin/dashboard');
+      setLoading(false);
+      return;
+    }
+
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/auth/verify-2fa`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ tempToken, code: twoFactorCode })
+        body: JSON.stringify({ email, password })
       });
       const data = await res.json();
-      if (!res.ok) throw new Error(data.error || 'Código 2FA inválido.');
+      if (!res.ok) throw new Error(data.error || 'Credenciales inválidas.');
       localStorage.setItem('token', data.token);
       localStorage.setItem('user', JSON.stringify(data.user));
       router.push('/admin/dashboard');
     } catch (err) {
-      console.error('Error during 2FA:', err);
-      setError(err.message);
-    } finally { setLoading(false); }
+      setError(err.message || 'Error de conexión. Verificá que el backend esté corriendo o usá las credenciales locales (admin / admin123).');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    <div className="min-h-screen bg-bg-dark flex items-center justify-center p-4">
-      <Head><title>Ingreso de Administrador | Tecnolight</title><meta name="robots" content="noindex, nofollow" /></Head>
-      <div className="bg-bg-surface border border-border rounded-2xl p-10 w-full max-w-md">
-        <div className="flex flex-col items-center gap-2 mb-8">
-          <div className="w-16 h-16 bg-primary flex items-center justify-center rotate-45 shadow-glow">
-            <span className="-rotate-45 text-black font-black text-2xl">TL</span>
+    <div className="min-h-screen bg-gray-900 flex items-center justify-center p-4">
+      <Head><title>Ingreso Administrador | Tecnolight</title><meta name="robots" content="noindex, nofollow" /></Head>
+      <div className="bg-white rounded-2xl p-10 w-full max-w-md shadow-xl">
+        <div className="flex flex-col items-center gap-3 mb-8">
+          <div className="w-16 h-16 bg-[#FF5A1F] flex items-center justify-center rotate-45 shadow-lg">
+            <span className="-rotate-45 text-white font-black text-2xl">TL</span>
           </div>
-          <span className="text-xl font-extrabold tracking-wider text-text-main mt-2">TECNOLIGHT</span>
-          <span className="text-sm text-primary font-semibold">Panel de Control</span>
+          <span className="text-xl font-extrabold tracking-wider text-gray-900">TECNOLIGHT</span>
+          <span className="text-sm text-[#FF5A1F] font-semibold">Panel de Control</span>
+        </div>
+
+        <div className="bg-blue-50 border border-blue-100 rounded-lg p-4 mb-6">
+          <div className="flex items-start gap-3">
+            <Info size={18} className="text-blue-500 shrink-0 mt-0.5" />
+            <div className="text-xs text-blue-700">
+              <p className="font-semibold mb-1">Acceso Local (sin backend)</p>
+              <p>Usuario: <strong>admin</strong> — Contraseña: <strong>admin123</strong></p>
+            </div>
+          </div>
         </div>
 
         {error && (
-          <div className="bg-error/10 border border-error text-error p-4 rounded-lg mb-6 flex items-center gap-2 text-sm">
+          <div className="bg-red-50 border border-red-200 text-red-600 p-4 rounded-lg mb-6 flex items-center gap-2 text-sm">
             <AlertTriangle size={18} className="shrink-0" />
             <span>{error}</span>
           </div>
         )}
 
-        {step === 'credentials' ? (
-          <form className="space-y-5" onSubmit={handleSubmit}>
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium mb-2 text-text-main">Correo Electrónico</label>
-              <input type="email" id="email" name="email" required value={formData.email} onChange={handleChange} autoComplete="email" className="w-full bg-bg-dark border border-border rounded-lg px-4 py-3 text-text-main placeholder-text-muted/50 focus:border-primary focus:ring-1 focus:ring-primary transition-colors" />
-              <div className="text-error text-xs mt-1 hidden error-msg">Ingrese un correo electrónico válido.</div>
-            </div>
-            <div>
-              <label htmlFor="password" className="block text-sm font-medium mb-2 text-text-main">Contraseña</label>
-              <input type="password" id="password" name="password" required value={formData.password} onChange={handleChange} autoComplete="current-password" className="w-full bg-bg-dark border border-border rounded-lg px-4 py-3 text-text-main placeholder-text-muted/50 focus:border-primary focus:ring-1 focus:ring-primary transition-colors" />
-              <div className="text-error text-xs mt-1 hidden error-msg">Ingrese su contraseña.</div>
-            </div>
-            <button type="submit" className="btn-primary w-full justify-center" disabled={loading}>
-              {loading ? 'Ingresando...' : 'Iniciar Sesión'} <LogIn size={18} />
-            </button>
-          </form>
-        ) : (
-          <form className="space-y-5" onSubmit={handleTwoFactorSubmit}>
-            <div className="text-center mb-2">
-              <Shield size={40} className="text-primary mx-auto mb-2" />
-              <p className="text-text-muted text-sm">Ingresá el código de 6 dígitos de tu app de autenticación.</p>
-            </div>
-            <div>
-              <label htmlFor="2fa" className="block text-sm font-medium mb-2 text-text-main">Código de Verificación</label>
-              <input type="text" id="2fa" name="2fa" required maxLength={6} placeholder="000000" value={twoFactorCode} onChange={(e) => setTwoFactorCode(e.target.value.replace(/\D/g, '').slice(0, 6))} autoComplete="one-time-code" inputMode="numeric" className="w-full bg-bg-dark border border-border rounded-lg px-4 py-3 text-text-main placeholder-text-muted/50 focus:border-primary focus:ring-1 focus:ring-primary transition-colors text-center text-2xl tracking-[0.5em]" />
-            </div>
-            <button type="submit" className="btn-primary w-full justify-center" disabled={loading || twoFactorCode.length < 6}>
-              {loading ? 'Verificando...' : 'Verificar Código'} <Shield size={18} />
-            </button>
-            <button type="button" className="btn-secondary w-full justify-center" onClick={() => { setStep('credentials'); setError(''); setTwoFactorCode(''); }}>
-              Volver al inicio de sesión
-            </button>
-          </form>
-        )}
+        <form className="space-y-5" onSubmit={handleSubmit}>
+          <div>
+            <label htmlFor="email" className="block text-sm font-medium mb-2 text-gray-900">Usuario</label>
+            <input type="text" id="email" required value={email} onChange={(e) => setEmail(e.target.value)}
+              placeholder="admin" autoComplete="username"
+              className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 focus:border-[#FF5A1F] focus:ring-1 focus:ring-[#FF5A1F] transition-colors" />
+          </div>
+          <div>
+            <label htmlFor="password" className="block text-sm font-medium mb-2 text-gray-900">Contraseña</label>
+            <input type="password" id="password" required value={password} onChange={(e) => setPassword(e.target.value)}
+              placeholder="••••••••" autoComplete="current-password"
+              className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 focus:border-[#FF5A1F] focus:ring-1 focus:ring-[#FF5A1F] transition-colors" />
+          </div>
+          <button type="submit" className="w-full inline-flex items-center justify-center gap-2 bg-[#FF5A1F] text-white font-semibold px-6 py-3 rounded-lg transition-all duration-300 hover:bg-[#E04E1A] hover:-translate-y-0.5" disabled={loading}>
+            {loading ? 'Ingresando...' : 'Iniciar Sesión'} <LogIn size={18} />
+          </button>
+        </form>
+
+        <div className="mt-8 p-4 bg-gray-50 rounded-lg border border-gray-100">
+          <h4 className="text-xs font-bold text-gray-700 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+            <Shield size={12} /> ¿Cómo cambiar usuario/contraseña?
+          </h4>
+          <ol className="text-xs text-gray-500 space-y-1 list-decimal list-inside">
+            <li>Abrí <code className="bg-gray-200 px-1 rounded text-[11px]">frontend/pages/admin/login.jsx</code></li>
+            <li>Buscá el array <code className="bg-gray-200 px-1 rounded text-[11px]">USERS</code> (línea ~10)</li>
+            <li>Cambiá <code className="bg-gray-200 px-1 rounded text-[11px]">email</code> y <code className="bg-gray-200 px-1 rounded text-[11px]">password</code></li>
+            <li>Guardá el archivo — los cambios aplican al instante</li>
+          </ol>
+        </div>
+
+        <p className="text-gray-400 text-xs text-center mt-6">Panel de administración de Tecnolight SRL</p>
       </div>
     </div>
   );

@@ -1,17 +1,8 @@
 import React from 'react';
 import Head from 'next/head';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Award, Shield, Users, Building2, CheckCircle2, Target, Eye, Heart, ArrowRight, Scale, TrendingUp } from 'lucide-react';
-
-const ObraBgHero = ({ src, children }) => (
-  <section className="obra-bg-section py-32 max-md:py-20">
-    <div className="obra-bg-image" style={{ backgroundImage: `url(${src})` }} />
-    <div className="obra-bg-overlay" />
-    <div className="relative z-10 container-site">
-      {children}
-    </div>
-  </section>
-);
 
 export default function About() {
   const companyHistory = {
@@ -74,22 +65,36 @@ export default function About() {
   };
 
   return (
-    <div className="body-bg-obras">
+    <div>
       <Head>
         <title>Nosotros - Tecnolight SRL | 30 Años Protegiendo Vidas en la Ruta</title>
         <meta name="description" content="Conocé la trayectoria de Tecnolight SRL: más de 30 años fabricando señalización vial certificada bajo IRAM 3950 en Santa Fe, Argentina. Cero reclamos, miles de señales instaladas." />
         <meta name="keywords" content="Tecnolight, señalización vial Santa Fe, cartelería Santa Fe, historia empresa, IRAM, Vialidad Nacional" />
       </Head>
 
-      <ObraBgHero src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=1920&q=80">
-        <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
-          <span className="text-[#FF5A1F] font-semibold tracking-wider uppercase text-sm">Trayectoria que Inspira Confianza</span>
-          <h1 className="text-5xl font-extrabold mt-2 mb-4 max-md:text-3xl text-white">30 Años sin un Solo Reclamo por Calidad</h1>
-          <p className="text-white/80 text-lg max-w-[600px]">Desde 1993, fabricando señales que protegen vidas, cumplen normativas y blindan la responsabilidad de nuestros clientes.</p>
-        </motion.div>
-      </ObraBgHero>
+      <section className="py-32 max-md:py-20 relative overflow-hidden">
+        <div className="absolute inset-0">
+          <Image src="/images/obras/construction-team.webp" alt="" fill className="object-cover" sizes="100vw" />
+          <div className="section-overlay-dark" />
+        </div>
+        <div className="texture-stripes" />
+        <div className="container-site relative z-[1]">
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="max-w-[700px]">
+            <span className="text-[#FF5A1F] font-semibold tracking-wider uppercase text-sm">Trayectoria que Inspira Confianza</span>
+            <h1 className="text-5xl font-extrabold mt-2 mb-4 max-md:text-3xl text-white">30 Años sin un Solo Reclamo por Calidad</h1>
+            <p className="text-gray-300 text-lg max-w-[600px]">Desde 1993, fabricando señales que protegen vidas, cumplen normativas y blindan la responsabilidad de nuestros clientes.</p>
+          </motion.div>
+        </div>
+      </section>
 
-      <section className="py-20 container-site section-with-pattern">
+      <section className="py-20 relative overflow-hidden">
+        <div className="absolute inset-0">
+          <Image src="/images/obras/highway-signs.webp" alt="" fill className="object-cover" sizes="100vw" />
+          <div className="section-overlay-warm" />
+        </div>
+        <div className="texture-stripes" />
+        <div className="glow-right" />
+        <div className="container-site relative z-[1]">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <motion.div initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}>
             <span className="text-[#FF5A1F] font-semibold tracking-wider uppercase text-sm">De 1993 a Hoy</span>
@@ -124,11 +129,17 @@ export default function About() {
               </div>
             </div>
           </motion.div>
+          </div>
         </div>
       </section>
 
-      <section className="py-32 bg-gray-50 max-md:py-20 section-with-pattern">
-        <div className="container-site">
+      <section className="py-32 max-md:py-20 relative overflow-hidden">
+        <div className="absolute inset-0">
+          <Image src="/images/obras/projects-aerial.webp" alt="" fill className="object-cover" sizes="100vw" />
+          <div className="section-overlay-warm" />
+        </div>
+        <div className="texture-stripes" />
+        <div className="container-site relative z-[1]">
           <motion.div className="text-center max-w-[700px] mx-auto mb-16" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <span className="text-[#FF5A1F] font-semibold tracking-wider uppercase text-sm">Nuestra Razón de Ser</span>
             <h2 className="text-[2.5rem] font-bold mt-2 max-md:text-3xl text-gray-900">Misión, Visión y Valores que Salvan Vidas</h2>
@@ -169,25 +180,38 @@ export default function About() {
         </div>
       </section>
 
-      <section className="py-32 container-site max-md:py-20 section-with-pattern">
-        <motion.div className="text-center max-w-[700px] mx-auto mb-16" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-          <span className="text-[#FF5A1F] font-semibold tracking-wider uppercase text-sm">Principios que nos Diferencian</span>
-          <h2 className="text-[2.5rem] font-bold mt-2 max-md:text-3xl text-gray-900">Lo que nos Distingue de la Competencia</h2>
-          <p className="text-gray-500 mt-4">Mientras otros compiten por precio, nosotros construimos confianza. Estas son las razones por las que clientes exigentes nos eligen.</p>
-        </motion.div>
-        <motion.div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-          {values.map((value, idx) => (
-            <motion.div key={idx} className="bg-white border border-gray-100 rounded-xl p-8 transition-all duration-300 hover:-translate-y-1.5 hover:border-[#FF5A1F] hover:shadow-card-hover" variants={itemVariants}>
-              <span className="text-[#FF5A1F] inline-block mb-6">{value.icon}</span>
-              <h3 className="text-xl font-bold mb-3 text-gray-900">{value.title}</h3>
-              <p className="text-gray-500 leading-relaxed text-sm">{value.description}</p>
-            </motion.div>
-          ))}
-        </motion.div>
+      <section className="py-32 max-md:py-20 relative overflow-hidden">
+        <div className="absolute inset-0">
+          <Image src="/images/obras/construction-team.webp" alt="" fill className="object-cover" sizes="100vw" />
+          <div className="section-overlay-warm" />
+        </div>
+        <div className="texture-stripes" />
+        <div className="glow-left" />
+        <div className="container-site relative z-[1]">
+          <motion.div className="text-center max-w-[700px] mx-auto mb-16" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+            <span className="text-[#FF5A1F] font-semibold tracking-wider uppercase text-sm">Principios que nos Diferencian</span>
+            <h2 className="text-[2.5rem] font-bold mt-2 max-md:text-3xl text-gray-900">Lo que nos Distingue de la Competencia</h2>
+            <p className="text-gray-500 mt-4">Mientras otros compiten por precio, nosotros construimos confianza. Estas son las razones por las que clientes exigentes nos eligen.</p>
+          </motion.div>
+          <motion.div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}>
+            {values.map((value, idx) => (
+              <motion.div key={idx} className="bg-white border border-gray-100 rounded-xl p-8 transition-all duration-300 hover:-translate-y-1.5 hover:border-[#FF5A1F] hover:shadow-card-hover" variants={itemVariants}>
+                <span className="text-[#FF5A1F] inline-block mb-6">{value.icon}</span>
+                <h3 className="text-xl font-bold mb-3 text-gray-900">{value.title}</h3>
+                <p className="text-gray-500 leading-relaxed text-sm">{value.description}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
       </section>
 
-      <section className="py-32 bg-gray-50 max-md:py-20 section-with-pattern">
-        <div className="container-site">
+      <section className="py-32 max-md:py-20 relative overflow-hidden">
+        <div className="absolute inset-0">
+          <Image src="/images/obras/hero-night.webp" alt="" fill className="object-cover" sizes="100vw" />
+          <div className="section-overlay-warm" />
+        </div>
+        <div className="texture-stripes" />
+        <div className="container-site relative z-[1]">
           <motion.div className="text-center max-w-[700px] mx-auto mb-16" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <span className="text-[#FF5A1F] font-semibold tracking-wider uppercase text-sm">Los que ya nos Pusieron a Prueba</span>
             <h2 className="text-[2.5rem] font-bold mt-2 max-md:text-3xl text-gray-900">Clientes que Confían su Seguridad a Tecnolight</h2>
@@ -208,20 +232,27 @@ export default function About() {
         </div>
       </section>
 
-      <section className="py-32 container-site max-md:py-20 section-with-pattern">
-        <motion.div className="text-center max-w-[700px] mx-auto mb-16" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-          <span className="text-[#FF5A1F] font-semibold tracking-wider uppercase text-sm">Calidad que se Demuestra</span>
-          <h2 className="text-[2.5rem] font-bold mt-2 max-md:text-3xl text-gray-900">Certificaciones que Respaldan cada Señal</h2>
-          <p className="text-gray-500 mt-4">No decimos que somos buenos. Son organismos oficiales y normas internacionales las que lo certifican.</p>
-        </motion.div>
-        <motion.div className="max-w-2xl mx-auto space-y-4" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-          {certifications.map((cert, idx) => (
-            <div key={idx} className="flex items-center gap-4 bg-white border border-gray-100 rounded-xl p-5 transition-all duration-300 hover:border-[#FF5A1F]">
-              <CheckCircle2 size={24} className="text-[#FF5A1F] shrink-0" />
-              <span className="text-gray-900 font-medium">{cert}</span>
-            </div>
-          ))}
-        </motion.div>
+      <section className="py-32 max-md:py-20 relative overflow-hidden">
+        <div className="absolute inset-0">
+          <Image src="/images/obras/highway-signs.webp" alt="" fill className="object-cover" sizes="100vw" />
+          <div className="section-overlay-warm" />
+        </div>
+        <div className="texture-stripes" />
+        <div className="container-site relative z-[1]">
+          <motion.div className="text-center max-w-[700px] mx-auto mb-16" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+            <span className="text-[#FF5A1F] font-semibold tracking-wider uppercase text-sm">Calidad que se Demuestra</span>
+            <h2 className="text-[2.5rem] font-bold mt-2 max-md:text-3xl text-gray-900">Certificaciones que Respaldan cada Señal</h2>
+            <p className="text-gray-500 mt-4">No decimos que somos buenos. Son organismos oficiales y normas internacionales las que lo certifican.</p>
+          </motion.div>
+          <motion.div className="max-w-2xl mx-auto space-y-4" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+            {certifications.map((cert, idx) => (
+              <div key={idx} className="flex items-center gap-4 bg-white border border-gray-100 rounded-xl p-5 transition-all duration-300 hover:border-[#FF5A1F]">
+                <CheckCircle2 size={24} className="text-[#FF5A1F] shrink-0" />
+                <span className="text-gray-900 font-medium">{cert}</span>
+              </div>
+            ))}
+          </motion.div>
+        </div>
       </section>
 
       <section className="container-site py-32 max-md:py-20 section-with-pattern">

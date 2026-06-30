@@ -1,15 +1,33 @@
 const express = require('express');
 const multer = require('multer');
 const path = require('path');
+const fs = require('fs');
 const { authenticate, authorizeAdmin } = require('../middleware/auth');
 const security = require('../src/security');
 
 const router = express.Router();
 
+function getWeekNumber(date) {
+  const d = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
+  const dayNum = d.getUTCDay() || 7;
+  d.setUTCDate(d.getUTCDate() + 4 - dayNum);
+  const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+  return Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
+}
+
+function ensureDir(dir) {
+  if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+}
+
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     const type = req.params.type || 'products';
-    cb(null, path.join(__dirname, '..', 'uploads', type));
+    const weekNum = getWeekNumber(new Date());
+    const folder = `semana-${weekNum}`;
+    const uploadPath = path.join(__dirname, '..', 'uploads', type);
+    const weekPath = path.join(uploadPath, folder);
+    ensureDir(weekPath);
+    cb(null, weekPath);
   },
   filename: (req, file, cb) => {
     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
@@ -35,7 +53,7 @@ const upload = multer({
 
 router.post('/:type', authenticate, authorizeAdmin, security.apiLimiter, (req, res) => {
   const type = req.params.type;
-  if (!['products', 'projects', 'instagram'].includes(type)) {
+  if (!['products', 'projects', 'instagram', 'stock', 'obras'].includes(type)) {
     return res.status(400).json({ error: 'Tipo de subida inválido.' });
   }
 
@@ -51,8 +69,9 @@ router.post('/:type', authenticate, authorizeAdmin, security.apiLimiter, (req, r
       return res.status(400).json({ error: 'No se seleccionó ningún archivo.' });
     }
 
-    const url = `/uploads/${type}/${req.file.filename}`;
-    res.json({ success: true, url, filename: req.file.filename });
+    const weekNum = getWeekNumber(new Date());
+    const url = `/uploads/${type}/semana-${weekNum}/${req.file.filename}`;
+    res.json({ success: true, url, filename: req.file.filename, week: weekNum });
   });
 });
 

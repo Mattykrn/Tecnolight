@@ -175,9 +175,24 @@ export default function Dashboard() {
 
   const handleProductSubmit = async (e) => {
     e.preventDefault(); const fd = new FormData(e.target);
-    const payload = { name: fd.get('name'), slug: fd.get('slug'), description: fd.get('description'), category: fd.get('category'), price: parseFloat(fd.get('price')) || null, specs: fd.get('specs'), active: fd.get('active') === 'true' };
+    const payload = { name: fd.get('name'), slug: fd.get('slug'), description: fd.get('description'), category: fd.get('category'), price: parseFloat(fd.get('price')) || null, stock: parseInt(fd.get('stock')) || 0, specs: fd.get('specs'), active: fd.get('active') === 'true' };
     const method = productModal.mode === 'create' ? 'POST' : 'PUT';
     const url = productModal.mode === 'create' ? `${API()}/api/products` : `${API()}/api/products/${productModal.data.id}`;
+
+    const imageFile = fd.get('productImage');
+    if (imageFile && imageFile.size > 0) {
+      const weekNum = getWeekNumber(new Date());
+      const imgFd = new FormData();
+      imgFd.append('image', imageFile);
+      try {
+        const uploadRes = await fetch(`${API()}/api/upload/stock?folder=semana-${weekNum}`, { method: 'POST', headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }, body: imgFd });
+        const uploadData = await uploadRes.json();
+        if (uploadRes.ok && uploadData.url) {
+          payload.images = [uploadData.url];
+        }
+      } catch (err) { console.warn('Upload failed, saving without image:', err.message); }
+    }
+
     try {
       const res = await fetch(url, { method, headers: getHeaders(), body: JSON.stringify(payload) });
       const data = await res.json();
@@ -187,6 +202,14 @@ export default function Dashboard() {
       fetchAll(localStorage.getItem('token'));
     } catch (err) { toast(err.message, 'error'); }
   };
+
+  function getWeekNumber(date) {
+    const d = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
+    const dayNum = d.getUTCDay() || 7;
+    d.setUTCDate(d.getUTCDate() + 4 - dayNum);
+    const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+    return Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
+  }
 
   const handleDeleteProduct = async (id) => {
     if (!confirm('¿Eliminar este producto?')) return;
@@ -433,7 +456,7 @@ export default function Dashboard() {
         {activeTab === 'home' && (
           <div>
             <div className="flex items-center justify-between mb-6">
-              <h1 className="text-2xl font-bold text-gray-900">Panel de Ventas</h1>
+              <h1 className="text-2xl font-bold text-gray-900">Panel de Administración</h1>
               <button onClick={() => fetchAll(localStorage.getItem('token'))}
                 className="text-sm text-gray-400 hover:text-gray-600 transition-colors flex items-center gap-1">
                 <Activity size={14} /> Actualizar
@@ -445,6 +468,26 @@ export default function Dashboard() {
               <StatCard icon={FileText} label="Cotizaciones" value={metrics.totalQuotes || 0} sub={qByStatus.find(s => s.status === 'APPROVED')?._count + ' aprobadas' || '0 aprobadas'} color="bg-orange-50 text-[#FF5A1F]" delay={0.05} />
               <StatCard icon={ShoppingCart} label="Pedidos" value={metrics.totalOrders || 0} sub={metrics.monthlyOrders + ' este mes'} color="bg-green-50 text-green-600" delay={0.1} />
               <StatCard icon={DollarSign} label="Ingresos Anuales" value={`$${(metrics.yearlyRevenue || 0).toLocaleString('es-AR')}`} sub={`$${(metrics.monthlyRevenue || 0).toLocaleString('es-AR')} este mes`} color="bg-purple-50 text-purple-600" delay={0.15} />
+            </div>
+
+            <div className="mb-8">
+              <h3 className="text-sm font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                <Package size={16} className="text-[#FF5A1F]" /> Control de Stock
+              </h3>
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                {(() => {
+                  const totalStock = products.reduce((s, p) => s + (p.stock || 0), 0);
+                  const lowStock = products.filter(p => (p.stock || 0) <= 5);
+                  const outOfStock = products.filter(p => !p.stock || p.stock === 0);
+                  const totalProducts = products.length;
+                  return <>
+                    <StatCard icon={Package} label="Productos" value={totalProducts} sub="Registrados" color="bg-blue-50 text-blue-600" delay={0} />
+                    <StatCard icon={Package} label="Stock Total" value={totalStock} sub="Unidades" color="bg-green-50 text-green-600" delay={0.05} />
+                    <StatCard icon={Activity} label="Stock Bajo (≤5)" value={lowStock.length} sub={lowStock.map(p => p.name).slice(0, 2).join(', ')} color="bg-yellow-50 text-yellow-600" delay={0.1} />
+                    <StatCard icon={AlertCircle} label="Sin Stock" value={outOfStock.length} sub={outOfStock.length > 0 ? 'Requiere reposición' : 'Todo en orden'} color={outOfStock.length > 0 ? 'bg-red-50 text-red-600' : 'bg-green-50 text-green-600'} delay={0.15} />
+                  </>;
+                })()}
+              </div>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
@@ -881,21 +924,39 @@ export default function Dashboard() {
                   <tr className="bg-gray-50">
                     <th className="px-4 py-3 text-xs font-semibold uppercase tracking-wider text-gray-500">Nombre</th>
                     <th className="px-4 py-3 text-xs font-semibold uppercase tracking-wider text-gray-500">Categoría</th>
+                    <th className="px-4 py-3 text-xs font-semibold uppercase tracking-wider text-gray-500">Stock</th>
                     <th className="px-4 py-3 text-xs font-semibold uppercase tracking-wider text-gray-500">Precio</th>
                     <th className="px-4 py-3 text-xs font-semibold uppercase tracking-wider text-gray-500">Estado</th>
+                    <th className="px-4 py-3 text-xs font-semibold uppercase tracking-wider text-gray-500">Imagen</th>
                     <th className="px-4 py-3 text-xs font-semibold uppercase tracking-wider text-gray-500">Acciones</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {products.map((product) => (
+                  {products.map((product) => {
+                    const stock = product.stock || 0;
+                    const stockColor = stock === 0 ? 'text-red-500' : stock <= 5 ? 'text-yellow-600' : 'text-green-600';
+                    const stockBg = stock === 0 ? 'bg-red-50' : stock <= 5 ? 'bg-yellow-50' : 'bg-green-50';
+                    return (
                     <tr key={product.id} className="border-t border-gray-100 hover:bg-gray-50/50 transition-colors">
                       <td className="px-4 py-3 text-sm font-semibold text-gray-900">{product.name}</td>
                       <td className="px-4 py-3 text-sm text-gray-600">{product.category}</td>
+                      <td className="px-4 py-3">
+                        <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold ${stockBg} ${stockColor}`}>
+                          {stock === 0 ? 'Sin stock' : `${stock} uds`}
+                        </span>
+                      </td>
                       <td className="px-4 py-3 text-sm text-gray-600">{product.price ? `$${product.price.toLocaleString('es-AR')}` : 'Cotizar'}</td>
                       <td className="px-4 py-3">
                         <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${product.active ? 'bg-green-100 text-green-700' : 'bg-orange-100 text-[#FF5A1F]'}`}>
                           {product.active ? 'Activo' : 'Pausado'}
                         </span>
+                      </td>
+                      <td className="px-4 py-3">
+                        {product.images && product.images[0] ? (
+                          <img src={product.images[0]} alt="" className="w-10 h-10 rounded-lg object-cover border border-gray-200" />
+                        ) : (
+                          <span className="text-xs text-gray-300">—</span>
+                        )}
                       </td>
                       <td className="px-4 py-3">
                         <div className="flex items-center gap-1">
@@ -910,9 +971,10 @@ export default function Dashboard() {
                         </div>
                       </td>
                     </tr>
-                  ))}
+                    );
+                  })}
                   {products.length === 0 && (
-                    <tr><td colSpan="5" className="text-center text-gray-400 py-8 text-sm">No hay productos registrados</td></tr>
+                    <tr><td colSpan="7" className="text-center text-gray-400 py-8 text-sm">No hay productos registrados</td></tr>
                   )}
                 </tbody>
               </table>
@@ -1220,6 +1282,11 @@ export default function Dashboard() {
                   <input type="number" step="0.01" name="price" defaultValue={productModal.data?.price || ''} placeholder="Cotizar"
                     className="w-full bg-gray-50 border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-900 focus:outline-none focus:border-[#FF5A1F]" />
                 </div>
+                <div>
+                  <label className="text-sm font-medium text-gray-700 block mb-1">Stock *</label>
+                  <input type="number" min="0" name="stock" defaultValue={productModal.data?.stock ?? 0}
+                    className="w-full bg-gray-50 border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-900 focus:outline-none focus:border-[#FF5A1F]" />
+                </div>
                 <div className="col-span-2">
                   <label className="text-sm font-medium text-gray-700 block mb-1">Descripción *</label>
                   <textarea name="description" required rows={3} defaultValue={productModal.data?.description || ''}
@@ -1230,6 +1297,17 @@ export default function Dashboard() {
                   <textarea name="specs" rows={3} defaultValue={productModal.data?.specs || ''}
                     placeholder="Material: Aluminio&#10;Reflectivo: Grado Ingeniería"
                     className="w-full bg-gray-50 border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-900 focus:outline-none focus:border-[#FF5A1F]"></textarea>
+                </div>
+                <div className="col-span-2">
+                  <label className="text-sm font-medium text-gray-700 block mb-1">Imagen del Producto</label>
+                  <div className="flex items-center gap-4">
+                    <input type="file" name="productImage" accept="image/*"
+                      className="flex-1 text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-[#FF5A1F]/10 file:text-[#FF5A1F] hover:file:bg-[#FF5A1F]/20 cursor-pointer" />
+                    {productModal.data?.images?.[0] && (
+                      <img src={productModal.data.images[0]} alt="" className="w-14 h-14 rounded-lg object-cover border border-gray-200 shrink-0" />
+                    )}
+                  </div>
+                  <p className="text-xs text-gray-400 mt-1">Formatos: JPG, PNG, WebP (máx 5MB). Se almacenará en carpeta por semana.</p>
                 </div>
                 <div className="col-span-2">
                   <label className="text-sm font-medium text-gray-700 block mb-1">Visibilidad</label>
