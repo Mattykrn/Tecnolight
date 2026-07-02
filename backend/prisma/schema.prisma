@@ -28,6 +28,8 @@ model Product {
   price       Float?
   images      String[]
   specs        String?
+  stock       Int      @default(0)
+  stockAlert  Int      @default(5)
   featured    Boolean  @default(false)
   active      Boolean  @default(true)
   createdAt   DateTime @default(now())

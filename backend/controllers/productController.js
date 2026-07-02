@@ -140,10 +140,10 @@ const createProduct = async (req, res) => {
 const updateProduct = async (req, res) => {
   try {
     const { id } = req.params;
-    const { name, slug, description, category, image, price, specs, active } = req.body;
+    const { name, slug, description, category, image, price, specs, active, stock } = req.body;
     const product = await prisma.product.update({
       where: { id },
-      data: { name, slug, description, category, image, price, specs, active }
+      data: { name, slug, description, category, image, price, specs, active, stock }
     });
     res.json({ message: 'Producto actualizado exitosamente.', product });
   } catch (error) {
@@ -155,6 +155,36 @@ const updateProduct = async (req, res) => {
       return res.status(400).json({ error: 'Ya existe un producto con ese slug.' });
     }
     res.status(500).json({ error: 'Error al actualizar producto.' });
+  }
+};
+
+/**
+ * Ajustar stock de un producto (incremento/decremento atómico)
+ * 
+ * @route PATCH /api/products/:id/stock/adjust
+ * @access Public (para carrito de compras)
+ * Body: { delta: -1 }  (positivo = aumentar stock, negativo = disminuir)
+ */
+const adjustStock = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { delta } = req.body;
+    if (delta === undefined || delta === null || !Number.isInteger(delta) || delta === 0) {
+      return res.status(400).json({ error: 'Delta debe ser un entero distinto de cero.' });
+    }
+    const product = await prisma.product.findUnique({ where: { id } });
+    if (!product) return res.status(404).json({ error: 'Producto no encontrado.' });
+    if (product.stock + delta < 0) {
+      return res.status(400).json({ error: 'Stock insuficiente.' });
+    }
+    const updated = await prisma.product.update({
+      where: { id },
+      data: { stock: { increment: delta } }
+    });
+    res.json({ message: 'Stock actualizado.', stock: updated.stock });
+  } catch (error) {
+    console.error('Error al ajustar stock:', error);
+    res.status(500).json({ error: 'Error al ajustar stock.' });
   }
 };
 
@@ -187,5 +217,6 @@ module.exports = {
   getCategories,
   createProduct,
   updateProduct,
+  adjustStock,
   deleteProduct
 };

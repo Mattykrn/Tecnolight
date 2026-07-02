@@ -57,7 +57,7 @@ export default function Home({ projects }) {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {categories.map((cat, i) => (
               <Link href={`/catalog?category=${encodeURIComponent(cat.category)}`} key={i}>
-                <motion.div className="group bg-white/90 backdrop-blur-sm rounded-xl border border-gray-100 overflow-hidden transition-all duration-300 h-full flex flex-col hover:-translate-y-2 hover:border-[#FF5A1F] hover:shadow-[0_12px_40px_-12px_rgba(255,90,31,0.2)]" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} custom={i}>
+                <motion.div className="group card-premium backdrop-blur-sm overflow-hidden h-full flex flex-col hover:-translate-y-2 hover:border-[#FF5A1F]/30" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} custom={i}>
                   <div className="h-36 bg-gradient-to-br from-orange-50 to-white flex items-center justify-center relative">
                     <span className="text-5xl group-hover:scale-110 transition-transform duration-300">{cat.emoji}</span>
                     <div className="absolute top-3 right-3 bg-[#FF5A1F] text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full">IRAM</div>
@@ -151,7 +151,7 @@ export default function Home({ projects }) {
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-16">
             {values.map((v, i) => (
-              <motion.div key={i} className="group bg-white/80 backdrop-blur-sm rounded-xl p-6 border border-gray-100 transition-all duration-300 hover:-translate-y-2 hover:border-[#FF5A1F] hover:shadow-card-hover text-center" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} custom={i}>
+              <motion.div key={i} className="group card-premium p-6 text-center" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} custom={i}>
                 <span className="inline-flex mb-4 bg-[#FF5A1F]/10 p-3 rounded-xl text-[#FF5A1F] group-hover:bg-[#FF5A1F] group-hover:text-white transition-all duration-300">{v.icon}</span>
                 <h3 className="text-base font-bold mb-2 text-gray-900">{v.title}</h3>
                 <p className="text-gray-500 text-sm leading-relaxed">{v.desc}</p>

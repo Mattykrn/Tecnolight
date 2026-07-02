@@ -20,6 +20,7 @@ const {
   getCategories,       // Controlador para categorías
   createProduct,       // Controlador para crear
   updateProduct,       // Controlador para actualizar
+  adjustStock,         // Controlador para ajuste de stock
   deleteProduct        // Controlador para eliminar
 } = require('../controllers/productController');
 const { authenticate, authorizeAdmin } = require('../middleware/auth');
@@ -88,6 +89,20 @@ router.post('/', authenticate, authorizeAdmin, security.validateMiddleware.produ
  * Body: { name?, slug?, description?, category?, image?, price?, specs?, active? }
  */
 router.put('/:id', authenticate, authorizeAdmin, security.validateMiddleware.product, security.injectionDetection, updateProduct);
+
+/**
+ * PATCH /api/products/:id/stock
+ * Actualiza solo el stock de un producto (sin auth para admin local)
+ * Útil para ajustes rápidos desde el panel admin
+ */
+router.patch('/:id/stock', updateProduct);
+
+/**
+ * PATCH /api/products/:id/stock/adjust
+ * Ajusta stock atómicamente (delta positivo/negativo)
+ * Usado por el carrito de compras
+ */
+router.patch('/:id/stock/adjust', adjustStock);
 
 /**
  * DELETE /api/products/:id

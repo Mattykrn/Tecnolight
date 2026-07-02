@@ -39,7 +39,7 @@ export default function Layout({ children }) {
     <div className="relative">
       <header className={`fixed top-0 left-0 w-full h-20 flex items-center z-[1000] transition-all duration-300 ${
         scrolled
-          ? 'h-[68px] bg-white/95 backdrop-blur-md shadow-sm'
+          ? 'h-[68px] bg-white shadow-[0_1px_4px_rgba(0,0,0,0.08)]'
           : 'h-20 bg-[#0A0B0D]/80 backdrop-blur-sm'
       }`}>
         <div className="container-site flex justify-between items-center w-full">
@@ -71,8 +71,12 @@ export default function Layout({ children }) {
             </ul>
           </nav>
 
-          <div className="flex items-center gap-4">
-            <Link href="/contact" className="hidden md:inline-flex items-center gap-2 bg-[#FF5A1F] text-white font-semibold px-5 py-2.5 rounded-lg text-sm transition-all duration-300 hover:bg-[#E04E1A] hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[#FF5A1F]/25">
+          <div className="flex items-center gap-3">
+            <a href="https://wa.me/543424567890" target="_blank" rel="noopener noreferrer"
+              className="hidden md:inline-flex items-center gap-2 bg-[#25D366] text-white font-semibold px-4 py-2.5 rounded-lg text-sm transition-all duration-300 hover:bg-[#1DA851] hover:-translate-y-0.5 hover:shadow-lg">
+              <MessageCircle size={16} /> WhatsApp
+            </a>
+            <Link href="/contact" className="hidden md:inline-flex items-center gap-2 bg-[#FF5A1F] text-white font-semibold px-4 py-2.5 rounded-lg text-sm transition-all duration-300 hover:bg-[#E04E1A] hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[#FF5A1F]/25">
               Cotizar <ArrowRight size={16} />
             </Link>
             <button className="md:hidden w-6 h-[18px] cursor-pointer z-[1100] relative" onClick={() => setMenuOpen(!menuOpen)} aria-label="Menu principal" aria-expanded={menuOpen}>
@@ -90,9 +94,13 @@ export default function Layout({ children }) {
             </Link>
           </li>
         ))}
-        <li>
-          <Link href="/contact" className="inline-flex items-center gap-2 bg-[#FF5A1F] text-white font-semibold px-6 py-3 rounded-lg text-base transition-all duration-300 hover:bg-[#E04E1A]">
-            Cotizar Presupuesto <ArrowRight size={20} />
+        <li className="flex gap-3">
+          <a href="https://wa.me/543424567890" target="_blank" rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 bg-[#25D366] text-white font-semibold px-5 py-3 rounded-lg text-base transition-all duration-300 hover:bg-[#1DA851]">
+            <MessageCircle size={20} /> WhatsApp
+          </a>
+          <Link href="/contact" className="inline-flex items-center gap-2 bg-[#FF5A1F] text-white font-semibold px-5 py-3 rounded-lg text-base transition-all duration-300 hover:bg-[#E04E1A]">
+            Cotizar <ArrowRight size={20} />
           </Link>
         </li>
       </ul>
@@ -113,16 +121,6 @@ export default function Layout({ children }) {
           </motion.button>
         )}
       </AnimatePresence>
-
-      <a
-        href="https://wa.me/543424567890"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="fixed bottom-6 right-6 z-[900] w-16 h-16 bg-[#25D366] rounded-full flex items-center justify-center shadow-lg shadow-[#25D366]/30 transition-all duration-300 hover:scale-110 hover:shadow-xl hover:shadow-[#25D366]/40 group"
-        aria-label="WhatsApp"
-      >
-        <MessageCircle size={30} className="text-white" />
-      </a>
 
       <footer className="bg-gray-900 pt-20 pb-8">
         <div className="container-site grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_2fr] gap-12 mb-16">

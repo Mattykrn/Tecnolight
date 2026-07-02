@@ -8,5 +8,6 @@ router.use(authenticate, authorizeAdmin);
 router.get('/dashboard', salesController.dashboard);
 router.get('/revenue', salesController.revenue);
 router.get('/top-products', salesController.topProducts);
+router.get('/history', salesController.history);
 
 module.exports = router;

@@ -130,6 +130,59 @@ exports.updateStatus = async (req, res) => {
   }
 };
 
+exports.createQuick = async (req, res) => {
+  try {
+    const { items, notes, total } = req.body;
+    if (!items || !items.length) {
+      return res.status(400).json({ error: 'Se requiere al menos un item.' });
+    }
+
+    // Buscar o crear cliente genérico "Web"
+    let client = await prisma.client.findUnique({ where: { email: 'web@tecnolight.com.ar' } });
+    if (!client) {
+      client = await prisma.client.create({
+        data: {
+          name: 'Cliente Web',
+          email: 'web@tecnolight.com.ar',
+          phone: '',
+          company: 'Web',
+          city: '',
+          province: ''
+        }
+      });
+    }
+
+    const subtotal = items.reduce((s, item) => s + (item.unitPrice || 0) * (item.quantity || 1), 0);
+    const tax = Math.round(subtotal * 0.21 * 100) / 100;
+    const orderTotal = total || subtotal + tax;
+
+    const order = await prisma.order.create({
+      data: {
+        clientId: client.id,
+        notes: notes || 'Pedido desde carrito web',
+        subtotal,
+        tax,
+        total: orderTotal,
+        createdBy: 'web',
+        items: {
+          create: items.map(item => ({
+            description: item.description || 'Producto',
+            quantity: item.quantity || 1,
+            unitPrice: item.unitPrice || 0,
+            total: (item.unitPrice || 0) * (item.quantity || 1)
+          }))
+        }
+      },
+      include: { items: true }
+    });
+
+    res.status(201).json({ message: 'Pedido confirmado.', order });
+  } catch (error) {
+    console.error('Error al crear pedido rápido:', error);
+    res.status(500).json({ error: 'Error al confirmar pedido.' });
+  }
+};
+
 exports.remove = async (req, res) => {
   try {
     await prisma.order.delete({ where: { id: req.params.id } });

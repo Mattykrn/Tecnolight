@@ -79,6 +79,22 @@ exports.revenue = async (req, res) => {
   }
 };
 
+exports.history = async (req, res) => {
+  try {
+    const orders = await prisma.order.findMany({
+      where: { status: { not: 'CANCELLED' } },
+      orderBy: { createdAt: 'desc' },
+      include: {
+        client: { select: { id: true, name: true, email: true } },
+        items: { select: { description: true, quantity: true, unitPrice: true, total: true } }
+      }
+    });
+    res.json({ orders, total: orders.reduce((s, o) => s + o.total, 0) });
+  } catch (error) {
+    res.status(500).json({ error: 'Error al obtener historial de ventas' });
+  }
+};
+
 exports.topProducts = async (req, res) => {
   try {
     const orderItems = await prisma.orderItem.groupBy({

@@ -4,11 +4,27 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { motion } from 'framer-motion';
-import { Search, ArrowRight, Shield, CheckCircle2, Package, TrendingUp } from 'lucide-react';
+import { Search, ArrowRight, Shield, CheckCircle2, Package, TrendingUp, MessageCircle, Ruler, AlertTriangle, Info, Star } from 'lucide-react';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } }
+};
+
+const categoryIcons = {
+  Reglamentarias: { icon: '🛑', color: 'from-red-500 to-red-700', bg: 'bg-red-50', desc: 'Señales de obligación, prohibición y prioridad. Normativas bajo Ley 24.449.' },
+  Preventivas: { icon: '⚠️', color: 'from-yellow-500 to-yellow-700', bg: 'bg-yellow-50', desc: 'Advertencia de peligros y condiciones de la vía. Reflectividad grado ingeniería.' },
+  Informativas: { icon: 'ℹ️', color: 'from-blue-500 to-blue-700', bg: 'bg-blue-50', desc: 'Orientación, destinos y servicios. Visibilidad nocturna garantizada.' },
+  'Cartelería Comercial': { icon: '🏪', color: 'from-purple-500 to-purple-700', bg: 'bg-purple-50', desc: 'Cartelería corporativa, vinilos, tótems y señalética para comercios.' }
+};
+
+const parseSpecs = (specsString) => {
+  if (!specsString) return [];
+  return specsString.split('\n').map(line => {
+    const parts = line.split(':');
+    if (parts.length >= 2) return { key: parts[0].trim(), value: parts.slice(1).join(':').trim() };
+    return null;
+  }).filter(Boolean);
 };
 
 export default function Catalog({ initialProducts, categories }) {
@@ -88,6 +104,30 @@ export default function Catalog({ initialProducts, categories }) {
         <div className="absolute bottom-[15%] left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-white/10 to-transparent max-w-[400px] mx-auto" />
       </section>
 
+      {/* Category overview */}
+      <section className="py-16 bg-white border-b border-gray-100">
+        <div className="container-site">
+          <motion.div className="text-center max-w-[600px] mx-auto mb-10" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
+            <h2 className="text-2xl font-bold text-gray-900 mb-3">Nuestras Categorías</h2>
+            <p className="text-gray-500">Señalización completa para cada necesidad, con los más altos estándares de calidad y durabilidad.</p>
+          </motion.div>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+            {['Reglamentarias', 'Preventivas', 'Informativas', 'Cartelería Comercial'].map((cat, i) => {
+              const info = categoryIcons[cat];
+              return (
+                <motion.button key={cat} onClick={() => handleCategoryChange(cat)}
+                  initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.1 }}
+                  className="text-left bg-gray-50 border border-gray-100 rounded-xl p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-[#FF5A1F]/20 group">
+                  <span className="text-3xl block mb-3">{info.icon}</span>
+                  <h3 className="font-bold text-gray-900 text-sm mb-1 group-hover:text-[#FF5A1F] transition-colors">{cat}</h3>
+                  <p className="text-xs text-gray-400 leading-relaxed">{info.desc}</p>
+                </motion.button>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
       <section className="py-20 relative overflow-hidden">
         <div className="absolute inset-0">
           <Image src="/images/obras/hero-night.webp" alt="" fill className="object-cover" sizes="100vw" />
@@ -109,31 +149,63 @@ export default function Catalog({ initialProducts, categories }) {
           </div>
 
           {filteredProducts.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {filteredProducts.map((product, idx) => (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6">
+              {filteredProducts.map((product, idx) => {
+                const specs = parseSpecs(product.specs);
+                const material = specs.find(s => s.key.toLowerCase() === 'material');
+                const dimension = specs.find(s => s.key.toLowerCase().includes('dimension') || s.key.toLowerCase().includes('medida'));
+                const reflectivo = specs.find(s => s.key.toLowerCase().includes('reflectivo') || s.key.toLowerCase().includes('reflectivo'));
+                const catInfo = categoryIcons[product.category] || { bg: 'bg-gray-50', icon: '📋' };
+                return (
                 <motion.div key={product.id} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: idx * 0.05, duration: 0.5 }}
                   className="bg-white border border-gray-100 rounded-xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 hover:border-[#FF5A1F] hover:shadow-card-hover group">
-                  <div className="relative h-48 bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center overflow-hidden">
+                  <div className={`relative h-48 ${catInfo.bg} flex items-center justify-center overflow-hidden`}>
                     <span className="text-6xl transition-transform duration-500 group-hover:scale-110">
-                      {product.category === 'Reglamentarias' ? '🛑' : product.category === 'Preventivas' ? '⚠️' : 'ℹ️'}
+                      {catInfo.icon}
                     </span>
-                    <span className="absolute top-3 right-3 bg-black/60 backdrop-blur-sm text-white text-xs font-medium px-2.5 py-1 rounded-full">{product.category}</span>
-                    {product.price && (
-                      <span className="absolute top-3 left-3 bg-[#FF5A1F] text-white text-xs font-bold px-2.5 py-1 rounded-full">${product.price.toLocaleString('es-AR')}</span>
+                    <span className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm text-gray-700 text-xs font-medium px-2.5 py-1 rounded-full border border-gray-200/50">{product.category}</span>
+                    {product.price ? (
+                      <span className="absolute top-3 left-3 bg-[#FF5A1F] text-white text-xs font-bold px-2.5 py-1 rounded-full shadow-sm">${product.price.toLocaleString('es-AR')}</span>
+                    ) : (
+                      <span className="absolute top-3 left-3 bg-gray-800/70 text-white text-xs font-medium px-2.5 py-1 rounded-full backdrop-blur-sm">A cotizar</span>
                     )}
                   </div>
                   <div className="p-5">
-                    <h3 className="font-bold text-lg mb-2 text-gray-900">{product.name}</h3>
-                    <p className="text-gray-500 text-sm leading-relaxed mb-4 line-clamp-2">{product.description.substring(0, 120)}...</p>
-                    <div className="flex items-center justify-between mt-auto pt-3 border-t border-gray-50">
-                      <span className="text-[#FF5A1F] font-semibold text-sm">{product.price ? `$${product.price.toLocaleString('es-AR')}` : 'A cotizar'}</span>
-                      <Link href={`/catalog/${product.slug}`} className="inline-flex items-center gap-1 text-sm font-semibold text-[#FF5A1F] hover:text-[#E04E1A] transition-colors">
-                        Ver Ficha <ArrowRight size={16} />
+                    <h3 className="font-bold text-lg mb-2 text-gray-900 group-hover:text-[#FF5A1F] transition-colors">{product.name}</h3>
+                    <p className="text-gray-500 text-sm leading-relaxed mb-4 line-clamp-2">{product.description}</p>
+
+                    {(material || dimension || reflectivo) && (
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        {material && <span className="inline-flex items-center gap-1 text-[11px] bg-gray-100 text-gray-600 px-2 py-1 rounded-full"><Ruler size={11} /> {material.value}</span>}
+                        {dimension && <span className="inline-flex items-center gap-1 text-[11px] bg-gray-100 text-gray-600 px-2 py-1 rounded-full"><Info size={11} /> {dimension.value}</span>}
+                        {reflectivo && <span className="inline-flex items-center gap-1 text-[11px] bg-gray-100 text-gray-600 px-2 py-1 rounded-full"><Star size={11} /> {reflectivo.value}</span>}
+                      </div>
+                    )}
+
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="text-[#FF5A1F] font-bold text-lg">{product.price ? `$${product.price.toLocaleString('es-AR')}` : 'A cotizar'}</span>
+                      {product.stock !== undefined && (
+                        <span className={`text-xs font-medium ${product.stock === 0 ? 'text-red-400' : product.stock <= 5 ? 'text-yellow-500' : 'text-green-500'}`}>
+                          {product.stock === 0 ? 'Consultar stock' : `${product.stock} uds.`}
+                        </span>
+                      )}
+                    </div>
+
+                    <div className="flex gap-2 pt-3 border-t border-gray-50">
+                      <a href={`https://wa.me/543424567890?text=${encodeURIComponent(`Hola Tecnolight, quiero información sobre: ${product.name} (${product.category})`)}`}
+                        target="_blank" rel="noopener noreferrer"
+                        className="flex-1 inline-flex items-center justify-center gap-1.5 text-sm font-semibold py-2.5 rounded-lg bg-[#25D366] text-white hover:bg-[#1DA851] hover:-translate-y-0.5 transition-all duration-300">
+                        <MessageCircle size={15} /> Consultar
+                      </a>
+                      <Link href={`/catalog/${product.slug}`}
+                        className="inline-flex items-center justify-center gap-1 text-sm font-semibold text-gray-500 hover:text-gray-900 transition-colors px-4 py-2.5 rounded-lg border border-gray-200 hover:border-gray-400">
+                        Ficha <ArrowRight size={15} />
                       </Link>
                     </div>
                   </div>
                 </motion.div>
-              ))}
+                );
+              })}
             </div>
           ) : (
             <div className="text-center py-20">
@@ -157,6 +229,10 @@ export default function Catalog({ initialProducts, categories }) {
             <p className="text-gray-500">Fabricamos cartelería personalizada para proyectos municipales, rutas provinciales y desarrollos privados. Consultanos sin compromiso.</p>
           </motion.div>
           <motion.div className="flex justify-center gap-4 max-md:flex-col max-md:items-center" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
+            <a href="https://wa.me/543424567890" target="_blank" rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-[#25D366] text-white font-semibold px-6 py-3 rounded-lg text-base transition-all duration-300 hover:bg-[#1DA851] hover:-translate-y-0.5 hover:shadow-lg">
+              <MessageCircle size={20} /> Consultar por WhatsApp
+            </a>
             <Link href="/contact" className="btn-primary text-base">
               Solicitar Cotización <ArrowRight size={18} />
             </Link>

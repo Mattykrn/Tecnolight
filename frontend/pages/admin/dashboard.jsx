@@ -8,7 +8,7 @@ import {
   Compass, Shield, LogOut, Plus, Edit, Trash2, X, Eye, Check, Phone,
   MapPin, User, Download, Search, Calendar, DollarSign, TrendingUp,
   Activity, AlertCircle, ArrowUpRight, Clock,
-  Filter, FileDown, CreditCard
+  Filter, FileDown, CreditCard, Star
 } from 'lucide-react';
 import { useToast } from '../../components/Toast';
 
@@ -95,6 +95,8 @@ export default function Dashboard() {
   const [quotesFilter, setQuotesFilter] = useState('');
   const [orders, setOrders] = useState([]);
   const [ordersFilter, setOrdersFilter] = useState('');
+  const [salesHistory, setSalesHistory] = useState([]);
+  const [salesTotal, setSalesTotal] = useState(0);
 
   const [contactViewModal, setContactViewModal] = useState({ open: false, data: null });
   const [productModal, setProductModal] = useState({ open: false, mode: 'create', data: null });
@@ -107,6 +109,7 @@ export default function Dashboard() {
   const [twoFactorSetup, setTwoFactorSetup] = useState({ qrCode: '', secret: '' });
   const [twoFactorCode, setTwoFactorCode] = useState('');
   const [twoFactorPassword, setTwoFactorPassword] = useState('');
+  const isLocalLogin = typeof window !== 'undefined' && localStorage.getItem('local_login') === 'true';
 
   const getHeaders = () => ({
     'Content-Type': 'application/json',
@@ -116,6 +119,7 @@ export default function Dashboard() {
   const handleLogout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
+    localStorage.removeItem('local_login');
     router.push('/admin/login');
   };
 
@@ -124,14 +128,17 @@ export default function Dashboard() {
     const userData = localStorage.getItem('user');
     if (!token || !userData) { router.push('/admin/login'); return; }
     setUser(JSON.parse(userData));
-    fetchAll(token);
+    if (localStorage.getItem('local_login') !== 'true') {
+      fetchAll(token);
+    }
+    setLoading(false);
   }, [router]);
 
   const fetchAll = async (token) => {
     setLoading(true);
     const h = { 'Authorization': `Bearer ${token}` };
     try {
-      const [dRes, rRes, tRes, cRes, pRes, pjRes, clRes, qRes, oRes, _2faRes] = await Promise.all([
+      const [dRes, rRes, tRes, cRes, pRes, pjRes, clRes, qRes, oRes, sRes, _2faRes] = await Promise.all([
         fetch(`${API()}/api/sales/dashboard`, { headers: h }),
         fetch(`${API()}/api/sales/revenue`, { headers: h }),
         fetch(`${API()}/api/sales/top-products`, { headers: h }),
@@ -141,17 +148,20 @@ export default function Dashboard() {
         fetch(`${API()}/api/clients`, { headers: h }),
         fetch(`${API()}/api/quotes`, { headers: h }),
         fetch(`${API()}/api/orders`, { headers: h }),
+        fetch(`${API()}/api/sales/history`, { headers: h }),
         fetch(`${API()}/api/auth/2fa-status`, { headers: h })
       ]);
-      if (cRes.status === 401) { handleLogout(); return; }
+      if (cRes.status === 401 && localStorage.getItem('local_login') !== 'true') { handleLogout(); return; }
       const parse = (r) => r.json().catch(() => ({}));
-      const [d, r, t, c, p, pj, cl, q, o, f] = await Promise.all([
-        parse(dRes), parse(rRes), parse(tRes), parse(cRes), parse(p), parse(pj), parse(cl), parse(q), parse(o), parse(_2faRes)
+      const [d, r, t, c, p, pj, cl, q, o, s, f] = await Promise.all([
+        parse(dRes), parse(rRes), parse(tRes), parse(cRes), parse(p), parse(pj), parse(cl), parse(q), parse(o), parse(sRes), parse(_2faRes)
       ]);
       setDashboardData(d); setRevenueData(r); setTopProducts(t || []);
       setContacts(c.contacts || []); setProducts(p.products || []);
       setProjects(pj.projects || []); setClients(cl.clients || []);
       setQuotes(q.quotes || []); setOrders(o.orders || []);
+      setSalesHistory(s.orders || []);
+      setSalesTotal(s.total || 0);
       if (f.enabled !== undefined) setTwoFactorEnabled(f.enabled);
     } catch (err) { setError('Error al cargar datos del servidor'); }
     finally { setLoading(false); }
@@ -215,6 +225,22 @@ export default function Dashboard() {
     if (!confirm('¿Eliminar este producto?')) return;
     const res = await fetch(`${API()}/api/products/${id}`, { method: 'DELETE', headers: getHeaders() });
     if (res.ok) setProducts(prev => prev.filter(p => p.id !== id));
+  };
+
+  const handleStockUpdate = async (id, delta) => {
+    const product = products.find(p => p.id === id);
+    if (!product) return;
+    const newStock = Math.max(0, (product.stock || 0) + delta);
+    try {
+      const res = await fetch(`${API()}/api/products/${id}/stock`, {
+        method: 'PATCH', headers: getHeaders(),
+        body: JSON.stringify({ stock: newStock })
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Error');
+      setProducts(prev => prev.map(p => p.id === id ? { ...p, stock: newStock } : p));
+      toast(delta > 0 ? `Stock +1 (${newStock})` : `Stock -1 (${newStock})`, 'success');
+    } catch (err) { toast(err.message, 'error'); }
   };
 
   const handleProjectSubmit = async (e) => {
@@ -386,8 +412,10 @@ export default function Dashboard() {
           { id: 'clients', icon: Users, label: 'Clientes', count: clients.length },
           { id: 'quotes', icon: FileText, label: 'Cotizaciones', count: quotes.length },
           { id: 'orders', icon: ShoppingCart, label: 'Pedidos', count: orders.length },
+          { id: 'sales', icon: DollarSign, label: 'Ventas / Caja' },
           { id: 'contacts', icon: Mail, label: 'Consultas', count: unreadCount },
           { id: 'products', icon: Package, label: 'Productos', count: products.length },
+          { id: 'inventory', icon: Package, label: 'Inventario / Stock' },
           { id: 'projects', icon: Compass, label: 'Proyectos', count: projects.length },
           { id: 'settings', icon: Shield, label: 'Seguridad' },
         ].map(item => (
@@ -849,6 +877,74 @@ export default function Dashboard() {
           </div>
         )}
 
+        {/* ===================== VENTAS / CAJA ===================== */}
+        {activeTab === 'sales' && (
+          <div>
+            <div className="flex items-center justify-between mb-6">
+              <h1 className="text-2xl font-bold text-gray-900">Ventas / Caja</h1>
+              <div className="flex items-center gap-4 text-sm">
+                <span className="text-gray-400">Ventas totales:</span>
+                <span className="text-2xl font-bold text-green-600">${salesTotal.toLocaleString('es-AR')}</span>
+              </div>
+            </div>
+
+            {salesHistory.length === 0 ? (
+              <div className="text-center py-16 bg-white border border-gray-200 rounded-xl">
+                <DollarSign size={48} className="mx-auto text-gray-200 mb-4" />
+                <p className="text-gray-400 text-sm">No hay ventas registradas</p>
+              </div>
+            ) : (
+              <div className="space-y-4">
+                {(() => {
+                  const grouped = {};
+                  salesHistory.forEach(order => {
+                    const date = new Date(order.createdAt).toLocaleDateString('es-AR');
+                    if (!grouped[date]) grouped[date] = { orders: [], total: 0 };
+                    grouped[date].orders.push(order);
+                    grouped[date].total += order.total;
+                  });
+                  return Object.entries(grouped).map(([date, group]) => (
+                    <div key={date} className="bg-white border border-gray-200 rounded-xl overflow-hidden">
+                      <div className="bg-gray-50 px-5 py-3 flex items-center justify-between border-b border-gray-100">
+                        <div className="flex items-center gap-3">
+                          <Calendar size={16} className="text-gray-400" />
+                          <span className="font-semibold text-gray-900">{date}</span>
+                          <span className="text-xs text-gray-400">{group.orders.length} venta(s)</span>
+                        </div>
+                        <span className="font-bold text-green-600">${group.total.toLocaleString('es-AR')}</span>
+                      </div>
+                      <div className="divide-y divide-gray-50">
+                        {group.orders.map(order => (
+                          <div key={order.id} className="px-5 py-3 hover:bg-gray-50/50 transition-colors">
+                            <div className="flex items-center justify-between mb-2">
+                              <div className="flex items-center gap-2">
+                                <span className="text-sm font-semibold text-gray-900">#{String(order.number).padStart(5, '0')}</span>
+                                <span className="text-xs text-gray-400">{order.client?.name || 'Cliente Web'}</span>
+                              </div>
+                              <div className="flex items-center gap-3">
+                                <StatusBadge status={order.status} />
+                                <span className="text-sm font-bold text-gray-900">${order.total.toLocaleString('es-AR')}</span>
+                              </div>
+                            </div>
+                            <div className="flex flex-wrap gap-2">
+                              {order.items && order.items.map((item, idx) => (
+                                <span key={idx} className="inline-flex items-center gap-1 text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-full">
+                                  {item.description} <span className="font-semibold text-gray-900">x{item.quantity}</span>
+                                  <span className="text-gray-400">(${(item.unitPrice * item.quantity).toLocaleString('es-AR')})</span>
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ));
+                })()}
+              </div>
+            )}
+          </div>
+        )}
+
         {/* ===================== CONTACTS ===================== */}
         {activeTab === 'contacts' && (
           <div>
@@ -941,9 +1037,21 @@ export default function Dashboard() {
                       <td className="px-4 py-3 text-sm font-semibold text-gray-900">{product.name}</td>
                       <td className="px-4 py-3 text-sm text-gray-600">{product.category}</td>
                       <td className="px-4 py-3">
-                        <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold ${stockBg} ${stockColor}`}>
-                          {stock === 0 ? 'Sin stock' : `${stock} uds`}
-                        </span>
+                        <div className="flex items-center gap-1.5">
+                          <button onClick={() => handleStockUpdate(product.id, -1)}
+                            className="w-7 h-7 flex items-center justify-center rounded-md text-gray-400 hover:bg-red-50 hover:text-red-500 transition-colors border border-gray-200"
+                            title="Reducir stock">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><path d="M5 12h14"/></svg>
+                          </button>
+                          <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold min-w-[60px] justify-center ${stockBg} ${stockColor}`}>
+                            {stock === 0 ? 'Sin stock' : `${stock} uds`}
+                          </span>
+                          <button onClick={() => handleStockUpdate(product.id, 1)}
+                            className="w-7 h-7 flex items-center justify-center rounded-md text-gray-400 hover:bg-green-50 hover:text-green-600 transition-colors border border-gray-200"
+                            title="Aumentar stock">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><path d="M12 5v14M5 12h14"/></svg>
+                          </button>
+                        </div>
                       </td>
                       <td className="px-4 py-3 text-sm text-gray-600">{product.price ? `$${product.price.toLocaleString('es-AR')}` : 'Cotizar'}</td>
                       <td className="px-4 py-3">
@@ -978,6 +1086,74 @@ export default function Dashboard() {
                   )}
                 </tbody>
               </table>
+            </div>
+          </div>
+        )}
+
+        {/* ===================== INVENTORY / STOCK ===================== */}
+        {activeTab === 'inventory' && (
+          <div>
+            <div className="flex items-center justify-between mb-6">
+              <h1 className="text-2xl font-bold text-gray-900">Inventario / Stock</h1>
+              <div className="text-sm text-gray-400">
+                {products.reduce((s, p) => s + (p.stock || 0), 0)} unidades totales
+              </div>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {products.length === 0 && (
+                <div className="col-span-full text-center py-16 text-gray-400 text-sm">No hay productos registrados</div>
+              )}
+              {products.map(product => {
+                const stock = product.stock || 0;
+                const pct = product.stockAlert > 0 ? Math.round((stock / product.stockAlert) * 100) : 100;
+                return (
+                  <div key={product.id} className="bg-white border border-gray-200 rounded-xl p-5 transition-all duration-300 hover:shadow-md">
+                    <div className="flex items-start justify-between mb-4">
+                      <div className="flex-1 min-w-0">
+                        <h3 className="font-semibold text-gray-900 truncate">{product.name}</h3>
+                        <span className="text-xs text-gray-400">{product.category}</span>
+                      </div>
+                      <span className={`shrink-0 text-xs font-medium px-2 py-0.5 rounded-full ${
+                        product.active ? 'bg-green-100 text-green-700' : 'bg-orange-100 text-[#FF5A1F]'
+                      }`}>{product.active ? 'Activo' : 'Pausado'}</span>
+                    </div>
+                    <div className="flex items-center gap-4 mb-4">
+                      <div className="flex-1">
+                        <div className="text-4xl font-bold text-gray-900">{stock}</div>
+                        <div className="text-xs text-gray-400 mt-0.5">unidades</div>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <button onClick={() => handleStockUpdate(product.id, -1)}
+                          className="w-10 h-10 flex items-center justify-center rounded-lg border border-gray-200 text-gray-400 hover:bg-red-50 hover:text-red-500 hover:border-red-200 transition-all" title="Reducir">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><path d="M5 12h14"/></svg>
+                        </button>
+                        <button onClick={() => handleStockUpdate(product.id, 1)}
+                          className="w-10 h-10 flex items-center justify-center rounded-lg border border-gray-200 text-gray-400 hover:bg-green-50 hover:text-green-600 hover:border-green-200 transition-all" title="Aumentar">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><path d="M12 5v14M5 12h14"/></svg>
+                        </button>
+                      </div>
+                    </div>
+                    <div className="space-y-1.5">
+                      <div className="flex items-center justify-between text-xs">
+                        <span className="text-gray-400">Alertar en &le;{product.stockAlert || 5}</span>
+                        <span className={`font-medium ${
+                          stock === 0 ? 'text-red-500' : stock <= (product.stockAlert || 5) ? 'text-yellow-500' : 'text-green-500'
+                        }`}>{stock === 0 ? 'Sin stock' : stock <= (product.stockAlert || 5) ? 'Stock bajo' : 'Stock OK'}</span>
+                      </div>
+                      <div className="w-full h-2 bg-gray-100 rounded-full overflow-hidden">
+                        <div className={`h-full rounded-full transition-all duration-500 ${
+                          stock === 0 ? 'bg-red-500' : stock <= (product.stockAlert || 5) ? 'bg-yellow-500' : 'bg-green-500'
+                        }`} style={{ width: `${Math.min(pct, 100)}%` }} />
+                      </div>
+                    </div>
+                    {product.price && (
+                      <div className="mt-3 pt-3 border-t border-gray-100 text-xs text-gray-400">
+                        Precio: <span className="font-semibold text-gray-700">${product.price.toLocaleString('es-AR')}</span> c/u
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
             </div>
           </div>
         )}

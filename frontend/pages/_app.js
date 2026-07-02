@@ -5,7 +5,6 @@ import '../styles/globals.css';
 import Layout from '../components/Layout';
 import { ToastProvider } from '../components/Toast';
 
-// ─── Google Analytics ───────────────────────────────────────
 const GA_ID = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID;
 
 const pageview = (url) => {
@@ -14,7 +13,6 @@ const pageview = (url) => {
   }
 };
 
-// ─── Variantes de animación de transición entre páginas ─────
 const pageVariants = {
   hidden: { opacity: 0, y: 10 },
   enter:  { opacity: 1, y: 0 },
@@ -27,14 +25,11 @@ const pageTransition = {
   duration: 0.25,
 };
 
-// ─── App ─────────────────────────────────────────────────────
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
 
-  // Trackear navegación con Google Analytics
   useEffect(() => {
     if (!GA_ID) return;
-
     const handleRouteChange = (url) => pageview(url);
     router.events.on('routeChangeComplete', handleRouteChange);
     return () => {
@@ -42,29 +37,29 @@ function MyApp({ Component, pageProps }) {
     };
   }, [router.events]);
 
-  // Páginas del panel admin no usan el Layout público
   const isAdminPage = router.pathname.startsWith('/admin');
 
   return (
     <>
       {isAdminPage ? (
-        // Admin pages: sin Layout público, sin animaciones de transición
         <ToastProvider><Component {...pageProps} /></ToastProvider>
       ) : (
-        <Layout>
-          <AnimatePresence mode="wait" initial={false}>
-            <motion.div
-              key={router.pathname}
-              variants={pageVariants}
-              initial="hidden"
-              animate="enter"
-              exit="exit"
-              transition={pageTransition}
-            >
-              <Component {...pageProps} />
-            </motion.div>
-          </AnimatePresence>
-        </Layout>
+        <>
+          <Layout>
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.div
+                key={router.pathname}
+                variants={pageVariants}
+                initial="hidden"
+                animate="enter"
+                exit="exit"
+                transition={pageTransition}
+              >
+                <Component {...pageProps} />
+              </motion.div>
+            </AnimatePresence>
+          </Layout>
+        </>
       )}
     </>
   );
