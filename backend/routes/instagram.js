@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const security = require('../src/security');
+const fs = require('fs');
+const path = require('path');
 
 const INSTAGRAM_ACCESS_TOKEN = process.env.INSTAGRAM_ACCESS_TOKEN || '';
 const INSTAGRAM_BASE_URL = 'https://graph.instagram.com/v12.0';
@@ -12,37 +14,88 @@ const CATEGORY_KEYWORDS = {
   Proyectos: ['proyecto', 'obra', 'instalación', 'montaje', 'municipio']
 };
 
+const SEED_DATA_PATH = path.join(__dirname, '..', 'data', 'instagram-posts.json');
+const POSTS_DIR = path.join(__dirname, '..', '..', 'frontend', 'public', 'images', 'instagram', 'posts');
+
+const POST_CATEGORIES = ['Reglamentarias', 'Preventivas', 'Informativas', 'Proyectos'];
+const CAPTIONS = [
+  'Trabajo de señalización vial ejecutado con materiales certificados 3M.',
+  'Nueva señal instalada en Santa Fe. Calidad y durabilidad garantizada.',
+  'Proyecto de señalización completado. Cero reclamos, como siempre.',
+  'Fabricación propia de señalización vial. Norma IRAM 3950.',
+  'Señal reflectiva de alta visibilidad. Visible de día y de noche.',
+  'Instalación de cartelería vial en ruta provincial.',
+  'Señalización urbana ejecutada con estándares de calidad premium.',
+  'Materiales reflectivos grado ingeniería para máxima seguridad vial.',
+  'Proyecto de seguridad vial finalizado. Cliente satisfecho.',
+  'Fabricamos cada señal como si la vida de alguien dependiera de ella.'
+];
+
 function categorizeByCaption(caption) {
   if (!caption) return 'Proyectos';
   const lower = caption.toLowerCase();
   for (const [category, keywords] of Object.entries(CATEGORY_KEYWORDS)) {
     if (keywords.some(k => lower.includes(k))) return category;
   }
-  if (/(obra|instalaci|montaje|ejecutado|finalizado)/i.test(lower)) return 'Proyectos';
   return 'Proyectos';
 }
 
-let cache = { data: null, timestamp: 0 };
-const CACHE_TTL = 5 * 60 * 1000;
+function getCategoryFromFilename(filename) {
+  const name = filename.toLowerCase();
+  if (name.includes('reglamentaria')) return 'Reglamentarias';
+  if (name.includes('preventiva')) return 'Preventivas';
+  if (name.includes('informativa')) return 'Informativas';
+  if (name.includes('obra') || name.includes('nocturna')) return 'Proyectos';
+  if (name.includes('carteleria') || name.includes('urbana')) return 'Informativas';
+  if (name.includes('vial')) return 'Proyectos';
+  if (name.startsWith('galeria')) {
+    const idx = parseInt(name.match(/\d+/)?.[0] || '0');
+    return POST_CATEGORIES[idx % 4];
+  }
+  return null;
+}
 
-async function fetchFromInstagramAPI(limit) {
-  if (!INSTAGRAM_ACCESS_TOKEN) return null;
-
+function loadSeedPosts() {
   try {
-    const url = `${INSTAGRAM_BASE_URL}/me/media?fields=id,caption,media_type,media_url,thumbnail_url,timestamp,permalink&access_token=${INSTAGRAM_ACCESS_TOKEN}&limit=${limit}`;
-    const res = await fetch(url);
-    if (!res.ok) {
-      const err = await res.text();
-      console.error('Instagram API error:', err);
-      return null;
-    }
-    const data = await res.json();
-    return data.data || [];
+    const data = fs.readFileSync(SEED_DATA_PATH, 'utf-8');
+    return JSON.parse(data);
   } catch (err) {
-    console.error('Instagram API fetch failed:', err);
-    return null;
+    console.error('Error loading seed posts:', err.message);
+    return [];
   }
 }
+
+function scanPostsDirectory() {
+  const posts = [];
+  try {
+    if (!fs.existsSync(POSTS_DIR)) return posts;
+    const files = fs.readdirSync(POSTS_DIR).filter(f => /\.(jpg|jpeg|png|webp)$/i.test(f));
+    files.forEach((file, idx) => {
+      const category = getCategoryFromFilename(file) || POST_CATEGORIES[idx % 4];
+      posts.push({
+        id: `post_${idx + 1}`,
+        image: `/images/instagram/posts/${file}`,
+        category,
+        caption: CAPTIONS[idx % CAPTIONS.length],
+        likes: Math.floor(Math.random() * 300) + 50,
+        permalink: 'https://www.instagram.com/tecnolight.srl/',
+        created_at: new Date(Date.now() - idx * 86400000).toISOString()
+      });
+    });
+  } catch (err) {
+    console.error('Error scanning posts directory:', err.message);
+  }
+  return posts;
+}
+
+function buildAllPosts() {
+  const seedPosts = loadSeedPosts();
+  const scannedPosts = scanPostsDirectory();
+  return [...seedPosts, ...scannedPosts];
+}
+
+let cache = { data: null, timestamp: 0 };
+const CACHE_TTL = 10 * 60 * 1000;
 
 router.get('/posts', security.apiLimiter, async (req, res) => {
   try {
@@ -58,7 +111,7 @@ router.get('/posts', security.apiLimiter, async (req, res) => {
       return res.json({ success: true, count: posts.length, data: posts.slice(0, parsedLimit), cached: true });
     }
 
-    const igData = await fetchFromInstagramAPI(50);
+    const igData = INSTAGRAM_ACCESS_TOKEN ? await fetchFromInstagramAPI(50) : null;
 
     if (igData) {
       const posts = igData.map(item => {
@@ -75,34 +128,20 @@ router.get('/posts', security.apiLimiter, async (req, res) => {
           created_at: item.timestamp
         };
       });
-
       cache = { data: posts, timestamp: now };
-
       let result = posts;
-      if (category) {
-        result = result.filter(p => p.category.toLowerCase() === category.toLowerCase());
-      }
+      if (category) result = result.filter(p => p.category.toLowerCase() === category.toLowerCase());
       return res.json({ success: true, count: result.length, data: result.slice(0, parsedLimit), cached: false });
     }
 
-    const mockPosts = [
-      { id: 'mock_1', image: '/images/instagram/senal-pare-1.jpg', category: 'Reglamentarias', caption: 'Señal Pare reglamentaria recién instalada en Av. Alem. Fabricación propia con materiales reflectivos grado engineering. 🚦 #SeñalizaciónVial #SeguridadVial #Tecnolight', likes: 245, permalink: 'https://www.instagram.com/tecnolight.srl/', created_at: new Date(Date.now() - 86400000).toISOString() },
-      { id: 'mock_2', image: '/images/instagram/senal-preventiva-2.jpg', category: 'Preventivas', caption: 'Curva peligrosa señalizada correctamente. Señal preventiva de alto impacto visual con retroreflectividad garantizada. 🛣️ #Prevención #Vial #Tecnolight', likes: 189, permalink: 'https://www.instagram.com/tecnolight.srl/', created_at: new Date(Date.now() - 172800000).toISOString() },
-      { id: 'mock_3', image: '/images/instagram/proyecto-santa-fe-3.jpg', category: 'Proyectos', caption: 'Proyecto integral de señalización para la Municipalidad de Santa Fe. Más de 500 señales instaladas en toda la ciudad. 🏙️ #SeñalizaciónUrbana #SantaFe #Tecnolight', likes: 312, permalink: 'https://www.instagram.com/tecnolight.srl/', created_at: new Date(Date.now() - 259200000).toISOString() },
-      { id: 'mock_4', image: '/images/instagram/informativa-4.jpg', category: 'Informativas', caption: 'Cartelería informativa de destino para rutas provinciales. Diseño claro y visible a distancia. ℹ️ #Cartelería #Rutas #Tecnolight', likes: 156, permalink: 'https://www.instagram.com/tecnolight.srl/', created_at: new Date(Date.now() - 345600000).toISOString() },
-      { id: 'mock_5', image: '/images/instagram/reglamentaria-5.jpg', category: 'Reglamentarias', caption: 'Señal de prohibido estacionar fabricada con materiales de primera calidad. Cumple normativa vial argentina. ⛔ #Tránsito #Reglamentaria #Tecnolight', likes: 278, permalink: 'https://www.instagram.com/tecnolight.srl/', created_at: new Date(Date.now() - 432000000).toISOString() },
-      { id: 'mock_6', image: '/images/instagram/proyecto-6.jpg', category: 'Proyectos', caption: 'Señalización completa del Parque Industrial Sauce Viejo. Nomencladores de calles, señales viales y cartelería de bienvenida. 🏭 #ParqueIndustrial #Señalización #Tecnolight', likes: 420, permalink: 'https://www.instagram.com/tecnolight.srl/', created_at: new Date(Date.now() - 518400000).toISOString() }
-    ];
-
-    let posts = mockPosts;
-    cache = { data: posts, timestamp: now };
-
+    const allPosts = buildAllPosts();
+    cache = { data: allPosts, timestamp: now };
+    let result = allPosts;
     if (category) {
-      posts = posts.filter(p => p.category.toLowerCase() === category.toLowerCase());
+      result = result.filter(p => p.category.toLowerCase() === category.toLowerCase());
     }
-    posts = posts.slice(0, parsedLimit);
-
-    res.json({ success: true, count: posts.length, data: posts, cached: false, mock: true });
+    result = result.slice(0, parsedLimit);
+    res.json({ success: true, count: result.length, data: result, cached: false, mock: false });
   } catch (error) {
     console.error('Error en Instagram posts:', error);
     res.status(500).json({ error: 'Error al obtener publicaciones de Instagram' });

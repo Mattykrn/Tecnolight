@@ -3,7 +3,7 @@
 process.env.NODE_ENV = 'test';
 process.env.DATABASE_URL =
   process.env.DATABASE_URL ||
-  'postgresql://postgres:postgres@localhost:5432/tecnolight_db?schema=public';
+  'file:./dev.db';
 process.env.JWT_SECRET = process.env.JWT_SECRET || 'test-secret-key-for-jest';
 process.env.JWT_2FA_SECRET = process.env.JWT_2FA_SECRET || 'test-2fa-secret';
 process.env.JWT_EXPIRES_IN = '1h';
@@ -213,7 +213,12 @@ describe('Products – Admin CRUD', () => {
     const res = await request(app)
       .put(`/api/products/${createdId}`)
       .set('Authorization', `Bearer ${adminToken}`)
-      .send({ name: 'Señal Test Jest (Actualizada)' });
+      .send({
+        name: 'Señal Test Jest (Actualizada)',
+        slug: 'test-jest-updated',
+        category: 'Reglamentarias',
+        description: 'Producto actualizado por Jest.'
+      });
     expect(res.status).toBe(200);
   });
 

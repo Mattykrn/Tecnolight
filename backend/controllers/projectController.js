@@ -41,19 +41,19 @@ const getAllProjects = async (req, res) => {
   try {
     const { active = 'true' } = req.query;
     
-    // Filtro para mostrar solo proyectos activos por defecto
     const where = {};
     if (active !== 'false') {
       where.active = active === 'true';
     }
 
-    // Consulta ordenada por fecha (más reciente primero)
     const projects = await prisma.project.findMany({
       where,
       orderBy: { createdAt: 'desc' }
     });
 
-    res.json({ projects, total: projects.length });
+    const parsed = projects.map(p => ({ ...p, images: JSON.parse(p.images || '[]') }));
+
+    res.json({ projects: parsed, total: parsed.length });
   } catch (error) {
     console.error('Error al obtener proyectos:', error);
     res.status(500).json({ error: 'Error al obtener proyectos.' });
@@ -79,12 +79,11 @@ const getProjectBySlug = async (req, res) => {
       where: { slug }
     });
 
-    // Validar existencia
     if (!project) {
       return res.status(404).json({ error: 'Proyecto no encontrado.' });
     }
 
-    res.json({ project });
+    res.json({ project: { ...project, images: JSON.parse(project.images || '[]') } });
   } catch (error) {
     console.error('Error al obtener proyecto:', error);
     res.status(500).json({ error: 'Error al obtener proyecto.' });
@@ -133,14 +132,14 @@ const createProject = async (req, res) => {
         description,
         client,
         location,
-        images: images || [], // Array vacío si no se envían imágenes
+        images: JSON.stringify(images || []),
         testimonial
       }
     });
 
     res.status(201).json({
       message: 'Proyecto creado exitosamente.',
-      project
+      project: { ...project, images: JSON.parse(project.images || '[]') }
     });
   } catch (error) {
     console.error('Error al crear proyecto:', error);
@@ -175,7 +174,7 @@ const updateProject = async (req, res) => {
         description,
         client,
         location,
-        images,
+        images: JSON.stringify(images || []),
         testimonial,
         active
       }
@@ -183,7 +182,7 @@ const updateProject = async (req, res) => {
 
     res.json({
       message: 'Proyecto actualizado exitosamente.',
-      project
+      project: { ...project, images: JSON.parse(project.images || '[]') }
     });
   } catch (error) {
     console.error('Error al actualizar proyecto:', error);

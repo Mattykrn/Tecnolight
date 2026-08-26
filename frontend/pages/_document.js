@@ -1,3 +1,9 @@
+/* ============================================================
+   pages/_document.js — Documento HTML personalizado
+   SEO: meta tags, Open Graph, Twitter Cards, favicon,
+   Google Fonts, Google Analytics, Schema.org LocalBusiness
+   ============================================================ */
+
 import { Html, Head, Main, NextScript } from 'next/document';
 
 const GA_ID = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID;
@@ -9,17 +15,17 @@ export default function Document() {
         <meta charSet="utf-8" />
         <meta
           name="description"
-          content="Tecnolight - Señalización Vial y Cartelería en Santa Fe, Argentina. Más de 30 años de experiencia fabricando seguridad vial premium: señales reglamentarias, preventivas, informativas y cartelería comercial."
+          content="Tecno Light - Señalización Vial y Cartelería en Santa Fe, Argentina. Más de 30 años de experiencia fabricando seguridad vial premium: señales reglamentarias, preventivas, informativas y cartelería comercial."
         />
         <meta
           name="keywords"
-          content="señalización vial Santa Fe, carteles Tecnolight, señales reglamentarias Argentina, cartelería comercial, seguridad vial, señales preventivas, Tecnolight Santa Fe"
+          content="señalización vial Santa Fe, carteles Tecno Light, señales reglamentarias Argentina, cartelería comercial, seguridad vial, señales preventivas, Tecno Light Santa Fe"
         />
 
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://tecnolight.com.ar/" />
-        <meta property="og:title" content="Tecnolight – Señalización Vial y Cartelería | Santa Fe" />
+        <meta property="og:title" content="Tecno Light – Señalización Vial y Cartelería | Santa Fe" />
         <meta
           property="og:description"
           content="Más de 30 años de trayectoria en señalización vial y cartelería. Señales reglamentarias, preventivas e informativas de alta calidad para municipios y empresas."
@@ -28,22 +34,23 @@ export default function Document() {
 
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Tecnolight – Señalización Vial | Santa Fe, Argentina" />
+        <meta name="twitter:title" content="Tecno Light – Señalización Vial | Santa Fe, Argentina" />
         <meta
           name="twitter:description"
           content="Más de 30 años de trayectoria en señalización vial y cartelería de alta calidad."
         />
 
         {/* Favicon */}
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/images/logo-tecnolight.png" type="image/png" sizes="160x160" />
+        <link rel="apple-touch-icon" href="/images/logo-tecnolight.png" />
         <link rel="manifest" href="/site.webmanifest" />
 
-        {/* Google Fonts – Inter + Outfit */}
+        {/* Google Fonts – Barlow Condensed + JetBrains Mono + Inter */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@300;400;600;700;800&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
           rel="stylesheet"
         />
 
@@ -77,17 +84,19 @@ export default function Document() {
             __html: JSON.stringify({
               '@context': 'https://schema.org',
               '@type': 'LocalBusiness',
-              name: 'Tecnolight',
+              name: 'Tecno Light',
               description:
                 'Empresa líder en señalización vial y cartelería con más de 30 años de trayectoria en Santa Fe, Argentina.',
               url: 'https://tecnolight.com.ar',
-              telephone: '+54-342-000-0000',
+              telephone: '+54-342-455-3582',
+              email: 'ventas@tecnolight.com.ar',
               address: {
                 '@type': 'PostalAddress',
-                streetAddress: 'Santa Fe',
+                streetAddress: 'Salvador Caputto 3243',
                 addressLocality: 'Santa Fe',
                 addressRegion: 'Santa Fe',
                 addressCountry: 'AR',
+                postalCode: 'S3000',
               },
               geo: {
                 '@type': 'GeoCoordinates',
@@ -99,9 +108,10 @@ export default function Document() {
                   '@type': 'OpeningHoursSpecification',
                   dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
                   opens: '08:00',
-                  closes: '17:00',
+                  closes: '18:00',
                 },
               ],
+              taxID: '30-69238932-4',
               sameAs: [
                 'https://www.facebook.com/tecnolight',
                 'https://www.instagram.com/tecnolight.srl',

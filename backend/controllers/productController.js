@@ -53,7 +53,9 @@ const getAllProducts = async (req, res) => {
       orderBy: { createdAt: 'desc' }
     });
 
-    res.json({ products, total: products.length });
+    const parsed = products.map(p => ({ ...p, images: JSON.parse(p.images || '[]') }));
+
+    res.json({ products: parsed, total: parsed.length });
   } catch (error) {
     console.error('Error al obtener productos:', error);
     res.status(500).json({ error: 'Error al obtener productos.' });
@@ -74,7 +76,7 @@ const getProductBySlug = async (req, res) => {
     if (!product) {
       return res.status(404).json({ error: 'Producto no encontrado.' });
     }
-    res.json({ product });
+    res.json({ product: { ...product, images: JSON.parse(product.images || '[]') } });
   } catch (error) {
     console.error('Error al obtener producto:', error);
     res.status(500).json({ error: 'Error al obtener producto.' });
@@ -119,9 +121,9 @@ const createProduct = async (req, res) => {
       return res.status(400).json({ error: 'Nombre, slug, descripción y categoría son requeridos.' });
     }
     const product = await prisma.product.create({
-      data: { name, slug, description, category, image, price, specs }
+      data: { name, slug, description, category, images: JSON.stringify(image ? [image] : []), price, specs }
     });
-    res.status(201).json({ message: 'Producto creado exitosamente.', product });
+    res.status(201).json({ message: 'Producto creado exitosamente.', product: { ...product, images: JSON.parse(product.images || '[]') } });
   } catch (error) {
     console.error('Error al crear producto:', error);
     if (error.code === 'P2002') {
@@ -143,9 +145,9 @@ const updateProduct = async (req, res) => {
     const { name, slug, description, category, image, price, specs, active, stock } = req.body;
     const product = await prisma.product.update({
       where: { id },
-      data: { name, slug, description, category, image, price, specs, active, stock }
+      data: { name, slug, description, category, images: JSON.stringify(image ? [image] : []), price, specs, active, stock }
     });
-    res.json({ message: 'Producto actualizado exitosamente.', product });
+    res.json({ message: 'Producto actualizado exitosamente.', product: { ...product, images: JSON.parse(product.images || '[]') } });
   } catch (error) {
     console.error('Error al actualizar producto:', error);
     if (error.code === 'P2025') {

@@ -1,264 +1,431 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
-import { Shield, CheckCircle2, ArrowRight, HelpCircle, Layers, BookOpen, MapPin, Award, Star, TrendingUp, MessageCircle, Users } from 'lucide-react';
-import InteractiveRoadHero from '../components/InteractiveRoadHero';
+import {
+  Shield, HardHat, PaintBucket, Truck, TriangleAlert, Zap,
+  Award, CheckCircle, Clock, Users, UserCheck, ArrowUpRight,
+  MessageCircle, MapPin, Phone, ArrowRight
+} from 'lucide-react';
+import InstagramGallery from '../components/InstagramGallery';
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: (i = 0) => ({ opacity: 1, y: 0, transition: { duration: 0.6, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] } })
-};
+const WA_NUMBER = '543424553582';
+const WA_LINK = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent('Hola Tecnolight, me interesa solicitar un presupuesto para mi obra.')}`;
 
-const categories = [
-  { title: 'Señales Reglamentarias', desc: 'Indican limitaciones, prohibiciones y restricciones en la vía pública. Fabricadas bajo norma IRAM 3950.', category: 'Reglamentarias', emoji: '🛑' },
-  { title: 'Señales Preventivas', desc: 'Advierten al conductor sobre peligros potenciales en el camino. Esenciales para prevenir accidentes.', category: 'Preventivas', emoji: '⚠️' },
-  { title: 'Señales Informativas', desc: 'Guían al usuario proporcionando información sobre destinos, servicios y distancias.', category: 'Informativas', emoji: 'ℹ️' },
-  { title: 'Cartelería Comercial', desc: 'Carteles de gran formato, letras corpóreas y marquesinas que potencian marcas con diseño premium.', category: 'Cartelería Comercial', emoji: '🏢' }
+const WaIcon = ({ size = 16 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+  </svg>
+);
+
+const HEX = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='58' height='100'%3E%3Cpath d='M29 4L54 18v28L29 64L4 50V22z' fill='none' stroke='rgba(255,255,255,0.04)' stroke-width='1'/%3E%3Cpath d='M29 68L54 82v18L29 128L4 100V82z' fill='none' stroke='rgba(255,255,255,0.04)' stroke-width='1'/%3E%3C/svg%3E")`;
+
+const MONO = { fontFamily: "'JetBrains Mono', monospace", fontWeight: 500 };
+const HEADING = { fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 900 };
+const BODY = { fontFamily: "'Inter', sans-serif" };
+
+const SERVICES = [
+  { n: '01', Icon: TriangleAlert, title: 'Cartelería Vial', desc: 'Señales verticales retroreflectivas Tipo III, IV y XI bajo normas IRAM. Fabricación propia para rutas, autopistas y vías urbanas.', tag: 'Fabricación propia' },
+  { n: '02', Icon: Shield, title: 'Señalización de Obra', desc: 'Sistemas completos de señalización transitoria para cortes de carril, desvíos y zonas de trabajo. Entrega e instalación incluidas.', tag: 'Llave en mano' },
+  { n: '03', Icon: PaintBucket, title: 'Demarcación Horizontal', desc: 'Pintado de líneas, flechas, símbolos y sendas peatonales sobre asfalto y hormigón. Pinturas termoplásticas de alta durabilidad.', tag: 'Materiales premium' },
+  { n: '04', Icon: Truck, title: 'Alquiler de Vallas', desc: 'Vallas peatonales, barreras New Jersey y delineadores. Alquiler, traslado y colocación en obra en Santa Fe y Rosario.', tag: 'Retiro en 24 h' },
+  { n: '05', Icon: HardHat, title: 'Seguridad Laboral', desc: 'EPP certificado: cascos, calzado, arneses, chalecos reflectivos y señalización perimetral para trabajadores en zona de riesgo.', tag: 'Homologado' },
+  { n: '06', Icon: Zap, title: 'Balizamiento LED', desc: 'Luces estroboscópicas, baliza solar y señalización luminosa nocturna para obras de alta exposición al tránsito vehicular.', tag: 'Alta visibilidad' },
 ];
 
-const values = [
-  { icon: <Shield size={28} />, title: 'Seguridad ante Todo', desc: 'Cada señal evita accidentes, multas y problemas legales. No negociamos con la seguridad.' },
-  { icon: <Award size={28} />, title: 'Calidad Certificada', desc: 'IRAM 3950, materiales 3M y aprobación de Vialidad Nacional en cada producto.' },
-  { icon: <Star size={28} />, title: 'Durabilidad Extrema', desc: 'Estructuras galvanizadas con pintura epoxi horneada que resisten décadas a la intemperie.' },
-  { icon: <TrendingUp size={28} />, title: 'Cumplimiento Garantizado', desc: 'Trabajamos con gobiernos desde 1993. Las obras públicas no aceptan demoras y nosotros tampoco.' },
+const PROJ_CATS = ["Todo", "Cartelería", "Señalización", "Demarcación", "Seguridad"];
+
+const fallbackProjects = [
+  { id: 'f1', title: 'Autopista A008 — Santa Fe', cat: 'Cartelería', year: '2024', image: '/images/instagram/posts/g-carteleria.jpg' },
+  { id: 'f2', title: 'Acceso Norte Rosario', cat: 'Señalización', year: '2024', image: '/images/instagram/posts/g-vial.jpg' },
+  { id: 'f3', title: 'Ruta 9 — Tramo Córdoba', cat: 'Demarcación', year: '2023', image: '/images/instagram/posts/g-urbana.jpg' },
+  { id: 'f4', title: 'Circunvalación Rosario', cat: 'Señalización', year: '2023', image: '/images/instagram/posts/galeria-1.jpg' },
+  { id: 'f5', title: 'Puerto Rosario — Vialidad', cat: 'Seguridad', year: '2022', image: '/images/instagram/posts/galeria-2.jpg' },
+  { id: 'f6', title: 'Autopista Córdoba–Rosario', cat: 'Cartelería', year: '2022', image: '/images/instagram/posts/galeria-3.jpg' },
+  { id: 'f7', title: 'Corredor Vial NOA', cat: 'Demarcación', year: '2022', image: '/images/instagram/posts/galeria-4.jpg' },
+  { id: 'f8', title: 'Ruta Provincial 6 — CABA', cat: 'Cartelería', year: '2021', image: '/images/instagram/posts/galeria-5.jpg' },
+  { id: 'f9', title: 'Puerto San Martín — EPP', cat: 'Seguridad', year: '2021', image: '/images/instagram/posts/galeria-6.jpg' },
 ];
 
-export default function Home({ projects }) {
+export default function Home() {
+  const [projFilter, setProjFilter] = useState("Todo");
+  const [form, setForm] = useState({ name: "", phone: "", msg: "" });
+  const [sent, setSent] = useState(false);
+
+  const projects = fallbackProjects;
+  const filtered = projFilter === "Todo"
+    ? projects
+    : projects.filter(p => p.cat === projFilter);
+
+  const openWa = (e) => {
+    e.preventDefault();
+    const t = encodeURIComponent(`Hola, soy *${form.name}*.\n${form.msg}${form.phone ? `\nTel: ${form.phone}` : ""}`);
+    window.open(`https://wa.me/${WA_NUMBER}?text=${t}`, "_blank");
+    setSent(true);
+    setForm({ name: "", phone: "", msg: "" });
+    setTimeout(() => setSent(false), 4000);
+  };
+
   return (
     <div>
       <Head>
-        <title>Tecnolight - Señalización Vial y Cartelería | Santa Fe</title>
-        <meta name="description" content="Fabricamos e instalamos señalización vial homologada IRAM y cartelería premium en Santa Fe. Más de 30 años protegiendo vidas en la ruta." />
+        <title>Tecnolight SRL — Soluciones Viales de Precisión | Santa Fe</title>
+        <meta name="description" content="30 años fabricando señalética, demarcación y seguridad para obras viales en Santa Fe, Rosario y todo el país." />
       </Head>
 
-      <InteractiveRoadHero />
-
-      <div className="section-divider" />
-
-      <section className="py-28 relative overflow-hidden" id="productos">
-        <div className="absolute inset-0">
-          <Image src="/images/obras/highway-signs.webp" alt="" fill className="object-cover max-md:object-[70%]" sizes="100vw" />
-          <div className="section-overlay-warm" />
+      {/* ══════════ HERO — SPLIT DIAGONAL ══════════ */}
+      <section className="relative min-h-screen overflow-hidden bg-background -mt-[72px] lg:-mt-[72px] pt-[72px] lg:pt-[72px]">
+        <div className="hidden lg:block absolute top-0 right-0 h-full w-[52%]" style={{ clipPath: 'polygon(12% 0, 100% 0, 100% 100%, 0% 100%)' }}>
+          <Image src="/images/hero/hero-vial.webp" alt="Autopista nocturna — señalización vial retroreflectiva Tecnolight" fill className="object-cover object-center" sizes="52vw" priority />
+          <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
         </div>
-        <div className="texture-stripes" />
-        <div className="glow-right" />
-        <div className="container-site relative z-[1]">
-          <motion.div className="text-center max-w-[650px] mx-auto mb-16" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#FF5A1F]/10 border border-[#FF5A1F]/20 rounded-full text-xs font-semibold text-[#FF5A1F] mb-4">
-              <Layers size={14} />
-              Soluciones para Cada Necesidad
-            </div>
-            <h2 className="text-4xl font-bold mb-4 text-gray-900">Nuestros Productos</h2>
-            <p className="text-gray-500 leading-relaxed">No son solo señales. Son herramientas que ordenan el tránsito, previenen accidentes, evitan multas y <strong className="text-gray-900">protegen a su comunidad</strong>.</p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {categories.map((cat, i) => (
-              <Link href={`/catalog?category=${encodeURIComponent(cat.category)}`} key={i}>
-                <motion.div className="group card-premium backdrop-blur-sm overflow-hidden h-full flex flex-col hover:-translate-y-2 hover:border-[#FF5A1F]/30" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} custom={i}>
-                  <div className="h-36 bg-gradient-to-br from-orange-50 to-white flex items-center justify-center relative">
-                    <span className="text-5xl group-hover:scale-110 transition-transform duration-300">{cat.emoji}</span>
-                    <div className="absolute top-3 right-3 bg-[#FF5A1F] text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full">IRAM</div>
-                  </div>
-                  <div className="p-6 flex flex-col flex-1">
-                    <h3 className="text-lg font-bold mb-2 text-gray-900 group-hover:text-[#FF5A1F] transition-colors">{cat.title}</h3>
-                    <p className="text-gray-500 text-sm leading-relaxed mb-4 flex-1">{cat.desc}</p>
-                    <span className="inline-flex items-center gap-2 text-sm font-semibold text-[#FF5A1F] mt-auto">Ver Más <ArrowRight size={16} /></span>
-                  </div>
-                </motion.div>
-              </Link>
-            ))}
-          </div>
+        <div className="lg:hidden absolute inset-0">
+          <Image src="/images/hero/hero-vial.webp" alt="Señalización vial nocturna Tecnolight" fill className="object-cover" sizes="100vw" priority />
+          <div className="absolute inset-0 bg-background/88" />
         </div>
-      </section>
-
-      <section className="py-28 relative overflow-hidden" id="proyectos">
-        <div className="absolute inset-0">
-          <Image src="/images/obras/construction-team.webp" alt="" fill className="object-cover" sizes="100vw" />
-          <div className="section-overlay-dark" />
-        </div>
-        <div className="texture-grid" />
-        <div className="container-site relative z-[1]">
-          <motion.div className="text-center max-w-[650px] mx-auto mb-16" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#FF5A1F]/15 border border-[#FF5A1F]/30 rounded-full text-xs font-semibold text-[#FF5A1F] mb-4">
-              <Award size={14} />
-              Resultados que Hablan
-            </div>
-            <h2 className="text-4xl font-bold mb-4 text-white">Proyectos Realizados</h2>
-            <p className="text-white/60 leading-relaxed"><strong className="text-white">Cero reclamos por calidad.</strong> Esa es nuestra mejor carta de presentación. Municipios y constructoras confían en nosotros.</p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {projects.length > 0 ? projects.slice(0, 6).map((project, i) => (
-              <motion.div key={project.id} className="group card-glass overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:border-[#FF5A1F] hover:shadow-[0_20px_60px_-15px_rgba(255,90,31,0.25)]" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} custom={i}>
-                <div className="relative h-48 bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center overflow-hidden">
-                  {project.image ? (
-                    <img src={project.image} alt={project.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                  ) : (
-                    <span className="text-5xl opacity-20">🚧</span>
-                  )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-                  {project.location && <span className="absolute top-3 left-3 bg-black/40 text-white/80 text-xs font-medium px-2.5 py-1 rounded-full backdrop-blur-sm border border-white/10">{project.location}</span>}
-                  {project.client && <span className="absolute top-3 right-3 bg-[#FF5A1F]/80 text-white text-xs font-medium px-2.5 py-1 rounded-full backdrop-blur-sm">{project.client}</span>}
-                </div>
-                <div className="p-6">
-                  <h3 className="font-bold text-base mb-2 text-white">{project.title}</h3>
-                  <p className="text-white/50 text-sm leading-relaxed line-clamp-2">{project.description}</p>
-                  {project.testimonial && (
-                    <div className="mt-3 pt-3 border-t border-white/10">
-                      <p className="text-white/40 text-xs italic leading-relaxed line-clamp-2">&ldquo;{project.testimonial}&rdquo;</p>
-                    </div>
-                  )}
-                </div>
-              </motion.div>
-            )) : (
-              Array.from({ length: 3 }).map((_, i) => (
-                <div key={i} className="card-glass p-8 text-center">
-                  <span className="text-4xl block mb-4 opacity-30">🚧</span>
-                  <h3 className="font-bold text-white mb-2">Proyecto {i + 1}</h3>
-                  <p className="text-white/50 text-sm">Señalización vial completa para municipio de Santa Fe.</p>
-                </div>
-              ))
-            )}
-          </div>
-
-          <motion.div className="text-center mt-10" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
-            <Link href="/projects" className="inline-flex items-center gap-2.5 bg-[#FF5A1F] text-white font-semibold px-8 py-3.5 rounded-xl transition-all duration-300 hover:bg-[#E04E1A] hover:-translate-y-1 hover:shadow-lg hover:shadow-[#FF5A1F]/25">
-              Ver Todos los Proyectos <ArrowRight size={18} />
-            </Link>
-          </motion.div>
-        </div>
-      </section>
-
-      <section className="py-28 relative overflow-hidden" id="nosotros">
-        <div className="absolute inset-0">
-          <Image src="/images/obras/construction-team.webp" alt="" fill className="object-cover" sizes="100vw" />
-          <div className="section-overlay-warm" />
-        </div>
-        <div className="texture-stripes" />
-        <div className="glow-left" />
-        <div className="container-site relative z-[1]">
-          <motion.div className="text-center max-w-[650px] mx-auto mb-16" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#FF5A1F]/10 border border-[#FF5A1F]/20 rounded-full text-xs font-semibold text-[#FF5A1F] mb-4">
-              <Users size={14} />
-              Quiénes Somos
-            </div>
-            <h2 className="text-4xl font-bold mb-4 text-gray-900">30 Años Cuidando tu Camino</h2>
-            <p className="text-gray-500 leading-relaxed max-w-[550px] mx-auto">Desde 1993 fabricamos señalización vial homologada en Santa Fe. <strong className="text-gray-900">Cero reclamos por calidad en tres décadas.</strong></p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-16">
-            {values.map((v, i) => (
-              <motion.div key={i} className="group card-premium p-6 text-center" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} custom={i}>
-                <span className="inline-flex mb-4 bg-[#FF5A1F]/10 p-3 rounded-xl text-[#FF5A1F] group-hover:bg-[#FF5A1F] group-hover:text-white transition-all duration-300">{v.icon}</span>
-                <h3 className="text-base font-bold mb-2 text-gray-900">{v.title}</h3>
-                <p className="text-gray-500 text-sm leading-relaxed">{v.desc}</p>
-              </motion.div>
-            ))}
-          </div>
-
-          <motion.div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-[800px] mx-auto" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
-            {[
-              { number: '1993', label: 'Fundación' },
-              { number: '30+', label: 'Años sin Reclamos' },
-              { number: '10k+', label: 'Señales Instaladas' },
-              { number: '500+', label: 'Proyectos' }
-            ].map((stat, i) => (
-              <div key={i} className="bg-gradient-to-b from-orange-50 to-white border border-orange-100/50 rounded-xl p-5 text-center">
-                <span className="text-2xl font-extrabold text-[#FF5A1F] block mb-1">{stat.number}</span>
-                <span className="text-xs uppercase tracking-wider text-gray-400">{stat.label}</span>
+        <div className="absolute inset-0 lg:w-[54%]" style={{ backgroundImage: HEX, backgroundSize: '58px 100px' }} />
+        <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-primary" />
+        <div className="relative z-10 min-h-screen flex items-center">
+          <div className="max-w-site mx-auto px-5 lg:px-10 w-full py-32 lg:py-40">
+            <div className="lg:max-w-[52%]">
+              <div className="flex items-center gap-3 mb-8">
+                <div className="h-px w-8 bg-primary flex-shrink-0" />
+                <span className="text-primary uppercase tracking-[0.32em] text-[10px]" style={MONO}>Señalización · Santa Fe · Rosario</span>
               </div>
-            ))}
-          </motion.div>
-
-          <motion.div className="text-center mt-12" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
-            <Link href="/about" className="inline-flex items-center gap-2 text-[#FF5A1F] font-semibold text-sm transition-all duration-300 hover:gap-3">
-              Conocer más sobre nosotros <ArrowRight size={16} />
-            </Link>
-          </motion.div>
-
-          <motion.div className="mt-16 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
-            {[
-              { name: 'Municipalidad de Santa Fe', icon: '🏛️' },
-              { name: 'Vialidad Nacional', icon: '🛣️' },
-              { name: 'Constructora del Litoral', icon: '🏗️' },
-              { name: 'Parque Industrial', icon: '🏭' },
-              { name: 'Puerto de Santa Fe', icon: '⚓' },
-              { name: 'Municipio de Rosario', icon: '🏛️' }
-            ].map((client, i) => (
-              <div key={i} className="bg-white rounded-xl p-4 text-center border border-gray-100 transition-all duration-300 hover:border-[#FF5A1F] hover:-translate-y-1 hover:shadow-sm">
-                <span className="text-2xl block mb-1.5">{client.icon}</span>
-                <span className="font-semibold text-[11px] text-gray-800 leading-tight block">{client.name}</span>
-              </div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      <section className="py-28 relative overflow-hidden" id="contacto">
-        <div className="absolute inset-0">
-          <Image src="/images/obras/projects-aerial.webp" alt="" fill className="object-cover" sizes="100vw" />
-          <div className="section-overlay-warm" />
-        </div>
-        <div className="texture-stripes" />
-        <div className="container-site relative z-[1]">
-          <motion.div className="text-center max-w-[600px] mx-auto mb-16" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#25D366]/10 border border-[#25D366]/20 rounded-full text-xs font-semibold text-[#25D366] mb-4">
-              <MessageCircle size={14} />
-              Respuesta Inmediata
-            </div>
-            <h2 className="text-4xl font-bold mb-4 text-gray-900">Hablemos de tu Proyecto</h2>
-            <p className="text-gray-500 leading-relaxed">Consultas técnicas, presupuestos y asesoría normativa sin cargo. Estamos listos para ayudarte.</p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-[1000px] mx-auto">
-            <motion.div className="space-y-6" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
-              <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 text-center border border-gray-100 shadow-premium">
-                <div className="w-20 h-20 bg-gradient-to-br from-[#25D366] to-[#128C7E] rounded-full flex items-center justify-center mx-auto mb-5 shadow-lg shadow-[#25D366]/20">
-                  <MessageCircle size={36} className="text-white" />
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">Contáctanos por WhatsApp</h3>
-                <p className="text-gray-500 text-sm mb-6 max-w-sm mx-auto">Recibí asesoría técnica personalizada y presupuestos en minutos.</p>
-                <a href="https://wa.me/543424567890?text=Hola%20Tecnolight%2C%20quiero%20solicitar%20informaci%C3%B3n%20sobre%20se%C3%B1alizaci%C3%B3n%20vial" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 bg-gradient-to-r from-[#25D366] to-[#128C7E] text-white font-semibold px-10 py-4 rounded-xl text-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-[#25D366]/30">
-                  <MessageCircle size={24} />
-                  +54 342 456-7890
+              <h1 className="text-foreground leading-[0.88] tracking-tight mb-8" style={{ ...HEADING, fontSize: 'clamp(4rem, 10vw, 7.5rem)' }}>
+                SOLUCIONES<br /><span className="text-primary">VIALES</span><br />DE PRECISIÓN
+              </h1>
+              <p className="text-muted-foreground max-w-md leading-relaxed mb-10" style={{ ...BODY, fontSize: '0.95rem' }}>
+                30 años fabricando señalética, demarcación y seguridad para obras viales en Santa Fe, Rosario y todo el país. La referencia técnica que la competencia no puede igualar.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-3 mb-14">
+                <a href={WA_LINK} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2.5 bg-[#25D366] text-white font-bold px-8 py-4 rounded-[4px] hover:bg-[#1db954] transition-all text-sm tracking-wide">
+                  <WaIcon size={17} /> Pedir presupuesto
                 </a>
-                <p className="text-xs text-gray-400 mt-4">Lun a Vie 8:00 - 18:00 hs</p>
+                <Link href="/projects" className="inline-flex items-center justify-center gap-2 border border-white/12 text-white/70 font-medium px-8 py-4 rounded-[4px] hover:border-primary/50 hover:text-primary transition-all text-sm tracking-wide" style={BODY}>
+                  Ver proyectos <ArrowUpRight size={14} />
+                </Link>
               </div>
-              <div className="bg-white/90 backdrop-blur-sm rounded-xl p-5 space-y-4 border border-gray-100 shadow-premium">
-                <div className="flex items-start gap-3">
-                  <div className="w-10 h-10 bg-[#FF5A1F]/10 rounded-lg flex items-center justify-center text-[#FF5A1F] shrink-0"><MapPin size={20} /></div>
-                  <div>
-                    <h4 className="font-semibold text-gray-900 text-sm">Sede Comercial</h4>
-                    <p className="text-gray-500 text-sm">Salvador Caputto 3243, Santa Fe</p>
+              <div className="flex flex-wrap gap-5 border-t border-white/6 pt-8">
+                {[{ v: '30+', l: 'Años' }, { v: '500+', l: 'Obras' }, { v: '12', l: 'Provincias' }, { v: 'IRAM', l: 'Cert.' }].map(s => (
+                  <div key={s.l} className="flex items-baseline gap-2">
+                    <span className="text-primary" style={{ ...HEADING, fontSize: '1.6rem' }}>{s.v}</span>
+                    <span className="text-muted-foreground text-xs uppercase tracking-wider" style={MONO}>{s.l}</span>
                   </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <div className="w-10 h-10 bg-[#FF5A1F]/10 rounded-lg flex items-center justify-center text-[#FF5A1F] shrink-0"><MapPin size={20} /></div>
-                  <div>
-                    <h4 className="font-semibold text-gray-900 text-sm">Fábrica</h4>
-                    <p className="text-gray-500 text-sm">Cv Oeste, Santa Fe</p>
-                  </div>
-                </div>
+                ))}
               </div>
-            </motion.div>
+            </div>
+          </div>
+        </div>
+        <div className="hidden lg:block absolute bottom-8 left-10 text-white/15 text-[10px] tracking-widest" style={MONO}>31.4201° S  64.1888° W</div>
+        <div className="hidden lg:block absolute top-24 right-8 text-white/12 text-[10px]" style={MONO}>TL-001 / HERO</div>
+      </section>
 
-            <motion.div className="space-y-6" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} custom={1}>
-              <div className="bg-white/90 backdrop-blur-sm rounded-xl p-5 border border-gray-100 shadow-premium">
-                <h4 className="font-semibold text-gray-900 mb-3 flex items-center gap-2"><MapPin size={16} className="text-[#FF5A1F]" /> Sede Comercial</h4>
-                <div className="w-full h-[200px] rounded-lg overflow-hidden border border-gray-100">
-                  <iframe src="https://www.google.com/maps?q=Salvador+Caputto+3243+Santa+Fe+Argentina&output=embed" className="w-full h-full" allowFullScreen="" loading="lazy" title="Sede Comercial" />
+      {/* ══════════ SERVICIOS ══════════ */}
+      <section id="servicios" className="py-24 lg:py-32 bg-background" style={{ backgroundImage: HEX, backgroundSize: '58px 100px' }}>
+        <div className="max-w-site mx-auto px-5 lg:px-10">
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-14 gap-6">
+            <div>
+              <div className="flex items-center gap-3 mb-4">
+                <div className="h-px w-8 bg-primary flex-shrink-0" />
+                <span className="text-primary text-[10px] tracking-[0.32em] uppercase" style={MONO}>Servicios</span>
+              </div>
+              <h2 className="text-foreground leading-none tracking-tight" style={{ ...HEADING, fontSize: 'clamp(2.6rem, 6vw, 5rem)' }}>QUÉ HACEMOS</h2>
+            </div>
+            <p className="text-muted-foreground text-sm max-w-xs leading-relaxed" style={BODY}>
+              Soluciones completas en señalización, demarcación y seguridad vial para obras públicas y privadas.
+            </p>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-white/5 rounded-[6px] overflow-hidden">
+            {SERVICES.map(svc => (
+              <div key={svc.n} className="group relative bg-card hover:bg-secondary transition-all duration-300 p-7 lg:p-8 flex flex-col gap-5 overflow-hidden cursor-default">
+                <div className="absolute -bottom-4 -right-2 text-white/[0.03] select-none leading-none pointer-events-none" style={{ ...HEADING, fontSize: '6.5rem' }}>{svc.n}</div>
+                <div className="flex items-start justify-between">
+                  <div className="w-11 h-11 bg-primary/10 border border-primary/15 rounded-[4px] flex items-center justify-center group-hover:bg-primary/20 group-hover:border-primary/30 transition-all">
+                    <svc.Icon size={19} className="text-primary" />
+                  </div>
+                  <span className="text-white/15 group-hover:text-primary/40 transition-colors" style={{ ...MONO, fontSize: '0.72rem' }}>{svc.n}</span>
+                </div>
+                <div>
+                  <h3 className="text-foreground leading-tight mb-2.5" style={{ ...HEADING, fontSize: '1.45rem' }}>{svc.title}</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed" style={BODY}>{svc.desc}</p>
+                </div>
+                <div className="flex items-center justify-between mt-auto pt-4 border-t border-white/5 group-hover:border-primary/10 transition-colors">
+                  <span className="text-primary/60 text-[10px] uppercase tracking-widest" style={MONO}>{svc.tag}</span>
+                  <a href={WA_LINK} target="_blank" rel="noopener noreferrer" className="text-white/30 group-hover:text-primary transition-colors"><ArrowUpRight size={15} /></a>
+                </div>
+                <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+              </div>
+            ))}
+          </div>
+          <div className="mt-8 border border-white/6 rounded-[6px] bg-card overflow-hidden">
+            <div className="grid md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-white/6">
+              {[
+                { n: '01', Icon: WaIcon, t: 'Consultá por WhatsApp', d: 'Respondemos en minutos con asesoramiento técnico real.' },
+                { n: '02', Icon: UserCheck, t: 'Presupuesto en el día', d: 'Un especialista analiza tu obra y elabora una propuesta clara.' },
+                { n: '03', Icon: Truck, t: 'Entrega o Retiro', d: 'Coordinamos logística. Entrega en obra o retiro en planta Rosario.' },
+              ].map(s => (
+                <div key={s.n} className="flex items-start gap-4 px-7 py-6 group hover:bg-secondary/50 transition-colors">
+                  <span className="text-primary/25 shrink-0 mt-0.5" style={{ ...HEADING, fontSize: '1.3rem' }}>{s.n}</span>
+                  <div>
+                    <div className="text-foreground text-sm font-semibold mb-1" style={BODY}>{s.t}</div>
+                    <div className="text-muted-foreground text-xs leading-relaxed" style={BODY}>{s.d}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════ PROYECTOS — FIGMA FILTER GALLERY ══════════ */}
+      <section id="proyectos" className="py-24 lg:py-32 bg-background" style={{ backgroundImage: HEX, backgroundSize: '58px 100px' }}>
+        <div className="max-w-site mx-auto px-5 lg:px-10">
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-10 gap-6">
+            <div>
+              <div className="flex items-center gap-3 mb-4">
+                <div className="h-px w-8 bg-primary flex-shrink-0" />
+                <span className="text-primary text-[10px] tracking-[0.32em] uppercase" style={MONO}>Portfolio</span>
+              </div>
+              <h2 className="text-foreground leading-none tracking-tight" style={{ ...HEADING, fontSize: 'clamp(2.6rem, 6vw, 5rem)' }}>PROYECTOS<br />REALIZADOS</h2>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {PROJ_CATS.map(cat => (
+                <button key={cat}
+                  onClick={() => setProjFilter(cat)}
+                  className={`px-4 py-2 rounded-[4px] text-xs font-semibold transition-all tracking-wide ${
+                    projFilter === cat
+                      ? 'bg-primary text-white'
+                      : 'bg-card border border-white/8 text-muted-foreground hover:border-primary/35 hover:text-foreground'
+                  }`}
+                  style={BODY}>
+                  {cat}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-white/8 rounded-[6px] overflow-hidden">
+            {filtered.map((p, i) => (
+              <div key={p.id || i} className="group relative aspect-[4/3] overflow-hidden bg-card cursor-pointer">
+                {p.image ? (
+                  <Image src={p.image} alt={p.title || ''} fill className="object-cover transition-transform duration-700 group-hover:scale-106" sizes="33vw" />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center">
+                    <Shield size={48} className="text-white/5" />
+                  </div>
+                )}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
+                <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/10 transition-all duration-300" />
+                <div className="absolute bottom-0 left-0 right-0 p-5">
+                  <div className="flex items-center gap-2 mb-1.5">
+                    <span className="text-primary text-[9px] font-bold tracking-[0.25em] uppercase" style={MONO}>{p.cat || 'Proyecto'}</span>
+                    <div className="w-1 h-1 rounded-full bg-white/25" />
+                    <span className="text-white/40 text-[9px]" style={MONO}>{p.year || '2024'}</span>
+                  </div>
+                  <div className="text-white leading-tight group-hover:text-primary transition-colors" style={{ ...HEADING, fontSize: '1.1rem' }}>{p.title}</div>
+                </div>
+                <div className="absolute top-3.5 right-3.5 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <div className="w-7 h-7 bg-primary rounded-[3px] flex items-center justify-center">
+                    <ArrowUpRight size={13} className="text-white" />
+                  </div>
                 </div>
               </div>
-              <div className="bg-white/90 backdrop-blur-sm rounded-xl p-5 border border-gray-100 shadow-premium">
-                <h4 className="font-semibold text-gray-900 mb-3 flex items-center gap-2"><MapPin size={16} className="text-[#FF5A1F]" /> Fábrica</h4>
-                <div className="w-full h-[200px] rounded-lg overflow-hidden border border-gray-100">
-                  <iframe src="https://www.google.com/maps?q=Cv+Oeste+Santa+Fe+Argentina&output=embed" className="w-full h-full" allowFullScreen="" loading="lazy" title="Fábrica Tecnolight" />
+            ))}
+          </div>
+
+          {filtered.length === 0 && (
+            <div className="text-center py-20 text-muted-foreground text-sm" style={BODY}>
+              No hay proyectos en esta categoría aún.
+            </div>
+          )}
+
+          <div className="text-center mt-10">
+            <Link href="/projects" className="inline-flex items-center gap-2.5 text-primary font-semibold text-sm transition-all hover:gap-4" style={BODY}>
+              Ver todos los proyectos <ArrowRight size={16} />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════ NOSOTROS / VENTAJAS ══════════ */}
+      <section id="nosotros" className="py-24 lg:py-32 bg-background" style={{ backgroundImage: HEX, backgroundSize: '58px 100px' }}>
+        <div className="max-w-site mx-auto px-5 lg:px-10">
+          <div className="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
+            <div className="relative">
+              <div className="aspect-[4/3] rounded-[6px] overflow-hidden bg-card">
+                <Image src="/images/instagram-seleccionadas/nosotros-1.jpg" alt="Equipo técnico Tecnolight — más de 30 años en señalización vial" fill className="object-cover object-center" sizes="(max-width: 1024px) 100vw, 50vw" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+              </div>
+              <div className="absolute -bottom-5 -right-3 bg-primary text-white rounded-[4px] px-6 py-4" style={{ boxShadow: '0 16px 48px rgba(242,101,14,0.4)' }}>
+                <div className="leading-none mb-0.5" style={{ ...HEADING, fontSize: '2.6rem' }}>1994</div>
+                <div className="text-white/75 uppercase tracking-wider" style={{ ...MONO, fontSize: '0.62rem' }}>Fundación</div>
+              </div>
+              <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-primary/40 rounded-tl-[6px]" />
+              <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-primary/40 rounded-br-[6px]" />
+            </div>
+            <div>
+              <div className="flex items-center gap-3 mb-4">
+                <div className="h-px w-8 bg-primary flex-shrink-0" />
+                <span className="text-primary text-[10px] tracking-[0.32em] uppercase" style={MONO}>Nosotros</span>
+              </div>
+              <h2 className="text-foreground leading-none tracking-tight mb-7" style={{ ...HEADING, fontSize: 'clamp(2.4rem, 5.5vw, 4.5rem)' }}>
+                POR QUÉ ELEGIR<br /><span className="text-primary">TECNOLIGHT</span>
+              </h2>
+              <p className="text-muted-foreground text-sm leading-relaxed mb-10" style={BODY}>
+                Somos el proveedor técnico de confianza en Santa Fe y Rosario. Fabricación propia, materiales certificados y tres décadas de experiencia en licitaciones nacionales y provinciales nos diferencian de cualquier competidor.
+              </p>
+              <div className="grid grid-cols-2 gap-3 mb-10">
+                {[
+                  { Icon: Award, n: '30+', label: 'Años en el sector', desc: 'Desde 1994 en Santa Fe y Rosario.' },
+                  { Icon: CheckCircle, n: '500+', label: 'Obras completadas', desc: 'Proyectos en 12 provincias.' },
+                  { Icon: Clock, n: '24 h', label: 'Respuesta garantizada', desc: 'Presupuesto en el día.' },
+                  { Icon: Users, n: 'IRAM', label: 'Materiales certificados', desc: 'Retroreflectancia Tipo IV–XI.' },
+                ].map(adv => (
+                  <div key={adv.label} className="bg-card border border-white/6 rounded-[4px] p-4 hover:border-primary/25 transition-colors group">
+                    <div className="flex items-center gap-2.5 mb-2">
+                      <adv.Icon size={14} className="text-primary" />
+                      <span className="text-primary" style={{ ...HEADING, fontSize: '1.35rem' }}>{adv.n}</span>
+                    </div>
+                    <div className="text-foreground text-sm font-semibold mb-0.5" style={BODY}>{adv.label}</div>
+                    <div className="text-muted-foreground text-xs leading-relaxed" style={BODY}>{adv.desc}</div>
+                  </div>
+                ))}
+              </div>
+              <div className="border border-white/6 rounded-[4px] p-5 bg-card">
+                <div className="text-[10px] uppercase tracking-widest text-muted-foreground mb-4" style={MONO}>Por qué somos mejor opción que la competencia</div>
+                <div className="space-y-2.5">
+                  {[
+                    'Fabricación propia — sin intermediarios ni demoras',
+                    'Presupuesto técnico detallado en el día',
+                    'Retroreflectancia certificada Tipo IV y XI (no solo Tipo I)',
+                    'Asesoramiento normativo incluido sin costo adicional',
+                  ].map(t => (
+                    <div key={t} className="flex items-start gap-2.5 text-sm" style={BODY}>
+                      <CheckCircle size={13} className="text-primary flex-shrink-0 mt-0.5" />
+                      <span className="text-foreground/75">{t}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
-            </motion.div>
+              <div className="mt-8">
+                <Link href="/about" className="inline-flex items-center gap-2.5 text-primary font-semibold text-sm transition-all hover:gap-4" style={BODY}>
+                  Conocer nuestra historia <ArrowRight size={16} />
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <InstagramGallery />
+
+      {/* ══════════ CONTACTO — INTERACTIVE WA FORM ══════════ */}
+      <section id="contacto" className="py-24 lg:py-32 bg-background" style={{ backgroundImage: HEX, backgroundSize: '58px 100px' }}>
+        <div className="max-w-site mx-auto px-5 lg:px-10">
+          <div className="relative rounded-[6px] overflow-hidden mb-12" style={{ background: 'linear-gradient(120deg, #0d1f12 0%, #0a160c 60%, #0c1a0e 100%)' }}>
+            <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: HEX, backgroundSize: '58px 100px' }} />
+            <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-[#25D366]" />
+            <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8 px-8 lg:px-14 py-12 lg:py-14">
+              <div className="text-center lg:text-left">
+                <div className="flex items-center gap-2.5 mb-3 justify-center lg:justify-start">
+                  <WaIcon size={22} />
+                  <span className="text-[#25D366] font-bold text-sm tracking-widest uppercase" style={MONO}>WhatsApp</span>
+                </div>
+                <h3 className="text-white leading-tight mb-2" style={{ ...HEADING, fontSize: 'clamp(1.7rem, 4vw, 2.8rem)' }}>
+                  RESPONDEMOS EN MINUTOS.<br />SIN TURNOS. SIN FORMULARIOS.
+                </h3>
+                <p className="text-white/40 text-sm" style={BODY}>
+                  El camino más corto entre tu obra y una solución profesional.
+                </p>
+              </div>
+              <a href={WA_LINK} target="_blank" rel="noopener noreferrer" className="flex-shrink-0 inline-flex items-center gap-3 bg-[#25D366] text-white font-bold text-base px-10 py-5 rounded-[4px] hover:bg-[#1db954] transition-all hover:scale-105 active:scale-95 whitespace-nowrap" style={{ boxShadow: '0 8px 36px rgba(37,211,102,0.35)' }}>
+                <WaIcon size={20} /> Escribir ahora
+              </a>
+            </div>
+          </div>
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-14">
+            <div>
+              <div className="flex items-center gap-3 mb-4">
+                <div className="h-px w-8 bg-primary flex-shrink-0" />
+                <span className="text-primary text-[10px] tracking-[0.32em] uppercase" style={MONO}>Contacto</span>
+              </div>
+              <h2 className="text-foreground leading-none tracking-tight mb-7" style={{ ...HEADING, fontSize: 'clamp(2.4rem, 5vw, 4rem)' }}>TAMBIÉN<br />ENCONTRANOS</h2>
+              <div className="space-y-4 mb-10">
+                {[
+                  { Icon: Phone, label: 'Teléfono', v: '+54 342 455-3582' },
+                  { Icon: MessageCircle, label: 'WhatsApp', v: '+54 342 455-3582' },
+                  { Icon: MapPin, label: 'Planta', v: 'Rosario, Santa Fe — Argentina' },
+                ].map(({ Icon, label, v }) => (
+                  <div key={label} className="flex items-center gap-4">
+                    <div className="w-9 h-9 bg-primary/8 border border-primary/15 rounded-[4px] flex items-center justify-center flex-shrink-0">
+                      <Icon size={14} className="text-primary" />
+                    </div>
+                    <div>
+                      <div className="text-muted-foreground text-[10px] uppercase tracking-widest mb-0.5" style={MONO}>{label}</div>
+                      <div className="text-foreground text-sm font-medium" style={BODY}>{v}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="border border-white/6 rounded-[4px] p-5 bg-card">
+                <div className="text-[10px] uppercase tracking-widest text-muted-foreground mb-3" style={MONO}>Zona de cobertura</div>
+                <div className="flex flex-wrap gap-2">
+                  {['Santa Fe', 'Rosario', 'Gran Rosario', 'Córdoba', 'Entre Ríos', 'Buenos Aires', '+6 provincias'].map(z => (
+                    <span key={z} className="bg-secondary text-foreground/60 text-xs px-3 py-1 rounded-[3px]" style={BODY}>{z}</span>
+                  ))}
+                </div>
+              </div>
+              <div className="mt-7">
+                <div className="text-[10px] uppercase tracking-widest text-muted-foreground mb-2.5" style={MONO}>Instagram</div>
+                <a href="https://www.instagram.com/tecnolight.srl" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-foreground/50 text-sm hover:text-primary transition-colors" style={BODY}>
+                  @tecnolight.srl <ArrowUpRight size={12} />
+                </a>
+              </div>
+            </div>
+            <div className="bg-card border border-white/6 rounded-[6px] p-8 lg:p-9">
+              <div className="flex items-center gap-2.5 mb-6">
+                <WaIcon size={17} />
+                <h3 className="text-foreground font-bold" style={{ ...HEADING, fontSize: '1.3rem' }}>Solicitar presupuesto</h3>
+              </div>
+              {sent && (
+                <div className="mb-5 p-3.5 bg-[#25D366]/10 border border-[#25D366]/20 rounded-[4px] flex items-center gap-2 text-[#25D366] text-sm font-medium" style={BODY}>
+                  <CheckCircle size={14} /> Abriendo WhatsApp con tu mensaje...
+                </div>
+              )}
+              <form onSubmit={openWa} className="space-y-4">
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-[10px] font-semibold text-muted-foreground uppercase tracking-widest mb-1.5" style={MONO}>Nombre</label>
+                    <input type="text" required placeholder="Juan García"
+                      value={form.name} onChange={e => setForm({ ...form, name: e.target.value })}
+                      className="w-full bg-background border border-white/8 rounded-[4px] px-4 py-3 text-foreground text-sm placeholder:text-muted-foreground/30 focus:outline-none focus:border-primary/50 transition-colors"
+                      style={BODY} />
+                  </div>
+                  <div>
+                    <label className="block text-[10px] font-semibold text-muted-foreground uppercase tracking-widest mb-1.5" style={MONO}>Teléfono</label>
+                    <input type="tel" placeholder="+54 341 000-0000"
+                      value={form.phone} onChange={e => setForm({ ...form, phone: e.target.value })}
+                      className="w-full bg-background border border-white/8 rounded-[4px] px-4 py-3 text-foreground text-sm placeholder:text-muted-foreground/30 focus:outline-none focus:border-primary/50 transition-colors"
+                      style={BODY} />
+                  </div>
+                </div>
+                <div>
+                  <label className="block text-[10px] font-semibold text-muted-foreground uppercase tracking-widest mb-1.5" style={MONO}>¿Qué necesitás?</label>
+                  <textarea required rows={4} placeholder="Describí tu obra: tipo de señalización, ubicación, cantidad y cronograma estimado..."
+                    value={form.msg} onChange={e => setForm({ ...form, msg: e.target.value })}
+                    className="w-full bg-background border border-white/8 rounded-[4px] px-4 py-3 text-foreground text-sm placeholder:text-muted-foreground/30 focus:outline-none focus:border-primary/50 transition-colors resize-none"
+                    style={BODY} />
+                </div>
+                <button type="submit" className="w-full flex items-center justify-center gap-2.5 bg-[#25D366] text-white font-bold py-4 rounded-[4px] hover:bg-[#1db954] transition-colors text-sm tracking-wide" style={BODY}>
+                  <WaIcon size={16} /> Enviar por WhatsApp
+                </button>
+                <p className="text-muted-foreground/40 text-[11px] text-center" style={BODY}>
+                  Se abrirá WhatsApp con tu consulta preescrita. Sin bots, atención personal.
+                </p>
+              </form>
+            </div>
           </div>
         </div>
       </section>
@@ -266,13 +433,3 @@ export default function Home({ projects }) {
   );
 }
 
-export async function getServerSideProps() {
-  try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/api/projects?active=true`);
-    const data = await res.json();
-    return { props: { projects: data.projects || [] } };
-  } catch (error) {
-    console.error('Error al obtener proyectos:', error);
-    return { props: { projects: [] } };
-  }
-}

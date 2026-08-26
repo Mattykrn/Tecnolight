@@ -4,3 +4,8 @@ node_modules/
 .env
 *.log
 /dist/
+
+# Editor / IDE
+.vscode/
+.mcp.json
+.markdown-collab/

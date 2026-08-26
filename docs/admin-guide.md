@@ -201,4 +201,4 @@ Para problemas técnicos con el panel, contactar al equipo de desarrollo con:
 - Captura de pantalla del error
 - Pasos para reproducirlo
 
-**Tecnolight** · [tecnolight.com.ar](https://tecnolight.com.ar) · Santa Fe, Argentina
+**Tecnolight** · [tecnolight.com.ar](https://tecnolight.com.ar) · Santa Fe, Argentinaq

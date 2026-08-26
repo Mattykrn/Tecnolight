@@ -8,29 +8,34 @@ module.exports = {
     extend: {
       colors: {
         primary: {
-          DEFAULT: '#FF5A1F',
-          hover: '#E04E1A',
+          DEFAULT: '#F2650E',
+          hover: '#D4590A',
           light: '#FFF3ED',
         },
-        'text-muted': '#6B7280',
-        'text-main': '#111827',
-        'bg-surface': '#F9FAFB',
-        'bg-card': '#FFFFFF',
-        'bg-dark': '#111827',
-        'border': '#E5E7EB',
-        'error': '#EF4444',
+        background: '#0A0C12',
+        foreground: '#FFFFFF',
+        card: '#0E1017',
+        muted: {
+          foreground: 'rgba(255,255,255,0.5)',
+        },
+        secondary: {
+          DEFAULT: '#0E1017',
+        },
+        border: 'rgba(255,255,255,0.06)',
       },
       fontFamily: {
-        primary: ['Outfit', 'system-ui', 'sans-serif'],
+        heading: ["'Barlow Condensed'", 'sans-serif'],
+        mono: ["'JetBrains Mono'", 'monospace'],
+        body: ["'Inter'", 'sans-serif'],
       },
       maxWidth: {
         site: '1200px',
       },
       boxShadow: {
-        premium: '0 4px 20px rgba(0, 0, 0, 0.06)',
-        card: '0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06)',
-        'card-hover': '0 10px 30px -10px rgba(0, 0, 0, 0.1)',
-        glow: '0 0 20px rgba(255,90,31,0.15)',
+        premium: '0 1px 3px rgba(0,0,0,0.02), 0 8px 30px rgba(0,0,0,0.04)',
+        card: '0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.06)',
+        'card-hover': '0 10px 30px -10px rgba(0,0,0,0.1)',
+        glow: '0 0 20px rgba(242,101,14,0.15)',
       },
       animation: {
         'pulse-slow': 'pulse 2s ease-in-out infinite',

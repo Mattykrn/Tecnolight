@@ -29,7 +29,7 @@ async function main() {
       slug: 'senal-pare',
       description: 'Señal reglamentaria de alto estándar fabricada en chapa de aluminio reflectivo. Cumple con normativas viales argentinas. Ideal para intersecciones y controles de tránsito.',
       category: 'Reglamentarias',
-      images: ['/images/products/senal-pare.jpg'],
+      images: JSON.stringify(['/images/products/senal-pare.jpg']),
       price: 45000,
       specs: 'Material: Chapa de aluminio 0.8mm\nReflectivo: Grado engineering\nDimensiones: 60x60cm\nSoporte: Caño estructural 2"'
     },
@@ -38,7 +38,7 @@ async function main() {
       slug: 'senal-velocidad-maxima-40',
       description: 'Señal de velocidad máxima para zonas urbanas y rurales. Reflectivo de alta visibilidad para garantizar cumplimiento.',
       category: 'Reglamentarias',
-      images: ['/images/products/senal-velocidad-40.jpg'],
+      images: JSON.stringify(['/images/products/senal-velocidad-40.jpg']),
       price: 38000,
       specs: 'Material: Chapa de aluminio\nReflectivo: Diamond grade\nDimensiones: 60x60cm\nNormativa: Ley 24.449'
     },
@@ -47,7 +47,7 @@ async function main() {
       slug: 'senal-curva-peligrosa',
       description: 'Señal preventiva para curvas cerradas y tramos peligrosos. Fabricada con materiales duraderos para exterior.',
       category: 'Preventivas',
-      images: ['/images/products/senal-curva.jpg'],
+      images: JSON.stringify(['/images/products/senal-curva.jpg']),
       price: 42000,
       specs: 'Material: Chapa de aluminio\nReflectivo: Grado engineering\nDimensiones: 75x75cm\nIncluye: Kit de fijación'
     },
@@ -56,7 +56,7 @@ async function main() {
       slug: 'senal-desvio',
       description: 'Señal informativa para desvíos y desvíos temporales. Ideal para obras viales y desvíos programados.',
       category: 'Informativas',
-      images: ['/images/products/senal-desvio.jpg'],
+      images: JSON.stringify(['/images/products/senal-desvio.jpg']),
       price: 35000,
       specs: 'Material: Chapa de aluminio\nReflectivo: Grado engineering\nDimensiones: 90x60cm\nPersonalizable'
     },
@@ -65,7 +65,7 @@ async function main() {
       slug: 'cartel-inmobiliario-premium',
       description: 'Cartel inmobiliario de alta gama con estructura metálica. Diseño profesional para maximizar visibilidad de propiedades.',
       category: 'Cartelería Comercial',
-      images: ['/images/products/cartel-inmobiliario.jpg'],
+      images: JSON.stringify(['/images/products/cartel-inmobiliario.jpg']),
       price: 180000,
       specs: 'Estructura: Caño estructural 3"\nPlaca: Aluminio composite\nDimensiones: 3x2m\nIncluye: Instalación'
     },
@@ -74,7 +74,7 @@ async function main() {
       slug: 'senal-prohibido-estacionar',
       description: 'Señal reglamentaria para zonas de estacionamiento restringido. Fabricada con materiales de primera calidad.',
       category: 'Reglamentarias',
-      images: ['/images/products/senal-no-estacionar.jpg'],
+      images: JSON.stringify(['/images/products/senal-no-estacionar.jpg']),
       price: 40000,
       specs: 'Material: Chapa de aluminio\nReflectivo: Diamond grade\nDimensiones: 60x60cm\nNormativa: Ley 24.449'
     }
@@ -98,11 +98,11 @@ async function main() {
       description: 'Proyecto integral de señalización vial para la ciudad de Santa Fe. Incluyó más de 500 señales de diferentes tipos: reglamentarias, preventivas e informativas. Trabajo realizado en conjunto con la Municipalidad de Santa Fe para mejorar la seguridad vial en zonas urbanas y rutas municipales.',
       client: 'Municipalidad de Santa Fe',
       location: 'Santa Fe, Argentina',
-      images: [
+      images: JSON.stringify([
         '/images/projects/santa-fe-1.jpg',
         '/images/projects/santa-fe-2.jpg',
         '/images/projects/santa-fe-3.jpg'
-      ],
+      ]),
       testimonial: 'Excelente trabajo y cumplimiento en los plazos. La calidad de las señales superó nuestras expectativas. Muy recomendables para proyectos municipales.'
     },
     {
@@ -111,10 +111,10 @@ async function main() {
       description: 'Señalización de tramo de autopista de 45km. Incluyó señales de velocidad máxima, curvas, desvíos y paneles informativos. Proyecto ejecutado para empresa constructora Vial.',
       client: 'Constructora Vial S.A.',
       location: 'Rosario - Córdoba, Argentina',
-      images: [
+      images: JSON.stringify([
         '/images/projects/autopista-1.jpg',
         '/images/projects/autopista-2.jpg'
-      ],
+      ]),
       testimonial: 'Profesionalismo de primera. Cumplieron con todos los estándares de seguridad vial y los tiempos de entrega fueron impecables.'
     },
     {
@@ -123,11 +123,11 @@ async function main() {
       description: 'Diseño e instalación de cartelería comercial para zona portuaria. Incluyó carteles de gran formato, letras corpóreas y señalización interna para empresas del polo logístico.',
       client: 'Puerto de Santa Fe',
       location: 'Puerto de Santa Fe, Argentina',
-      images: [
+      images: JSON.stringify([
         '/images/projects/puerto-1.jpg',
         '/images/projects/puerto-2.jpg',
         '/images/projects/puerto-3.jpg'
-      ],
+      ]),
       testimonial: 'El equipo de Tecnolight entendió perfectamente nuestras necesidades. El resultado final fue de excelente calidad y muy profesional.'
     },
     {
@@ -136,10 +136,10 @@ async function main() {
       description: 'Proyecto de señalización integral para Parque Industrial de Sauce Viejo. Incluyó señalización vial, carteles de bienvenida, señalética interna y nomencladores de calles.',
       client: 'Parque Industrial Sauce Viejo',
       location: 'Sauce Viejo, Santa Fe, Argentina',
-      images: [
+      images: JSON.stringify([
         '/images/projects/parque-1.jpg',
         '/images/projects/parque-2.jpg'
-      ],
+      ]),
       testimonial: 'Trabajo muy completo y bien ejecutado. La señalización mejoró notablemente la seguridad y la imagen del parque.'
     }
   ];

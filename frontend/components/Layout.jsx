@@ -1,202 +1,210 @@
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Phone, MapPin, Menu, X, ArrowRight, MessageCircle, ChevronUp } from 'lucide-react';
+import { Menu, X, ArrowUpRight, Phone, MapPin, MessageCircle, Shield } from 'lucide-react';
+
+const WA_NUMBER = '543424553582';
+const WA_LINK = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent('Hola Tecnolight, me interesa solicitar un presupuesto para mi obra.')}`;
+
+const WaIcon = ({ size = 16 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+  </svg>
+);
+
+const LogoMark = () => (
+  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+    <path d="M10 1.5L18 6V14L10 18.5L2 14V6L10 1.5Z" stroke="white" strokeWidth="1.4" />
+    <path d="M10 5V15M6 7.5L14 12.5M14 7.5L6 12.5" stroke="white" strokeWidth="1.1" />
+  </svg>
+);
+
+const NAV = [
+  { label: 'Inicio', href: '/' },
+  { label: 'Servicios', href: '/#servicios' },
+  { label: 'Proyectos', href: '/projects' },
+  { label: 'Nosotros', href: '/about' },
+  { label: 'Contacto', href: '/contact' },
+];
 
 export default function Layout({ children }) {
   const [scrolled, setScrolled] = useState(false);
-  const [showScrollTop, setShowScrollTop] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-      setShowScrollTop(window.scrollY > 400);
-    };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    const h = () => setScrolled(window.scrollY > 56);
+    window.addEventListener('scroll', h, { passive: true });
+    return () => window.removeEventListener('scroll', h);
   }, []);
 
   useEffect(() => { setMenuOpen(false); }, [router.pathname]);
 
-  const navItems = [
-    { name: 'Inicio', path: '/' },
-    { name: 'Nosotros', path: '/about' },
-    { name: 'Catálogo', path: '/catalog' },
-    { name: 'Proyectos', path: '/projects' },
-    { name: 'Contacto', path: '/contact' }
-  ];
-
-  const isAdminPage = router.pathname.startsWith('/admin');
-
-  if (isAdminPage) {
-    return <>{children}</>;
-  }
+  const isHome = router.pathname === '/';
+  const isAtTop = !scrolled && isHome;
 
   return (
-    <div className="relative">
-      <header className={`fixed top-0 left-0 w-full h-20 flex items-center z-[1000] transition-all duration-300 ${
-        scrolled
-          ? 'h-[68px] bg-white shadow-[0_1px_4px_rgba(0,0,0,0.08)]'
-          : 'h-20 bg-[#0A0B0D]/80 backdrop-blur-sm'
-      }`}>
-        <div className="container-site flex justify-between items-center w-full">
-          <div className="flex items-center gap-3 cursor-pointer" onClick={() => router.push('/')}>
-            <div className="w-10 h-10 bg-[#FF5A1F] flex items-center justify-center rotate-45">
-              <span className="-rotate-45 text-white font-black text-lg">TL</span>
-            </div>
-            <div className="flex flex-col">
-              <span className={`text-xl font-extrabold tracking-wider leading-none transition-colors duration-300 ${scrolled ? 'text-gray-900' : 'text-white'}`}>TECNOLIGHT</span>
-              <span className={`text-[10px] uppercase tracking-widest font-semibold mt-0.5 transition-colors duration-300 ${scrolled ? 'text-gray-400' : 'text-white/50'}`}>Señalización Vial</span>
-            </div>
-          </div>
+    <div className="min-h-screen bg-background text-foreground overflow-x-hidden" style={{ fontFamily: "'Inter', sans-serif" }}>
 
-          <nav className="hidden md:block">
-            <ul className="flex gap-8 list-none items-center">
-              {navItems.map((item) => (
-                <li key={item.path} className="relative">
-                  <Link href={item.path} className={`font-medium text-sm transition-all duration-300 relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:rounded after:transition-all after:duration-300 ${
-                    router.pathname === item.path
-                      ? 'text-[#FF5A1F] after:w-full after:bg-[#FF5A1F]'
-                      : scrolled
-                        ? 'text-gray-600 hover:text-gray-900 after:w-0 hover:after:w-full after:bg-[#FF5A1F]'
-                        : 'text-white/80 hover:text-white after:w-0 hover:after:w-full after:bg-[#FF5A1F]'
-                  }`}>
-                    {item.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+      <a
+        href={WA_LINK}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Contactar por WhatsApp"
+        className="fixed bottom-6 right-5 z-50 flex items-center gap-2.5 bg-[#25D366] text-white font-bold text-sm px-5 py-3.5 rounded-full shadow-2xl hover:bg-[#1db954] transition-all hover:scale-105 active:scale-95"
+        style={{ boxShadow: '0 6px 28px rgba(37,211,102,0.4), 0 2px 8px rgba(0,0,0,0.4)' }}
+      >
+        <WaIcon size={19} />
+        <span className="hidden sm:inline">WhatsApp</span>
+      </a>
+
+      <header
+        className={`fixed inset-x-0 top-0 z-40 transition-all duration-300 ${
+          scrolled
+            ? 'bg-[#0A0C12]/96 backdrop-blur-xl border-b border-white/6 shadow-xl shadow-black/50'
+            : 'bg-transparent'
+        }`}
+      >
+        <div className="max-w-site mx-auto px-5 lg:px-10 flex items-center justify-between h-16 lg:h-[72px]">
+          <Link href="/" className="flex items-center gap-2.5 group">
+            <div className="w-9 h-9 bg-primary rounded-[4px] flex items-center justify-center flex-shrink-0 group-hover:bg-orange-500 transition-colors">
+              <LogoMark />
+            </div>
+            <div className="leading-none">
+              <div className="text-white tracking-tight" style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 900, fontSize: '1rem' }}>
+                TECNOLIGHT SRL
+              </div>
+              <div className="text-primary tracking-[0.18em] uppercase font-medium" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.58rem' }}>
+                Cuidamos tu Camino
+              </div>
+            </div>
+          </Link>
+
+          <nav className="hidden lg:flex items-center gap-7">
+            {NAV.map(l => (
+              <Link
+                key={l.href}
+                href={l.href}
+                className={`text-[13px] font-medium transition-colors tracking-wide ${router.pathname === l.href || (l.href === '/' && router.pathname === '/') ? 'text-primary' : 'text-white/50 hover:text-primary'}`}
+                style={{ fontFamily: "'Inter', sans-serif" }}
+              >
+                {l.label}
+              </Link>
+            ))}
           </nav>
 
-          <div className="flex items-center gap-3">
-            <a href="https://wa.me/543424567890" target="_blank" rel="noopener noreferrer"
-              className="hidden md:inline-flex items-center gap-2 bg-[#25D366] text-white font-semibold px-4 py-2.5 rounded-lg text-sm transition-all duration-300 hover:bg-[#1DA851] hover:-translate-y-0.5 hover:shadow-lg">
-              <MessageCircle size={16} /> WhatsApp
-            </a>
-            <Link href="/contact" className="hidden md:inline-flex items-center gap-2 bg-[#FF5A1F] text-white font-semibold px-4 py-2.5 rounded-lg text-sm transition-all duration-300 hover:bg-[#E04E1A] hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[#FF5A1F]/25">
-              Cotizar <ArrowRight size={16} />
-            </Link>
-            <button className="md:hidden w-6 h-[18px] cursor-pointer z-[1100] relative" onClick={() => setMenuOpen(!menuOpen)} aria-label="Menu principal" aria-expanded={menuOpen}>
-              {menuOpen ? <X size={24} color="#1A1A2E" /> : <Menu size={24} color={scrolled ? '#1A1A2E' : '#FFFFFF'} />}
-            </button>
-          </div>
-        </div>
-      </header>
-
-      <ul className={`fixed top-0 ${menuOpen ? 'right-0' : '-right-full'} w-full h-screen bg-white flex flex-col justify-center items-center gap-10 z-[1050] transition-all duration-[0.4s] ease-in-out list-none`}>
-        {navItems.map((item) => (
-          <li key={item.path}>
-            <Link href={item.path} className={`text-2xl font-semibold transition-all duration-300 ${router.pathname === item.path ? 'text-[#FF5A1F] scale-110' : 'text-gray-700 hover:text-[#FF5A1F] hover:scale-110'}`}>
-              {item.name}
-            </Link>
-          </li>
-        ))}
-        <li className="flex gap-3">
-          <a href="https://wa.me/543424567890" target="_blank" rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-[#25D366] text-white font-semibold px-5 py-3 rounded-lg text-base transition-all duration-300 hover:bg-[#1DA851]">
-            <MessageCircle size={20} /> WhatsApp
+          <a
+            href={WA_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden lg:inline-flex items-center gap-2 bg-primary/10 border border-primary/30 text-primary hover:bg-primary hover:text-white text-[13px] font-semibold px-4 py-2.5 rounded-[4px] transition-all"
+            style={{ fontFamily: "'Inter', sans-serif" }}
+          >
+            <WaIcon size={13} /> Presupuesto
           </a>
-          <Link href="/contact" className="inline-flex items-center gap-2 bg-[#FF5A1F] text-white font-semibold px-5 py-3 rounded-lg text-base transition-all duration-300 hover:bg-[#E04E1A]">
-            Cotizar <ArrowRight size={20} />
-          </Link>
-        </li>
-      </ul>
+
+          <button onClick={() => setMenuOpen(!menuOpen)} className="lg:hidden text-white/70 hover:text-white p-1.5" aria-label="Menú">
+            {menuOpen ? <X size={21} /> : <Menu size={21} />}
+          </button>
+        </div>
+
+        <AnimatePresence>
+          {menuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              className="lg:hidden border-t border-white/6 bg-[#0A0C12]/98 backdrop-blur-xl overflow-hidden"
+            >
+              <div className="px-5 pt-2 pb-6 flex flex-col">
+                {NAV.map(l => (
+                  <Link
+                    key={l.href}
+                    href={l.href}
+                    onClick={() => setMenuOpen(false)}
+                    className="text-left py-3.5 text-white/55 border-b border-white/5 last:border-0 hover:text-primary transition-colors text-sm font-medium"
+                    style={{ fontFamily: "'Inter', sans-serif" }}
+                  >
+                    {l.label}
+                  </Link>
+                ))}
+                <a
+                  href={WA_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-4 flex items-center justify-center gap-2.5 bg-[#25D366] text-white font-bold py-3.5 rounded-[4px] text-sm"
+                >
+                  <WaIcon size={16} /> Solicitar presupuesto
+                </a>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </header>
 
       <main className="min-h-screen">{children}</main>
 
-      <AnimatePresence>
-        {showScrollTop && (
-          <motion.button
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.5 }}
-            className="fixed bottom-24 right-6 z-[900] w-12 h-12 bg-white border border-gray-200 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group"
-            aria-label="Volver arriba"
-          >
-            <ChevronUp size={22} className="text-gray-600 group-hover:text-[#FF5A1F] transition-colors" />
-          </motion.button>
-        )}
-      </AnimatePresence>
-
-      <footer className="bg-gray-900 pt-20 pb-8">
-        <div className="container-site grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_2fr] gap-12 mb-16">
-          <div className="flex flex-col gap-5">
-            <div className="flex items-center gap-3 cursor-pointer" onClick={() => router.push('/')}>
-              <div className="w-10 h-10 bg-[#FF5A1F] flex items-center justify-center rotate-45">
-                <span className="-rotate-45 text-white font-black text-lg">TL</span>
+      <footer className="bg-[#080A0F] border-t border-white/5 py-14 lg:py-16">
+        <div className="max-w-site mx-auto px-5 lg:px-10">
+          <div className="grid lg:grid-cols-12 gap-10 mb-12">
+            <div className="lg:col-span-5">
+              <div className="flex items-center gap-2.5 mb-5">
+                <div className="w-9 h-9 bg-primary rounded-[4px] flex items-center justify-center flex-shrink-0">
+                  <LogoMark />
+                </div>
+                <div>
+                  <div className="text-white" style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 900, fontSize: '1rem' }}>TECNOLIGHT SRL</div>
+                  <div className="text-primary" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.58rem', letterSpacing: '0.18em' }}>CUIDAMOS TU CAMINO</div>
+                </div>
               </div>
-              <div className="flex flex-col">
-                <span className="text-xl font-extrabold tracking-wider text-white leading-none">TECNOLIGHT</span>
-                <span className="text-[10px] text-white/50 uppercase tracking-widest font-semibold mt-0.5">Señalización Vial</span>
+              <p className="text-white/28 text-sm leading-relaxed max-w-xs mb-6" style={{ fontFamily: "'Inter', sans-serif" }}>
+                Referentes en señalización vial, demarcación horizontal y seguridad laboral en Santa Fe y Rosario desde 1994.
+              </p>
+              <a
+                href={WA_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-[#25D366]/12 border border-[#25D366]/20 text-[#25D366] text-xs font-semibold px-4 py-2.5 rounded-[4px] hover:bg-[#25D366]/20 transition-colors"
+                style={{ fontFamily: "'Inter', sans-serif" }}
+              >
+                <WaIcon size={13} /> Contactar por WhatsApp
+              </a>
+            </div>
+
+            <div className="lg:col-span-3 lg:col-start-7">
+              <div className="text-white/20 text-[10px] uppercase tracking-widest mb-5" style={{ fontFamily: "'JetBrains Mono', monospace" }}>Servicios</div>
+              <div className="space-y-3">
+                {['Cartelería Vial', 'Señalización de Obra', 'Demarcación Horizontal', 'Alquiler de Vallas', 'Seguridad Laboral'].map(s => (
+                  <div key={s} className="text-white/35 text-sm hover:text-primary transition-colors cursor-default" style={{ fontFamily: "'Inter', sans-serif" }}>{s}</div>
+                ))}
               </div>
             </div>
-            <p className="text-gray-400 leading-relaxed text-sm">
-              Más de 30 años de experiencia fabricando señalización vial y cartelería de alta calidad.
-              Guiando el tránsito de forma segura en todo el territorio argentino desde Santa Fe.
-            </p>
+
+            <div className="lg:col-span-2">
+              <div className="text-white/20 text-[10px] uppercase tracking-widest mb-5" style={{ fontFamily: "'JetBrains Mono', monospace" }}>Empresa</div>
+              <div className="space-y-3">
+                {[
+                  { label: 'Proyectos', href: '/projects' },
+                  { label: 'Nosotros', href: '/about' },
+                  { label: 'Contacto', href: '/contact' },
+                ].map(s => (
+                  <Link key={s.label} href={s.href} className="block text-white/35 text-sm hover:text-primary transition-colors" style={{ fontFamily: "'Inter', sans-serif" }}>{s.label}</Link>
+                ))}
+                <a href="https://www.instagram.com/tecnolight.srl" target="_blank" rel="noopener noreferrer"
+                  className="block text-white/35 text-sm hover:text-primary transition-colors" style={{ fontFamily: "'Inter', sans-serif" }}>
+                  @tecnolight.srl
+                </a>
+              </div>
+            </div>
           </div>
 
-          <div className="flex flex-col gap-5">
-            <h3 className="text-sm font-semibold text-white uppercase tracking-wider">Enlaces</h3>
-            <ul className="list-none flex flex-col gap-2.5">
-              {navItems.map((item) => (
-                <li key={item.path}>
-                  <Link href={item.path} className="text-gray-400 text-sm transition-all duration-300 hover:text-white hover:pl-1">{item.name}</Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="flex flex-col gap-5">
-            <h3 className="text-sm font-semibold text-white uppercase tracking-wider">Categorías</h3>
-            <ul className="list-none flex flex-col gap-2.5">
-              {['Reglamentarias', 'Preventivas', 'Informativas', 'Cartelería Comercial'].map((cat) => (
-                <li key={cat}>
-                  <Link href={`/catalog?category=${encodeURIComponent(cat)}`} className="text-gray-400 text-sm transition-all duration-300 hover:text-white hover:pl-1">{cat}</Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="flex flex-col gap-5">
-            <h3 className="text-sm font-semibold text-white uppercase tracking-wider">Contacto</h3>
-            <ul className="list-none flex flex-col gap-3.5">
-              <li className="flex items-start gap-3 text-gray-400 text-sm leading-relaxed">
-                <MapPin size={16} className="text-[#FF5A1F] shrink-0 mt-0.5" />
-                <div>
-                  <strong className="text-white text-xs">Sede Comercial:</strong><br />
-                  Salvador Caputto 3243, Santa Fe
-                </div>
-              </li>
-              <li className="flex items-start gap-3 text-gray-400 text-sm leading-relaxed">
-                <MapPin size={16} className="text-[#FF5A1F] shrink-0 mt-0.5" />
-                <div>
-                  <strong className="text-white text-xs">Fábrica:</strong><br />
-                  Cv Oeste, Santa Fe
-                </div>
-              </li>
-              <li className="flex items-start gap-3 text-gray-400 text-sm leading-relaxed">
-                <Phone size={16} className="text-[#FF5A1F] shrink-0 mt-0.5" />
-                <span>+54 (342) 456-7890</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <div className="container-site border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-6 text-gray-500 text-sm">
-          <p>&copy; {new Date().getFullYear()} Tecnolight. Todos los derechos reservados. Santa Fe, Argentina.</p>
-          <div className="flex gap-4">
-            <a href="https://instagram.com/tecnolight.srl" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-9 h-9 rounded-full bg-gray-800 text-gray-400 transition-all duration-300 hover:bg-[#FF5A1F] hover:text-white hover:-translate-y-1" aria-label="Instagram">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
-                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
-              </svg>
-            </a>
+          <div className="pt-7 border-t border-white/5 flex flex-col sm:flex-row justify-between items-center gap-3">
+            <div className="text-white/18 text-xs" style={{ fontFamily: "'Inter', sans-serif" }}>
+              &copy; 2026 Tecnolight SRL &mdash; Todos los derechos reservados.
+            </div>
+            <div className="text-white/18 text-xs" style={{ fontFamily: "'JetBrains Mono', monospace" }}>Rosario &middot; Santa Fe &middot; Argentina</div>
           </div>
         </div>
       </footer>
