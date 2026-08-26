@@ -18,8 +18,9 @@ const WaIcon = ({ size = 16 }) => (
   </svg>
 );
 
-const HEX = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='58' height='100'%3E%3Cpath d='M29 4L54 18v28L29 64L4 50V22z' fill='none' stroke='rgba(255,255,255,0.04)' stroke-width='1'/%3E%3Cpath d='M29 68L54 82v18L29 128L4 100V82z' fill='none' stroke='rgba(255,255,255,0.04)' stroke-width='1'/%3E%3C/svg%3E")`;
-
+// Honeycomb SVG — trazo naranja/ámbar, opacidad 20%, bordes delgados (0.8px)
+const HEX_SVG = `<svg xmlns='http://www.w3.org/2000/svg' width='60' height='104'><polygon points='30,2 58,18 58,50 30,66 2,50 2,18' fill='none' stroke='rgba(251,146,60,0.18)' stroke-width='0.8'/><polygon points='30,70 58,86 58,104 30,104 2,104 2,86' fill='none' stroke='rgba(251,146,60,0.18)' stroke-width='0.8'/><polygon points='59,18 87,2 87,34 59,50' fill='none' stroke='rgba(251,146,60,0.18)' stroke-width='0.8'/><polygon points='1,18 1,50 -27,34 -27,2' fill='none' stroke='rgba(251,146,60,0.18)' stroke-width='0.8'/></svg>`;
+const HEX = `url("data:image/svg+xml,${encodeURIComponent(HEX_SVG)}")`;
 const MONO = { fontFamily: "'JetBrains Mono', monospace", fontWeight: 500 };
 const HEADING = { fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 900 };
 const BODY = { fontFamily: "'Inter', sans-serif" };
@@ -84,7 +85,18 @@ export default function Home() {
           <Image src="/images/hero/hero-vial.webp" alt="Señalización vial nocturna Tecnolight" fill className="object-cover" sizes="100vw" priority />
           <div className="absolute inset-0 bg-background/88" />
         </div>
-        <div className="absolute inset-0 lg:w-[54%]" style={{ backgroundImage: HEX, backgroundSize: '58px 100px' }} />
+        {/* Hexagrid naranja con fade gradiente — desvanece hacia el centro-derecha */}
+        <div
+          className="absolute inset-0 lg:w-[60%] pointer-events-none"
+          style={{
+            backgroundImage: HEX,
+            backgroundSize: '60px 104px',
+            maskImage: 'linear-gradient(to right, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0) 100%), linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 8%, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%)',
+            maskComposite: 'intersect',
+            WebkitMaskImage: 'linear-gradient(to right, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0) 100%), linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 8%, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%)',
+            WebkitMaskComposite: 'source-in',
+          }}
+        />
         <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-primary" />
         <div className="relative z-10 min-h-screen flex items-center">
           <div className="max-w-site mx-auto px-5 lg:px-10 w-full py-32 lg:py-40">
@@ -123,7 +135,18 @@ export default function Home() {
       </section>
 
       {/* ══════════ SERVICIOS ══════════ */}
-      <section id="servicios" className="py-24 lg:py-32 bg-background" style={{ backgroundImage: HEX, backgroundSize: '58px 100px' }}>
+      <section id="servicios" className="py-24 lg:py-32 bg-background relative overflow-hidden">
+        {/* Hexagrid naranja sutil en sección servicios */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            backgroundImage: HEX,
+            backgroundSize: '60px 104px',
+            maskImage: 'radial-gradient(ellipse 80% 70% at 50% 50%, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0) 100%)',
+            WebkitMaskImage: 'radial-gradient(ellipse 80% 70% at 50% 50%, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0) 100%)',
+            opacity: 0.7,
+          }}
+        />
         <div className="max-w-site mx-auto px-5 lg:px-10">
           <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-14 gap-6">
             <div>
