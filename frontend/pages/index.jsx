@@ -9,7 +9,7 @@ import {
 } from 'lucide-react';
 import InstagramGallery from '../components/InstagramGallery';
 
-const WA_NUMBER = '543424553582';
+const WA_NUMBER = '5493424278117';
 const WA_LINK = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent('Hola Tecnolight, me interesa solicitar un presupuesto para mi obra.')}`;
 
 const WaIcon = ({ size = 16 }) => (
@@ -37,14 +37,14 @@ const SERVICES = [
 const PROJ_CATS = ["Todo", "Cartelería", "Señalización", "Demarcación", "Seguridad"];
 
 const fallbackProjects = [
-  { id: 'f1', title: 'Autopista A008 — Santa Fe', cat: 'Cartelería', year: '2024', image: '/images/instagram/posts/g-carteleria.jpg' },
-  { id: 'f2', title: 'Acceso Norte Rosario', cat: 'Señalización', year: '2024', image: '/images/instagram/posts/g-vial.jpg' },
+  { id: 'f1', title: 'Autopista A008 — Santa Fe', cat: 'Cartelería', year: '2024', image: null },
+  { id: 'f2', title: 'Acceso Norte Rosario', cat: 'Señalización', year: '2024', image: null },
   { id: 'f3', title: 'Ruta 9 — Tramo Córdoba', cat: 'Demarcación', year: '2023', image: '/images/instagram/posts/g-urbana.jpg' },
   { id: 'f4', title: 'Circunvalación Rosario', cat: 'Señalización', year: '2023', image: '/images/instagram/posts/galeria-1.jpg' },
   { id: 'f5', title: 'Puerto Rosario — Vialidad', cat: 'Seguridad', year: '2022', image: '/images/instagram/posts/galeria-2.jpg' },
-  { id: 'f6', title: 'Autopista Córdoba–Rosario', cat: 'Cartelería', year: '2022', image: '/images/instagram/posts/galeria-3.jpg' },
-  { id: 'f7', title: 'Corredor Vial NOA', cat: 'Demarcación', year: '2022', image: '/images/instagram/posts/galeria-4.jpg' },
-  { id: 'f8', title: 'Ruta Provincial 6 — CABA', cat: 'Cartelería', year: '2021', image: '/images/instagram/posts/galeria-5.jpg' },
+  { id: 'f6', title: 'Autopista Córdoba–Rosario', cat: 'Cartelería', year: '2022', image: null },
+  { id: 'f7', title: 'Corredor Vial NOA', cat: 'Demarcación', year: '2022', image: null },
+  { id: 'f8', title: 'Ruta Provincial 6 — CABA', cat: 'Cartelería', year: '2021', image: null },
   { id: 'f9', title: 'Puerto San Martín — EPP', cat: 'Seguridad', year: '2021', image: '/images/instagram/posts/galeria-6.jpg' },
 ];
 
@@ -105,10 +105,10 @@ export default function Home() {
                 <div className="h-px w-8 bg-primary flex-shrink-0" />
                 <span className="text-primary uppercase tracking-[0.32em] text-[10px]" style={MONO}>Señalización · Santa Fe · Rosario</span>
               </div>
-              <h1 className="text-foreground leading-[0.88] tracking-tight mb-8" style={{ ...HEADING, fontSize: 'clamp(4rem, 10vw, 7.5rem)' }}>
+              <h1 className="text-foreground leading-[0.88] tracking-tight mb-8" style={{ ...HEADING, fontSize: 'clamp(4rem, 10vw, 7.5rem)', textShadow: '1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 0 10px 30px rgba(0,0,0,0.8)' }}>
                 SOLUCIONES<br /><span className="text-primary">VIALES</span><br />DE PRECISIÓN
               </h1>
-              <p className="text-muted-foreground max-w-md leading-relaxed mb-10" style={{ ...BODY, fontSize: '0.95rem' }}>
+              <p className="text-white max-w-md leading-relaxed mb-10" style={{ ...BODY, fontSize: '0.95rem', textShadow: '1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 0 4px 15px rgba(0,0,0,0.9)' }}>
                 30 años fabricando señalética, demarcación y seguridad para obras viales en Santa Fe, Rosario y todo el país. La referencia técnica que la competencia no puede igualar.
               </p>
               <div className="flex flex-col sm:flex-row gap-3 mb-14">
@@ -231,7 +231,7 @@ export default function Home() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-white/8 rounded-[6px] overflow-hidden">
             {filtered.map((p, i) => (
-              <div key={p.id || i} className="group relative aspect-[4/3] overflow-hidden bg-card cursor-pointer">
+              <a href="https://www.instagram.com/tecnolight.srl/" target="_blank" rel="noopener noreferrer" key={p.id || i} className="group relative block aspect-[4/3] overflow-hidden bg-card cursor-pointer">
                 {p.image ? (
                   <Image src={p.image} alt={p.title || ''} fill className="object-cover transition-transform duration-700 group-hover:scale-106" sizes="33vw" />
                 ) : (
@@ -254,7 +254,7 @@ export default function Home() {
                     <ArrowUpRight size={13} className="text-white" />
                   </div>
                 </div>
-              </div>
+              </a>
             ))}
           </div>
 
@@ -303,7 +303,7 @@ export default function Home() {
                 {[
                   { Icon: Award, n: '30+', label: 'Años en el sector', desc: 'Desde 1994 en Santa Fe y Rosario.' },
                   { Icon: CheckCircle, n: '500+', label: 'Obras completadas', desc: 'Proyectos en 12 provincias.' },
-                  { Icon: Clock, n: '24 h', label: 'Respuesta garantizada', desc: 'Presupuesto en el día.' },
+                  { Icon: Clock, n: 'L a V', label: 'Atención comercial', desc: 'De 8:00 a 17:00 hs. Presupuesto en el día.' },
                   { Icon: Users, n: 'IRAM', label: 'Materiales certificados', desc: 'Retroreflectancia Tipo IV–XI.' },
                 ].map(adv => (
                   <div key={adv.label} className="bg-card border border-white/6 rounded-[4px] p-4 hover:border-primary/25 transition-colors group">
@@ -378,7 +378,7 @@ export default function Home() {
               <div className="space-y-4 mb-10">
                 {[
                   { Icon: Phone, label: 'Teléfono', v: '+54 342 455-3582' },
-                  { Icon: MessageCircle, label: 'WhatsApp', v: '+54 342 455-3582' },
+                  { Icon: MessageCircle, label: 'WhatsApp', v: '+54 9 3424 27-8117' },
                   { Icon: MapPin, label: 'Planta', v: 'Rosario, Santa Fe — Argentina' },
                 ].map(({ Icon, label, v }) => (
                   <div key={label} className="flex items-center gap-4">

@@ -130,7 +130,7 @@ export default function Projects() {
               <Link href="/contact" className="btn-primary text-base">
                 Solicitar Presupuesto <ArrowRight size={18} />
               </Link>
-              <a href={`https://wa.me/543424553582?text=${encodeURIComponent('Hola Tecnolight, me interesa solicitar un presupuesto para mi obra.')}`} target="_blank" rel="noopener noreferrer" className="btn-whatsapp text-base">
+              <a href={`https://wa.me/5493424278117?text=${encodeURIComponent('Hola Tecnolight, me interesa solicitar un presupuesto para mi obra.')}`} target="_blank" rel="noopener noreferrer" className="btn-whatsapp text-base">
                 <MessageCircle size={18} /> WhatsApp
               </a>
             </div>

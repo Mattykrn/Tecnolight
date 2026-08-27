@@ -14,7 +14,7 @@ const fadeUp = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } }
 };
 
-const WA_NUMBER = '543424553582';
+const WA_NUMBER = '5493424278117';
 const WA_LINK = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent('Hola Tecnolight, me interesa solicitar un presupuesto para mi obra.')}`;
 
 const WaIcon = ({ size = 16 }) => (
@@ -112,10 +112,10 @@ export default function Contact() {
               <div className="space-y-4 mb-10">
                 {[
                   { Icon: Phone, label: 'Teléfono', v: '+54 342 455-3582' },
-                  { Icon: MessageCircle, label: 'WhatsApp', v: '+54 342 455-3582' },
+                  { Icon: MessageCircle, label: 'WhatsApp', v: '+54 9 3424 27-8117' },
                   { Icon: MapPin, label: 'Sede Comercial', v: 'Salvador Caputto 3243, Santa Fe' },
                   { Icon: MapPin, label: 'Fábrica', v: 'Cnel. Loza 7198, P.I. Los Polígonos, Santa Fe' },
-                  { Icon: Clock, label: 'Horarios', v: 'Lun a Vie 8:00 - 18:00 hs' },
+                  { Icon: Clock, label: 'Horarios', v: 'Lun a Vie 8:00 - 17:00 hs' },
                 ].map(({ Icon, label, v }) => (
                   <div key={label} className="flex items-center gap-4">
                     <div className="w-9 h-9 bg-primary/8 border border-primary/15 rounded-[4px] flex items-center justify-center flex-shrink-0">

@@ -108,7 +108,7 @@ export default function Document() {
                   '@type': 'OpeningHoursSpecification',
                   dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
                   opens: '08:00',
-                  closes: '18:00',
+                  closes: '17:00',
                 },
               ],
               taxID: '30-69238932-4',

@@ -3,9 +3,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, ArrowUpRight, Phone, MapPin, MessageCircle, Shield } from 'lucide-react';
+import { Menu, X, ArrowUpRight, Phone, MapPin, MessageCircle, Shield, Instagram } from 'lucide-react';
 
-const WA_NUMBER = '543424553582';
+const WA_NUMBER = '5493424278117';
 const WA_LINK = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent('Hola Tecnolight, me interesa solicitar un presupuesto para mi obra.')}`;
 
 const WaIcon = ({ size = 16 }) => (
@@ -162,15 +162,26 @@ export default function Layout({ children }) {
               <p className="text-white/28 text-sm leading-relaxed max-w-xs mb-6" style={{ fontFamily: "'Inter', sans-serif" }}>
                 Referentes en señalización vial, demarcación horizontal y seguridad laboral en Santa Fe y Rosario desde 1994.
               </p>
-              <a
-                href={WA_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-[#25D366]/12 border border-[#25D366]/20 text-[#25D366] text-xs font-semibold px-4 py-2.5 rounded-[4px] hover:bg-[#25D366]/20 transition-colors"
-                style={{ fontFamily: "'Inter', sans-serif" }}
-              >
-                <WaIcon size={13} /> Contactar por WhatsApp
-              </a>
+              <div className="flex flex-wrap items-center gap-3">
+                <a
+                  href={WA_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 bg-[#25D366]/12 border border-[#25D366]/20 text-[#25D366] text-xs font-semibold px-4 py-2.5 rounded-[4px] hover:bg-[#25D366]/20 transition-colors"
+                  style={{ fontFamily: "'Inter', sans-serif" }}
+                >
+                  <WaIcon size={13} /> Contactar por WhatsApp
+                </a>
+                <a
+                  href="https://www.instagram.com/tecnolight.srl/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 bg-[#E1306C]/12 border border-[#E1306C]/20 text-[#E1306C] text-xs font-semibold px-4 py-2.5 rounded-[4px] hover:bg-[#E1306C]/20 transition-colors"
+                  style={{ fontFamily: "'Inter', sans-serif" }}
+                >
+                  <Instagram size={13} /> Seguinos en Instagram
+                </a>
+              </div>
             </div>
 
             <div className="lg:col-span-3 lg:col-start-7">

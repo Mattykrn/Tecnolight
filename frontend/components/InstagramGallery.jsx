@@ -33,8 +33,8 @@ const POSTS = [
   { id: 'p8', image: '/images/instagram/posts/galeria-1.jpg', category: 'Proyectos', caption: 'Instalación de cartelería vial en ruta provincial.', likes: 167, created_at: '2026-07-03', permalink: INSTAGRAM_URL },
   { id: 'p9', image: '/images/instagram/posts/galeria-2.jpg', category: 'Reglamentarias', caption: 'Nueva señal instalada en Santa Fe. Calidad y durabilidad garantizada.', likes: 89, created_at: '2026-07-01', permalink: INSTAGRAM_URL },
   { id: 'p10', image: '/images/instagram/posts/galeria-3.jpg', category: 'Proyectos', caption: 'Materiales reflectivos grado ingeniería para máxima seguridad vial.', likes: 234, created_at: '2026-06-28', permalink: INSTAGRAM_URL },
-  { id: 'p11', image: '/images/instagram/posts/galeria-4.jpg', category: 'Preventivas', caption: 'Fabricación propia de señalización vial. Norma IRAM 3950.', likes: 198, created_at: '2026-06-25', permalink: INSTAGRAM_URL },
-  { id: 'p12', image: '/images/instagram/posts/galeria-5.jpg', category: 'Informativas', caption: 'Proyecto de seguridad vial finalizado. Cliente satisfecho.', likes: 276, created_at: '2026-06-22', permalink: INSTAGRAM_URL },
+  { id: 'p11', image: '/images/instagram/posts/galeria-4.jpg', category: 'Informativas', caption: '¡Felices Fiestas! Cerramos el 2025 con gratitud y orgullo por nuestros logros.', likes: 198, created_at: '2026-06-25', permalink: INSTAGRAM_URL },
+  { id: 'p12', image: '/images/instagram/posts/galeria-5.jpg', category: 'Informativas', caption: 'Construimos hoy el camino hacia un futuro más sólido. Tecno Light les desea un 2026 lleno de nuevas oportunidades.', likes: 276, created_at: '2026-06-22', permalink: INSTAGRAM_URL },
 ];
 
 function formatDate(dateStr) {
@@ -161,7 +161,7 @@ export default function InstagramGallery() {
                 <span className="flex items-center gap-2"><Heart size={18} className="text-primary" /> {formatLikes(selectedPost.likes)} Me gusta</span>
                 <span className="flex items-center gap-2"><Calendar size={18} className="text-primary" /> {formatDate(selectedPost.created_at)}</span>
               </div>
-              <a href={selectedPost.permalink || INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 bg-primary text-white font-semibold px-4 py-2.5 rounded-lg text-sm hover:bg-primary/80 transition-all duration-300"><ExternalLink size={16} /> Ver en Instagram</a>
+              <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 bg-primary text-white font-semibold px-4 py-2.5 rounded-lg text-sm hover:bg-primary/80 transition-all duration-300"><ExternalLink size={16} /> Ver perfil en Instagram</a>
             </div>
           </motion.div>
         </motion.div>
