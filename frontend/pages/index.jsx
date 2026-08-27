@@ -296,6 +296,11 @@ export default function Home() {
               <h2 className="text-foreground leading-none tracking-tight mb-7" style={{ ...HEADING, fontSize: 'clamp(2.4rem, 5.5vw, 4.5rem)' }}>
                 POR QUÉ ELEGIR<br /><span className="text-primary">TECNOLIGHT</span>
               </h2>
+              <div className="mb-6 border-l-2 border-primary pl-4">
+                <p className="text-foreground text-lg font-medium italic" style={BODY}>
+                  "No vendemos carteles, tampoco vendemos cascos ni alquilamos vallas... VENDEMOS EXPERIENCIA Y PROFESIONALISMO!!"
+                </p>
+              </div>
               <p className="text-muted-foreground text-sm leading-relaxed mb-10" style={BODY}>
                 Somos el proveedor técnico de confianza en Santa Fe y Rosario. Fabricación propia, materiales certificados y tres décadas de experiencia en licitaciones nacionales y provinciales nos diferencian de cualquier competidor.
               </p>
