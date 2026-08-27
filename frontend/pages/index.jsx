@@ -329,6 +329,7 @@ export default function Home() {
                     'Presupuesto técnico detallado en el día',
                     'Retroreflectancia certificada Tipo IV y XI (no solo Tipo I)',
                     'Asesoramiento normativo incluido sin costo adicional',
+                    'Convenio con botines OMBU, avalando nuestra experiencia en el rubro',
                   ].map(t => (
                     <div key={t} className="flex items-start gap-2.5 text-sm" style={BODY}>
                       <CheckCircle size={13} className="text-primary flex-shrink-0 mt-0.5" />
