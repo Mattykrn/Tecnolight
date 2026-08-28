@@ -33,8 +33,8 @@ const POSTS = [
   { id: 'p8', image: '/images/instagram/posts/galeria-1.jpg', category: 'Proyectos', caption: 'Instalación de cartelería vial en ruta provincial.', likes: 167, created_at: '2026-07-03', permalink: INSTAGRAM_URL },
   { id: 'p9', image: '/images/instagram/posts/galeria-2.jpg', category: 'Reglamentarias', caption: 'Nueva señal instalada en Santa Fe. Calidad y durabilidad garantizada.', likes: 89, created_at: '2026-07-01', permalink: INSTAGRAM_URL },
   { id: 'p10', image: '/images/instagram/posts/galeria-3.jpg', category: 'Proyectos', caption: 'Materiales reflectivos grado ingeniería para máxima seguridad vial.', likes: 234, created_at: '2026-06-28', permalink: INSTAGRAM_URL },
-  { id: 'p11', image: '/images/instagram/posts/galeria-4.jpg', category: 'Informativas', caption: '¡Felices Fiestas! Cerramos el 2025 con gratitud y orgullo por nuestros logros.', likes: 198, created_at: '2026-06-25', permalink: INSTAGRAM_URL },
-  { id: 'p12', image: '/images/instagram/posts/galeria-5.jpg', category: 'Informativas', caption: 'Construimos hoy el camino hacia un futuro más sólido. Tecno Light les desea un 2026 lleno de nuevas oportunidades.', likes: 276, created_at: '2026-06-22', permalink: INSTAGRAM_URL },
+  { id: 'p11', image: '/images/instagram/posts/galeria-6.jpg', category: 'Proyectos', caption: 'Renovación de equipamiento de seguridad y elementos de demarcación en zonas de alto tránsito. Trabajamos con los más altos estándares para garantizar obras seguras.', likes: 198, created_at: '2026-06-25', permalink: INSTAGRAM_URL },
+  { id: 'p12', image: '/images/instagram/posts/galeria-7.jpg', category: 'Seguridad', caption: 'Provisión e instalación de cartelería vial reglamentaria. Cada obra terminada es un paso más hacia rutas seguras para todos. Elegí experiencia, elegí Tecnolight.', likes: 276, created_at: '2026-06-22', permalink: INSTAGRAM_URL },
 ];
 
 function formatDate(dateStr) {
