@@ -329,7 +329,7 @@ export default function Home() {
                     'Presupuesto técnico detallado en el día',
                     'Retroreflectancia certificada Tipo IV y XI (no solo Tipo I)',
                     'Asesoramiento normativo incluido sin costo adicional',
-                    <span key="ombu">Convenio con <a href="https://ombuindumentaria.com.ar/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-semibold">botines OMBU</a>, avalando nuestra experiencia en el rubro</span>,
+                    <span key="ombu">Amplio catálogo en seguridad industrial y convenio con <a href="https://ombuindumentaria.com.ar/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-semibold">botines OMBU</a>.</span>,
                   ].map((t, idx) => (
                     <div key={idx} className="flex items-start gap-2.5 text-sm" style={BODY}>
                       <CheckCircle size={13} className="text-primary flex-shrink-0 mt-0.5" />
