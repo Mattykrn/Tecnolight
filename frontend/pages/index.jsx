@@ -103,27 +103,27 @@ export default function Home() {
             <div className="lg:max-w-[52%]">
               <div className="flex items-center gap-3 mb-8">
                 <div className="h-px w-8 bg-primary flex-shrink-0" />
-                <span className="text-primary uppercase tracking-[0.32em] text-[10px]" style={MONO}>Señalización · Santa Fe · Rosario</span>
+                <span className="text-primary uppercase tracking-[0.32em] text-[10px]" style={{ ...MONO, textShadow: '1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000' }}>Señalización · Santa Fe · Rosario</span>
               </div>
-              <h1 className="text-foreground leading-[0.88] tracking-tight mb-8" style={{ ...HEADING, fontSize: 'clamp(4rem, 10vw, 7.5rem)', textShadow: '1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 0 10px 30px rgba(0,0,0,0.8)' }}>
+              <h1 className="text-foreground leading-[0.88] tracking-tight mb-8" style={{ ...HEADING, fontSize: 'clamp(4rem, 10vw, 7.5rem)', textShadow: '2px 0 0 #000, -2px 0 0 #000, 0 2px 0 #000, 0 -2px 0 #000, 1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 0 10px 30px rgba(0,0,0,0.8)' }}>
                 SOLUCIONES<br /><span className="text-primary">VIALES</span><br />DE PRECISIÓN
               </h1>
               <p className="text-white max-w-md leading-relaxed mb-10" style={{ ...BODY, fontSize: '0.95rem', textShadow: '1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 0 4px 15px rgba(0,0,0,0.9)' }}>
                 30 años fabricando señalética, demarcación y seguridad para obras viales en Santa Fe, Rosario y todo el país. La referencia técnica que la competencia no puede igualar.
               </p>
               <div className="flex flex-col sm:flex-row gap-3 mb-14">
-                <a href={WA_LINK} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2.5 bg-[#25D366] text-white font-bold px-8 py-4 rounded-[4px] hover:bg-[#1db954] transition-all text-sm tracking-wide">
+                <a href={WA_LINK} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2.5 bg-[#25D366] text-white font-bold px-8 py-4 rounded-[4px] hover:bg-[#1db954] transition-all text-sm tracking-wide" style={{ textShadow: '1px 1px 0 rgba(0,0,0,0.5)' }}>
                   <WaIcon size={17} /> Pedir presupuesto
                 </a>
-                <Link href="/projects" className="inline-flex items-center justify-center gap-2 border border-white/12 text-white/70 font-medium px-8 py-4 rounded-[4px] hover:border-primary/50 hover:text-primary transition-all text-sm tracking-wide" style={BODY}>
+                <Link href="/projects" className="inline-flex items-center justify-center gap-2 border border-white/12 text-white/70 font-medium px-8 py-4 rounded-[4px] hover:border-primary/50 hover:text-primary transition-all text-sm tracking-wide" style={{ ...BODY, textShadow: '1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000' }}>
                   Ver proyectos <ArrowUpRight size={14} />
                 </Link>
               </div>
               <div className="flex flex-wrap gap-5 border-t border-white/6 pt-8">
                 {[{ v: '30+', l: 'Años' }, { v: '500+', l: 'Obras' }, { v: '12', l: 'Provincias' }, { v: 'IRAM', l: 'Cert.' }].map(s => (
                   <div key={s.l} className="flex items-baseline gap-2">
-                    <span className="text-primary" style={{ ...HEADING, fontSize: '1.6rem' }}>{s.v}</span>
-                    <span className="text-muted-foreground text-xs uppercase tracking-wider" style={MONO}>{s.l}</span>
+                    <span className="text-primary" style={{ ...HEADING, fontSize: '1.6rem', textShadow: '1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000' }}>{s.v}</span>
+                    <span className="text-white text-xs uppercase tracking-wider" style={{ ...MONO, textShadow: '1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000' }}>{s.l}</span>
                   </div>
                 ))}
               </div>
