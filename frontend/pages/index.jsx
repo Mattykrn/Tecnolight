@@ -104,13 +104,13 @@ export default function Home() {
             <div className="lg:max-w-[52%]">
               <div className="flex items-center gap-3 mb-8">
                 <div className="h-px w-8 bg-primary flex-shrink-0" />
-                <span className="text-primary uppercase tracking-[0.32em] text-[10px]" style={{ ...MONO, textShadow: '1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000' }}>Señalización · Santa Fe · Rosario</span>
+                <span className="text-primary uppercase tracking-[0.32em] text-[10px]" style={{ ...MONO, textShadow: '1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000' }}>✨ Desde 1994 | Más de 30 años iluminando Santa Fe y la región.</span>
               </div>
               <h1 className="text-foreground leading-[0.88] tracking-tight mb-8" style={{ ...HEADING, fontSize: 'clamp(4rem, 10vw, 7.5rem)', textShadow: '2px 0 0 #000, -2px 0 0 #000, 0 2px 0 #000, 0 -2px 0 #000, 1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 0 10px 30px rgba(0,0,0,0.8)' }}>
-                SOLUCIONES<br /><span className="text-primary">VIALES</span><br />DE PRECISIÓN
+                ILUMINACIÓN<br />Y MATERIALES<br /><span className="text-primary">ELÉCTRICOS</span>
               </h1>
               <p className="text-white max-w-md leading-relaxed mb-10" style={{ ...BODY, fontSize: '0.95rem', textShadow: '1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 0 4px 15px rgba(0,0,0,0.9)' }}>
-                30 años fabricando señalética, demarcación y seguridad para obras viales en Santa Fe, Rosario y todo el país. La referencia técnica que la competencia no puede igualar.
+                Tres décadas de experiencia, solvencia técnica y liderazgo en el rubro eléctrico. Abastecemos obras residenciales, comerciales e industriales con materiales de primeras marcas y atención especializada.
               </p>
               <div className="flex flex-col sm:flex-row gap-3 mb-14">
                 <a href={WA_LINK} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2.5 bg-[#25D366] text-white font-bold px-8 py-4 rounded-[4px] hover:bg-[#1db954] transition-all text-sm tracking-wide" style={{ textShadow: '1px 1px 0 rgba(0,0,0,0.5)' }}>
@@ -121,7 +121,7 @@ export default function Home() {
                 </Link>
               </div>
               <div className="flex flex-wrap gap-5 border-t border-white/6 pt-8">
-                {[{ v: '30+', l: 'Años' }, { v: '500+', l: 'Obras' }, { v: '12', l: 'Provincias' }, { v: 'IRAM', l: 'Cert.' }].map(s => (
+                {[{ v: '+30', l: 'Años' }, { v: '+1.500', l: 'Obras' }, { v: '1994', l: 'Fundación' }, { v: 'Stock', l: 'Marcas Líderes' }].map(s => (
                   <div key={s.l} className="flex items-baseline gap-2">
                     <span className="text-primary" style={{ ...HEADING, fontSize: '1.6rem', textShadow: '1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000' }}>{s.v}</span>
                     <span className="text-white text-xs uppercase tracking-wider" style={{ ...MONO, textShadow: '1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000' }}>{s.l}</span>
@@ -295,22 +295,22 @@ export default function Home() {
                 <span className="text-primary text-[10px] tracking-[0.32em] uppercase" style={MONO}>Nosotros</span>
               </div>
               <h2 className="text-foreground leading-none tracking-tight mb-7" style={{ ...HEADING, fontSize: 'clamp(2.4rem, 5.5vw, 4.5rem)' }}>
-                POR QUÉ ELEGIR<br /><span className="text-primary">TECNOLIGHT</span>
+                SOBRE<br /><span className="text-primary">NUESTRA TRAYECTORIA</span>
               </h2>
               <div className="mb-6 border-l-2 border-primary pl-4">
                 <p className="text-foreground text-lg font-medium italic" style={BODY}>
-                  "No vendemos carteles, tampoco vendemos cascos ni alquilamos vallas... VENDEMOS EXPERIENCIA Y PROFESIONALISMO!!"
+                  Fundada en 1994, hemos evolucionado desde nuestros inicios hasta convertirnos en un referente consolidado en Santa Fe Capital.
                 </p>
               </div>
               <p className="text-muted-foreground text-sm leading-relaxed mb-10" style={BODY}>
-                Somos el proveedor técnico de confianza en Santa Fe y Rosario. Fabricación propia, materiales certificados y tres décadas de experiencia en licitaciones nacionales y provinciales nos diferencian de cualquier competidor.
+                Nuestra vocación de servicio y el firme compromiso con la calidad nos permiten brindar un asesoramiento técnico inigualable. Trabajamos junto a profesionales, constructoras y clientes particulares para iluminar cada proyecto con la máxima excelencia.
               </p>
               <div className="grid grid-cols-2 gap-3 mb-10">
                 {[
-                  { Icon: Award, n: '30+', label: 'Años en el sector', desc: 'Desde 1994 en Santa Fe y Rosario.' },
-                  { Icon: CheckCircle, n: '500+', label: 'Obras completadas', desc: 'Proyectos en 12 provincias.' },
-                  { Icon: Clock, n: 'L a V', label: 'Atención comercial', desc: 'De 8:00 a 17:00 hs. Presupuesto en el día.' },
-                  { Icon: Users, n: 'IRAM', label: 'Materiales certificados', desc: 'Retroreflectancia Tipo IV–XI.' },
+                  { Icon: Award, n: '+30', label: 'Años de trayectoria', desc: 'y solidez comercial.' },
+                  { Icon: Shield, n: '1994', label: 'Fundación', desc: 'Desde 1994 abasteciendo obras.' },
+                  { Icon: CheckCircle, n: '+1.500', label: 'Proyectos', desc: 'asesorados en la región.' },
+                  { Icon: Zap, n: 'Stock', label: 'Primeras marcas', desc: 'con atención especializada.' },
                 ].map(adv => (
                   <div key={adv.label} className="bg-card border border-white/6 rounded-[4px] p-4 hover:border-primary/25 transition-colors group">
                     <div className="flex items-center gap-2.5 mb-2">

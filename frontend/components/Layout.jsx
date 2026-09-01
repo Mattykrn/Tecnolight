@@ -78,7 +78,7 @@ export default function Layout({ children }) {
                 TECNOLIGHT SRL
               </div>
               <div className="text-primary tracking-[0.18em] uppercase font-medium" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.58rem' }}>
-                Cuidamos tu Camino
+                ILUMINACIÓN Y MATERIALES ELÉCTRICOS
               </div>
             </div>
           </Link>
@@ -157,11 +157,11 @@ export default function Layout({ children }) {
                 </div>
                 <div>
                   <div className="text-white" style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 900, fontSize: '1rem' }}>TECNOLIGHT SRL</div>
-                  <div className="text-primary" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.58rem', letterSpacing: '0.18em' }}>CUIDAMOS TU CAMINO</div>
+                  <div className="text-primary" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.58rem', letterSpacing: '0.18em' }}>ILUMINACIÓN Y MATERIALES ELÉCTRICOS</div>
                 </div>
               </div>
               <p className="text-white/28 text-sm leading-relaxed max-w-xs mb-6" style={{ fontFamily: "'Inter', sans-serif" }}>
-                Referentes en señalización vial, demarcación horizontal y seguridad laboral en Santa Fe y Rosario desde 1994.
+                Tecnolight S.R.L. — Iluminación y Materiales Eléctricos | Desde 1994. Referentes consolidados en Santa Fe Capital.
               </p>
               <div className="flex flex-wrap items-center gap-3">
                 <a
@@ -188,7 +188,7 @@ export default function Layout({ children }) {
             <div className="lg:col-span-3 lg:col-start-7">
               <div className="text-white/20 text-[10px] uppercase tracking-widest mb-5" style={{ fontFamily: "'JetBrains Mono', monospace" }}>Servicios</div>
               <div className="space-y-3">
-                {['Cartelería Vial', 'Señalización de Obra', 'Demarcación Horizontal', 'Alquiler de Vallas', 'Seguridad Laboral'].map(s => (
+                {['Iluminación Residencial', 'Iluminación Industrial', 'Materiales Eléctricos', 'Proyectos Lumínicos', 'Atención Especializada'].map(s => (
                   <div key={s} className="text-white/35 text-sm hover:text-primary transition-colors cursor-default" style={{ fontFamily: "'Inter', sans-serif" }}>{s}</div>
                 ))}
               </div>
@@ -214,7 +214,7 @@ export default function Layout({ children }) {
 
           <div className="pt-7 border-t border-white/5 flex flex-col sm:flex-row justify-between items-center gap-3">
             <div className="text-white/18 text-xs" style={{ fontFamily: "'Inter', sans-serif" }}>
-              &copy; 2026 Tecnolight SRL &mdash; Todos los derechos reservados.
+              &copy; 2026 Tecnolight S.R.L. &mdash; Iluminación y Materiales Eléctricos | Desde 1994. Todos los derechos reservados.
             </div>
             <div className="text-white/18 text-xs" style={{ fontFamily: "'JetBrains Mono', monospace" }}>Rosario &middot; Santa Fe &middot; Argentina</div>
           </div>

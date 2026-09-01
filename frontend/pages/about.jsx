@@ -50,7 +50,7 @@ export default function About() {
               SOBRE<br /><span className="text-primary">TECNOLIGHT</span>
             </h1>
             <p className="text-lg text-white/60 leading-relaxed max-w-[580px] mt-4" style={BODY}>
-              Fabricamos señalización vial certificada desde 1994. <strong className="text-white">Cero reclamos por calidad</strong> en más de tres décadas. Sede comercial: Salvador Caputto 3243 | Fábrica: Parque Industrial Los Polígonos, Santa Fe.
+              Abastecemos obras residenciales, comerciales e industriales desde 1994. Sede comercial: Salvador Caputto 3243, Santa Fe. Referentes en iluminación y materiales eléctricos.
             </p>
             <div className="flex flex-wrap gap-4 mt-8">
               <a href={WA_LINK} target="_blank" rel="noopener noreferrer" className="btn-whatsapp">
@@ -75,11 +75,11 @@ export default function About() {
               </div>
               <h2 className="text-[2.5rem] font-bold text-foreground mb-8 max-md:text-3xl" style={HEADING}>Nuestra Historia</h2>
               <div className="space-y-5 text-white/60 text-base leading-relaxed" style={BODY}>
-                <p><strong className="text-foreground">Tecnolight SRL</strong> (CUIT 30-69238932-4) nació formalmente en Santa Fe con operaciones que se remontan a 1994. Desde nuestro taller en <strong className="text-foreground">Salvador Caputto 3243</strong> fabricamos señalización vial con una convicción clara: la seguridad vial en Argentina merecía un salto de calidad.</p>
-                <p>Lo que empezó como un pequeño taller de señales metálicas se convirtió en proveedor de confianza de <strong className="text-foreground">municipios, vialidades y constructoras</strong> de la región. Estamos inscriptos en AFIP con actividad 421000 desde 2019, además de la fabricación de carteles y señales.</p>
-                <p>Hoy, con más de 10.000 señales instaladas y <strong className="text-foreground">cero reclamos por calidad</strong> en más de tres décadas, somos la opción de quienes no pueden darse el lujo de fallar. Certificación <strong className="text-foreground">IRAM 3950</strong>, materiales <strong className="text-foreground">3M</strong> grado ingeniería.</p>
-                <p>Nuestra trayectoria nos ha permitido conformar un <strong className="text-foreground">amplio catálogo en seguridad industrial</strong> y consolidar un convenio con botines <a href="https://ombuindumentaria.com.ar/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">OMBU</a>, un respaldo de marca de primer nivel que avala nuestra experiencia.</p>
-                <p className="text-foreground font-semibold text-lg pt-4 border-t border-white/10 italic">"No vendemos carteles, tampoco vendemos cascos ni alquilamos vallas... VENDEMOS EXPERIENCIA Y PROFESIONALISMO!!"</p>
+                <p><strong className="text-foreground">Tecnolight S.R.L.</strong> nació formalmente en Santa Fe con operaciones que se remontan a 1994. Desde nuestros inicios en <strong className="text-foreground">Salvador Caputto 3243</strong>, trazamos un camino basado en la calidad y el servicio.</p>
+                <p>Lo que empezó como un pequeño emprendimiento fue evolucionando hasta convertirse en el proveedor de confianza de <strong className="text-foreground">profesionales, constructoras y empresas</strong> de toda la región.</p>
+                <p>Hoy, con más de 1.500 proyectos asesorados y equipados en tres décadas, somos la opción de quienes buscan solidez comercial. Distribuimos materiales eléctricos de primeras marcas con atención especializada.</p>
+                <p>Nuestra vocación de servicio nos ha permitido conformar un <strong className="text-foreground">amplio catálogo</strong> de iluminación residencial, comercial e industrial, respaldado por las marcas más exigentes del mercado.</p>
+                <p className="text-foreground font-semibold text-lg pt-4 border-t border-white/10 italic">"Iluminamos cada proyecto con experiencia, profesionalismo y la máxima excelencia."</p>
               </div>
             </motion.div>
             <motion.div className="lg:col-span-2 space-y-6" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
@@ -105,9 +105,9 @@ export default function About() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-[800px] mx-auto">
             {[
               { number: '1994', label: 'Fundación' },
-              { number: '+30', label: 'Años sin Reclamos' },
-              { number: '10k+', label: 'Señales Instaladas' },
-              { number: '500+', label: 'Proyectos' }
+              { number: '+30', label: 'Años de Trayectoria' },
+              { number: '+1.500', label: 'Proyectos Asesorados' },
+              { number: 'Stock', label: 'Primeras Marcas' }
             ].map((stat, i) => (
               <motion.div key={i} className="bg-card border border-white/6 rounded-[4px] p-5 text-center"
                 initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} custom={i}>
