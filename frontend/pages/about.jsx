@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 import { Award, Shield, Users, Target, Eye, Heart, Scale, ArrowRight, CheckCircle2, MessageCircle, MapPin } from 'lucide-react';
 
 const MONO = { fontFamily: "'JetBrains Mono', monospace" };
-const HEADING = { fontFamily: "'Inter', sans-serif", fontWeight: 800, textTransform: 'uppercase' };
+const HEADING = { fontFamily: "'Montserrat', sans-serif", fontWeight: 900, textTransform: 'uppercase' };
 const BODY = { fontFamily: "'Inter', sans-serif" };
 
 const fadeUp = {

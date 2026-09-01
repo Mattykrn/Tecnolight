@@ -23,7 +23,7 @@ const WaIcon = ({ size = 16 }) => (
 const HEX_SVG = `<svg xmlns='http://www.w3.org/2000/svg' width='60' height='104'><polygon points='30,2 58,18 58,50 30,66 2,50 2,18' fill='none' stroke='rgba(251,146,60,0.18)' stroke-width='0.8'/><polygon points='30,70 58,86 58,104 30,104 2,104 2,86' fill='none' stroke='rgba(251,146,60,0.18)' stroke-width='0.8'/><polygon points='59,18 87,2 87,34 59,50' fill='none' stroke='rgba(251,146,60,0.18)' stroke-width='0.8'/><polygon points='1,18 1,50 -27,34 -27,2' fill='none' stroke='rgba(251,146,60,0.18)' stroke-width='0.8'/></svg>`;
 const HEX = `url("data:image/svg+xml,${encodeURIComponent(HEX_SVG)}")`;
 const MONO = { fontFamily: "'JetBrains Mono', monospace", fontWeight: 500 };
-const HEADING = { fontFamily: "'Inter', sans-serif", fontWeight: 800, textTransform: 'uppercase' };
+const HEADING = { fontFamily: "'Montserrat', sans-serif", fontWeight: 900, textTransform: 'uppercase' };
 const BODY = { fontFamily: "'Inter', sans-serif" };
 
 const SERVICES = [

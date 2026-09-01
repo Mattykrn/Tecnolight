@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Award, Shield, MapPin, ArrowUpRight, Building, Route, Anchor, MessageCircle } from 'lucide-react';
 
 const MONO = { fontFamily: "'JetBrains Mono', monospace" };
-const HEADING = { fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 900 };
+const HEADING = { fontFamily: "'Montserrat', sans-serif", fontWeight: 900, textTransform: 'uppercase' };
 const BODY = { fontFamily: "'Inter', sans-serif" };
 
 import { getWaLink } from '../../utils/whatsapp';
