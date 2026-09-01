@@ -5,8 +5,9 @@ import { useRouter } from 'next/router';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ArrowUpRight, Phone, MapPin, MessageCircle, Shield, Instagram } from 'lucide-react';
 
-const WA_NUMBER = '5493424278117';
-const WA_LINK = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent('Hola Tecnolight, me interesa solicitar un presupuesto para mi obra.')}`;
+import { getWaLink } from '../utils/whatsapp';
+
+const WA_LINK = getWaLink();
 
 const WaIcon = ({ size = 16 }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
