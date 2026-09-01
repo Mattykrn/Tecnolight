@@ -186,10 +186,14 @@ export default function Layout({ children }) {
             </div>
 
             <div className="flex flex-col mb-10 md:mb-0 space-y-4">
-              <a href="#" className="flex items-center gap-3 text-white/50 hover:text-white transition-colors group">
-                <MapPin size={18} className="text-primary group-hover:scale-110 transition-transform" />
-                <span className="text-sm">Av. Salvador Caputto 3241 / 3243<br/>Santa Fe Capital</span>
-              </a>
+              <div className="flex items-start gap-3 text-white/50 hover:text-white transition-colors group">
+                <MapPin size={18} className="text-primary group-hover:scale-110 transition-transform shrink-0 mt-0.5" />
+                <span className="text-sm leading-relaxed">
+                  <strong>Sede Comercial:</strong> Av. Salvador Caputto 3241 / 3243, Santa Fe Capital<br/>
+                  <strong>Fábrica:</strong> Parque Industrial Los Polígonos, Santa Fe<br/>
+                  <strong>Sucursal:</strong> Rosario, Santa Fe
+                </span>
+              </div>
               <a href="tel:03424553582" className="flex items-center gap-3 text-white/50 hover:text-white transition-colors group">
                 <Phone size={18} className="text-primary group-hover:scale-110 transition-transform" />
                 <span className="text-sm">(0342) 455-3582</span>

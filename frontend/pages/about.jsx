@@ -87,8 +87,12 @@ export default function About() {
                 <Image src="/images/instagram-seleccionadas/nosotros-1.jpg" alt="Equipo Tecnolight" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 40vw" />
               </div>
               <div className="bg-card border border-white/6 rounded-[4px] p-4 text-center">
-                <p className="text-xs font-semibold text-white/50 uppercase tracking-wider" style={BODY}>Av. Salvador Caputto 3241 / 3243, Santa Fe Capital</p>
-                <p className="text-[10px] text-white/30" style={MONO}>CUIT 30-69238932-4</p>
+                <p className="text-xs font-semibold text-white/50 uppercase tracking-wider leading-relaxed" style={BODY}>
+                  Sede: Av. Salvador Caputto 3241 / 3243, Santa Fe<br/>
+                  Fábrica: Parque Industrial Los Polígonos<br/>
+                  Sucursal: Rosario, Santa Fe
+                </p>
+                <p className="text-[10px] text-white/30 mt-2" style={MONO}>CUIT 30-69238932-4</p>
                 <div className="inline-flex items-center gap-1.5 text-primary bg-primary/10 rounded-full px-3 py-1 text-xs font-semibold mt-2" style={BODY}>
                   <Award size={12} />
                   Cero Reclamos en +30 Años
