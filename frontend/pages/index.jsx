@@ -109,7 +109,7 @@ export default function Home() {
               <h1 className="text-foreground leading-[0.88] tracking-tight mb-8 text-stroke-heavy" style={{ ...HEADING, fontSize: 'clamp(4rem, 10vw, 7.5rem)' }}>
                 SEGURIDAD<br /><span className="text-primary">VIAL</span> E<br />INDUSTRIAL
               </h1>
-              <p className="text-white max-w-md leading-relaxed mb-10 text-stroke-heavy font-semibold" style={{ ...BODY, fontSize: '0.95rem' }}>
+              <p className="text-white max-w-lg leading-relaxed mb-10 text-stroke-heavy font-semibold" style={{ ...BODY, fontSize: '1.15rem' }}>
                 Señalización & Protección Personal. Tres décadas de experiencia técnica, solvencia y liderazgo. Abastecemos obras y proyectos con atención especializada.
               </p>
               <div className="flex flex-col sm:flex-row gap-3 mb-14">

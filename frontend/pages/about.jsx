@@ -49,8 +49,8 @@ export default function About() {
             <h1 className="text-[clamp(2.5rem,4.5vw,3.75rem)] leading-[1.1] tracking-[-0.02em] text-white m-0 text-stroke-heavy" style={HEADING}>
               SOBRE<br /><span className="text-primary">TECNOLIGHT</span>
             </h1>
-            <p className="text-lg text-white/60 leading-relaxed max-w-[580px] mt-4 font-semibold text-stroke-heavy" style={BODY}>
-              Seguridad Vial e Industrial. Sede comercial: Av. Salvador Caputto 3241 / 3243, Santa Fe Capital.
+            <p className="text-xl text-white leading-relaxed max-w-[580px] mt-4 font-semibold text-stroke-heavy" style={BODY}>
+                Seguridad Vial e Industrial. Sede comercial: Av. Salvador Caputto 3241 / 3243, Santa Fe Capital.
             </p>
             <div className="flex flex-wrap gap-4 mt-8">
               <a href={WA_LINK} target="_blank" rel="noopener noreferrer" className="btn-whatsapp">
