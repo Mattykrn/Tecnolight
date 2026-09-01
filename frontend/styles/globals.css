@@ -14,7 +14,7 @@
 
   body {
     font-family: 'Inter', system-ui, sans-serif;
-    background-color: #0A0C12;
+    background-color: #0f1115;
     color: #FFFFFF;
     overflow-x: hidden;
   }
@@ -207,10 +207,10 @@
     content: '';
     position: absolute;
     inset: -50%;
-    background-image: url('/images/hex-pattern.svg');
+    background-image: url("data:image/svg+xml,%3Csvg width='58' height='100' viewBox='0 0 58 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M29 0l29 16.666v33.334l-29 16.666-29-16.666V16.666L29 0zm0 100l29-16.666V50L29 33.334 0 50v33.334L29 100z' fill='none' stroke='rgba(255,255,255,0.06)' stroke-width='1'/%3E%3C/svg%3E");
     background-size: 58px 100px;
     background-repeat: repeat;
-    opacity: 0.6;
+    opacity: 1;
   }
 
   .hex-overlay-hero {
@@ -224,10 +224,10 @@
     content: '';
     position: absolute;
     inset: -100%;
-    background-image: url('/images/hex-pattern.svg');
+    background-image: url("data:image/svg+xml,%3Csvg width='58' height='100' viewBox='0 0 58 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M29 0l29 16.666v33.334l-29 16.666-29-16.666V16.666L29 0zm0 100l29-16.666V50L29 33.334 0 50v33.334L29 100z' fill='none' stroke='%23242830' stroke-width='1'/%3E%3C/svg%3E");
     background-size: 58px 100px;
     background-repeat: repeat;
-    opacity: 0.5;
+    opacity: 0.8;
   }
 
   .hex-card {
@@ -264,10 +264,11 @@
   }
 
   .heading-xl {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 900;
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
     letter-spacing: -0.02em;
     line-height: 0.88;
+    text-transform: uppercase;
   }
 
   .text-mono {
@@ -286,6 +287,10 @@
   .text-balance { text-wrap: balance; }
   .shadow-premium { box-shadow: 0 1px 3px rgba(0,0,0,0.02), 0 8px 30px rgba(0,0,0,0.04); }
   .backdrop-header { backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+  .text-stroke-heavy {
+    -webkit-text-stroke: 1.2px #000000;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.85);
+  }
 }
 
 @keyframes pulse-glow {

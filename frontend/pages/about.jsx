@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 import { Award, Shield, Users, Target, Eye, Heart, Scale, ArrowRight, CheckCircle2, MessageCircle, MapPin } from 'lucide-react';
 
 const MONO = { fontFamily: "'JetBrains Mono', monospace" };
-const HEADING = { fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 900 };
+const HEADING = { fontFamily: "'Inter', sans-serif", fontWeight: 800, textTransform: 'uppercase' };
 const BODY = { fontFamily: "'Inter', sans-serif" };
 
 const fadeUp = {
@@ -46,11 +46,11 @@ export default function About() {
               <div className="h-px w-8 bg-primary flex-shrink-0" />
               <span className="text-primary text-[10px] tracking-[0.32em] uppercase" style={MONO}>+30 Años de Trayectoria</span>
             </div>
-            <h1 className="text-[clamp(2.5rem,4.5vw,3.75rem)] font-extrabold leading-[1.1] tracking-[-0.02em] text-white m-0" style={HEADING}>
+            <h1 className="text-[clamp(2.5rem,4.5vw,3.75rem)] leading-[1.1] tracking-[-0.02em] text-white m-0 text-stroke-heavy" style={HEADING}>
               SOBRE<br /><span className="text-primary">TECNOLIGHT</span>
             </h1>
-            <p className="text-lg text-white/60 leading-relaxed max-w-[580px] mt-4" style={BODY}>
-              Abastecemos obras residenciales, comerciales e industriales desde 1994. Sede comercial: Salvador Caputto 3243, Santa Fe. Referentes en iluminación y materiales eléctricos.
+            <p className="text-lg text-white/60 leading-relaxed max-w-[580px] mt-4 font-semibold text-stroke-heavy" style={BODY}>
+              Seguridad Vial e Industrial. Sede comercial: Av. Salvador Caputto 3241 / 3243, Santa Fe Capital.
             </p>
             <div className="flex flex-wrap gap-4 mt-8">
               <a href={WA_LINK} target="_blank" rel="noopener noreferrer" className="btn-whatsapp">
@@ -73,13 +73,13 @@ export default function About() {
                 <div className="h-px w-8 bg-primary flex-shrink-0" />
                 <span className="text-primary text-[10px] tracking-[0.32em] uppercase" style={MONO}>Tecnolight SRL</span>
               </div>
-              <h2 className="text-[2.5rem] font-bold text-foreground mb-8 max-md:text-3xl" style={HEADING}>Nuestra Historia</h2>
+              <h2 className="text-[2.5rem] font-bold text-foreground mb-8 max-md:text-3xl text-stroke-heavy" style={HEADING}>Nuestra Historia</h2>
               <div className="space-y-5 text-white/60 text-base leading-relaxed" style={BODY}>
-                <p><strong className="text-foreground">Tecnolight S.R.L.</strong> nació formalmente en Santa Fe con operaciones que se remontan a 1994. Desde nuestros inicios en <strong className="text-foreground">Salvador Caputto 3243</strong>, trazamos un camino basado en la calidad y el servicio.</p>
-                <p>Lo que empezó como un pequeño emprendimiento fue evolucionando hasta convertirse en el proveedor de confianza de <strong className="text-foreground">profesionales, constructoras y empresas</strong> de toda la región.</p>
-                <p>Hoy, con más de 1.500 proyectos asesorados y equipados en tres décadas, somos la opción de quienes buscan solidez comercial. Distribuimos materiales eléctricos de primeras marcas con atención especializada.</p>
-                <p>Nuestra vocación de servicio nos ha permitido conformar un <strong className="text-foreground">amplio catálogo</strong> de iluminación residencial, comercial e industrial, respaldado por las marcas más exigentes del mercado.</p>
-                <p className="text-foreground font-semibold text-lg pt-4 border-t border-white/10 italic">"Iluminamos cada proyecto con experiencia, profesionalismo y la máxima excelencia."</p>
+                <p><strong className="text-foreground">Tecno Light S.R.L.</strong> nació formalmente en Santa Fe con operaciones que se remontan a 1994. Desde nuestros inicios en <strong className="text-foreground">Av. Salvador Caputto 3241 / 3243</strong>, trazamos un camino basado en la calidad y el servicio.</p>
+                <p>Lo que empezó como un pequeño taller de señales metálicas se convirtió en proveedor de confianza de <strong className="text-foreground">municipios, vialidades y constructoras</strong> de la región.</p>
+                <p>Hoy, con más de 10.000 señales instaladas y <strong className="text-foreground">cero reclamos por calidad</strong> en tres décadas, somos la opción de quienes buscan solidez técnica en seguridad vial y laboral.</p>
+                <p>Nuestra vocación de servicio nos ha permitido conformar un <strong className="text-foreground">amplio catálogo de protección personal</strong>, respaldado por las marcas más exigentes del mercado.</p>
+                <p className="text-foreground font-semibold text-lg pt-4 border-t border-white/10 italic">"No vendemos carteles, tampoco vendemos cascos ni alquilamos vallas... VENDEMOS EXPERIENCIA Y PROFESIONALISMO!!"</p>
               </div>
             </motion.div>
             <motion.div className="lg:col-span-2 space-y-6" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
@@ -87,7 +87,7 @@ export default function About() {
                 <Image src="/images/instagram-seleccionadas/nosotros-1.jpg" alt="Equipo Tecnolight" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 40vw" />
               </div>
               <div className="bg-card border border-white/6 rounded-[4px] p-4 text-center">
-                <p className="text-xs font-semibold text-white/50 uppercase tracking-wider" style={BODY}>Salvador Caputto 3243, Santa Fe</p>
+                <p className="text-xs font-semibold text-white/50 uppercase tracking-wider" style={BODY}>Av. Salvador Caputto 3241 / 3243, Santa Fe Capital</p>
                 <p className="text-[10px] text-white/30" style={MONO}>CUIT 30-69238932-4</p>
                 <div className="inline-flex items-center gap-1.5 text-primary bg-primary/10 rounded-full px-3 py-1 text-xs font-semibold mt-2" style={BODY}>
                   <Award size={12} />

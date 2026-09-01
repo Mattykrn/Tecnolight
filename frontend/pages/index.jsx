@@ -23,7 +23,7 @@ const WaIcon = ({ size = 16 }) => (
 const HEX_SVG = `<svg xmlns='http://www.w3.org/2000/svg' width='60' height='104'><polygon points='30,2 58,18 58,50 30,66 2,50 2,18' fill='none' stroke='rgba(251,146,60,0.18)' stroke-width='0.8'/><polygon points='30,70 58,86 58,104 30,104 2,104 2,86' fill='none' stroke='rgba(251,146,60,0.18)' stroke-width='0.8'/><polygon points='59,18 87,2 87,34 59,50' fill='none' stroke='rgba(251,146,60,0.18)' stroke-width='0.8'/><polygon points='1,18 1,50 -27,34 -27,2' fill='none' stroke='rgba(251,146,60,0.18)' stroke-width='0.8'/></svg>`;
 const HEX = `url("data:image/svg+xml,${encodeURIComponent(HEX_SVG)}")`;
 const MONO = { fontFamily: "'JetBrains Mono', monospace", fontWeight: 500 };
-const HEADING = { fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 900 };
+const HEADING = { fontFamily: "'Inter', sans-serif", fontWeight: 800, textTransform: 'uppercase' };
 const BODY = { fontFamily: "'Inter', sans-serif" };
 
 const SERVICES = [
@@ -104,13 +104,13 @@ export default function Home() {
             <div className="lg:max-w-[52%]">
               <div className="flex items-center gap-3 mb-8">
                 <div className="h-px w-8 bg-primary flex-shrink-0" />
-                <span className="text-primary uppercase tracking-[0.32em] text-[10px]" style={{ ...MONO, textShadow: '1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000' }}>✨ Desde 1994 | Más de 30 años iluminando Santa Fe y la región.</span>
+                <span className="text-primary uppercase tracking-[0.32em] text-[10px] text-stroke-heavy" style={{ ...MONO }}>✨ Desde 1994 | Más de 30 años en Santa Fe y la región.</span>
               </div>
-              <h1 className="text-foreground leading-[0.88] tracking-tight mb-8" style={{ ...HEADING, fontSize: 'clamp(4rem, 10vw, 7.5rem)', textShadow: '2px 0 0 #000, -2px 0 0 #000, 0 2px 0 #000, 0 -2px 0 #000, 1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 0 10px 30px rgba(0,0,0,0.8)' }}>
-                ILUMINACIÓN<br />Y MATERIALES<br /><span className="text-primary">ELÉCTRICOS</span>
+              <h1 className="text-foreground leading-[0.88] tracking-tight mb-8 text-stroke-heavy" style={{ ...HEADING, fontSize: 'clamp(4rem, 10vw, 7.5rem)' }}>
+                SEGURIDAD<br /><span className="text-primary">VIAL</span> E<br />INDUSTRIAL
               </h1>
-              <p className="text-white max-w-md leading-relaxed mb-10" style={{ ...BODY, fontSize: '0.95rem', textShadow: '1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 0 4px 15px rgba(0,0,0,0.9)' }}>
-                Tres décadas de experiencia, solvencia técnica y liderazgo en el rubro eléctrico. Abastecemos obras residenciales, comerciales e industriales con materiales de primeras marcas y atención especializada.
+              <p className="text-white max-w-md leading-relaxed mb-10 text-stroke-heavy font-semibold" style={{ ...BODY, fontSize: '0.95rem' }}>
+                Señalización & Protección Personal. Tres décadas de experiencia técnica, solvencia y liderazgo. Abastecemos obras y proyectos con atención especializada.
               </p>
               <div className="flex flex-col sm:flex-row gap-3 mb-14">
                 <a href={WA_LINK} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2.5 bg-[#25D366] text-white font-bold px-8 py-4 rounded-[4px] hover:bg-[#1db954] transition-all text-sm tracking-wide" style={{ textShadow: '1px 1px 0 rgba(0,0,0,0.5)' }}>
@@ -122,9 +122,9 @@ export default function Home() {
               </div>
               <div className="flex flex-wrap gap-5 border-t border-white/6 pt-8">
                 {[{ v: '+30', l: 'Años' }, { v: '+1.500', l: 'Obras' }, { v: '1994', l: 'Fundación' }, { v: 'Stock', l: 'Marcas Líderes' }].map(s => (
-                  <div key={s.l} className="flex items-baseline gap-2">
-                    <span className="text-primary" style={{ ...HEADING, fontSize: '1.6rem', textShadow: '1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000' }}>{s.v}</span>
-                    <span className="text-white text-xs uppercase tracking-wider" style={{ ...MONO, textShadow: '1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000' }}>{s.l}</span>
+                  <div key={s.l} className="flex items-baseline gap-2 text-stroke-heavy">
+                    <span className="text-primary" style={{ ...HEADING, fontSize: '1.6rem' }}>{s.v}</span>
+                    <span className="text-white text-xs uppercase tracking-wider font-bold" style={{ ...MONO }}>{s.l}</span>
                   </div>
                 ))}
               </div>
@@ -294,16 +294,16 @@ export default function Home() {
                 <div className="h-px w-8 bg-primary flex-shrink-0" />
                 <span className="text-primary text-[10px] tracking-[0.32em] uppercase" style={MONO}>Nosotros</span>
               </div>
-              <h2 className="text-foreground leading-none tracking-tight mb-7" style={{ ...HEADING, fontSize: 'clamp(2.4rem, 5.5vw, 4.5rem)' }}>
-                SOBRE<br /><span className="text-primary">NUESTRA TRAYECTORIA</span>
+              <h2 className="text-foreground leading-none tracking-tight mb-7 text-stroke-heavy" style={{ ...HEADING, fontSize: 'clamp(2.4rem, 5.5vw, 4.5rem)' }}>
+                POR QUÉ ELEGIR<br /><span className="text-primary">TECNOLIGHT</span>
               </h2>
               <div className="mb-6 border-l-2 border-primary pl-4">
                 <p className="text-foreground text-lg font-medium italic" style={BODY}>
-                  Fundada en 1994, hemos evolucionado desde nuestros inicios hasta convertirnos en un referente consolidado en Santa Fe Capital.
+                  "No vendemos carteles, tampoco vendemos cascos ni alquilamos vallas... VENDEMOS EXPERIENCIA Y PROFESIONALISMO!!"
                 </p>
               </div>
               <p className="text-muted-foreground text-sm leading-relaxed mb-10" style={BODY}>
-                Nuestra vocación de servicio y el firme compromiso con la calidad nos permiten brindar un asesoramiento técnico inigualable. Trabajamos junto a profesionales, constructoras y clientes particulares para iluminar cada proyecto con la máxima excelencia.
+                Nuestra vocación de servicio nos permite brindar un asesoramiento técnico inigualable. Trabajamos junto a profesionales, constructoras y empresas para proveer seguridad en cada proyecto.
               </p>
               <div className="grid grid-cols-2 gap-3 mb-10">
                 {[
