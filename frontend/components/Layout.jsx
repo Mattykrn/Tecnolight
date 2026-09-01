@@ -201,7 +201,7 @@ export default function Layout({ children }) {
               <div className="space-y-3">
                 {['Cartelería Vial', 'Señalización de Obra', 'Demarcación Horizontal', 'Protección Personal', 'Seguridad Laboral'].map(s => (
                   <div key={s} className="text-white/35 text-sm hover:text-primary transition-colors cursor-default flex items-center gap-2" style={{ fontFamily: "'Inter', sans-serif" }}>
-                    <span className="text-primary/70 text-[10px]">>>></span> {s}
+                    <span className="text-primary/70 text-[10px]">&gt;&gt;&gt;</span> {s}
                   </div>
                 ))}
               </div>
