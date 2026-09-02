@@ -15,12 +15,7 @@ const WaIcon = ({ size = 16 }) => (
   </svg>
 );
 
-const LogoMark = () => (
-  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-    <path d="M10 1.5L18 6V14L10 18.5L2 14V6L10 1.5Z" stroke="white" strokeWidth="1.4" />
-    <path d="M10 5V15M6 7.5L14 12.5M14 7.5L6 12.5" stroke="white" strokeWidth="1.1" />
-  </svg>
-);
+
 
 const NAV = [
   { label: 'Inicio', href: '/' },
@@ -47,7 +42,7 @@ export default function Layout({ children }) {
   const isAtTop = !scrolled && isHome;
 
   return (
-    <div className="min-h-screen bg-background text-foreground overflow-x-hidden" style={{ fontFamily: "'Inter', sans-serif" }}>
+    <div className="min-h-screen bg-background text-foreground overflow-x-hidden" style={{ fontFamily: "'Roboto', sans-serif" }}>
 
       <a
         href={WA_LINK}
@@ -69,18 +64,8 @@ export default function Layout({ children }) {
         }`}
       >
         <div className="max-w-site mx-auto px-5 lg:px-10 flex items-center justify-between h-16 lg:h-[72px]">
-          <Link href="/" className="flex items-center gap-2.5 group">
-            <div className="w-9 h-9 bg-primary rounded-[4px] flex items-center justify-center flex-shrink-0 group-hover:bg-orange-500 transition-colors">
-              <LogoMark />
-            </div>
-            <div className="leading-none">
-              <div className="text-white tracking-tight" style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 900, fontSize: '1rem' }}>
-                TECNOLIGHT SRL
-              </div>
-              <div className="text-primary tracking-[0.18em] uppercase font-medium" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.58rem' }}>
-                SEGURIDAD VIAL E INDUSTRIAL
-              </div>
-            </div>
+          <Link href="/" className="flex items-center group transition-transform hover:scale-[1.02]">
+            <img src="/images/logo-tecnolight.png" alt="Tecno Light S.R.L." className="h-[42px] lg:h-[48px] w-auto object-contain" />
           </Link>
 
           <nav className="hidden lg:flex items-center gap-7">
@@ -88,8 +73,8 @@ export default function Layout({ children }) {
               <Link
                 key={l.href}
                 href={l.href}
-                className={`text-[13px] font-medium transition-colors tracking-wide ${router.pathname === l.href || (l.href === '/' && router.pathname === '/') ? 'text-primary' : 'text-white/50 hover:text-primary'}`}
-                style={{ fontFamily: "'Inter', sans-serif" }}
+                className={`text-[13px] font-medium transition-colors tracking-wide ${router.pathname === l.href || (l.href === '/' && router.pathname === '/') ? 'text-primary' : 'text-white/80 hover:text-primary'}`}
+                style={{ fontFamily: "'Roboto', sans-serif" }}
               >
                 {l.label}
               </Link>
@@ -101,7 +86,7 @@ export default function Layout({ children }) {
             target="_blank"
             rel="noopener noreferrer"
             className="hidden lg:inline-flex items-center gap-2 bg-primary/10 border border-primary/30 text-primary hover:bg-primary hover:text-white text-[13px] font-semibold px-4 py-2.5 rounded-[4px] transition-all"
-            style={{ fontFamily: "'Inter', sans-serif" }}
+            style={{ fontFamily: "'Roboto', sans-serif" }}
           >
             <WaIcon size={13} /> Presupuesto
           </a>
@@ -125,8 +110,8 @@ export default function Layout({ children }) {
                     key={l.href}
                     href={l.href}
                     onClick={() => setMenuOpen(false)}
-                    className="text-left py-3.5 text-white/55 border-b border-white/5 last:border-0 hover:text-primary transition-colors text-sm font-medium"
-                    style={{ fontFamily: "'Inter', sans-serif" }}
+                    className="text-left py-3.5 text-white/80 border-b border-white/5 last:border-0 hover:text-primary transition-colors text-sm font-medium"
+                    style={{ fontFamily: "'Roboto', sans-serif" }}
                   >
                     {l.label}
                   </Link>
@@ -150,17 +135,11 @@ export default function Layout({ children }) {
       <footer className="bg-[#080A0F] border-t border-white/5 py-14 lg:py-16">
         <div className="max-w-site mx-auto px-5 lg:px-10">
           <div className="grid lg:grid-cols-12 gap-10 mb-12">
-            <div className="lg:col-span-5">
-              <div className="flex items-center gap-2.5 mb-5">
-                <div className="w-9 h-9 bg-primary rounded-[4px] flex items-center justify-center flex-shrink-0">
-                  <LogoMark />
-                </div>
-                <div>
-                  <div className="text-white" style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 900, fontSize: '1rem' }}>TECNOLIGHT SRL</div>
-                  <div className="text-primary" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.58rem', letterSpacing: '0.18em' }}>SEGURIDAD VIAL E INDUSTRIAL</div>
-                </div>
+            <div className="lg:col-span-4">
+              <div className="mb-6">
+                <img src="/images/logo-tecnolight.png" alt="Tecno Light S.R.L." className="h-[48px] w-auto object-contain" />
               </div>
-              <p className="text-white/28 text-sm leading-relaxed max-w-xs mb-6" style={{ fontFamily: "'Inter', sans-serif" }}>
+              <p className="text-white/70 text-sm leading-relaxed max-w-xs mb-6" style={{ fontFamily: "'Roboto', sans-serif" }}>
                 Señalización & Protección Personal. Referentes en seguridad vial, demarcación horizontal y seguridad laboral. Lunes a Viernes de 8:00 a 17:00 hs. (Sábados Cerrado).
               </p>
               <div className="flex flex-wrap items-center gap-3">
@@ -169,7 +148,7 @@ export default function Layout({ children }) {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 bg-[#25D366]/12 border border-[#25D366]/20 text-[#25D366] text-xs font-semibold px-4 py-2.5 rounded-[4px] hover:bg-[#25D366]/20 transition-colors"
-                  style={{ fontFamily: "'Inter', sans-serif" }}
+                  style={{ fontFamily: "'Roboto', sans-serif" }}
                 >
                   <WaIcon size={13} /> Contactar por WhatsApp
                 </a>
@@ -178,15 +157,15 @@ export default function Layout({ children }) {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 bg-[#E1306C]/12 border border-[#E1306C]/20 text-[#E1306C] text-xs font-semibold px-4 py-2.5 rounded-[4px] hover:bg-[#E1306C]/20 transition-colors"
-                  style={{ fontFamily: "'Inter', sans-serif" }}
+                  style={{ fontFamily: "'Roboto', sans-serif" }}
                 >
                   <Instagram size={13} /> Seguinos en Instagram
                 </a>
               </div>
             </div>
 
-            <div className="flex flex-col mb-10 md:mb-0 space-y-4">
-              <div className="flex items-start gap-3 text-white/50 hover:text-white transition-colors group">
+            <div className="lg:col-span-3 flex flex-col mb-10 lg:mb-0 space-y-4">
+              <div className="flex items-start gap-3 text-white/80 hover:text-white transition-colors group">
                 <MapPin size={18} className="text-primary group-hover:scale-110 transition-transform shrink-0 mt-0.5" />
                 <span className="text-sm leading-relaxed">
                   <strong>Sede Comercial:</strong> Av. Salvador Caputto 3241 / 3243, Santa Fe Capital<br/>
@@ -194,17 +173,17 @@ export default function Layout({ children }) {
                   <strong>Sucursal:</strong> Rosario, Santa Fe
                 </span>
               </div>
-              <a href="tel:03424553582" className="flex items-center gap-3 text-white/50 hover:text-white transition-colors group">
+              <a href="tel:03424553582" className="flex items-center gap-3 text-white/80 hover:text-white transition-colors group">
                 <Phone size={18} className="text-primary group-hover:scale-110 transition-transform" />
                 <span className="text-sm">(0342) 455-3582</span>
               </a>
             </div>
 
             <div className="lg:col-span-3">
-              <div className="text-white/20 text-[10px] uppercase tracking-widest mb-5" style={{ fontFamily: "'JetBrains Mono', monospace" }}>Servicios</div>
+              <div className="text-white/20 text-[10px] uppercase tracking-widest mb-5" style={{ fontFamily: "'Roboto', sans-serif" }}>Servicios</div>
               <div className="space-y-3">
                 {['Cartelería Vial', 'Señalización de Obra', 'Demarcación Horizontal', 'Protección Personal', 'Seguridad Laboral'].map(s => (
-                  <div key={s} className="text-white/35 text-sm hover:text-primary transition-colors cursor-default flex items-center gap-2" style={{ fontFamily: "'Inter', sans-serif" }}>
+                  <div key={s} className="text-white/70 text-sm hover:text-primary transition-colors cursor-default flex items-center gap-2" style={{ fontFamily: "'Roboto', sans-serif" }}>
                     <span className="text-primary/70 text-[10px]">&gt;&gt;&gt;</span> {s}
                   </div>
                 ))}
@@ -212,17 +191,17 @@ export default function Layout({ children }) {
             </div>
 
             <div className="lg:col-span-2">
-              <div className="text-white/20 text-[10px] uppercase tracking-widest mb-5" style={{ fontFamily: "'JetBrains Mono', monospace" }}>Empresa</div>
+              <div className="text-white/20 text-[10px] uppercase tracking-widest mb-5" style={{ fontFamily: "'Roboto', sans-serif" }}>Empresa</div>
               <div className="space-y-3">
                 {[
                   { label: 'Proyectos', href: '/projects' },
                   { label: 'Nosotros', href: '/about' },
                   { label: 'Contacto', href: '/contact' },
                 ].map(s => (
-                  <Link key={s.label} href={s.href} className="block text-white/35 text-sm hover:text-primary transition-colors" style={{ fontFamily: "'Inter', sans-serif" }}>{s.label}</Link>
+                  <Link key={s.label} href={s.href} className="block text-white/70 text-sm hover:text-primary transition-colors" style={{ fontFamily: "'Roboto', sans-serif" }}>{s.label}</Link>
                 ))}
                 <a href="https://www.instagram.com/tecnolight.srl" target="_blank" rel="noopener noreferrer"
-                  className="block text-white/35 text-sm hover:text-primary transition-colors" style={{ fontFamily: "'Inter', sans-serif" }}>
+                  className="block text-white/70 text-sm hover:text-primary transition-colors" style={{ fontFamily: "'Roboto', sans-serif" }}>
                   @tecnolight.srl
                 </a>
               </div>
@@ -230,10 +209,10 @@ export default function Layout({ children }) {
           </div>
 
           <div className="pt-7 border-t border-white/5 flex flex-col sm:flex-row justify-between items-center gap-3">
-            <div className="text-white/18 text-xs" style={{ fontFamily: "'Inter', sans-serif" }}>
+            <div className="text-white/18 text-xs" style={{ fontFamily: "'Roboto', sans-serif" }}>
               &copy; 2026 Tecno Light S.R.L. &mdash; CUIT: 30-69238932-4 | Todos los derechos reservados.
             </div>
-            <div className="text-white/18 text-xs" style={{ fontFamily: "'JetBrains Mono', monospace" }}>Rosario &middot; Santa Fe &middot; Argentina</div>
+            <div className="text-white/18 text-xs" style={{ fontFamily: "'Roboto', sans-serif" }}>Rosario &middot; Santa Fe &middot; Argentina</div>
           </div>
         </div>
       </footer>

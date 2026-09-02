@@ -41,16 +41,16 @@ export default function Document() {
         />
 
         {/* Favicon */}
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="icon" href="/images/logo-tecnolight.png" type="image/png" sizes="160x160" />
-        <link rel="apple-touch-icon" href="/images/logo-tecnolight.png" />
+        <link rel="apple-touch-icon" href="/favicon.svg" />
         <link rel="manifest" href="/site.webmanifest" />
 
-        {/* Google Fonts – Barlow Condensed + JetBrains Mono + Inter */}
+        {/* Google Fonts – Raleway + Roboto */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Raleway:wght@700;800&family=Roboto:wght@300;400;500&display=swap"
           rel="stylesheet"
         />
 

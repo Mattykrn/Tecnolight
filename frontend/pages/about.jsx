@@ -5,9 +5,9 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Award, Shield, Users, Target, Eye, Heart, Scale, ArrowRight, CheckCircle2, MessageCircle, MapPin } from 'lucide-react';
 
-const MONO = { fontFamily: "'JetBrains Mono', monospace" };
-const HEADING = { fontFamily: "'Montserrat', sans-serif", fontWeight: 900, textTransform: 'uppercase' };
-const BODY = { fontFamily: "'Inter', sans-serif" };
+const MONO = { fontFamily: "'Roboto', sans-serif" };
+const HEADING = { fontFamily: "'Raleway', sans-serif", fontWeight: 900, textTransform: 'uppercase' };
+const BODY = { fontFamily: "'Roboto', sans-serif" };
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },

@@ -4,9 +4,9 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ArrowLeft, MapPin, User, Calendar, MessageSquare } from 'lucide-react';
 
-const MONO = { fontFamily: "'JetBrains Mono', monospace" };
-const HEADING = { fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 900 };
-const BODY = { fontFamily: "'Inter', sans-serif" };
+const MONO = { fontFamily: "'Roboto', sans-serif" };
+const HEADING = { fontFamily: "'Raleway', sans-serif", fontWeight: 900 };
+const BODY = { fontFamily: "'Roboto', sans-serif" };
 
 const ALL_PROJECTS = [
   { slug: 'senalizacion-urbana-santa-fe', title: 'Señalización Urbana - Santa Fe', cat: 'Cartelería', year: '2024', image: '/images/projects/santa-fe-1.jpg', location: 'Santa Fe', client: 'Municipalidad de Santa Fe', description: 'Proyecto integral de señalización vial para la ciudad de Santa Fe. Incluyó más de 500 señales de diferentes tipos: reglamentarias, preventivas e informativas. Trabajo realizado en conjunto con la Municipalidad de Santa Fe para mejorar la seguridad vial en zonas urbanas y rutas municipales.', images: ['/images/projects/santa-fe-1.jpg', '/images/projects/santa-fe-2.jpg', '/images/projects/santa-fe-3.jpg'], testimonial: 'Excelente trabajo y cumplimiento en los plazos. La calidad de las señales superó nuestras expectativas.' },

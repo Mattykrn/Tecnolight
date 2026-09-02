@@ -5,9 +5,9 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ArrowRight, Award, Shield, MapPin, ArrowUpRight, Building, Route, Anchor, MessageCircle } from 'lucide-react';
 
-const MONO = { fontFamily: "'JetBrains Mono', monospace" };
-const HEADING = { fontFamily: "'Montserrat', sans-serif", fontWeight: 900, textTransform: 'uppercase' };
-const BODY = { fontFamily: "'Inter', sans-serif" };
+const MONO = { fontFamily: "'Roboto', sans-serif" };
+const HEADING = { fontFamily: "'Raleway', sans-serif", fontWeight: 900, textTransform: 'uppercase' };
+const BODY = { fontFamily: "'Roboto', sans-serif" };
 
 import { getWaLink } from '../../utils/whatsapp';
 

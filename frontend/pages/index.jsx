@@ -22,9 +22,9 @@ const WaIcon = ({ size = 16 }) => (
 // Honeycomb SVG — trazo naranja/ámbar, opacidad 20%, bordes delgados (0.8px)
 const HEX_SVG = `<svg xmlns='http://www.w3.org/2000/svg' width='60' height='104'><polygon points='30,2 58,18 58,50 30,66 2,50 2,18' fill='none' stroke='rgba(251,146,60,0.18)' stroke-width='0.8'/><polygon points='30,70 58,86 58,104 30,104 2,104 2,86' fill='none' stroke='rgba(251,146,60,0.18)' stroke-width='0.8'/><polygon points='59,18 87,2 87,34 59,50' fill='none' stroke='rgba(251,146,60,0.18)' stroke-width='0.8'/><polygon points='1,18 1,50 -27,34 -27,2' fill='none' stroke='rgba(251,146,60,0.18)' stroke-width='0.8'/></svg>`;
 const HEX = `url("data:image/svg+xml,${encodeURIComponent(HEX_SVG)}")`;
-const MONO = { fontFamily: "'JetBrains Mono', monospace", fontWeight: 500 };
-const HEADING = { fontFamily: "'Montserrat', sans-serif", fontWeight: 900, textTransform: 'uppercase' };
-const BODY = { fontFamily: "'Inter', sans-serif" };
+const MONO = { fontFamily: "'Roboto', sans-serif", fontWeight: 500 };
+const HEADING = { fontFamily: "'Raleway', sans-serif", fontWeight: 900, textTransform: 'uppercase' };
+const BODY = { fontFamily: "'Roboto', sans-serif" };
 
 const SERVICES = [
   { n: '01', Icon: TriangleAlert, title: 'Cartelería Vial', desc: 'Señales verticales retroreflectivas Tipo III, IV y XI bajo normas IRAM. Fabricación propia para rutas, autopistas y vías urbanas.', tag: 'Fabricación propia' },
@@ -109,7 +109,7 @@ export default function Home() {
               <h1 className="text-foreground leading-[0.88] tracking-tight mb-8 text-stroke-heavy" style={{ ...HEADING, fontSize: 'clamp(4rem, 10vw, 7.5rem)' }}>
                 SEGURIDAD<br /><span className="text-primary">VIAL</span> E<br />INDUSTRIAL
               </h1>
-              <p className="text-white max-w-lg leading-relaxed mb-10 text-stroke-heavy font-semibold" style={{ ...BODY, fontSize: '1.15rem' }}>
+              <p className="text-white max-w-2xl leading-relaxed mb-10 text-stroke-heavy font-medium" style={{ ...BODY, fontSize: '1.3rem' }}>
                 Señalización & Protección Personal. Tres décadas de experiencia técnica, solvencia y liderazgo. Abastecemos obras y proyectos con atención especializada.
               </p>
               <div className="flex flex-col sm:flex-row gap-3 mb-14">
@@ -173,11 +173,11 @@ export default function Home() {
                 </div>
                 <div>
                   <h3 className="text-foreground leading-tight mb-2.5" style={{ ...HEADING, fontSize: '1.45rem' }}>{svc.title}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed" style={BODY}>{svc.desc}</p>
+                  <p className="text-white/80 text-sm leading-relaxed" style={BODY}>{svc.desc}</p>
                 </div>
-                <div className="flex items-center justify-between mt-auto pt-4 border-t border-white/5 group-hover:border-primary/10 transition-colors">
-                  <span className="text-primary/60 text-[10px] uppercase tracking-widest" style={MONO}>{svc.tag}</span>
-                  <a href={WA_LINK} target="_blank" rel="noopener noreferrer" className="text-white/30 group-hover:text-primary transition-colors"><ArrowUpRight size={15} /></a>
+                <div className="flex items-center justify-between mt-auto pt-4 border-t border-white/5 group-hover:border-primary/20 transition-colors">
+                  <span className="text-primary text-[10px] uppercase tracking-widest" style={MONO}>{svc.tag}</span>
+                  <a href={WA_LINK} target="_blank" rel="noopener noreferrer" className="text-white/50 group-hover:text-primary transition-colors"><ArrowUpRight size={15} /></a>
                 </div>
                 <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
               </div>
