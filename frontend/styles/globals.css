@@ -4,6 +4,7 @@
 
 @layer base {
   html {
+    font-size: 16px;
     position: relative;
     scroll-behavior: smooth;
     scroll-padding-top: 6rem;
@@ -17,6 +18,12 @@
     background-color: #121212;
     color: #FFFFFF;
     overflow-x: hidden;
+    font-size: 1.125rem; /* +12.5% sobre 16px base → ~18px */
+  }
+
+  /* Escala de lectura confortable sin romper layouts de cards */
+  p, li, span, label, a, td, th, input, textarea, select, button {
+    font-size: inherit;
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -32,8 +39,9 @@
 
   h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
-    line-height: 1.12;
+    line-height: 1.15;
     letter-spacing: -0.02em;
+    font-size: 1.1em; /* headings un 10% más grandes respecto al contexto */
   }
 
   p { line-height: 1.7; }
@@ -295,7 +303,299 @@
        1px  1px 0 #000,
        0 2px 12px rgba(0,0,0,0.9);
   }
+  /* Patrón hexagonal fiel a la imagen de marca del Instagram (hex oscuros sobre fondo oscuro) */
+  .bg-hex-pattern {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100' viewBox='0 0 56 100'%3E%3Cpath d='M28 0 L56 16 L56 50 L28 66 L0 50 L0 16 Z' fill='none' stroke='rgba(255,255,255,0.07)' stroke-width='1.2'/%3E%3Cpath d='M28 50 L56 66 L56 100 L28 116 L0 100 L0 66 Z' fill='none' stroke='rgba(255,255,255,0.07)' stroke-width='1.2'/%3E%3C/svg%3E");
+    background-size: 56px 100px;
+  }
+
+  /* Versión con hex más visibles para secciones de acento */
+  .bg-hex-pattern-strong {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100' viewBox='0 0 56 100'%3E%3Cpath d='M28 0 L56 16 L56 50 L28 66 L0 50 L0 16 Z' fill='none' stroke='rgba(255,90,31,0.12)' stroke-width='1.5'/%3E%3Cpath d='M28 50 L56 66 L56 100 L28 116 L0 100 L0 66 Z' fill='none' stroke='rgba(255,90,31,0.12)' stroke-width='1.5'/%3E%3C/svg%3E");
+    background-size: 56px 100px;
+  }
+
+  .clip-hexagon {
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  }
+
+  .hex-glow-orange {
+    filter: drop-shadow(0 0 16px rgba(255, 90, 31, 0.45));
+  }
 }
+
+/* ================================================================
+   ELEMENTOS DE IDENTIDAD DE MARCA (Instagram / Imagen pagada)
+   ================================================================ */
+
+/* Puntos naranjas decorativos — aparecen en las imágenes de Instagram */
+.dots-brand {
+  position: relative;
+}
+.dots-brand::after {
+  content: '';
+  position: absolute;
+  width: 52px;
+  height: 52px;
+  background-image: radial-gradient(circle, #FF5A1F 1.5px, transparent 1.5px);
+  background-size: 10px 10px;
+  opacity: 0.75;
+  pointer-events: none;
+}
+
+/* Badge estilo Instagram — pastilla naranja con texto blanco */
+.badge-ig {
+  display: inline-flex;
+  align-items: center;
+  background: #F26922;
+  color: #fff;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.4rem 1.1rem;
+  border-radius: 999px;  /* pastilla redondeada como en el Instagram */
+  letter-spacing: 0.03em;
+  box-shadow: 0 4px 16px rgba(242,105,34,0.35);
+}
+
+/* Tagline oficial — "Seguridad vial e industrial" */
+.brand-tagline {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: none;
+  color: rgba(255,255,255,0.5);
+  font-style: italic;
+}
+
+/* Sección con fondo de hex y overlay oscuro (estilo card Instagram) */
+.section-ig-card {
+  background: #111318;
+  position: relative;
+  overflow: hidden;
+}
+.section-ig-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100' viewBox='0 0 56 100'%3E%3Cpath d='M28 0 L56 16 L56 50 L28 66 L0 50 L0 16 Z' fill='none' stroke='rgba(255,255,255,0.055)' stroke-width='1.2'/%3E%3Cpath d='M28 50 L56 66 L56 100 L28 116 L0 100 L0 66 Z' fill='none' stroke='rgba(255,255,255,0.055)' stroke-width='1.2'/%3E%3C/svg%3E");
+  background-size: 56px 100px;
+  pointer-events: none;
+  z-index: 0;
+}
+.section-ig-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Degradado naranja en esquina inferior derecha (marca en imágenes IG) */
+.corner-brand-glow {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(ellipse at bottom right, rgba(242,105,34,0.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* Línea de acento naranja debajo del header (marca corporativa) */
+.header-brand-line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, #F26922 0%, transparent 60%);
+}
+
+/* Icono de flecha circular (marca del logo de Tecnolight) */
+.logo-arrow-ring {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #F26922;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 2px rgba(242,105,34,0.3);
+}
+
+
+/* --- Separador diagonal hacia abajo (sección siguiente es más oscura) --- */
+.diagonal-down {
+  position: relative;
+}
+.diagonal-down::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background: inherit;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 0);
+  z-index: 2;
+}
+
+/* --- Separador diagonal hacia arriba (sección entra desde abajo) --- */
+.diagonal-up {
+  position: relative;
+}
+.diagonal-up::before {
+  content: '';
+  position: absolute;
+  top: -58px;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background: inherit;
+  clip-path: polygon(0 100%, 100% 0, 100% 100%);
+  z-index: 2;
+}
+
+/* --- Franja de acento naranja sólido (estilo Vialparking amarillo) --- */
+.stripe-accent {
+  background: #FF5A1F;
+  color: #fff;
+  position: relative;
+}
+.stripe-accent::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    -55deg,
+    transparent,
+    transparent 10px,
+    rgba(255,255,255,0.04) 10px,
+    rgba(255,255,255,0.04) 20px
+  );
+  pointer-events: none;
+}
+
+/* --- Banda de estadísticas (strip de datos clave) --- */
+.stats-band {
+  background: #0d0f14;
+  border-top: 3px solid #FF5A1F;
+  border-bottom: 3px solid #FF5A1F;
+  padding: 2.5rem 0;
+}
+
+.stats-band .stat-item {
+  text-align: center;
+  padding: 0 2rem;
+  border-right: 1px solid rgba(255,255,255,0.08);
+}
+.stats-band .stat-item:last-child {
+  border-right: none;
+}
+
+.stats-band .stat-number {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 900;
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  line-height: 1;
+  color: #FF5A1F;
+  display: block;
+  letter-spacing: -0.02em;
+}
+
+.stats-band .stat-label {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: rgba(255,255,255,0.55);
+  display: block;
+  margin-top: 0.35rem;
+}
+
+/* --- Borde izquierdo de acento naranja (marca corporativa en títulos) --- */
+.section-title-accent {
+  border-left: 5px solid #FF5A1F;
+  padding-left: 1.25rem;
+}
+
+/* --- Card corporativa sólida (sin transparencia, más peso visual) --- */
+.card-corporate {
+  background: #131720;
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 4px;
+  transition: border-color 0.25s ease, transform 0.25s ease;
+}
+.card-corporate:hover {
+  border-color: #FF5A1F;
+  transform: translateY(-3px);
+}
+
+/* --- Banda de fondo oscuro puro (secciones tipo bloque sólido) --- */
+.section-solid-dark {
+  background: #080A10;
+}
+.section-solid-mid {
+  background: #0f1117;
+}
+.section-solid-light {
+  background: #161b26;
+}
+
+/* --- Título de sección con línea naranja superior (estilo corporativo) --- */
+.section-heading-bar {
+  display: inline-block;
+  padding-top: 1rem;
+  border-top: 4px solid #FF5A1F;
+  margin-bottom: 0.5rem;
+}
+
+/* --- Hero overlay más dramático --- */
+.hero-corporate-overlay {
+  position: absolute;
+  inset: 0;
+  background: 
+    linear-gradient(to right, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 60%, transparent 100%),
+    linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 100%);
+}
+
+/* --- Línea decorativa con gradiente naranja --- */
+.divider-orange {
+  height: 3px;
+  background: linear-gradient(90deg, #FF5A1F 0%, #ffab00 50%, #FF5A1F 100%);
+  border: none;
+  margin: 0;
+}
+
+/* --- Tag/badge corporativo --- */
+.badge-corporate {
+  display: inline-block;
+  background: #FF5A1F;
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  padding: 0.3rem 0.85rem;
+  border-radius: 2px;
+}
+
+/* --- Número de paso grande (para procesos de fabricación) --- */
+.step-number {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 900;
+  font-size: 4rem;
+  line-height: 1;
+  color: rgba(255,90,31,0.12);
+  position: absolute;
+  top: 0.5rem;
+  right: 1rem;
+  pointer-events: none;
+  user-select: none;
+}
+
+
 
 @keyframes pulse-glow {
   0%, 100% { opacity: 0.3; }
@@ -353,3 +653,4 @@
     padding: 0 1.25rem;
   }
 }
+

@@ -1,5 +1,5 @@
-export const WA_NUMBER = '543424278117';
+export const WA_NUMBER = '5493424278117';
 
-export const getWaLink = (text = 'Hola Tecnolight, me interesa solicitar un presupuesto para mi obra.') => {
-  return `https://api.whatsapp.com/send?phone=${WA_NUMBER}&text=${encodeURIComponent(text)}`;
+export const getWaLink = (text = 'Hola, me comunico desde el sitio web de Tecno Light para solicitar un presupuesto.') => {
+  return `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(text)}`;
 };

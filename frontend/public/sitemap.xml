@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+  <!-- Páginas estáticas -->
+  <url>
+    <loc>https://tecno-light-v3-irux.vercel.app/</loc>
+    <lastmod>2026-09-28T23:36:58.203Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://tecno-light-v3-irux.vercel.app/projects</loc>
+    <lastmod>2026-09-28T23:36:58.203Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://tecno-light-v3-irux.vercel.app/about</loc>
+    <lastmod>2026-09-28T23:36:58.203Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://tecno-light-v3-irux.vercel.app/contact</loc>
+    <lastmod>2026-09-28T23:36:58.203Z</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Proyectos realizados -->
+  <url>
+    <loc>https://tecno-light-v3-irux.vercel.app/projects/senalizacion-urbana-santa-fe</loc>
+    <lastmod>2026-09-28T23:36:58.203Z</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://tecno-light-v3-irux.vercel.app/projects/autopista-rosario-cordoba</loc>
+    <lastmod>2026-09-28T23:36:58.203Z</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://tecno-light-v3-irux.vercel.app/projects/puerto-de-santa-fe</loc>
+    <lastmod>2026-09-28T23:36:58.203Z</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://tecno-light-v3-irux.vercel.app/projects/parque-industrial-santa-fe</loc>
+    <lastmod>2026-09-28T23:36:58.203Z</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://tecno-light-v3-irux.vercel.app/projects/autopista-rosario-cordoba-tramo-ii</loc>
+    <lastmod>2026-09-28T23:36:58.203Z</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://tecno-light-v3-irux.vercel.app/projects/puerto-santa-fe-etapa-ii</loc>
+    <lastmod>2026-09-28T23:36:58.203Z</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://tecno-light-v3-irux.vercel.app/projects/demarcacion-ruta-9</loc>
+    <lastmod>2026-09-28T23:36:58.203Z</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://tecno-light-v3-irux.vercel.app/projects/puerto-san-martin</loc>
+    <lastmod>2026-09-28T23:36:58.203Z</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.65</priority>
+  </url>
+
+</urlset>

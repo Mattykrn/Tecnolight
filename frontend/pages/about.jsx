@@ -3,20 +3,21 @@ import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { Award, Shield, Users, Target, Eye, Heart, Scale, ArrowRight, CheckCircle2, MessageCircle, MapPin } from 'lucide-react';
+import { Award, Shield, Users, Target, Eye, Heart, ArrowRight, CircleCheck } from 'lucide-react';
+import { getWaLink } from '../utils/whatsapp';
 
-const MONO = { fontFamily: "'Roboto', sans-serif" };
-const HEADING = { fontFamily: "'Raleway', sans-serif", fontWeight: 900, textTransform: 'uppercase' };
-const BODY = { fontFamily: "'Roboto', sans-serif" };
+const FONT_ROBOTO_500 = { fontFamily: "'Roboto', sans-serif" };
+const FONT_RALEWAY_900 = { fontFamily: "'Raleway', sans-serif", fontWeight: 900, textTransform: 'uppercase' };
+const FONT_ROBOTO = { fontFamily: "'Roboto', sans-serif" };
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
-  visible: (i = 0) => ({ opacity: 1, y: 0, transition: { duration: 0.6, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] } })
+  visible: (i = 0) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] },
+  }),
 };
-
-import { getWaLink } from '../utils/whatsapp';
-
-const WA_LINK = getWaLink();
 
 const WaIcon = ({ size = 16 }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
@@ -24,18 +25,118 @@ const WaIcon = ({ size = 16 }) => (
   </svg>
 );
 
+const STATS = [
+  { number: '1994', label: 'Fundación' },
+  { number: '+30', label: 'Años de Trayectoria' },
+  { number: '+1.500', label: 'Proyectos Asesorados' },
+  { number: 'Stock', label: 'Primeras Marcas' },
+];
+
+const TIMELINE = [
+  {
+    year: '1994',
+    title: 'Fundación',
+    desc: 'Tecnolight nace en Santa Fe con un taller de señales metálicas y la convicción de que la seguridad vial argentina merecía más calidad.',
+  },
+  {
+    year: '1996',
+    title: 'Primer Contrato Municipal',
+    desc: 'La Municipalidad de Santa Fe confía en Tecnolight para la señalización de 12 cruces escolares.',
+  },
+  {
+    year: '2001',
+    title: 'Certificación IRAM 3950',
+    desc: 'Obtenemos la certificación IRAM 3950 para señales de tránsito, uno de los primeros talleres del interior en cumplir la norma.',
+  },
+  {
+    year: '2008',
+    title: 'Incorporación de 3M',
+    desc: 'Empezamos a trabajar exclusivamente con láminas reflectivas 3M grado ingeniería. La calidad dejó de ser opción para ser el estándar.',
+  },
+  {
+    year: '2015',
+    title: 'Nueva Planta Fabril',
+    desc: 'Inauguramos nuestra fábrica en Parque Industrial Los Polígonos, cuadruplicando la capacidad de producción.',
+  },
+  {
+    year: '2020',
+    title: 'Proveedor de Vialidad Nacional',
+    desc: 'Somos homologados como proveedor oficial de Vialidad Nacional, el estándar más exigente del país.',
+  },
+  {
+    year: 'Hoy',
+    title: '+500 Proyectos, Cero Reclamos',
+    desc: 'Tres décadas después, seguimos en el mismo taller que empezó todo — con más de 10.000 señales instaladas y cero reclamos.',
+  },
+];
+
+const VALORES = [
+  {
+    icon: Shield,
+    title: 'Seguridad ante Todo',
+    desc: 'Cada señal que fabricamos tiene una función: evitar accidentes, multas y problemas legales. No negociamos con la seguridad.',
+  },
+  {
+    icon: Award,
+    title: 'Calidad Certificada',
+    desc: 'Materiales 3M, certificación IRAM 3950, aprobación de Vialidad Nacional. No decimos que somos buenos: los certificados lo demuestran.',
+  },
+  {
+    icon: Target,
+    title: 'Precisión sin Excepción',
+    desc: 'Tolerancias mínimas, reflectividad exacta, tipografía oficial. Cada detalle importa porque en la ruta no hay margen para el error.',
+  },
+  {
+    icon: Heart,
+    title: 'Compromiso en Décadas',
+    desc: '30 años cumpliendo plazos. 30 años sin reclamos por calidad. Esa no es casualidad: es cultura empresarial.',
+  },
+  {
+    icon: Users,
+    title: 'Equipo Multidisciplinario',
+    desc: 'Ingenieros, diseñadores y técnicos trabajando coordinados para que su proyecto esté listo cuando usted lo necesita.',
+  },
+  {
+    icon: Eye,
+    title: 'Innovación con Propósito',
+    desc: 'Incorporamos reflectivos de última generación y procesos industriales avanzados. La tecnología salva vidas en la ruta.',
+  },
+];
+
+const AVALES = [
+  'Norma IRAM 3950',
+  'Ley Nacional N° 24.449',
+  'Materiales 3M',
+  'Vialidad Nacional',
+  'AFIP Act. 421000',
+  'ISO 9001',
+];
+
 export default function About() {
+  const waLink = getWaLink();
+
   return (
     <div>
       <Head>
         <title>Nosotros | Tecnolight SRL — Señalización Vial desde 1994</title>
-        <meta name="description" content="Conocé la historia de Tecnolight SRL. Más de 30 años fabricando señalización vial certificada IRAM 3950 en Santa Fe, Argentina." />
+        <meta
+          name="description"
+          content="Conocé la historia de Tecnolight SRL. Más de 30 años fabricando señalización vial certificada IRAM 3950 en Santa Fe, Argentina."
+        />
+        <link rel="preload" href="/images/instagram-seleccionadas/nosotros-1b.jpg" as="image" />
       </Head>
 
-      {/* Hero */}
+      {/* Hero Section */}
       <section className="relative min-h-[60vh] flex items-center overflow-hidden py-32 max-md:py-28 bg-background">
         <div className="absolute inset-0">
-          <Image src="/images/instagram-seleccionadas/nosotros-1b.jpg" alt="Equipo Tecnolight — más de 30 años en señalización vial profesional" fill className="object-cover" sizes="100vw" priority />
+          <Image
+            src="/images/instagram-seleccionadas/nosotros-1b.jpg"
+            alt="Equipo Tecnolight — más de 30 años en señalización vial profesional"
+            fill
+            className="object-cover"
+            sizes="100vw"
+            priority
+          />
           <div className="hex-overlay-hero" />
           <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/30 to-background" />
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(255,90,31,0.12)_0%,transparent_60%)]" />
@@ -44,16 +145,22 @@ export default function About() {
           <motion.div className="max-w-[700px]" initial="hidden" animate="visible" variants={fadeUp}>
             <div className="flex items-center gap-3 mb-6">
               <div className="h-px w-8 bg-primary flex-shrink-0" />
-              <span className="text-primary text-[10px] tracking-[0.32em] uppercase" style={MONO}>+30 Años de Trayectoria</span>
+              <span className="text-primary text-[10px] tracking-[0.32em] uppercase" style={FONT_ROBOTO_500}>
+                +30 Años de Trayectoria
+              </span>
             </div>
-            <h1 className="text-[clamp(2.5rem,4.5vw,3.75rem)] leading-[1.1] tracking-[-0.02em] text-white m-0 text-stroke-heavy" style={HEADING}>
-              SOBRE<br /><span className="text-primary">TECNOLIGHT</span>
+            <h1
+              className="text-[clamp(2.5rem,4.5vw,3.75rem)] leading-[1.1] tracking-[-0.02em] text-white m-0 text-stroke-heavy"
+              style={FONT_RALEWAY_900}
+            >
+              SOBRE<br />
+              <span className="text-primary">TECNOLIGHT</span>
             </h1>
-            <p className="text-xl text-white leading-relaxed max-w-[580px] mt-4 font-semibold text-stroke-heavy" style={BODY}>
-                Seguridad Vial e Industrial. Sede comercial: Av. Salvador Caputto 3241 / 3243, Santa Fe Capital.
+            <p className="text-xl text-white leading-relaxed max-w-[580px] mt-4 font-semibold text-stroke-heavy" style={FONT_ROBOTO}>
+              Seguridad Vial e Industrial. Sede comercial: Av. Salvador Caputto 3241 / 3243, Santa Fe Capital.
             </p>
             <div className="flex flex-wrap gap-4 mt-8">
-              <a href={WA_LINK} target="_blank" rel="noopener noreferrer" className="btn-whatsapp">
+              <a href={waLink} target="_blank" rel="noopener noreferrer" className="btn-whatsapp">
                 <WaIcon size={16} /> Consultar por WhatsApp
               </a>
               <Link href="/contact" className="btn-secondary">
@@ -65,38 +172,55 @@ export default function About() {
       </section>
 
       {/* Historia */}
-      <section className="py-24 lg:py-32 relative overflow-hidden bg-background" style={{ backgroundImage: "url('/images/hex-pattern.svg')", backgroundSize: '58px 100px' }}>
+      <section
+        className="py-24 lg:py-32 relative overflow-hidden bg-background"
+        style={{ backgroundImage: "url('/images/hex-pattern.svg')", backgroundSize: '58px 100px' }}
+      >
         <div className="max-w-site mx-auto px-5 lg:px-10 relative z-[1]">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center">
             <motion.div className="lg:col-span-3" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
               <div className="flex items-center gap-3 mb-4">
                 <div className="h-px w-8 bg-primary flex-shrink-0" />
-                <span className="text-primary text-[10px] tracking-[0.32em] uppercase" style={MONO}>Tecnolight SRL</span>
+                <span className="text-primary text-[10px] tracking-[0.32em] uppercase" style={FONT_ROBOTO_500}>
+                  Tecnolight SRL
+                </span>
               </div>
-              <h2 className="text-[2.5rem] font-bold text-foreground mb-8 max-md:text-3xl text-stroke-heavy" style={HEADING}>Nuestra Historia</h2>
-              <div className="space-y-5 text-white/60 text-base leading-relaxed" style={BODY}>
-                <p><strong className="text-foreground">Tecno Light S.R.L.</strong> nació formalmente en Santa Fe con operaciones que se remontan a 1994. Desde nuestros inicios en <strong className="text-foreground">Av. Salvador Caputto 3241 / 3243</strong>, trazamos un camino basado en la calidad y el servicio.</p>
-                <p>Lo que empezó como un pequeño taller de señales metálicas se convirtió en proveedor de confianza de <strong className="text-foreground">municipios, vialidades y constructoras</strong> de la región.</p>
-                <p>Hoy, con más de 10.000 señales instaladas y <strong className="text-foreground">cero reclamos por calidad</strong> en tres décadas, somos la opción de quienes buscan solidez técnica en seguridad vial y laboral.</p>
-                <p>Nuestra vocación de servicio nos ha permitido conformar un <strong className="text-foreground">amplio catálogo de protección personal</strong>, respaldado por las marcas más exigentes del mercado.</p>
-                <p className="text-foreground font-semibold text-lg pt-4 border-t border-white/10 italic">"No vendemos carteles, tampoco vendemos cascos ni alquilamos vallas... VENDEMOS EXPERIENCIA Y PROFESIONALISMO!!"</p>
+              <h2 className="text-[2.5rem] font-bold text-foreground mb-8 max-md:text-3xl text-stroke-heavy" style={FONT_RALEWAY_900}>
+                Nuestra Historia
+              </h2>
+              <div className="space-y-5 text-white/60 text-base leading-relaxed" style={FONT_ROBOTO}>
+                <p>
+                  TECNO LIGHT S.R.L. es una empresa de reconocida trayectoria en la fabricación de señalización vial e industrial, y en la comercialización de una amplia gama de productos de protección personal y vestimenta de trabajo.
+                </p>
+                <p>
+                  Contamos con más de 30 años de experiencia, un compromiso constante con la innovación, y un sólido liderazgo en los sectores de señalización y seguridad laboral.
+                </p>
+                <p>
+                  Nuestro servicio se destaca por la atención personalizada y el asesoramiento especializado en seguridad laboral, permitiéndonos ofrecer soluciones ajustadas a las necesidades específicas de cada cliente.
+                </p>
+                <p>
+                  Importantes empresas constructoras, organismos viales, municipios y entidades del ámbito privado avalan la calidad y confiabilidad de nuestros productos y servicios.
+                </p>
+                <p>
+                  La sede comercial de TECNO LIGHT S.R.L. está situada en Suipacha 3243, mientras que nuestra planta de producción se encuentra en el Parque Industrial Los Polígonos, en la ciudad de Santa Fe, Argentina.
+                </p>
               </div>
             </motion.div>
             <motion.div className="lg:col-span-2 space-y-6" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
               <div className="relative aspect-[4/3] rounded-[6px] overflow-hidden bg-card">
-                <Image src="/images/instagram-seleccionadas/nosotros-1.jpg" alt="Equipo Tecnolight" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 40vw" />
+                <Image
+                  src="/images/nuevas/historia_general.jpg"
+                  alt="Planta Industrial Tecnolight"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 40vw"
+                />
               </div>
               <div className="bg-card border border-white/6 rounded-[4px] p-4 text-center">
-                <p className="text-xs font-semibold text-white/50 uppercase tracking-wider leading-relaxed" style={BODY}>
-                  Sede: Av. Salvador Caputto 3241 / 3243, Santa Fe<br/>
-                  Fábrica: Parque Industrial Los Polígonos<br/>
-                  Sucursal: Rosario, Santa Fe
+                <p className="text-xs font-semibold text-white/50 uppercase tracking-wider leading-relaxed" style={FONT_ROBOTO}>
+                  Sede Comercial: Suipacha 3243, Santa Fe Capital.<br />
+                  Planta Industrial: Parque Industrial Los Polígonos, Santa Fe Capital.
                 </p>
-                <p className="text-[10px] text-white/30 mt-2" style={MONO}>CUIT 30-69238932-4</p>
-                <div className="inline-flex items-center gap-1.5 text-primary bg-primary/10 rounded-full px-3 py-1 text-xs font-semibold mt-2" style={BODY}>
-                  <Award size={12} />
-                  Cero Reclamos en +30 Años
-                </div>
               </div>
             </motion.div>
           </div>
@@ -107,16 +231,20 @@ export default function About() {
       <section className="py-24 relative overflow-hidden bg-background">
         <div className="max-w-site mx-auto px-5 lg:px-10 relative z-[1]">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-[800px] mx-auto">
-            {[
-              { number: '1994', label: 'Fundación' },
-              { number: '+30', label: 'Años de Trayectoria' },
-              { number: '+1.500', label: 'Proyectos Asesorados' },
-              { number: 'Stock', label: 'Primeras Marcas' }
-            ].map((stat, i) => (
-              <motion.div key={i} className="bg-card border border-white/6 rounded-[4px] p-5 text-center"
-                initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} custom={i}>
+            {STATS.map((stat, idx) => (
+              <motion.div
+                key={idx}
+                className="bg-card border border-white/6 rounded-[4px] p-5 text-center"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeUp}
+                custom={idx}
+              >
                 <div className="stat-number text-2xl mb-1">{stat.number}</div>
-                <span className="text-xs uppercase tracking-wider text-white/50 font-medium" style={BODY}>{stat.label}</span>
+                <span className="text-xs uppercase tracking-wider text-white/50 font-medium" style={FONT_ROBOTO}>
+                  {stat.label}
+                </span>
               </motion.div>
             ))}
           </div>
@@ -124,35 +252,52 @@ export default function About() {
       </section>
 
       {/* Timeline */}
-      <section className="py-24 lg:py-32 relative overflow-hidden bg-background" style={{ backgroundImage: "url('/images/hex-pattern.svg')", backgroundSize: '58px 100px' }}>
+      <section
+        className="py-24 lg:py-32 relative overflow-hidden bg-background"
+        style={{ backgroundImage: "url('/images/hex-pattern.svg')", backgroundSize: '58px 100px' }}
+      >
         <div className="max-w-site mx-auto px-5 lg:px-10 relative z-[1]">
           <motion.div className="text-center max-w-[700px] mx-auto mb-16" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
             <div className="flex items-center gap-3 justify-center mb-4">
               <div className="h-px w-8 bg-primary" />
-              <span className="text-primary text-[10px] tracking-[0.32em] uppercase" style={MONO}>Hitos</span>
+              <span className="text-primary text-[10px] tracking-[0.32em] uppercase" style={FONT_ROBOTO_500}>
+                Hitos
+              </span>
               <div className="h-px w-8 bg-primary" />
             </div>
-            <h2 className="text-[2.5rem] font-bold text-foreground max-md:text-3xl" style={HEADING}>Nuestra Línea de Tiempo</h2>
-            <p className="text-white/50 mt-4" style={BODY}>Cada década, un paso más cerca de la excelencia. Así construimos tres décadas de confianza ininterrumpida.</p>
+            <h2 className="text-[2.5rem] font-bold text-foreground max-md:text-3xl" style={FONT_RALEWAY_900}>
+              Nuestra Línea de Tiempo
+            </h2>
+            <p className="text-white/50 mt-4" style={FONT_ROBOTO}>
+              Cada década, un paso más cerca de la excelencia. Así construimos tres décadas de confianza ininterrumpida.
+            </p>
           </motion.div>
+
           <div className="relative max-w-4xl mx-auto">
             <div className="absolute left-1/2 -translate-x-px top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-primary/40 to-transparent max-md:left-6" />
-            {[
-              { year: '1994', title: 'Fundación', desc: 'Tecnolight nace en Santa Fe con un taller de señales metálicas y la convicción de que la seguridad vial argentina merecía más calidad.' },
-              { year: '1996', title: 'Primer Contrato Municipal', desc: 'La Municipalidad de Santa Fe confía en Tecnolight para la señalización de 12 cruces escolares.' },
-              { year: '2001', title: 'Certificación IRAM 3950', desc: 'Obtenemos la certificación IRAM 3950 para señales de tránsito, uno de los primeros talleres del interior en cumplir la norma.' },
-              { year: '2008', title: 'Incorporación de 3M', desc: 'Empezamos a trabajar exclusivamente con láminas reflectivas 3M grado ingeniería. La calidad dejó de ser opción para ser el estándar.' },
-              { year: '2015', title: 'Nueva Planta Fabril', desc: 'Inauguramos nuestra fábrica en Parque Industrial Los Polígonos, cuadruplicando la capacidad de producción.' },
-              { year: '2020', title: 'Proveedor de Vialidad Nacional', desc: 'Somos homologados como proveedor oficial de Vialidad Nacional, el estándar más exigente del país.' },
-              { year: 'Hoy', title: '+500 Proyectos, Cero Reclamos', desc: 'Tres décadas después, seguimos en el mismo taller que empezó todo — con más de 10.000 señales instaladas y cero reclamos.' }
-            ].map((item, idx) => (
-              <motion.div key={idx} className={`flex items-start gap-8 mb-12 relative max-md:gap-4 ${idx % 2 === 0 ? 'flex-row' : 'flex-row-reverse max-md:flex-row'}`}
-                initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} custom={idx}>
+            {TIMELINE.map((item, idx) => (
+              <motion.div
+                key={idx}
+                className={`flex items-start gap-8 mb-12 relative max-md:gap-4 ${
+                  idx % 2 === 0 ? 'flex-row' : 'flex-row-reverse max-md:flex-row'
+                }`}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeUp}
+                custom={idx}
+              >
                 <div className={`flex-1 ${idx % 2 === 0 ? 'text-right max-md:text-left' : 'text-left'} max-md:hidden`}>
                   <div className="bg-card border border-white/6 rounded-[4px] inline-block p-6 max-w-md text-left">
-                    <span className="text-xs font-bold text-primary tracking-wider uppercase block mb-1" style={MONO}>{item.year}</span>
-                    <h3 className="text-lg font-bold text-foreground mb-2" style={HEADING}>{item.title}</h3>
-                    <p className="text-white/50 text-sm leading-relaxed" style={BODY}>{item.desc}</p>
+                    <span className="text-xs font-bold text-primary tracking-wider uppercase block mb-1" style={FONT_ROBOTO_500}>
+                      {item.year}
+                    </span>
+                    <h3 className="text-lg font-bold text-foreground mb-2" style={FONT_RALEWAY_900}>
+                      {item.title}
+                    </h3>
+                    <p className="text-white/50 text-sm leading-relaxed" style={FONT_ROBOTO}>
+                      {item.desc}
+                    </p>
                   </div>
                 </div>
                 <div className="relative z-10 flex items-center justify-center w-10 h-10 rounded-full bg-primary text-white font-bold text-xs border-4 border-background shadow-md shrink-0">
@@ -160,9 +305,15 @@ export default function About() {
                 </div>
                 <div className="flex-1 block md:hidden">
                   <div className="bg-card border border-white/6 rounded-[4px] p-4">
-                    <span className="text-xs font-bold text-primary tracking-wider uppercase block mb-1" style={MONO}>{item.year}</span>
-                    <h3 className="text-sm font-bold text-foreground mb-1" style={HEADING}>{item.title}</h3>
-                    <p className="text-white/50 text-xs leading-relaxed" style={BODY}>{item.desc}</p>
+                    <span className="text-xs font-bold text-primary tracking-wider uppercase block mb-1" style={FONT_ROBOTO_500}>
+                      {item.year}
+                    </span>
+                    <h3 className="text-sm font-bold text-foreground mb-1" style={FONT_RALEWAY_900}>
+                      {item.title}
+                    </h3>
+                    <p className="text-white/50 text-xs leading-relaxed" style={FONT_ROBOTO}>
+                      {item.desc}
+                    </p>
                   </div>
                 </div>
                 <div className="flex-1 max-md:hidden" />
@@ -173,57 +324,87 @@ export default function About() {
       </section>
 
       {/* Valores */}
-      <section className="py-24 lg:py-32 relative overflow-hidden bg-background" style={{ backgroundImage: "url('/images/hex-pattern.svg')", backgroundSize: '58px 100px' }}>
+      <section
+        className="py-24 lg:py-32 relative overflow-hidden bg-background"
+        style={{ backgroundImage: "url('/images/hex-pattern.svg')", backgroundSize: '58px 100px' }}
+      >
         <div className="max-w-site mx-auto px-5 lg:px-10 relative z-[1]">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
-            <motion.div className="relative aspect-[4/3] rounded-[6px] overflow-hidden bg-card" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
-              <Image src="/images/instagram-seleccionadas/nosotros-3.jpg" alt="Instalación de señalización vial" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
+            <motion.div
+              className="relative aspect-[4/3] rounded-[6px] overflow-hidden bg-card"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeUp}
+            >
+              <Image
+                src="/images/instagram-seleccionadas/nosotros-3.jpg"
+                alt="Instalación de señalización vial"
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
             </motion.div>
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
               <div className="flex items-center gap-3 mb-4">
                 <div className="h-px w-8 bg-primary flex-shrink-0" />
-                <span className="text-primary text-[10px] tracking-[0.32em] uppercase" style={MONO}>Valores</span>
+                <span className="text-primary text-[10px] tracking-[0.32em] uppercase" style={FONT_ROBOTO_500}>
+                  Valores
+                </span>
               </div>
-              <h2 className="text-[2.2rem] font-bold text-foreground mb-4 max-md:text-3xl" style={HEADING}>Nuestros Valores</h2>
-              <p className="text-white/50" style={BODY}>Principios que guían cada señal que fabricamos, cada proyecto que ejecutamos.</p>
+              <h2 className="text-[2.2rem] font-bold text-foreground mb-4 max-md:text-3xl" style={FONT_RALEWAY_900}>
+                Nuestros Valores
+              </h2>
+              <p className="text-white/50" style={FONT_ROBOTO}>
+                Principios que guían cada señal que fabricamos, cada proyecto que ejecutamos.
+              </p>
             </motion.div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              { icon: Shield, title: 'Seguridad ante Todo', desc: 'Cada señal que fabricamos tiene una función: evitar accidentes, multas y problemas legales. No negociamos con la seguridad.' },
-              { icon: Award, title: 'Calidad Certificada', desc: 'Materiales 3M, certificación IRAM 3950, aprobación de Vialidad Nacional. No decimos que somos buenos: los certificados lo demuestran.' },
-              { icon: Target, title: 'Precisión sin Excepción', desc: 'Tolerancias mínimas, reflectividad exacta, tipografía oficial. Cada detalle importa porque en la ruta no hay margen para el error.' },
-              { icon: Heart, title: 'Compromiso en Décadas', desc: '30 años cumpliendo plazos. 30 años sin reclamos por calidad. Esa no es casualidad: es cultura empresarial.' },
-              { icon: Users, title: 'Equipo Multidisciplinario', desc: 'Ingenieros, diseñadores y técnicos trabajando coordinados para que su proyecto esté listo cuando usted lo necesita.' },
-              { icon: Eye, title: 'Innovación con Propósito', desc: 'Incorporamos reflectivos de última generación y procesos industriales avanzados. La tecnología salva vidas en la ruta.' }
-            ].map((v, i) => (
-              <motion.div key={i} className="bg-card border border-white/6 rounded-[4px] p-6 hover:border-primary/25 transition-colors" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} custom={i}>
+            {VALORES.map((val, idx) => (
+              <motion.div
+                key={idx}
+                className="bg-card border border-white/6 rounded-[4px] p-6 hover:border-primary/25 transition-colors"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeUp}
+                custom={idx}
+              >
                 <span className="inline-flex mb-4 bg-primary/10 p-3 rounded-[4px] text-primary">
-                  <v.icon size={24} />
+                  <val.icon size={24} />
                 </span>
-                <h3 className="font-bold text-foreground mb-2" style={HEADING}>{v.title}</h3>
-                <p className="text-white/50 text-sm leading-relaxed" style={BODY}>{v.desc}</p>
+                <h3 className="font-bold text-foreground mb-2" style={FONT_RALEWAY_900}>
+                  {val.title}
+                </h3>
+                <p className="text-white/50 text-sm leading-relaxed" style={FONT_ROBOTO}>
+                  {val.desc}
+                </p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Certificaciones */}
+      {/* Avales */}
       <section className="py-24 relative overflow-hidden bg-background">
         <div className="max-w-site mx-auto px-5 lg:px-10 relative z-[1]">
           <motion.div className="max-w-[700px] mx-auto text-center" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
             <div className="flex items-center gap-3 justify-center mb-4">
               <div className="h-px w-8 bg-primary" />
-              <span className="text-primary text-[10px] tracking-[0.32em] uppercase" style={MONO}>Avales</span>
+              <span className="text-primary text-[10px] tracking-[0.32em] uppercase" style={FONT_ROBOTO_500}>
+                Avales
+              </span>
               <div className="h-px w-8 bg-primary" />
             </div>
-            <h2 className="text-2xl font-bold text-foreground mb-6" style={HEADING}>Certificaciones y Avales</h2>
+            <h2 className="text-2xl font-bold text-foreground mb-6" style={FONT_RALEWAY_900}>
+              Certificaciones y Avales
+            </h2>
             <div className="flex flex-wrap justify-center gap-3">
-              {['Norma IRAM 3950', 'Ley Nacional N° 24.449', 'Materiales 3M', 'Vialidad Nacional', 'AFIP Act. 421000', 'ISO 9001'].map(cert => (
-                <span key={cert} className="inline-flex items-center gap-2 bg-card border border-white/6 rounded-[4px] px-4 py-2 text-sm text-white/60" style={BODY}>
-                  <CheckCircle2 size={14} className="text-primary" />
-                  {cert}
+              {AVALES.map((aval) => (
+                <span key={aval} className="inline-flex items-center gap-2 bg-card border border-white/6 rounded-[4px] px-4 py-2 text-sm text-white/60" style={FONT_ROBOTO}>
+                  <CircleCheck size={14} className="text-primary" />
+                  {aval}
                 </span>
               ))}
             </div>
@@ -231,16 +412,23 @@ export default function About() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-24 relative overflow-hidden bg-background" style={{ backgroundImage: "url('/images/hex-pattern.svg')", backgroundSize: '58px 100px' }}>
+      {/* CTA final */}
+      <section
+        className="py-24 relative overflow-hidden bg-background"
+        style={{ backgroundImage: "url('/images/hex-pattern.svg')", backgroundSize: '58px 100px' }}
+      >
         <div className="max-w-site mx-auto px-5 lg:px-10 relative z-[1]">
-          <motion.div className="text-center max-w-[600px] mx-auto" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
-            <h2 className="text-3xl font-bold text-foreground mb-4" style={HEADING}>¿Tu Próximo Proyecto?</h2>
-            <p className="text-white/50 mb-8" style={BODY}>Sumate a la lista de municipios y constructoras que confían en Tecnolight.</p>
-            <a href={WA_LINK} target="_blank" rel="noopener noreferrer" className="btn-whatsapp text-base px-8 py-4">
+          <div className="text-center max-w-[600px] mx-auto">
+            <h2 className="text-3xl font-bold text-foreground mb-4" style={FONT_RALEWAY_900}>
+              ¿Tu Próximo Proyecto?
+            </h2>
+            <p className="text-white/50 mb-8" style={FONT_ROBOTO}>
+              Sumate a la lista de municipios y constructoras que confían en Tecnolight.
+            </p>
+            <a href={waLink} target="_blank" rel="noopener noreferrer" className="btn-whatsapp text-base px-8 py-4">
               <WaIcon size={18} /> Consultar por WhatsApp
             </a>
-          </motion.div>
+          </div>
         </div>
       </section>
     </div>

@@ -9,3 +9,4 @@ node_modules/
 .vscode/
 .mcp.json
 .markdown-collab/
+scratch_inspect.js
