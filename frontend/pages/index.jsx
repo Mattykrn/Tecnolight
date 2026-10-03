@@ -624,24 +624,24 @@ export default function Home() {
           </h1>
 
           {/* Sello Distribuidores y Convertidores Certificados Avery Dennison */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4.5 bg-slate-900/90 hover:bg-slate-900 border border-slate-700/80 hover:border-[#FF5A1F]/70 px-5 sm:px-6 py-2.5 sm:py-3 rounded-2xl shadow-2xl backdrop-blur-md transition-all duration-300 mt-2 mb-1 max-w-3xl">
-            <div className="flex items-center gap-2.5">
-              <span className="flex h-2.5 w-2.5 rounded-full bg-[#FF5A1F] animate-pulse"></span>
-              <span className="text-[11px] sm:text-xs uppercase tracking-widest text-slate-200 font-bold text-center sm:text-left leading-snug">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 bg-slate-900/90 hover:bg-slate-900 border border-slate-700/80 hover:border-[#FF5A1F]/70 px-4 sm:px-6 py-2.5 sm:py-3 rounded-2xl shadow-2xl backdrop-blur-md transition-all duration-300 mt-2 mb-1 max-w-3xl w-full">
+            <div className="flex items-center gap-2.5 text-center sm:text-left">
+              <span className="flex h-2.5 w-2.5 rounded-full bg-[#FF5A1F] animate-pulse shrink-0"></span>
+              <span className="text-[11px] sm:text-xs uppercase tracking-widest text-slate-200 font-bold leading-snug">
                 DISTRIBUIDORES Y CONVERTIDORES <span className="text-[#FF5A1F]">CERTIFICADOS:</span>
               </span>
             </div>
-            <div className="flex items-center gap-3 sm:gap-4 bg-white/95 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-xl shadow-md shrink-0">
+            <div className="flex items-center justify-center gap-3 sm:gap-4 bg-white/95 px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl shadow-md shrink-0">
               <img
                 src="/images/avery-dennison-official.svg"
                 alt="Avery Dennison"
-                className="h-6 sm:h-7.5 w-auto object-contain shrink-0"
+                className="h-5 sm:h-7.5 w-auto object-contain shrink-0"
               />
-              <div className="h-5 sm:h-6 w-px bg-slate-300 shrink-0" />
+              <div className="h-4 sm:h-6 w-px bg-slate-300 shrink-0" />
               <img
                 src="/images/trafficjet-xpress-official.svg"
                 alt="TrafficJet™ Xpress"
-                className="h-5 sm:h-6.5 w-auto object-contain shrink-0"
+                className="h-4.5 sm:h-6.5 w-auto object-contain shrink-0"
               />
             </div>
           </div>
@@ -675,16 +675,16 @@ export default function Home() {
       {/* ========================================================================
           CLIENTES, ORGANISMOS Y DISTRIBUIDORES
           ======================================================================== */}
-      <section className="py-12 bg-slate-100 bg-hex-pattern border-t border-slate-200 shadow-sm border-b border-black/5">
-        <div className="max-w-site mx-auto px-5 lg:px-10 text-center">
-          <div className="flex items-center justify-center gap-3 mb-6">
+      <section className="py-10 sm:py-12 bg-slate-100 bg-hex-pattern border-t border-slate-200 shadow-sm border-b border-black/5">
+        <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-10 text-center">
+          <div className="flex items-center justify-center gap-3 mb-5 sm:mb-6">
             <div className="h-px w-8 bg-slate-300 flex-shrink-0" />
             <span className="text-slate-500 text-[10px] tracking-[0.32em] uppercase font-bold" style={FONT_ROBOTO_500}>
               Clientes, organismos y distribuidores
             </span>
             <div className="h-px w-8 bg-slate-300 flex-shrink-0" />
           </div>
-          <div className="flex flex-wrap justify-center items-center gap-x-10 gap-y-6 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+          <div className="flex flex-wrap justify-center items-center gap-x-5 sm:gap-x-10 gap-y-3 sm:gap-y-6 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
             {[
               'Vialidad Nacional',
               'DPV Santa Fe',
@@ -696,7 +696,7 @@ export default function Home() {
             ].map((cli) => (
               <span
                 key={cli}
-                className="text-slate-900 font-extrabold text-xl tracking-tighter uppercase"
+                className="text-slate-900 font-extrabold text-sm sm:text-lg md:text-xl tracking-tighter uppercase"
                 style={FONT_RALEWAY_900}
               >
                 {cli}
@@ -1017,7 +1017,7 @@ export default function Home() {
           </div>
 
           {/* 5 Pasos con Numeración Hexagonal */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-6 mb-16">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 sm:gap-6 mb-12 sm:mb-16">
             {[
               {
                 step: '01',
@@ -1065,11 +1065,11 @@ export default function Home() {
           </div>
 
           {/* Estándares Técnicos y Garantía de Fabricación */}
-          <div className="bg-slate-900/40 border border-slate-700/50 rounded-2xl p-8 shadow-xl">
+          <div className="bg-slate-900/40 border border-slate-700/50 rounded-2xl p-5 sm:p-8 shadow-xl">
             <h3 className="text-white text-sm font-extrabold uppercase tracking-wider mb-6 pb-3 border-b border-white/10" style={FONT_RALEWAY_900}>
               Estándares Técnicos y Garantía de Producción
             </h3>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
               {[
                 'Cumplimiento estricto de pliegos técnicos DNV y DPV',
                 'Tolerancias de corte y plegado milimétrico en chapa galvanizada',
@@ -1686,9 +1686,9 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 max-w-6xl mx-auto gap-6 mb-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto gap-5 sm:gap-6 mb-10">
             {/* Sede Santa Fe */}
-            <div className="flex flex-col gap-4 bg-white border border-slate-200/80 shadow-sm rounded-xl p-6">
+            <div className="flex flex-col gap-4 bg-white border border-slate-200/80 shadow-sm rounded-xl p-5 sm:p-6">
               <a
                 href="https://www.google.com/maps/search/?api=1&query=Suipacha+3243,+Santa+Fe,+Argentina"
                 target="_blank"
@@ -1712,25 +1712,25 @@ export default function Home() {
                 >
                   Suipacha 3243, Santa Fe Capital
                 </a>
-                <div className="mt-auto flex flex-col gap-2">
+                <div className="mt-auto flex flex-col gap-2 pt-2 border-t border-slate-100">
                   <a
                     href="tel:03424553582"
-                    className="text-black font-semibold text-sm hover:text-[#FF5A1F] transition-colors flex items-center gap-2"
+                    className="text-black font-semibold text-xs sm:text-sm hover:text-[#FF5A1F] transition-colors flex items-center gap-2"
                   >
-                    <Phone size={14} /> (0342) 455-3582
+                    <Phone size={14} className="shrink-0" /> (0342) 455-3582
                   </a>
                   <a
                     href="mailto:tecnolightsrl@arnet.com.ar"
-                    className="text-black font-semibold text-sm hover:text-[#FF5A1F] transition-colors flex items-center gap-2"
+                    className="text-black font-semibold text-xs sm:text-sm hover:text-[#FF5A1F] transition-colors flex items-center gap-2 break-all sm:break-normal"
                   >
-                    <Mail size={14} /> tecnolightsrl@arnet.com.ar
+                    <Mail size={14} className="shrink-0" /> <span>tecnolightsrl@arnet.com.ar</span>
                   </a>
                 </div>
               </div>
             </div>
 
             {/* Sede Rosario */}
-            <div className="flex flex-col gap-4 bg-white border border-slate-200/80 shadow-sm rounded-xl p-6">
+            <div className="flex flex-col gap-4 bg-white border border-slate-200/80 shadow-sm rounded-xl p-5 sm:p-6">
               <a
                 href="https://www.google.com/maps/search/?api=1&query=Gutenberg+1122,+Rosario,+Santa+Fe,+Argentina"
                 target="_blank"
@@ -1754,25 +1754,25 @@ export default function Home() {
                 >
                   Gutenberg 1122, Rosario, Santa Fe
                 </a>
-                <div className="mt-auto flex flex-col gap-2">
+                <div className="mt-auto flex flex-col gap-2 pt-2 border-t border-slate-100">
                   <a
                     href="tel:03414388444"
-                    className="text-black font-semibold text-sm hover:text-[#FF5A1F] transition-colors flex items-center gap-2"
+                    className="text-black font-semibold text-xs sm:text-sm hover:text-[#FF5A1F] transition-colors flex items-center gap-2"
                   >
-                    <Phone size={14} /> (0341) 438-8444
+                    <Phone size={14} className="shrink-0" /> (0341) 438-8444
                   </a>
                   <a
                     href="mailto:tecnolightrsr@arnet.com.ar"
-                    className="text-black font-semibold text-sm hover:text-[#FF5A1F] transition-colors flex items-center gap-2"
+                    className="text-black font-semibold text-xs sm:text-sm hover:text-[#FF5A1F] transition-colors flex items-center gap-2 break-all sm:break-normal"
                   >
-                    <Mail size={14} /> tecnolightrsr@arnet.com.ar
+                    <Mail size={14} className="shrink-0" /> <span>tecnolightrsr@arnet.com.ar</span>
                   </a>
                 </div>
               </div>
             </div>
 
             {/* Planta Los Polígonos */}
-            <div className="flex flex-col gap-4 bg-white border border-slate-200/80 shadow-sm rounded-xl p-6">
+            <div className="flex flex-col gap-4 bg-white border border-slate-200/80 shadow-sm rounded-xl p-5 sm:p-6">
               <a
                 href="https://www.google.com/maps/search/?api=1&query=Parque+Industrial+Los+Poligonos,+Santa+Fe,+Argentina"
                 target="_blank"
@@ -1796,18 +1796,18 @@ export default function Home() {
                 >
                   Área Industrial Los Polígonos, Santa Fe
                 </a>
-                <div className="mt-auto flex flex-col gap-2">
+                <div className="mt-auto flex flex-col gap-2 pt-2 border-t border-slate-100">
                   <a
                     href="tel:03424553582"
-                    className="text-black font-semibold text-sm hover:text-[#FF5A1F] transition-colors flex items-center gap-2"
+                    className="text-black font-semibold text-xs sm:text-sm hover:text-[#FF5A1F] transition-colors flex items-center gap-2"
                   >
-                    <Phone size={14} /> (0342) 455-3582
+                    <Phone size={14} className="shrink-0" /> (0342) 455-3582
                   </a>
                   <a
                     href="mailto:tecnolightsrl@arnet.com.ar"
-                    className="text-black font-semibold text-sm hover:text-[#FF5A1F] transition-colors flex items-center gap-2"
+                    className="text-black font-semibold text-xs sm:text-sm hover:text-[#FF5A1F] transition-colors flex items-center gap-2 break-all sm:break-normal"
                   >
-                    <Mail size={14} /> tecnolightsrl@arnet.com.ar
+                    <Mail size={14} className="shrink-0" /> <span>tecnolightsrl@arnet.com.ar</span>
                   </a>
                 </div>
               </div>

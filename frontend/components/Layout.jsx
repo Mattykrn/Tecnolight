@@ -386,7 +386,7 @@ export default function Layout({ children }) {
               </h4>
               <a
                 href="mailto:tecnolightsrl@arnet.com.ar"
-                className="inline-flex items-center justify-center gap-2 bg-slate-800 border border-slate-700 text-white text-xs font-semibold px-4 py-2.5 rounded-lg hover:bg-[#FF5A1F] hover:border-[#FF5A1F] transition-all w-full sm:w-auto lg:w-full max-w-[240px] mb-8 uppercase tracking-wider"
+                className="inline-flex items-center justify-center gap-2 bg-slate-800 border border-slate-700 text-white text-xs font-semibold px-4 py-3 rounded-lg hover:bg-[#FF5A1F] hover:border-[#FF5A1F] transition-all w-full sm:w-auto lg:w-full sm:max-w-[260px] mb-8 uppercase tracking-wider"
               >
                 <Mail size={15} />
                 Enviar Pliego por Email

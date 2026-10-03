@@ -144,18 +144,18 @@ export default function Catalogo() {
       </section>
 
       {/* Filtros sticky */}
-      <div className="sticky top-14 lg:top-16 z-30 section-solid-dark border-b border-white/5 py-3 px-4 shadow-lg">
-        <div className="max-w-site mx-auto px-5 lg:px-10 flex flex-col sm:flex-row gap-3 items-start sm:items-center">
+      <div className="sticky top-[58px] z-30 section-solid-dark border-b border-white/5 py-3 px-4 shadow-lg">
+        <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-10 flex flex-col sm:flex-row gap-3 items-stretch sm:items-center">
           <div className="relative w-full sm:w-60 shrink-0">
             <svg className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
             <input type="text" placeholder="Buscar producto..." value={busqueda} onChange={e => setBusqueda(e.target.value)}
-              className="w-full bg-white/5 border border-white/10 text-white placeholder-slate-500 text-sm pl-9 pr-4 py-2 rounded-lg focus:border-[#FF5A1F]/60 focus:outline-none transition-colors"
+              className="w-full bg-white/5 border border-white/10 text-white placeholder-slate-500 text-sm pl-9 pr-4 py-2.5 rounded-lg focus:border-[#FF5A1F]/60 focus:outline-none transition-colors"
               style={FONT_ROBOTO} />
           </div>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-1.5 sm:gap-2">
             {CATEGORIAS.map(cat => (
               <button key={cat.id} onClick={() => setCategoriaActiva(cat.id)}
-                className={`text-xs font-bold px-3 py-1.5 rounded-lg uppercase tracking-wider transition-all ${
+                className={`text-xs font-bold px-3 py-2 rounded-lg uppercase tracking-wider transition-all ${
                   categoriaActiva === cat.id
                     ? 'bg-[#FF5A1F] text-white shadow-md'
                     : 'bg-white/5 text-slate-400 hover:bg-white/10 hover:text-white border border-white/8'

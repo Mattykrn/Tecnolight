@@ -1,6 +1,3 @@
-# Excluir imágenes crudas de Instagram (408MB) — demasiado pesadas para Vercel
-public/images/instagram/all-posts/
-
 # Excluir archivos de desarrollo
 *.log
 .env

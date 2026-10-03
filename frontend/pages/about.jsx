@@ -50,8 +50,8 @@ const TIMELINE = [
   },
   {
     year: '2008',
-    title: 'Incorporación de 3M',
-    desc: 'Empezamos a trabajar exclusivamente con láminas reflectivas 3M grado ingeniería. La calidad dejó de ser opción para ser el estándar.',
+    title: 'Tecnología Avery Dennison',
+    desc: 'Incorporamos láminas reflectivas Avery Dennison grado ingeniería y alta intensidad. La calidad dejó de ser opción para ser el estándar.',
   },
   {
     year: '2015',
@@ -79,7 +79,7 @@ const VALORES = [
   {
     icon: Award,
     title: 'Calidad Certificada',
-    desc: 'Materiales 3M, certificación IRAM 3950, aprobación de Vialidad Nacional. No decimos que somos buenos: los certificados lo demuestran.',
+    desc: 'Materiales Avery Dennison TrafficJet™ Xpress, certificación IRAM 3950, aprobación de Vialidad Nacional. Los certificados demuestran nuestro estándar.',
   },
   {
     icon: Target,
