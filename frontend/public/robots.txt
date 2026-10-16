@@ -10,4 +10,4 @@ Disallow: /admin/dashboard
 Disallow: /api/
 
 # Sitemap
-Sitemap: https://tecnolight.com.ar/sitemap.xml
+Sitemap: https://www.tecnolight.com.ar/sitemap.xml

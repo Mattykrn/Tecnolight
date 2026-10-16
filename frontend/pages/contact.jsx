@@ -48,14 +48,14 @@ const CANALES = [
 const SEDES_CARDS = [
   {
     id: 'santa-fe',
-    label: 'Sede Comercial & Casa Central Santa Fe',
+    label: 'Sede Central Santa Fe',
     value: 'Suipacha 3243, Santa Fe Capital',
     desc: 'Tel/Fax: (0342) 455-3582 | tecnolightsrl@arnet.com.ar',
     href: 'https://www.google.com/maps/search/?api=1&query=Suipacha+3243,+Santa+Fe,+Argentina',
   },
   {
     id: 'rosario',
-    label: 'Sucursal Rosario',
+    label: 'Sede Rosario',
     value: 'Gutenberg 1122, Rosario, Santa Fe',
     desc: 'Tel/Fax: (0341) 438-8444 | tecnolightrsr@arnet.com.ar',
     href: 'https://www.google.com/maps/search/?api=1&query=Gutenberg+1122,+Rosario,+Santa+Fe',

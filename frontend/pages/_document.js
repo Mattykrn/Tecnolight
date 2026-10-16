@@ -9,48 +9,48 @@ export default function Document() {
         <meta charSet="utf-8" />
         <meta
           name="description"
-          content="Empresa líder en fabricación integral de señales viales, cartelería de gran porte, protección personal y tecnología de impresión Avery Dennison TrafficJet™ Xpress bajo normativas DNV y DPV."
+          content="Fabricación y provisión integral de señalización vial e industrial, indumentaria de trabajo y elementos de protección personal en Santa Fe."
         />
         <meta name="robots" content="index, follow" />
         <meta
           name="keywords"
-          content="señalización vial Santa Fe, carteles Tecno Light, señales reglamentarias Argentina, cartelería comercial, seguridad vial, señales preventivas, Tecno Light Santa Fe, TrafficJet Xpress, Avery Dennison"
+          content="señalización vial santa fe, carteles viales obra, indumentaria epp, impresión retrorreflectiva Avery Dennison, señales reglamentarias, seguridad vial, demarcación horizontal, Tecno Light Santa Fe, cartelería de obra"
         />
 
-        {/* Open Graph */}
+        {/* Open Graph / WhatsApp */}
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="Tecno Light S.R.L." />
         <meta property="og:locale" content="es_AR" />
-        <meta property="og:url" content="https://tecno-light-v3-irux.vercel.app" />
-        <meta property="og:title" content="TECNO LIGHT S.R.L. | Señalización Vial e Industrial" />
+        <meta property="og:url" content="https://www.tecnolight.com.ar" />
+        <meta property="og:title" content="Tecno Light S.R.L. | Señalización Vial, EPP y Servicios en Obra" />
         <meta
           property="og:description"
-          content="Fabricación integral de señales viales reglamentarias, cartelería de obra y seguridad industrial. Tecnología TrafficJet™ Xpress con láminas microprismáticas homologadas."
+          content="Fabricación y provisión integral de señalización vial e industrial, indumentaria de trabajo y elementos de protección personal en Santa Fe."
         />
-        <meta property="og:image" content="https://tecno-light-v3-irux.vercel.app/images/og-share.jpg" />
-        <meta property="og:image:secure_url" content="https://tecno-light-v3-irux.vercel.app/images/og-share.jpg" />
+        <meta property="og:image" content="https://www.tecnolight.com.ar/og-image.jpg" />
+        <meta property="og:image:secure_url" content="https://www.tecnolight.com.ar/og-image.jpg" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
-        <meta property="og:image:alt" content="TECNO LIGHT S.R.L. - Señalización Vial" />
+        <meta property="og:image:alt" content="Tecno Light S.R.L. | Señalización Vial, EPP y Servicios en Obra" />
         <meta property="og:image:type" content="image/jpeg" />
 
-        {/* Twitter Card */}
+        {/* Twitter Cards */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="TECNO LIGHT S.R.L. | Señalización Vial e Industrial" />
+        <meta name="twitter:title" content="Tecno Light S.R.L. | Señalización Vial, EPP y Servicios en Obra" />
         <meta
           name="twitter:description"
-          content="Fabricación integral de señales viales reglamentarias, cartelería de obra y seguridad industrial. Tecnología TrafficJet™ Xpress con láminas microprismáticas homologadas."
+          content="Fabricación y provisión integral de señalización vial e industrial, indumentaria de trabajo y elementos de protección personal en Santa Fe."
         />
-        <meta name="twitter:image" content="https://tecno-light-v3-irux.vercel.app/images/og-share.jpg" />
-        <meta name="twitter:image:alt" content="TECNO LIGHT S.R.L. - Señalización Vial" />
+        <meta name="twitter:image" content="https://www.tecnolight.com.ar/og-image.jpg" />
+        <meta name="twitter:image:alt" content="Tecno Light S.R.L. | Señalización Vial, EPP y Servicios en Obra" />
 
         {/* Icons & Manifest */}
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="icon" type="image/png" sizes="192x192" href="/icon-192x192.png" />
-        <link rel="icon" type="image/png" sizes="512x512" href="/icon-512x512.png" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-        <link rel="manifest" href="/manifest.json" />
+        <link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml" />
+        <link rel="icon" href="/favicon.ico?v=2" sizes="any" />
+        <link rel="icon" type="image/png" sizes="192x192" href="/icon-192x192.png?v=2" />
+        <link rel="icon" type="image/png" sizes="512x512" href="/icon-512x512.png?v=2" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2" />
+        <link rel="manifest" href="/manifest.json?v=2" />
         <meta name="theme-color" content="#0b111e" />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -70,10 +70,10 @@ export default function Document() {
             __html: JSON.stringify({
               '@context': 'https://schema.org',
               '@type': 'LocalBusiness',
-              name: 'Tecno Light',
-              description:
-                'Empresa líder en señalización vial y cartelería con más de 30 años de trayectoria en Santa Fe, Argentina.',
-              url: 'https://tecno-light-v3-irux.vercel.app',
+              name: 'Tecno Light S.R.L.',
+              image: 'https://www.tecnolight.com.ar/og-image.jpg',
+              description: 'Provisión de señalización vial, industrial y equipamiento para obras.',
+              url: 'https://www.tecnolight.com.ar',
               telephone: '+54-342-455-3582',
               email: 'ventas@tecnolight.com.ar',
               address: {
@@ -89,6 +89,43 @@ export default function Document() {
                 latitude: -31.6333,
                 longitude: -60.7,
               },
+              areaServed: [
+                {
+                  '@type': 'AdministrativeArea',
+                  name: 'Santa Fe',
+                },
+                {
+                  '@type': 'Country',
+                  name: 'Argentina',
+                },
+              ],
+              hasOfferCatalog: {
+                '@type': 'OfferCatalog',
+                name: 'Servicios Principales',
+                itemListElement: [
+                  {
+                    '@type': 'Offer',
+                    itemOffered: {
+                      '@type': 'Service',
+                      name: 'Señalización reglamentaria',
+                    },
+                  },
+                  {
+                    '@type': 'Offer',
+                    itemOffered: {
+                      '@type': 'Service',
+                      name: 'Indumentaria de trabajo',
+                    },
+                  },
+                  {
+                    '@type': 'Offer',
+                    itemOffered: {
+                      '@type': 'Service',
+                      name: 'Alquiler de equipamiento vial',
+                    },
+                  },
+                ],
+              },
               openingHoursSpecification: [
                 {
                   '@type': 'OpeningHoursSpecification',
@@ -103,6 +140,7 @@ export default function Document() {
                   closes: '17:00',
                 },
               ],
+              priceRange: '$$',
               taxID: '30-69238932-4',
               sameAs: [
                 'https://www.facebook.com/tecnolight',

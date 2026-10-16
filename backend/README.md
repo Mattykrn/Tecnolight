@@ -1,4 +1,8 @@
-# Tecnolight — Backend API
+<<<<<<< HEAD
+# Tecnolight
+=======
+# Tecnolight (versión del remoto)
+>>>>>>> origin/main
 
 
 - **Node.js** + **Express** - Servidor web

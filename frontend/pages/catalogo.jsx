@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import { useState } from 'react';
-import { FileText, Mail, Phone } from 'lucide-react';
+import { getWaLink } from '../utils/whatsapp';
 
 const FONT_RALEWAY_900 = { fontFamily: "'Raleway', sans-serif", fontWeight: 900, textTransform: 'uppercase' };
 const FONT_ROBOTO = { fontFamily: "'Roboto', sans-serif" };
@@ -45,6 +45,7 @@ const PRODUCTOS = [
 
 function ProductCard({ producto }) {
   const catLabel = CATEGORIAS.find(c => c.id === producto.categoria)?.label;
+  const waLink = getWaLink(`Hola, quiero solicitar un presupuesto de: ${producto.nombre}`);
   return (
     <div className="card-corporate flex flex-col overflow-hidden group">
       <div className="relative bg-slate-800/60 aspect-[4/3] flex items-center justify-center overflow-hidden border-b border-white/5">
@@ -56,7 +57,7 @@ function ProductCard({ producto }) {
               <path d="M24 2L46 14V38L24 50L2 38V14L24 2Z" stroke="rgba(255,90,31,0.25)" strokeWidth="1.5"/>
               <path d="M24 12L36 19V33L24 40L12 33V19L24 12Z" stroke="rgba(255,90,31,0.15)" strokeWidth="1"/>
             </svg>
-            <span className="text-[9.5px] uppercase tracking-widest text-slate-400 font-semibold">Ficha Normada IRAM / DNV</span>
+            <span className="text-[10px] uppercase tracking-widest text-slate-600 font-semibold">Foto próximamente</span>
           </div>
         )}
         <div className="absolute top-3 left-3">
@@ -70,17 +71,14 @@ function ProductCard({ producto }) {
         <ul className="space-y-1 mb-5">
           {producto.specs.map((s, i) => (
             <li key={i} className="flex items-center gap-2 text-xs text-slate-400" style={FONT_ROBOTO}>
-              <span className="w-1 h-1 rounded-full bg-[#FF5A1F] shrink-0" />{s}
+              <span className="w-1 h-1 rounded-full bg-[#F26922] shrink-0" />{s}
             </li>
           ))}
         </ul>
-        <a
-          href="/#contacto"
-          className="inline-flex items-center justify-center gap-2 bg-slate-800 hover:bg-[#FF5A1F] text-slate-200 hover:text-white font-bold text-xs uppercase tracking-wider px-3.5 py-2.5 rounded-lg border border-slate-700 hover:border-[#FF5A1F] transition-all"
-          style={FONT_ROBOTO_500}
-        >
-          <FileText size={14} />
-          Solicitar Cotización
+        <a href={waLink} target="_blank" rel="noopener noreferrer"
+          className="inline-flex items-center justify-center gap-2 bg-[#F26922] hover:bg-[#e05a10] text-white font-bold text-xs px-4 py-2.5 rounded-sm transition-all hover:-translate-y-0.5 shadow-md shadow-[#F26922]/20"
+          style={FONT_ROBOTO_500}>
+          <WaIcon size={14} />Solicitar presupuesto
         </a>
       </div>
     </div>
@@ -101,7 +99,7 @@ export default function Catalogo() {
     <>
       <Head>
         <title>Catálogo de Productos | TECNO LIGHT S.R.L.</title>
-        <meta name="description" content="Catálogo de señalización vial, EPP, indumentaria, balizamiento y estructuras metálicas. Tecno Light S.R.L. Sede comercial en Santa Fe Capital y sucursal Rosario." />
+        <meta name="description" content="Catálogo de señalización vial, EPP, indumentaria, balizamiento y estructuras metálicas. Tecno Light S.R.L. Santa Fe y Rosario." />
         <meta name="robots" content="index, follow" />
       </Head>
 
@@ -114,50 +112,37 @@ export default function Catalogo() {
             <div>
               <span className="badge-ig mb-4 inline-block">Productos y Servicios</span>
               <h1 className="text-white leading-none tracking-tight" style={{ ...FONT_RALEWAY_900, fontSize: 'clamp(2.2rem, 5vw, 3.8rem)' }}>
-                CATÁLOGO <span className="text-[#FF5A1F]">TECNO LIGHT</span>
+                CATÁLOGO <span className="text-[#F26922]">TECNO LIGHT</span>
               </h1>
               <p className="text-slate-400 text-sm max-w-xl mt-4 leading-relaxed" style={FONT_ROBOTO}>
                 Señalización vial, EPP, indumentaria, balizamiento y estructuras metálicas.
-                Cotizaciones formales para obras, empresas e instituciones públicas.
+                Cotizaciones sin cargo — entrega en obra o sede.
               </p>
             </div>
-            <div className="flex flex-col sm:flex-row items-center gap-3 shrink-0">
-              <a
-                href="mailto:tecnolightsrl@arnet.com.ar?subject=Solicitud%20de%20Cotizaci%C3%B3n%20Cat%C3%A1logo"
-                className="inline-flex items-center gap-2 bg-[#FF5A1F] hover:bg-[#e54e18] text-white font-bold px-6 py-3 rounded-xl text-xs uppercase tracking-wider transition-all shadow-lg shadow-[#FF5A1F]/25"
-                style={FONT_ROBOTO_500}
-              >
-                <Mail size={16} />
-                Enviar Pliego por Correo
-              </a>
-              <a
-                href="/#contacto"
-                className="inline-flex items-center gap-2 bg-slate-800 hover:bg-slate-700 text-white font-semibold px-6 py-3 rounded-xl text-xs uppercase tracking-wider transition-all border border-slate-700"
-                style={FONT_ROBOTO_500}
-              >
-                <FileText size={16} />
-                Formulario de Cotización
-              </a>
-            </div>
+            <a href={getWaLink('Hola, quiero solicitar un presupuesto del catálogo.')} target="_blank" rel="noopener noreferrer"
+              className="inline-flex items-center gap-2.5 bg-[#25D366] hover:bg-[#1db954] text-white font-bold px-6 py-3 rounded-sm text-sm transition-all shadow-lg shrink-0"
+              style={FONT_ROBOTO_500}>
+              <WaIcon size={18} />Cotizar por WhatsApp
+            </a>
           </div>
         </div>
       </section>
 
       {/* Filtros sticky */}
-      <div className="sticky top-[58px] z-30 section-solid-dark border-b border-white/5 py-3 px-4 shadow-lg">
-        <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-10 flex flex-col sm:flex-row gap-3 items-stretch sm:items-center">
+      <div className="sticky top-16 lg:top-20 z-30 section-solid-dark border-b border-white/5 py-3 px-4 shadow-lg">
+        <div className="max-w-site mx-auto px-5 lg:px-10 flex flex-col sm:flex-row gap-3 items-start sm:items-center">
           <div className="relative w-full sm:w-60 shrink-0">
             <svg className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
             <input type="text" placeholder="Buscar producto..." value={busqueda} onChange={e => setBusqueda(e.target.value)}
-              className="w-full bg-white/5 border border-white/10 text-white placeholder-slate-500 text-sm pl-9 pr-4 py-2.5 rounded-lg focus:border-[#FF5A1F]/60 focus:outline-none transition-colors"
+              className="w-full bg-white/5 border border-white/10 text-white placeholder-slate-500 text-sm pl-9 pr-4 py-2 rounded-sm focus:border-[#F26922]/60 focus:outline-none transition-colors"
               style={FONT_ROBOTO} />
           </div>
-          <div className="flex flex-wrap gap-1.5 sm:gap-2">
+          <div className="flex flex-wrap gap-2">
             {CATEGORIAS.map(cat => (
               <button key={cat.id} onClick={() => setCategoriaActiva(cat.id)}
-                className={`text-xs font-bold px-3 py-2 rounded-lg uppercase tracking-wider transition-all ${
+                className={`text-xs font-bold px-3 py-1.5 rounded-sm uppercase tracking-wider transition-all ${
                   categoriaActiva === cat.id
-                    ? 'bg-[#FF5A1F] text-white shadow-md'
+                    ? 'bg-[#F26922] text-white shadow-md'
                     : 'bg-white/5 text-slate-400 hover:bg-white/10 hover:text-white border border-white/8'
                 }`} style={FONT_ROBOTO_500}>
                 {cat.label}
@@ -174,8 +159,9 @@ export default function Catalogo() {
             <p className="text-slate-500 text-xs uppercase tracking-widest" style={FONT_ROBOTO_500}>
               {productosFiltrados.length} producto{productosFiltrados.length !== 1 ? 's' : ''}
             </p>
-            <span className="text-slate-500 text-xs flex items-center gap-1.5" style={FONT_ROBOTO}>
-              Imágenes y fichas técnicas normadas DNV / DPV / IRAM
+            <span className="text-slate-600 text-xs flex items-center gap-1.5" style={FONT_ROBOTO}>
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+              Fotos disponibles próximamente
             </span>
           </div>
 
@@ -185,9 +171,10 @@ export default function Catalogo() {
             </div>
           ) : (
             <div className="flex flex-col items-center justify-center py-24 text-center">
+              <svg className="mb-4 text-slate-700" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
               <p className="text-slate-500 text-sm mb-3" style={FONT_ROBOTO}>Sin resultados para esa búsqueda.</p>
               <button onClick={() => { setCategoriaActiva('todas'); setBusqueda(''); }}
-                className="text-[#FF5A1F] text-xs font-bold hover:underline" style={FONT_ROBOTO_500}>
+                className="text-[#F26922] text-xs font-bold hover:underline" style={FONT_ROBOTO_500}>
                 Limpiar filtros
               </button>
             </div>
@@ -195,31 +182,16 @@ export default function Catalogo() {
         </div>
       </section>
 
-      {/* CTA Corporativo B2B */}
-      <section className="bg-slate-900 border-t border-white/10 py-14 px-4 text-center relative">
-        <div className="max-w-3xl mx-auto relative z-10">
-          <h2 className="text-white font-black text-xl sm:text-2xl mb-3" style={FONT_RALEWAY_900}>¿Requiere una cotización por pliego o producto a medida?</h2>
-          <p className="text-slate-300 text-sm mb-6 leading-relaxed" style={FONT_ROBOTO}>
-            Nuestro equipo técnico comercial atiende requerimientos de contratistas, empresas constructoras y organismos viales en Santa Fe, Rosario y todo el país.
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-            <a
-              href="mailto:tecnolightsrl@arnet.com.ar?subject=Consulta%20Cat%C3%A1logo%20Tecno%20Light"
-              className="inline-flex items-center gap-2.5 bg-[#FF5A1F] hover:bg-[#e54e18] text-white font-bold px-8 py-3.5 rounded-xl text-xs uppercase tracking-wider transition-all shadow-xl shadow-[#FF5A1F]/20"
-              style={FONT_ROBOTO_500}
-            >
-              <Mail size={16} />
-              Enviar Consulta por Correo
-            </a>
-            <a
-              href="tel:03424553582"
-              className="inline-flex items-center gap-2.5 bg-slate-800 hover:bg-slate-700 text-white font-semibold px-6 py-3.5 rounded-xl text-xs uppercase tracking-wider transition-all border border-slate-700"
-              style={FONT_ROBOTO_500}
-            >
-              <Phone size={16} />
-              Sede Santa Fe: (0342) 455-3582
-            </a>
-          </div>
+      {/* CTA */}
+      <section className="stripe-accent py-12 px-4 text-center relative">
+        <div className="max-w-2xl mx-auto relative z-10">
+          <h2 className="text-white font-black text-xl sm:text-2xl mb-3" style={FONT_RALEWAY_900}>¿No encontrás lo que necesitás?</h2>
+          <p className="text-white/80 text-sm mb-6" style={FONT_ROBOTO}>Consultanos por cualquier producto de señalización, EPP o equipamiento. Cotizamos sin cargo.</p>
+          <a href={getWaLink('Hola, quiero consultar por un producto que no encuentro en el catálogo.')} target="_blank" rel="noopener noreferrer"
+            className="inline-flex items-center gap-2.5 bg-white text-[#F26922] font-black px-8 py-3.5 rounded-sm text-sm hover:bg-slate-100 transition-all shadow-xl"
+            style={FONT_RALEWAY_900}>
+            <WaIcon size={18} />Consultar por WhatsApp
+          </a>
         </div>
       </section>
     </>
