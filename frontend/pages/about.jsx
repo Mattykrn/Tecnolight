@@ -190,7 +190,7 @@ export default function About() {
               </h2>
               <div className="space-y-5 text-white/60 text-base leading-relaxed" style={FONT_ROBOTO}>
                 <p>
-                  TECNO LIGHT S.R.L. es una empresa de reconocida trayectoria en la fabricación de señalización vial e industrial, y en la comercialización de una amplia gama de productos de protección personal y vestimenta de trabajo.
+                  TECNO LIGHT S.R.L. es una empresa de reconocida trayectoria en la fabricación de señalización vial e industrial, en la comercialización de equipos de protección personal (EPP) e indumentaria de trabajo, y en la prestación de servicios de <strong className="text-white/90">alquiler de equipamiento de seguridad vial</strong> — vallas, balizas, tambores canalizadores, conos y semáforos portátiles — para obras viales, civiles y eventos.
                 </p>
                 <p>
                   Contamos con más de 30 años de experiencia, un compromiso constante con la innovación, y un sólido liderazgo en los sectores de señalización y seguridad laboral.

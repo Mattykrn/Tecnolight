@@ -186,6 +186,7 @@ function TecnologiaSection() {
   return (
     <section id="tecnologia" className="section-ig-card border-y border-white/5 py-16 lg:py-24 px-4 relative scroll-mt-28">
       <div className="corner-brand-glow" />
+      <div id="planta" className="absolute top-0 scroll-mt-28" />
       <div id="planta-tecnologia" className="absolute top-0 scroll-mt-28" />
       <div className="max-w-7xl mx-auto">
         <div className="text-center max-w-3xl mx-auto mb-14 space-y-4">
@@ -442,22 +443,22 @@ function InfraestructuraSection() {
 
 const CATALOGO_ITEMS = [
   {
-    cat: 'Cartelería Reglamentaria, Preventiva e Informativa',
+    cat: 'Fabricación de Señalización Vial y Cartelería',
     items: [
-      'Señales reglamentarias, preventivas e informativas bajo pliegos DNV / DPV',
+      'Señales y carteles viales reglamentarios, preventivos e informativos bajo pliegos DNV / DPV',
       'Cartelería transitoria de obra y desvíos viales',
-      'Pórticos, ménsulas pescantes y estructuras de gran porte en chapa galvanizada',
+      'Carteles de obra y banderilleros mecánicos para advertencia en calzada',
+      'Vallas peatonales y pasarelas peatonales metálicas reglamentarias',
       'Nomenclatura urbana y vial para municipios y comunas',
-      'Pasarelas peatonales y señalización de infraestructura pública',
     ],
   },
   {
-    cat: 'Sustratos y Materiales de Producción',
+    cat: 'Rotulaciones, Sustratos y Materiales',
     items: [
-      'Fabricación sobre chapa de acero galvanizada y aluminio',
-      'Alto impacto, PVC espumado y acrílico para señalización interior/exterior',
-      'Plástico corrugado para cartelería transitoria de obra',
-      'Estructuras metálicas para instalación en banquina, mástil o pared',
+      'Cartelería para empresas, municipios y comercios sobre alto impacto, chapa, PVC, aluminio, acrílico y plástico corrugado',
+      'Láminas retrorreflectivas Avery Dennison microprismáticas homologadas',
+      'Rotulación gráfica digitalizada para vehículos, comercios y cartelería',
+      'Modelos exclusivos y estampado de logos que identifiquen a las empresas',
     ],
   },
 ];
@@ -472,6 +473,8 @@ const NORMATIVAS = [
 function CatalogoSection() {
   return (
     <section id="catalogo" className="py-24 lg:py-32 section-ig-card relative overflow-hidden border-b border-white/5 scroll-mt-28">
+      <div id="fabricacion" className="absolute top-0 scroll-mt-28" />
+      <div id="carteleria" className="absolute top-0 scroll-mt-28" />
       <div className="corner-brand-glow" />
       <div className="max-w-site mx-auto px-5 lg:px-10 relative z-10">
         <div className="mb-14">
@@ -565,29 +568,30 @@ const VALLAS_SERVICES = [
 const LOGISTICA_OPERATIVA = [
   'Traslado, colocación en traza y mantenimiento de dispositivos de seguridad en zona de camino.',
   'Entrega directamente en obrador o centro logístico asignado por la empresa contratista.',
-  'Señalización y balizamiento para obras urbanas, servicios públicos (ASSA) y eventos masivos.',
-  'Colocación de señalización vial normada en rutas, caminos rurales y accesos urbanos.',
-  'Demarcación horizontal con pintura termoplástica y reflectiva para sendas, cordones y estacionamientos.',
+  'Señalización y balizamiento para obras urbanas, servicios públicos y eventos masivos.',
+  'Colocación de carteles viales, lomos de burro, tachas reflectivas y luces de emergencia.',
+  'Servicio integral de provisión, recambio y mantenimiento preventivo durante la obra.',
 ];
 
 const DESPLIEGUE_CARDS = [
   {
-    title: 'Montaje de Señalización Vertical en Rutas y Autovías',
-    desc: 'Hincado de postes de acero, hormigonado de bases y fijación antivandálica de carteles preventivos y reglamentarios en banquinas y zonas de camino.',
+    title: 'Montaje de Señalización Vertical en Rutas y Accesos',
+    desc: 'Colocación en traza y fijación antivandálica de carteles preventivos, reglamentarios e informativos en banquinas y zonas de camino.',
   },
   {
-    title: 'Cartelería de Gran Porte y Señalización Aérea',
-    desc: 'Fabricación y montaje de pescantes, ménsulas y pórticos viales con láminas microprismáticas Avery Dennison de alta reflectividad.',
+    title: 'Rotulación y Cartelería para Empresas y Municipios',
+    desc: 'Fabricación y provisión sobre chapa, aluminio, alto impacto y PVC de carteles para empresas, municipios y obras públicas.',
   },
   {
-    title: 'Demarcación, Vallado y Balizamiento de Obras Urbanas',
-    desc: 'Delimitación de intervenciones en vía pública, zanjeos y obras de saneamiento/pavimento con defensas metálicas, cartelería transitoria de obra y balizamiento nocturno.',
+    title: 'Vallado, Balizamiento y Cerramiento de Obras Urbanas',
+    desc: 'Delimitación y cerramiento de intervenciones en vía pública, zanjeos y obras civiles con vallas peatonales y pesadas, balizas destellantes LED y cartelería transitoria.',
   },
 ];
 
 function ServiciosSection() {
   return (
     <section id="servicios" className="py-20 lg:py-28 section-ig-card border-b border-white/5 scroll-mt-28">
+      <div id="alquiler" className="absolute top-0 scroll-mt-28" />
       <div className="corner-brand-glow" />
       <div className="max-w-site mx-auto px-5 lg:px-10">
         <div className="mb-14 max-w-4xl">
@@ -647,7 +651,7 @@ function ServiciosSection() {
             </p>
             <a
               id="btn-cotizar-vallas"
-              href={getWaLink('Hola, quiero solicitar un presupuesto.')}
+              href={getWaLink('Hola, me comunico desde la web de Tecno Light para solicitar presupuesto de ALQUILER de vallas y dispositivos de seguridad vial.')}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2.5 bg-primary hover:bg-orange-600 text-white font-bold px-6 py-3.5 rounded-xl text-sm transition-all duration-300 hover:-translate-y-0.5 shadow-lg shadow-primary/25 whitespace-nowrap shrink-0"
@@ -774,6 +778,7 @@ const EPP_GROUPS = [
 function SeguridadSection() {
   return (
     <section id="seguridad" className="py-24 lg:py-32 section-ig-card relative overflow-hidden border-b border-white/5 scroll-mt-28">
+      <div id="epp" className="absolute top-0 scroll-mt-28" />
       <div id="seguridad-industrial" className="absolute top-0 scroll-mt-28" />
       <div className="corner-brand-glow" />
       <div className="max-w-site mx-auto px-5 lg:px-10 relative z-10">

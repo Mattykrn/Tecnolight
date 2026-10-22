@@ -19,14 +19,14 @@ const fadeUp = {
 const PROJ_CATS = ['Todo', 'Cartelería', 'Señalización', 'Demarcación', 'Seguridad'];
 
 const fallbackProjects = [
-  { title: 'Señalización Urbana - Santa Fe', cat: 'Cartelería', year: '2024', image: '/images/projects/santa-fe-1.jpg', location: 'Santa Fe' },
-  { title: 'Autopista Rosario-Córdoba', cat: 'Señalización', year: '2024', image: '/images/projects/autopista-1.jpg', location: 'Santa Fe/Córdoba' },
-  { title: 'Puerto de Santa Fe', cat: 'Cartelería', year: '2023', image: '/images/projects/puerto-1.jpg', location: 'Santa Fe' },
-  { title: 'Parque Industrial Santa Fe', cat: 'Señalización', year: '2023', image: '/images/projects/parque-1.jpg', location: 'Santa Fe' },
-  { title: 'Autopista Rosario-Córdoba Tramo II', cat: 'Cartelería', year: '2023', image: '/images/projects/autopista-2.jpg', location: 'Santa Fe' },
-  { title: 'Puerto de Santa Fe - Etapa II', cat: 'Seguridad', year: '2022', image: '/images/projects/puerto-2.jpg', location: 'Santa Fe' },
-  { title: 'Demarcación Ruta 9', cat: 'Demarcación', year: '2023', image: '/images/projects/santa-fe-3.jpg', location: 'Santa Fe' },
-  { title: 'Puerto San Martín', cat: 'Seguridad', year: '2021', image: '/images/projects/santa-fe-2.jpg', location: 'Santa Fe' },
+  { slug: 'senalizacion-urbana-santa-fe', title: 'Señalización Urbana - Santa Fe', cat: 'Cartelería', year: '2024', image: '/images/projects/santa-fe-1.jpg', location: 'Santa Fe' },
+  { slug: 'autopista-rosario-cordoba', title: 'Autopista Rosario-Córdoba', cat: 'Señalización', year: '2024', image: '/images/projects/autopista-1.jpg', location: 'Santa Fe/Córdoba' },
+  { slug: 'puerto-de-santa-fe', title: 'Puerto de Santa Fe', cat: 'Cartelería', year: '2023', image: '/images/projects/puerto-1.jpg', location: 'Santa Fe' },
+  { slug: 'parque-industrial-santa-fe', title: 'Parque Industrial Santa Fe', cat: 'Señalización', year: '2023', image: '/images/projects/parque-1.jpg', location: 'Santa Fe' },
+  { slug: 'autopista-rosario-cordoba-tramo-ii', title: 'Autopista Rosario-Córdoba Tramo II', cat: 'Cartelería', year: '2023', image: '/images/projects/autopista-2.jpg', location: 'Santa Fe' },
+  { slug: 'puerto-santa-fe-etapa-ii', title: 'Puerto de Santa Fe - Etapa II', cat: 'Seguridad', year: '2022', image: '/images/projects/puerto-2.jpg', location: 'Santa Fe' },
+  { slug: 'demarcacion-ruta-9', title: 'Demarcación Ruta 9', cat: 'Demarcación', year: '2023', image: '/images/projects/santa-fe-3.jpg', location: 'Santa Fe' },
+  { slug: 'puerto-san-martin', title: 'Puerto San Martín', cat: 'Seguridad', year: '2021', image: '/images/projects/santa-fe-2.jpg', location: 'Santa Fe' },
 ];
 
 export default function Projects() {
@@ -88,7 +88,7 @@ export default function Projects() {
           {filtered.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-white/8 rounded-[6px] overflow-hidden">
               {filtered.map((p, i) => (
-                <div key={i} className="group relative aspect-[4/3] overflow-hidden bg-card cursor-pointer">
+                <Link key={i} href={`/projects/${p.slug}`} className="group relative aspect-[4/3] overflow-hidden bg-card cursor-pointer block">
                   {p.image ? (
                     <Image src={p.image} alt={p.title || ''} fill className="object-cover transition-transform duration-700 group-hover:scale-106" sizes="33vw" />
                   ) : (
@@ -111,7 +111,7 @@ export default function Projects() {
                       <ArrowUpRight size={13} className="text-white" />
                     </div>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
           ) : (

@@ -1,0 +1,17 @@
+# Excluir backend y tests del deploy de frontend en Vercel
+backend/
+tests/
+docs/
+scripts/
+
+# Excluir imágenes crudas masivas de Instagram
+frontend/public/images/instagram/all-posts/
+
+# Dependencias y temporales
+node_modules/
+frontend/node_modules/
+.next/
+frontend/.next/
+*.log
+.env
+.env.local

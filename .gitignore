@@ -9,3 +9,5 @@ node_modules/
 .vscode/
 .mcp.json
 .markdown-collab/
+.vercel
+.env*
