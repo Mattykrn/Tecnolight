@@ -75,7 +75,7 @@ export default function Document() {
               description: 'Provisión de señalización vial, industrial y equipamiento para obras.',
               url: 'https://www.tecnolight.com.ar',
               telephone: '+54-342-455-3582',
-              email: 'ventas@tecnolight.com.ar',
+              email: 'tecnolightsrl.rosario@gmail.com',
               address: {
                 '@type': 'PostalAddress',
                 streetAddress: 'Suipacha 3243',

@@ -258,8 +258,8 @@ export default function Layout({ children }) {
                   <a href="tel:03424553582" className="hover:text-[#FF5A1F] transition-colors flex items-center gap-1.5 group">
                     <span className="font-semibold text-slate-400 group-hover:text-[#FF5A1F]/70 transition-colors">Tel/Fax:</span> (0342) 455-3582
                   </a>
-                  <a href="mailto:tecnolightsrl@arnet.com.ar" className="hover:text-[#FF5A1F] transition-colors text-[13.5px]">
-                    tecnolightsrl@arnet.com.ar
+                  <a href="mailto:tecnolightsrl.rosario@gmail.com" className="hover:text-[#FF5A1F] transition-colors text-[13.5px]">
+                    tecnolightsrl.rosario@gmail.com
                   </a>
                 </div>
               </div>
@@ -270,18 +270,18 @@ export default function Layout({ children }) {
                 </h4>
                 <div className="flex flex-col gap-2 text-slate-300 text-sm leading-relaxed">
                   <a
-                    href="https://www.google.com/maps/search/?api=1&query=Gutenberg+1122,+Rosario,+Santa+Fe"
+                    href="https://www.google.com/maps/search/?api=1&query=Fuhr+1281,+Rosario,+Santa+Fe"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="hover:text-[#FF5A1F] transition-colors block"
                   >
-                    Gutenberg 1122<br />Rosario, Santa Fe
+                    Fuhr 1281<br />Rosario, Santa Fe
                   </a>
                   <a href="tel:03414388444" className="hover:text-[#FF5A1F] transition-colors flex items-center gap-1.5 group">
                     <span className="font-semibold text-slate-400 group-hover:text-[#FF5A1F]/70 transition-colors">Tel/Fax:</span> (0341) 438-8444
                   </a>
-                  <a href="mailto:tecnolightrsr@arnet.com.ar" className="hover:text-[#FF5A1F] transition-colors text-[13.5px]">
-                    tecnolightrsr@arnet.com.ar
+                  <a href="mailto:tecnolightsrl.rosario@gmail.com" className="hover:text-[#FF5A1F] transition-colors text-[13.5px]">
+                    tecnolightsrl.rosario@gmail.com
                   </a>
                 </div>
               </div>

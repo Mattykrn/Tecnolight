@@ -17,9 +17,9 @@ const CANALES = [
     id: 'email',
     Icon: Mail,
     label: 'Email institucional',
-    value: 'tecnolight.srl@gmail.com',
+    value: 'tecnolightsrl.rosario@gmail.com',
     desc: 'Cotizaciones formales, pliegos y licitaciones.',
-    href: 'mailto:tecnolight.srl@gmail.com',
+    href: 'mailto:tecnolightsrl.rosario@gmail.com',
     highlight: true,
   },
   {
@@ -50,15 +50,15 @@ const SEDES_CARDS = [
     id: 'santa-fe',
     label: 'Sede Central Santa Fe',
     value: 'Suipacha 3243, Santa Fe Capital',
-    desc: 'Tel/Fax: (0342) 455-3582 | tecnolightsrl@arnet.com.ar',
+    desc: 'Tel/Fax: (0342) 455-3582 | tecnolightsrl.rosario@gmail.com',
     href: 'https://www.google.com/maps/search/?api=1&query=Suipacha+3243,+Santa+Fe,+Argentina',
   },
   {
     id: 'rosario',
     label: 'Sede Rosario',
-    value: 'Gutenberg 1122, Rosario, Santa Fe',
-    desc: 'Tel/Fax: (0341) 438-8444 | tecnolightrsr@arnet.com.ar',
-    href: 'https://www.google.com/maps/search/?api=1&query=Gutenberg+1122,+Rosario,+Santa+Fe',
+    value: 'Fuhr 1281, Rosario',
+    desc: 'Tel/Fax: (0341) 438-8444 | tecnolightsrl.rosario@gmail.com',
+    href: 'https://www.google.com/maps/search/?api=1&query=Fuhr+1281,+Rosario,+Santa+Fe',
   },
 ];
 
