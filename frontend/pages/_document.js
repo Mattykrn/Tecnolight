@@ -124,6 +124,20 @@ export default function Document() {
                       name: 'Alquiler de equipamiento vial',
                     },
                   },
+                  {
+                    '@type': 'Offer',
+                    itemOffered: {
+                      '@type': 'Service',
+                      name: 'Colocación de señalización y elementos viales',
+                    },
+                  },
+                  {
+                    '@type': 'Offer',
+                    itemOffered: {
+                      '@type': 'Service',
+                      name: 'Entrega de pedidos en obra',
+                    },
+                  },
                 ],
               },
               openingHoursSpecification: [

@@ -3,7 +3,7 @@ import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { ArrowRight, Award, Shield, MapPin, ArrowUpRight, Building, Route, Anchor, MessageCircle } from 'lucide-react';
+import { ArrowRight, Award, Shield, MapPin, ArrowUpRight, MessageCircle, Truck, Wrench, PackageCheck } from 'lucide-react';
 
 const MONO = { fontFamily: "'Roboto', sans-serif" };
 const HEADING = { fontFamily: "'Raleway', sans-serif", fontWeight: 900, textTransform: 'uppercase' };
@@ -17,6 +17,24 @@ const fadeUp = {
 };
 
 const PROJ_CATS = ['Todo', 'Cartelería', 'Señalización', 'Demarcación', 'Seguridad'];
+
+const SERVICIOS = [
+  {
+    Icon: Truck,
+    title: 'Alquiler, Traslado y Mantenimiento',
+    description: 'Equipos de señalización vial: balizas, vallas, semáforos y carteles viales.'
+  },
+  {
+    Icon: Wrench,
+    title: 'Colocación en Obra',
+    description: 'Colocación de carteles, lomos de burro, tachas reflectivas y luces de emergencia.'
+  },
+  {
+    Icon: PackageCheck,
+    title: 'Entrega en Obra',
+    description: 'Entrega de pedidos en obra o en cualquier ubicación asignada por la empresa contratista.'
+  }
+];
 
 const fallbackProjects = [
   { slug: 'senalizacion-urbana-santa-fe', title: 'Señalización Urbana - Santa Fe', cat: 'Cartelería', year: '2024', image: '/images/projects/santa-fe-1.jpg', location: 'Santa Fe' },
@@ -37,8 +55,8 @@ export default function Projects() {
   return (
     <div>
       <Head>
-        <title>Proyectos Realizados | Tecnolight SRL</title>
-        <meta name="description" content="Nuestra trayectoria reflejada en obras de señalización vial y cartelería para municipios y constructoras de Argentina." />
+        <title>Proyectos y Servicios | Tecno Light S.R.L.</title>
+        <meta name="description" content="Obras de señalización vial y cartelería para municipios y constructoras, además de alquiler, colocación y entrega de equipamiento vial en obra." />
       </Head>
 
       {/* Hero */}
@@ -59,7 +77,7 @@ export default function Projects() {
               PROYECTOS<br /><span className="text-primary">REALIZADOS</span>
             </h1>
             <p className="text-lg text-white/60 leading-relaxed max-w-[560px] mt-4" style={BODY}>
-              Trabajamos junto a organismos gubernamentales y empresas privadas para equipar rutas, avenidas y desarrollos con señalización duradera y conforme a las regulaciones nacionales.
+              Trabajamos junto a organismos gubernamentales y empresas privadas para equipar rutas, avenidas y desarrollos con señalización duradera. También ofrecemos alquiler, colocación y entrega de equipamiento vial en obra.
             </p>
             <div className="flex flex-wrap items-center gap-4 text-sm text-white/40 mt-6" style={BODY}>
               <span className="flex items-center gap-1.5"><Shield size={14} className="text-primary" /> +30 años de experiencia</span>
@@ -90,7 +108,7 @@ export default function Projects() {
               {filtered.map((p, i) => (
                 <Link key={i} href={`/projects/${p.slug}`} className="group relative aspect-[4/3] overflow-hidden bg-card cursor-pointer block">
                   {p.image ? (
-                    <Image src={p.image} alt={p.title || ''} fill className="object-cover transition-transform duration-700 group-hover:scale-106" sizes="33vw" />
+                    <Image src={p.image} alt={p.title || ''} fill className="object-cover transition-transform duration-700 group-hover:scale-105" sizes="33vw" />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center">
                       <Shield size={48} className="text-white/5" />
@@ -119,6 +137,38 @@ export default function Projects() {
               No hay proyectos en esta categoría aún.
             </div>
           )}
+        </div>
+      </section>
+
+      {/* Servicios y Alquiler */}
+      <section id="servicios" className="py-20 lg:py-24 relative bg-background border-t border-white/5">
+        <div className="max-w-site mx-auto px-5 lg:px-10 relative z-[1]">
+          <div className="relative overflow-hidden rounded-[8px] border border-primary/30 bg-gradient-to-br from-card via-background to-primary/10 p-8 lg:p-12">
+            <div className="pointer-events-none absolute -top-24 -right-24 w-72 h-72 rounded-full bg-primary/10 blur-3xl" aria-hidden="true" />
+            <div className="relative">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="h-px w-8 bg-primary flex-shrink-0" />
+                <span className="text-primary text-[10px] tracking-[0.32em] uppercase" style={MONO}>Servicios y Alquiler</span>
+              </div>
+              <h2 className="text-foreground mb-4" style={{ ...HEADING, fontSize: 'clamp(1.8rem, 3.5vw, 2.75rem)' }}>
+                Equipamiento y Servicios en Obra
+              </h2>
+              <p className="text-muted-foreground leading-relaxed max-w-[680px]" style={BODY}>
+                Alquiler, traslado, mantenimiento y colocación de equipamiento de señalización vial, con entrega en obra o en la ubicación asignada por la empresa contratista.
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-10">
+                {SERVICIOS.map(({ Icon, title, description }) => (
+                  <div key={title} className="bg-background/60 border border-primary/20 rounded-[6px] p-6 hover:border-primary/60 transition-colors">
+                    <div className="w-9 h-9 bg-primary/10 border border-primary/20 rounded-[4px] flex items-center justify-center mb-4">
+                      <Icon size={17} className="text-primary" />
+                    </div>
+                    <h3 className="text-foreground font-bold text-lg mb-2" style={HEADING}>{title}</h3>
+                    <p className="text-muted-foreground text-sm leading-relaxed" style={BODY}>{description}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
