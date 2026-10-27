@@ -31,7 +31,45 @@ const IMPRESION = {
   kicker: 'Tecnología',
   title: 'Impresión Digital Reflectiva',
   description:
-    'Tecnología Omnicubo microprismática de alta calidad con impresión digital reflectiva.'
+    'Trabajamos con el sistema digital TrafficJet Xpress y láminas reflectivas de alto rendimiento. A continuación, las líneas y terminaciones disponibles según el catálogo oficial de Avery Dennison.',
+  cards: [
+    {
+      id: 'trafficjet',
+      title: 'Sistema TrafficJet Xpress',
+      description:
+        'Impresión digital sobre láminas reflectivas de alto rendimiento, con control colorimétrico y fijación uniforme.'
+    },
+    {
+      id: 'maximo-rendimiento',
+      title: 'Prismática de Máximo Rendimiento',
+      description:
+        'Línea OmniCube™ (T-11500 Cubo Completo) para aplicaciones de máxima visibilidad y durabilidad exterior.'
+    },
+    {
+      id: 'alta-intensidad',
+      title: 'Alta Intensidad y Grado Ingeniería',
+      description:
+        'Láminas prismáticas de alta intensidad y grado ingeniería para señalización vial e industrial.'
+    },
+    {
+      id: 'zona-obras',
+      title: 'Soluciones para Zona de Obras',
+      description:
+        'Prismáticos flexibles y microesferas de vidrio para señalización transitoria, desvíos y balizamiento.'
+    },
+    {
+      id: 'laminados',
+      title: 'Laminados Transparentes de Protección',
+      description:
+        'Protección transparente de la impresión para preservar nitidez y desempeño en exterior.'
+    },
+    {
+      id: 'soportes',
+      title: 'Adaptabilidad sobre Múltiples Soportes',
+      description:
+        'Aplicación sobre sustratos rígidos y flexibles normados, según la aplicación y el requerimiento técnico.'
+    }
+  ]
 };
 
 const PROCESO = {
@@ -254,9 +292,9 @@ const CONTACTO = [
     label: 'Planta Fabril e Industrial',
     city: 'Los Polígonos',
     address: 'Cnel. Loza 7198, P.I. Los Polígonos, Santa Fe',
-    phone: '(0342) 455-3582',
-    phoneHref: 'tel:03424553582',
-    email: 'tecnolightsrl@tecnolightsrl.com'
+    phone: null,
+    phoneHref: null,
+    email: null
   }
 ];
 
@@ -348,12 +386,24 @@ export default function Index() {
             <SectionTitle
               kicker={IMPRESION.kicker}
               title={IMPRESION.title}
+              description={IMPRESION.description}
             />
-            <div className="card-corporate p-8">
-              <div className="w-8 h-[3px] bg-primary rounded-full mb-4" />
-              <p className="text-slate-200 text-base md:text-lg leading-relaxed">
-                {IMPRESION.description}
-              </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {IMPRESION.cards.map((card, index) => (
+                <article
+                  key={card.id}
+                  className="border border-white/10 bg-white/[0.02] rounded-[4px] p-6"
+                >
+                  <div className="flex items-center gap-3 mb-4">
+                    <span className="text-[10px] font-bold tracking-[0.2em] text-primary">
+                      {String(index + 1).padStart(2, '0')}
+                    </span>
+                    <div className="h-px flex-1 bg-white/10" />
+                  </div>
+                  <h3 className="text-base font-semibold text-slate-100 mb-2">{card.title}</h3>
+                  <p className="text-sm text-slate-400 leading-relaxed">{card.description}</p>
+                </article>
+              ))}
             </div>
           </div>
         </section>
@@ -567,14 +617,18 @@ export default function Index() {
                       <MapPin size={15} className="text-primary shrink-0 mt-0.5" />
                       {sede.address}
                     </p>
-                    <a href={sede.phoneHref} className="flex items-center gap-2.5 hover:text-primary transition-colors">
-                      <Clock size={15} className="text-primary shrink-0" />
-                      {sede.phone}
-                    </a>
-                    <a href={`mailto:${sede.email}`} className="flex items-center gap-2.5 hover:text-primary transition-colors break-all">
-                      <Mail size={15} className="text-primary shrink-0" />
-                      {sede.email}
-                    </a>
+                    {sede.phone && (
+                      <a href={sede.phoneHref} className="flex items-center gap-2.5 hover:text-primary transition-colors">
+                        <Clock size={15} className="text-primary shrink-0" />
+                        {sede.phone}
+                      </a>
+                    )}
+                    {sede.email && (
+                      <a href={`mailto:${sede.email}`} className="flex items-center gap-2.5 hover:text-primary transition-colors break-all">
+                        <Mail size={15} className="text-primary shrink-0" />
+                        {sede.email}
+                      </a>
+                    )}
                   </div>
                 </div>
               ))}

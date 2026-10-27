@@ -166,7 +166,7 @@ export default function Contact() {
               <h3 className="font-semibold text-white mb-1 text-lg flex items-center gap-2" style={HEADING}>
                 <MapPin size={18} className="text-amber-500" /> Planta Industrial / Depósito — P.I. Los Polígonos
               </h3>
-              <p className="text-sm text-slate-400 mb-3" style={BODY}>Cnel. Loza 7198, P.I. Los Polígonos, Santa Fe | Tel/Fax: (0342) 4553582</p>
+              <p className="text-sm text-slate-400 mb-3" style={BODY}>Cnel. Loza 7198, P.I. Los Polígonos, Santa Fe</p>
               <div className="w-full h-[250px] rounded-[6px] overflow-hidden border border-slate-800">
                 <iframe src="https://www.google.com/maps?q=Cnel+Loza+7198+Santa+Fe+Argentina&output=embed" className="w-full h-full" allowFullScreen="" loading="lazy" title="Planta Industrial Parque Industrial Los Polígonos" />
               </div>

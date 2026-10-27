@@ -232,7 +232,7 @@ export default function Layout({ children }) {
                     <span className="font-semibold text-slate-400 group-hover:text-primary/70 transition-colors">Tel/Fax:</span> (0342) 455-3582
                   </a>
                   <a href="mailto:tecnolightsrl@tecnolightsrl.com" className="hover:text-primary transition-colors text-[13.5px]">tecnolightsrl@tecnolightsrl.com</a>
-                  <a href="https://www.google.com/maps/search/?api=1&query=Cnel.+Loza+7198,+Santa+Fe,+Argentina" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors block">Planta: Cnel. Loza 7198<br />P.I. Los Polígonos</a>
+                  <a href="https://www.google.com/maps/search/?api=1&query=Cnel.+Loza+7198,+Santa+Fe,+Argentina" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors block">Planta (solo fabricación): Cnel. Loza 7198<br />P.I. Los Polígonos</a>
                 </div>
               </div>
               <div className="flex flex-col space-y-3">
