@@ -62,7 +62,7 @@ export default function InteractiveRoadHero() {
             className="text-slate-300 text-base md:text-lg max-w-2xl mx-auto font-medium leading-relaxed"
             variants={itemVariants}
           >
-            Fabricación y provisión de señalización vial, EPP e indumentaria de trabajo con producción propia.
+            Más de 30 años de trayectoria y experiencia en seguridad vial e industrial.
           </motion.p>
 
           <motion.div className="flex flex-col items-center gap-5" variants={itemVariants}>

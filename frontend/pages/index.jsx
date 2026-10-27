@@ -28,8 +28,8 @@ const QUIENES = [
 const QUIENES_TAGS = ['Santa Fe', 'Rosario', 'Los Polígonos'];
 
 const IMPRESION = {
-  kicker: 'Tecnología',
-  title: 'Impresión Digital Reflectiva',
+  kicker: 'Tecnología de Impresión',
+  title: 'Soluciones Reflectivas para Señalización Vial',
   description:
     'Trabajamos con el sistema digital TrafficJet Xpress y láminas reflectivas de alto rendimiento. A continuación, las líneas y terminaciones disponibles según el catálogo oficial de Avery Dennison.',
   cards: [
@@ -74,7 +74,7 @@ const IMPRESION = {
 
 const PROCESO = {
   kicker: 'Capacidad Operativa e Infraestructura',
-  title: 'Proceso Industrial de Fabricación',
+  title: 'Proceso Industrial de Fabricación hasta el Producto Final',
   description:
     'Fabricación integral desde diseño hasta producto final. Proceso continuo en planta propia con equipamiento especializado y control de calidad en cada etapa.',
   stages: [
@@ -97,7 +97,7 @@ const SENALIZACION = {
   kicker: 'Señalización Vial y Fabricación',
   title: 'Señalización Vial y Cartelería',
   description:
-    'Producción propia de señalización vial reglamentaria, preventiva, informativa y transitoria. Fabricamos sobre múltiples sustratos con láminas microprismáticas Avery Dennison. Proveemos a constructoras, municipios, organismos viales y distribuidores del sector.',
+    'Producción propia de señalización vial reglamentaria, preventiva, informativa y transitoria. Fabricamos sobre chapa de diferentes espesores, PVC, alto impacto y plástico compuesto, con láminas microprismáticas Avery Dennison. Proveemos a constructoras, municipios, organismos viales y distribuidores del sector.',
   groups: [
     {
       id: 'carteleria',
@@ -140,6 +140,7 @@ const SERVICIOS = {
   detalles: [
     'Vallas de seguridad y cerramiento',
     'Balizamiento y señalización luminosa',
+    'Conos y accesorios de balizamiento',
     'Dispositivos de delineación',
     'Logística de servicio en traza'
   ]
@@ -157,7 +158,7 @@ const INSTALACION = {
     {
       id: 'granporte',
       title: 'Cartelería de Gran Porte y Señalización Aérea',
-      description: 'Fabricación y montaje de cartelería de gran porte con láminas microprismáticas Avery Dennison — Tecnología Omnicubo.'
+      description: 'Fabricación y montaje de cartelería de gran porte con láminas microprismáticas Avery Dennison — Tecnología OmniCube™.'
     },
     {
       id: 'urbana',
@@ -177,7 +178,8 @@ const EPP = {
       id: 'indumentaria',
       title: 'Indumentaria de Trabajo',
       items: [
-        'Ropa de trabajo (mameluco, pantalón, camisa y campera)',
+        'Pantalones Grafa y Cargo; bombachas y jeans',
+        'Camisas Grafa y Cargo (Aire Libre)',
         'Indumentaria térmica para bajas temperaturas',
         'Trajes impermeables para lluvia y waders de pescador',
         'Botas pescadoras y calzado de goma para trabajo en agua'
@@ -205,7 +207,7 @@ const EPP = {
       id: 'auditiva',
       title: 'Protección Auditiva',
       items: [
-        'Protectores endoaurales (tapones reutilizables y descartables)',
+        'Protectores de copa y tapón (Libus, Fravida)',
         'Protectores de copa con banda de cabeza y de nuca',
         'Protectores adosables a casco'
       ]
@@ -214,10 +216,11 @@ const EPP = {
       id: 'ocular',
       title: 'Protección Ocular y Facial',
       items: [
+        'Anteojos y antiparras (Libus, UCU)',
         'Anteojos de seguridad con lente policarbonato',
         'Antiparras ventiladas e indiferentes para uso industrial',
         'Caretas para soldar con visor de electro-oscurecimiento',
-        'Pantallas faciales para proyecciones y productos químicos'
+        'Pantallas faciales para amoladora, proyecciones y productos químicos'
       ]
     },
     {
@@ -225,25 +228,18 @@ const EPP = {
       title: 'Guantes de Seguridad',
       items: [
         'Guantes de vaqueta, descarne y nitrilo',
-        'Guantes anticorte para manipulación de materiales',
-        'Guantes de látex y jersey para tareas generales'
-      ]
-    },
-    {
-      id: 'cascos',
-      title: 'Cascos de Seguridad',
-      items: [
-        'Cascos clase A, B y E (dieléctrico)',
-        'Cascos con barbijo y accesorios de sujeción',
-        'Protección para trabajos en obra e industria'
+        'Guantes Congo y Wintex para tareas generales',
+        'Guantes de látex y jersey',
+        'Guantes anticorte para manipulación de materiales'
       ]
     },
     {
       id: 'anticaidas',
       title: 'Protección Anticaídas y Sujeción',
       items: [
-        'Arneses de seguridad full body con punto de anclaje dorsal/esternal',
+        'Arneses de seguridad full body con punto de anclaje dorsal/esternal (SKY)',
         'Colas de amarre con absorbedor de energía',
+        'Sujeción de carga (SKY)',
         'Fajas lumbares de soporte para esfuerzos'
       ]
     },
@@ -251,7 +247,7 @@ const EPP = {
       id: 'cintas',
       title: 'Cintas y Mallas de Advertencia',
       items: [
-        'Cintas de peligro, subterráneas, demarcatorias y antideslizantes',
+        'Cintas de peligro, demarcatorias y antideslizantes',
         'Mallas subterráneas y perimetrales',
         'Demarcación de áreas de trabajo y circulación'
       ]

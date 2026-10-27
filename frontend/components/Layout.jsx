@@ -105,8 +105,8 @@ export default function Layout({ children }) {
       >
         <div className="max-w-site mx-auto px-5 lg:px-10 flex items-center justify-between h-16 lg:h-[72px]">
           <Link href="/" className="flex items-center transition-transform hover:scale-[1.02]">
-            <span className="text-lg lg:text-xl font-extrabold tracking-wider text-white leading-none">
-              TECNO <span className="text-primary">LIGHT</span> <span className="text-white/50 text-sm font-bold">SRL</span>
+            <span className="text-2xl lg:text-3xl font-extrabold tracking-wider text-white leading-none">
+              TECNO <span className="text-primary">LIGHT</span> <span className="text-white/50 text-base lg:text-lg font-bold">SRL</span>
             </span>
           </Link>
 
