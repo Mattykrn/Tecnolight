@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Mail } from 'lucide-react';
 
 import { getWaLink } from '../utils/whatsapp';
+import { getGmailLink } from '../utils/links';
 
 const WA_LINK = getWaLink();
 
@@ -16,21 +17,24 @@ const WaIcon = ({ size = 16 }) => (
 
 const NAV = [
   { label: 'Inicio', href: '/#inicio' },
-  { label: 'Catálogo', href: '/#catalogo' },
+  { label: 'Soluciones Reflectivas', href: '/#avery-dennison' },
+  { label: 'Señalización Vial', href: '/#senalizacion' },
+  { label: 'Proceso en Planta', href: '/#infraestructura' },
   { label: 'Servicios y Alquiler', href: '/#servicios' },
-  { label: 'Nosotros', href: '/#nosotros' },
-  { label: 'Contacto', href: '/#contacto' },
+  { label: 'Seguridad y EPP', href: '/#catalogo' },
+  { label: 'Quiénes Somos', href: '/#nosotros' },
+  { label: 'Sedes y Contacto', href: '/#contacto' },
 ];
 
 const FOOTER_NAV = [
   { label: 'Inicio', href: '/#inicio' },
-  { label: 'Catálogo de Productos', href: '/#catalogo' },
-  { label: 'Señalización Vial', href: '/#senalizacion' },
-  { label: 'Servicios y Alquiler', href: '/#servicios' },
-  { label: 'Instalación y Montaje', href: '/#instalacion' },
-  { label: 'Planta y Tecnología', href: '/#infraestructura' },
+  { label: 'Soluciones Reflectivas Avery Dennison', href: '/#avery-dennison' },
+  { label: 'Señalización Vial y Cartelería', href: '/#senalizacion' },
+  { label: 'Proceso Industrial en Planta', href: '/#infraestructura' },
+  { label: 'Servicios y Alquiler Vial', href: '/#servicios' },
+  { label: 'Seguridad Industrial y EPP', href: '/#catalogo' },
   { label: 'Quiénes Somos', href: '/#nosotros' },
-  { label: 'Contacto y Sedes', href: '/#contacto' },
+  { label: 'Sedes y Canales Oficiales', href: '/#contacto' },
 ];
 
 export default function Layout({ children }) {
@@ -111,13 +115,13 @@ export default function Layout({ children }) {
           </Link>
 
           <div className="flex items-center gap-3 md:gap-5">
-            <nav className="hidden md:flex items-center gap-1 lg:gap-2" aria-label="Navegación principal">
-              {NAV.slice(0, 4).map((item) => (
+            <nav className="hidden xl:flex items-center gap-1" aria-label="Navegación principal">
+              {NAV.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
                   onClick={(e) => handleNavClick(e, item.href)}
-                  className="px-3 py-1.5 rounded-md text-xs lg:text-sm font-medium text-slate-300 hover:text-white hover:bg-white/5 transition-colors whitespace-nowrap"
+                  className="px-3 py-1.5 rounded-md text-sm font-medium text-slate-300 hover:text-white hover:bg-white/5 transition-colors whitespace-nowrap"
                 >
                   {item.label}
                 </Link>
@@ -126,7 +130,7 @@ export default function Layout({ children }) {
 
             <button
               onClick={() => setMenuOpen(true)}
-              className="flex items-center gap-2 text-white/80 hover:text-white px-3 py-2 rounded-lg border border-white/10 hover:border-primary/40 hover:bg-white/5 transition-all"
+              className="ml-auto flex xl:hidden items-center gap-2 text-white/80 hover:text-white px-3 py-2 rounded-lg border border-white/10 hover:border-primary/40 hover:bg-white/5 transition-all"
               aria-label="Abrir menú de navegación"
               aria-expanded={menuOpen}
             >
@@ -211,27 +215,54 @@ export default function Layout({ children }) {
                 />
               </div>
               <p className="text-white/70 text-sm leading-relaxed max-w-xs mb-8" style={{ fontFamily: "'Roboto', sans-serif" }}>
-                Señalización &amp; Protección Personal. Lunes a Viernes de 8:00 a 17:00 hs. (Sábados Cerrado).
+                Señalización &amp; Protección Personal e Industrial. Lunes a Viernes de 8:00 a 17:00 hs. (Sábados Cerrado).
               </p>
-              <div className="flex flex-col items-start gap-2.5 mb-8">
-                <span className="text-[11px] uppercase tracking-wider text-slate-400 font-semibold">Tecnología de impresión:</span>
+              <div className="flex flex-col items-start gap-2.5 mb-6">
+                <span className="text-[11px] uppercase tracking-wider text-slate-400 font-semibold">Tecnología de impresión y laminado:</span>
                 <div className="bg-white/95 rounded-lg px-3.5 py-2 flex items-center gap-3.5 shadow-md border border-white/20">
+                  <span className="text-slate-900 font-black text-[11px] tracking-wide">MIMAKI UCJV300-160</span>
+                  <div className="h-5 w-px bg-slate-300" />
                   <img src="/images/avery-dennison-official.svg" alt="Avery Dennison" className="h-6 w-auto object-contain" />
-                  <div className="h-5 w-px bg-slate-200" />
-                  <img src="/images/trafficjet-xpress-official.svg" alt="TrafficJet™ Xpress" className="h-5 w-auto object-contain" />
+                </div>
+              </div>
+
+              <div className="flex flex-col items-start gap-2.5 mb-8">
+                <span className="text-[11px] uppercase tracking-wider text-slate-400 font-semibold">Canales Oficiales:</span>
+                <div className="flex flex-col gap-2">
+                  <a
+                    href="https://www.instagram.com/tecnolight.srl/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-gradient-to-r from-[#E1306C]/15 via-[#FD1D1D]/15 to-[#F56040]/15 border border-[#E1306C]/30 text-white text-xs font-semibold hover:border-[#E1306C] transition-all group"
+                  >
+                    <svg className="w-4 h-4 text-[#FD1D1D] group-hover:scale-110 transition-transform" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                    </svg>
+                    <span>Instagram: @tecnolight.srl</span>
+                  </a>
+                  <a
+                    href="mailto:tecnolightsrl@tecnolightsrl.com?subject=Solicitud%20Formal%20y%20Pliegos%20-%20Tecno%20Light%20S.R.L."
+                    className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-white text-xs font-semibold hover:border-primary/50 transition-all"
+                  >
+                    <Mail size={14} className="text-primary" />
+                    <span>tecnolightsrl@tecnolightsrl.com</span>
+                  </a>
                 </div>
               </div>
             </div>
 
             <div className="lg:col-span-5 grid sm:grid-cols-2 gap-8 lg:gap-4 xl:gap-8">
               <div className="flex flex-col space-y-3">
-                <h4 className="text-white font-bold text-sm tracking-wide uppercase border-b border-white/10 pb-2 inline-block max-w-max">Sede Comercial Santa Fe</h4>
+                <div>
+                  <h4 className="text-white font-bold text-sm tracking-wide uppercase border-b border-white/10 pb-2 inline-block max-w-max">Sede Comercial Santa Fe</h4>
+                  <p className="text-[11px] font-medium text-primary mt-1">Asesoramiento técnico y comercial</p>
+                </div>
                 <div className="flex flex-col gap-2 text-slate-300 text-sm leading-relaxed">
                   <a href="https://www.google.com/maps/search/?api=1&query=Suipacha+3248,+Santa+Fe,+Argentina" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors block">Suipacha 3248<br />Santa Fe Capital</a>
                   <a href="tel:03424553582" className="hover:text-primary transition-colors flex items-center gap-1.5 group">
-                    <span className="font-semibold text-slate-400 group-hover:text-primary/70 transition-colors">Tel/Fax:</span> (0342) 455-3582
+                    <span className="font-semibold text-slate-400 group-hover:text-primary/70 transition-colors">Tel:</span> (0342) 455-3582
                   </a>
-                  <a href="mailto:tecnolightsrl@tecnolightsrl.com" className="hover:text-primary transition-colors text-[13.5px]">tecnolightsrl@tecnolightsrl.com</a>
+                  <a href={getGmailLink('tecnolightsrl@tecnolightsrl.com')} target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors text-[13.5px]">tecnolightsrl@tecnolightsrl.com</a>
                   <a href="https://www.google.com/maps/search/?api=1&query=Cnel.+Loza+7198,+Santa+Fe,+Argentina" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors block">Planta (solo fabricación): Cnel. Loza 7198<br />P.I. Los Polígonos</a>
                 </div>
               </div>
@@ -242,14 +273,14 @@ export default function Layout({ children }) {
                   <a href="tel:3416369053" className="hover:text-primary transition-colors flex items-center gap-1.5 group">
                     <span className="font-semibold text-slate-400 group-hover:text-primary/70 transition-colors">Tel:</span> 341 636 9053
                   </a>
-                  <a href="mailto:rosario@tecnolightsrl.com" className="hover:text-primary transition-colors text-[13.5px]">rosario@tecnolightsrl.com</a>
+                  <a href={getGmailLink('rosario@tecnolightsrl.com')} target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors text-[13.5px]">rosario@tecnolightsrl.com</a>
                 </div>
               </div>
             </div>
 
-            <div className="lg:col-span-3 flex flex-col lg:items-end">
-              <h4 className="text-white font-bold text-[13px] tracking-wide uppercase mb-4 lg:text-right">Navegación Institucional</h4>
-              <nav className="flex flex-col gap-2.5 lg:items-end">
+            <div className="lg:col-span-3 flex flex-col space-y-3">
+              <h4 className="text-white font-bold text-sm tracking-wide uppercase border-b border-white/10 pb-2 inline-block max-w-max">Navegación Institucional</h4>
+              <nav className="grid grid-cols-2 lg:grid-cols-1 gap-x-6 gap-y-2.5">
                 {FOOTER_NAV.map((item) => (
                   <Link key={item.label} href={item.href} className="text-slate-400 text-sm hover:text-primary transition-colors font-medium">
                     {item.label}

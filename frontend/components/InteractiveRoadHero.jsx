@@ -50,6 +50,10 @@ export default function InteractiveRoadHero() {
           initial="hidden"
           animate="visible"
         >
+          <motion.div variants={itemVariants} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs font-semibold uppercase tracking-widest">
+            +30 Años de Trayectoria
+          </motion.div>
+
           <motion.div className="flex justify-center w-full" variants={itemVariants}>
             <img
               src="/images/logo-tecnolight-white.png"
@@ -59,15 +63,15 @@ export default function InteractiveRoadHero() {
           </motion.div>
 
           <motion.p
-            className="text-slate-300 text-base md:text-lg max-w-2xl mx-auto font-medium leading-relaxed"
+            className="text-slate-200 text-lg md:text-2xl max-w-3xl mx-auto font-semibold leading-relaxed tracking-tight"
             variants={itemVariants}
           >
-            Más de 30 años de trayectoria y experiencia en seguridad vial e industrial.
+            Ofrecemos asesoramiento y atención personalizada
           </motion.p>
 
           <motion.div className="flex flex-col items-center gap-5" variants={itemVariants}>
             <p className="text-[10px] md:text-[11px] font-bold uppercase tracking-[0.3em] text-slate-400">
-              Distribuidores y convertidores certificados
+              Convertidores y Distribuidores Oficiales Certificados
             </p>
             <div className="flex flex-wrap items-center justify-center gap-3">
               <div className="inline-flex items-center rounded-lg bg-white px-5 py-3 shadow-xl shadow-black/30">

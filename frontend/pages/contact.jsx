@@ -14,6 +14,7 @@ const fadeUp = {
 };
 
 import { getWaLink } from '../utils/whatsapp';
+import { getGmailLink, getMapsDirectionsLink } from '../utils/links';
 
 const WaIcon = ({ size = 16 }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
@@ -76,16 +77,20 @@ export default function Contact() {
               <h2 className="text-white leading-none tracking-tight mb-7" style={{ ...HEADING, fontSize: 'clamp(2.4rem, 5vw, 4rem)' }}>TAMBIÉN<br />ENCONTRANOS</h2>
               <div className="space-y-4 mb-10">
                 {[
-                  { Icon: Mail, label: 'Correo', v: 'tecnolightsrl@tecnolightsrl.com' },
+                  { Icon: Mail, label: 'Correo', v: 'tecnolightsrl@tecnolightsrl.com', href: getGmailLink('tecnolightsrl@tecnolightsrl.com') },
                   { Icon: Clock, label: 'Horarios', v: 'Lun a Vie 8:00 - 17:00 hs' },
-                ].map(({ Icon, label, v }) => (
+                ].map(({ Icon, label, v, href }) => (
                   <div key={label} className="flex items-center gap-4">
                     <div className="w-9 h-9 bg-amber-500/10 border border-amber-500/15 rounded-[4px] flex items-center justify-center flex-shrink-0">
                       <Icon size={14} className="text-amber-500" />
                     </div>
                     <div>
                       <div className="text-slate-400 text-[10px] uppercase tracking-widest mb-0.5" style={MONO}>{label}</div>
-                      <div className="text-white text-sm font-medium" style={BODY}>{v}</div>
+                      {href ? (
+                        <a href={href} target="_blank" rel="noopener noreferrer" className="text-white text-sm font-medium hover:text-amber-500 transition-colors" style={BODY}>{v}</a>
+                      ) : (
+                        <div className="text-white text-sm font-medium" style={BODY}>{v}</div>
+                      )}
                     </div>
                   </div>
                 ))}
@@ -148,19 +153,28 @@ export default function Contact() {
               <h3 className="font-semibold text-white mb-1 text-lg flex items-center gap-2" style={HEADING}>
                 <MapPin size={18} className="text-amber-500" /> Sede Comercial — Santa Fe Capital
               </h3>
-              <p className="text-sm text-slate-400 mb-3" style={BODY}>Suipacha 3248 | Tel/Fax: (0342) 4553582</p>
+              <p className="text-sm text-slate-400 mb-3" style={BODY}>Suipacha 3248 | Tel: (0342) 4553582</p>
               <div className="w-full h-[250px] rounded-[6px] overflow-hidden border border-slate-800">
                 <iframe src="https://www.google.com/maps?q=Suipacha+3248+Santa+Fe+Argentina&output=embed" className="w-full h-full" allowFullScreen="" loading="lazy" title="Sede Comercial Santa Fe Capital" />
               </div>
+              <a href={getMapsDirectionsLink('Suipacha 3248, Santa Fe, Argentina')} target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex items-center gap-1.5 text-xs font-semibold text-amber-500 hover:text-amber-400 transition-colors">
+                Cómo llegar <ArrowUpRight size={13} />
+              </a>
             </div>
             <div>
               <h3 className="font-semibold text-white mb-1 text-lg flex items-center gap-2" style={HEADING}>
                 <MapPin size={18} className="text-amber-500" /> Sede Operativa — Rosario
               </h3>
-              <p className="text-sm text-slate-400 mb-3" style={BODY}>Fuhr 1282 | Tel/Fax: (0341) 4388444 | Cel: 341 636 9053 | Correo: rosario@tecnolightsrl.com</p>
+              <p className="text-sm text-slate-400 mb-3" style={BODY}>
+                Fuhr 1282 | Tel: (0341) 4388444 | Cel: 341 636 9053 | Correo:{' '}
+                <a href={getGmailLink('rosario@tecnolightsrl.com')} target="_blank" rel="noopener noreferrer" className="text-amber-500 hover:text-amber-400 transition-colors">rosario@tecnolightsrl.com</a>
+              </p>
               <div className="w-full h-[250px] rounded-[6px] overflow-hidden border border-slate-800">
                 <iframe src="https://www.google.com/maps?q=Fuhr+1282+Rosario+Argentina&output=embed" className="w-full h-full" allowFullScreen="" loading="lazy" title="Sede Operativa Rosario" />
               </div>
+              <a href={getMapsDirectionsLink('Fuhr 1282, Rosario, Santa Fe, Argentina')} target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex items-center gap-1.5 text-xs font-semibold text-amber-500 hover:text-amber-400 transition-colors">
+                Cómo llegar <ArrowUpRight size={13} />
+              </a>
             </div>
             <div>
               <h3 className="font-semibold text-white mb-1 text-lg flex items-center gap-2" style={HEADING}>
@@ -170,6 +184,9 @@ export default function Contact() {
               <div className="w-full h-[250px] rounded-[6px] overflow-hidden border border-slate-800">
                 <iframe src="https://www.google.com/maps?q=Cnel+Loza+7198+Santa+Fe+Argentina&output=embed" className="w-full h-full" allowFullScreen="" loading="lazy" title="Planta Industrial Parque Industrial Los Polígonos" />
               </div>
+              <a href={getMapsDirectionsLink('Cnel. Loza 7198, Santa Fe, Argentina')} target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex items-center gap-1.5 text-xs font-semibold text-amber-500 hover:text-amber-400 transition-colors">
+                Cómo llegar <ArrowUpRight size={13} />
+              </a>
             </div>
           </div>
         </div>

@@ -35,22 +35,22 @@ export default function About() {
 
           <div className="space-y-6 text-slate-300 text-base md:text-lg leading-relaxed" style={BODY}>
             <p>
-              TECNO LIGHT S.R.L. fabrica y provee señalización vial reglamentaria, preventiva, informativa y
-              transitoria. Opera planta propia en el Área Industrial Los Polígonos (Santa Fe) con equipamiento
-              de corte láser, pintura y el sistema de impresión digital reflectiva de Avery Dennison.
+              Con más de <strong className="text-white font-bold">30 años de experiencia y trayectoria</strong>, <strong className="text-white font-bold">TECNO LIGHT S.R.L.</strong> es referente en la fabricación y provisión de señalización vial reglamentaria, preventiva, informativa y transitoria con los más altos estándares de calidad y durabilidad óptica.
             </p>
             <p>
-              Comercializa EPP e indumentaria de trabajo para obras civiles, viales e industriales, y provee
-              alquiler de equipamiento de seguridad vial para desvíos y eventos. Provee a municipios, comunas y
-              empresas contratistas de obra pública y privada.
+              En su planta fabril ubicada en el Parque Industrial Los Polígonos (Santa Fe), integra procesos de corte láser computarizado, conformado de chapa de diferentes espesores, PVC, alto impacto, plástico compacto, tratamiento superficial con pintura epoxi termoconvertible, la impresora digital <strong className="text-white font-bold">Mimaki UCJV300-160 UV-LED</strong> y el sistema oficial de impresión digital reflectiva <strong className="text-white font-bold">Avery Dennison TrafficJet™ Xpress</strong> con láminas microprismáticas OmniCube™ (Grado Diamante) y de alta intensidad.
             </p>
             <p>
-              Atención comercial de lunes a viernes de 8:00 a 17:00 hs. Sede comercial en Santa Fe Capital y sede operativa en Rosario.
+              Comercializa además equipamiento de protección personal homologado e indumentaria de trabajo para obras viales, civiles e industriales, y gestiona servicios de alquiler, montaje y mantenimiento de vallas y dispositivos de seguridad en ruta.
+            </p>
+            <p className="text-sm text-slate-400">
+              Sede Comercial (Asesoramiento técnico y ventas): Suipacha 3248, Santa Fe Capital | Tel: (0342) 455-3582 | Correo: tecnolightsrl@tecnolightsrl.com<br />
+              Sede Operativa: Fuhr 1282, Rosario | Tel: 341 636 9053 | Planta Fabril: Cnel. Loza 7198, P.I. Los Polígonos, Santa Fe.
             </p>
           </div>
 
           <div className="flex flex-wrap gap-2.5 mt-10" style={BODY}>
-            {['Santa Fe', 'Rosario', 'Los Polígonos'].map((tag) => (
+            {['+30 Años de Trayectoria', 'Santa Fe Capital', 'Rosario', 'P.I. Los Polígonos', 'Avery Dennison TrafficJet'].map((tag) => (
               <span
                 key={tag}
                 className="px-3.5 py-1.5 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs font-semibold uppercase tracking-widest"
