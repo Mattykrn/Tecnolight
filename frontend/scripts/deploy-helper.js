@@ -21,7 +21,7 @@ run('git add -A .', repoRoot);
 run('git status --short', repoRoot);
 
 console.log('=== 2. Git Commit ===');
-const commitMsg = 'Feat: reemplazo estricto de traza por ruta, consolidacion Mimaki UCJV300-160 y unificacion de videos de laminados';
+const commitMsg = 'Fix: optimizacion de enlaces de contacto (mailto nativo sin pestanas en blanco en PC y WhatsApp estandarizado wa.me)';
 run(`git commit -m "${commitMsg}"`, repoRoot);
 
 console.log('=== 3. Git Push to GitHub ===');

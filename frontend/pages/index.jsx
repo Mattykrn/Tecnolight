@@ -483,7 +483,8 @@ function SectionDualCta({
         </a>
         <a
           href={emailHref}
-          className="inline-flex items-center justify-center gap-2 rounded bg-white/10 border border-white/20 px-5 py-3 text-sm font-semibold text-white hover:bg-white/20 hover:border-primary/50 transition-all"
+          target="_self"
+          className="inline-flex items-center justify-center gap-2 rounded bg-white/10 border border-white/20 px-5 py-3 text-sm font-semibold text-white hover:bg-white/20 hover:border-primary/50 transition-all cursor-pointer"
         >
           <Mail size={16} className="text-primary" />
           <span>{emailLabel}</span>
@@ -1092,6 +1093,7 @@ export default function Index() {
                         {sede.email && (
                           <a
                             href={`mailto:${sede.email}`}
+                            target="_self"
                             className="flex items-center gap-2.5 hover:text-primary transition-colors break-all"
                           >
                             <Mail size={15} className="text-primary shrink-0" />
@@ -1113,6 +1115,7 @@ export default function Index() {
               <div className="grid sm:grid-cols-3 gap-4">
                 <a
                   href="mailto:tecnolightsrl@tecnolightsrl.com?subject=Contacto%20Institucional%20y%20Pliegos%20-%20Tecno%20Light%20S.R.L."
+                  target="_self"
                   className="flex items-center gap-3 p-4 rounded-xl border border-white/10 bg-white/[0.02] hover:border-primary/50 hover:bg-white/[0.04] transition-all"
                 >
                   <div className="w-10 h-10 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0">

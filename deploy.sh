@@ -5,7 +5,7 @@ echo "=== 1. Agregando archivos a Git ==="
 git add .
 
 echo "=== 2. Creando commit con la versión actualizada ==="
-git commit -m "Feat: reemplazo estricto de traza por ruta, consolidacion Mimaki UCJV300-160 y unificacion de videos de laminados" || echo "Nada nuevo para commitear"
+git commit -m "Fix: optimizacion de enlaces de contacto (mailto nativo sin pestanas en blanco en PC y WhatsApp estandarizado wa.me)" || echo "Nada nuevo para commitear"
 
 echo "=== 3. Pusheando a GitHub (main) ==="
 git push origin main
