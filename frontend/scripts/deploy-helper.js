@@ -21,7 +21,7 @@ run('git add -A .', repoRoot);
 run('git status --short', repoRoot);
 
 console.log('=== 2. Git Commit ===');
-const commitMsg = 'Fix: optimizacion de enlaces de contacto (mailto nativo sin pestanas en blanco en PC y WhatsApp estandarizado wa.me)';
+const commitMsg = 'Feat: modal interactivo de Solicitud Formal y Pliegos para evitar redirecciones de mailto y optimizacion de conversion';
 run(`git commit -m "${commitMsg}"`, repoRoot);
 
 console.log('=== 3. Git Push to GitHub ===');

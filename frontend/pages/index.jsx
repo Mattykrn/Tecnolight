@@ -17,6 +17,7 @@ import {
 import InteractiveRoadHero from '../components/InteractiveRoadHero';
 import { getWaLink } from '../utils/whatsapp';
 import { getMapsDirectionsLink } from '../utils/links';
+import { useSolicitudModal } from '../components/SolicitudModal';
 
 /* ============================================================
    Datos internos — Contenido institucional, catálogo y servicios
@@ -457,7 +458,7 @@ function CheckList({ items }) {
   );
 }
 
-/* Doble CTA institucional obligatorio por sección (WhatsApp + Correo formal) */
+/* Doble CTA institucional obligatorio por sección (WhatsApp + Modal de Correo formal y pliegos) */
 function SectionDualCta({
   text,
   waText,
@@ -466,7 +467,7 @@ function SectionDualCta({
   emailLabel = 'Solicitud Formal y Pliegos',
 }) {
   const waHref = getWaLink(waText);
-  const emailHref = `mailto:tecnolightsrl@tecnolightsrl.com?subject=${encodeURIComponent(emailSubject)}`;
+  const { openSolicitudModal } = useSolicitudModal();
 
   return (
     <div className="mt-10 flex flex-col gap-5 rounded-xl border border-white/10 bg-white/[0.02] p-5 md:p-6 lg:flex-row lg:items-center lg:justify-between">
@@ -481,14 +482,14 @@ function SectionDualCta({
           <MessageCircle size={16} />
           <span>{waLabel}</span>
         </a>
-        <a
-          href={emailHref}
-          target="_self"
-          className="inline-flex items-center justify-center gap-2 rounded bg-white/10 border border-white/20 px-5 py-3 text-sm font-semibold text-white hover:bg-white/20 hover:border-primary/50 transition-all cursor-pointer"
+        <button
+          type="button"
+          onClick={() => openSolicitudModal({ subject: emailSubject, text, emailLabel })}
+          className="inline-flex items-center justify-center gap-2 rounded bg-white/10 border border-white/20 px-5 py-3 text-sm font-semibold text-white hover:bg-white/20 hover:border-primary/50 transition-all cursor-pointer group"
         >
-          <Mail size={16} className="text-primary" />
+          <Mail size={16} className="text-primary group-hover:scale-110 transition-transform" />
           <span>{emailLabel}</span>
-        </a>
+        </button>
       </div>
     </div>
   );
@@ -626,6 +627,7 @@ function UnifiedFactoryVideo() {
 }
 
 export default function Index() {
+  const { openSolicitudModal } = useSolicitudModal();
   return (
     <>
       {/* 1. HERO PRINCIPAL: Logo, +30 años y sellos oficiales Avery Dennison / TrafficJet Xpress */}
@@ -1091,14 +1093,14 @@ export default function Index() {
                           </a>
                         )}
                         {sede.email && (
-                          <a
-                            href={`mailto:${sede.email}`}
-                            target="_self"
-                            className="flex items-center gap-2.5 hover:text-primary transition-colors break-all"
+                          <button
+                            type="button"
+                            onClick={() => openSolicitudModal({ subject: `Consulta Comercial y Técnica - ${sede.title}` })}
+                            className="flex items-center gap-2.5 hover:text-primary transition-colors break-all text-left cursor-pointer"
                           >
                             <Mail size={15} className="text-primary shrink-0" />
                             <span>{sede.email}</span>
-                          </a>
+                          </button>
                         )}
                       </div>
                     </div>
@@ -1113,19 +1115,19 @@ export default function Index() {
                 Canales Oficiales y Redes
               </h4>
               <div className="grid sm:grid-cols-3 gap-4">
-                <a
-                  href="mailto:tecnolightsrl@tecnolightsrl.com?subject=Contacto%20Institucional%20y%20Pliegos%20-%20Tecno%20Light%20S.R.L."
-                  target="_self"
-                  className="flex items-center gap-3 p-4 rounded-xl border border-white/10 bg-white/[0.02] hover:border-primary/50 hover:bg-white/[0.04] transition-all"
+                <button
+                  type="button"
+                  onClick={() => openSolicitudModal({ subject: 'Contacto Institucional y Pliegos - Tecno Light S.R.L.' })}
+                  className="flex items-center gap-3 p-4 rounded-xl border border-white/10 bg-white/[0.02] hover:border-primary/50 hover:bg-white/[0.04] transition-all text-left w-full cursor-pointer group"
                 >
-                  <div className="w-10 h-10 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0">
+                  <div className="w-10 h-10 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
                     <Mail size={20} className="text-primary" />
                   </div>
                   <div>
                     <span className="block text-[10px] uppercase font-bold text-slate-400">Correo Institucional</span>
                     <span className="text-xs md:text-sm font-semibold text-white break-all">tecnolightsrl@tecnolightsrl.com</span>
                   </div>
-                </a>
+                </button>
 
                 <a
                   href="https://www.instagram.com/tecnolight.srl/"

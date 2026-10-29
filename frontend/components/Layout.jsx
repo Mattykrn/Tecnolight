@@ -6,6 +6,7 @@ import { Menu, X, Mail } from 'lucide-react';
 
 import { getWaLink } from '../utils/whatsapp';
 import { getGmailLink } from '../utils/links';
+import { useSolicitudModal } from './SolicitudModal';
 
 const WA_LINK = getWaLink();
 
@@ -41,6 +42,7 @@ export default function Layout({ children }) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const router = useRouter();
+  const { openSolicitudModal } = useSolicitudModal();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -240,14 +242,14 @@ export default function Layout({ children }) {
                     </svg>
                     <span>Instagram: @tecnolight.srl</span>
                   </a>
-                  <a
-                    href="mailto:tecnolightsrl@tecnolightsrl.com?subject=Solicitud%20Formal%20y%20Pliegos%20-%20Tecno%20Light%20S.R.L."
-                    target="_self"
-                    className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-white text-xs font-semibold hover:border-primary/50 transition-all"
+                  <button
+                    type="button"
+                    onClick={() => openSolicitudModal({ subject: 'Solicitud Formal y Pliegos - Tecno Light S.R.L.' })}
+                    className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-white text-xs font-semibold hover:border-primary/50 transition-all cursor-pointer"
                   >
                     <Mail size={14} className="text-primary" />
                     <span>tecnolightsrl@tecnolightsrl.com</span>
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>
@@ -263,7 +265,13 @@ export default function Layout({ children }) {
                   <a href="tel:03424553582" className="hover:text-primary transition-colors flex items-center gap-1.5 group">
                     <span className="font-semibold text-slate-400 group-hover:text-primary/70 transition-colors">Tel:</span> (0342) 455-3582
                   </a>
-                  <a href="mailto:tecnolightsrl@tecnolightsrl.com?subject=Consulta%20Comercial%20-%20Santa%20Fe" target="_self" className="hover:text-primary transition-colors text-[13.5px]">tecnolightsrl@tecnolightsrl.com</a>
+                  <button
+                    type="button"
+                    onClick={() => openSolicitudModal({ subject: 'Consulta Comercial - Sede Santa Fe Capital' })}
+                    className="hover:text-primary transition-colors text-[13.5px] text-left cursor-pointer"
+                  >
+                    tecnolightsrl@tecnolightsrl.com
+                  </button>
                   <a href="https://www.google.com/maps/search/?api=1&query=Cnel.+Loza+7198,+Santa+Fe,+Argentina" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors block">Planta (solo fabricación): Cnel. Loza 7198<br />P.I. Los Polígonos</a>
                 </div>
               </div>
@@ -274,7 +282,13 @@ export default function Layout({ children }) {
                   <a href="tel:3416369053" className="hover:text-primary transition-colors flex items-center gap-1.5 group">
                     <span className="font-semibold text-slate-400 group-hover:text-primary/70 transition-colors">Tel:</span> 341 636 9053
                   </a>
-                  <a href="mailto:rosario@tecnolightsrl.com?subject=Consulta%20Operativa%20-%20Rosario" target="_self" className="hover:text-primary transition-colors text-[13.5px]">rosario@tecnolightsrl.com</a>
+                  <button
+                    type="button"
+                    onClick={() => openSolicitudModal({ subject: 'Consulta Operativa - Sede Rosario' })}
+                    className="hover:text-primary transition-colors text-[13.5px] text-left cursor-pointer"
+                  >
+                    rosario@tecnolightsrl.com
+                  </button>
                 </div>
               </div>
             </div>

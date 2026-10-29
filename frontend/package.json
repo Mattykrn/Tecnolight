@@ -10,7 +10,8 @@
     "generate-favicons": "node scripts/generate-favicons.js",
     "find-video": "node scripts/find-video.js",
     "deploy-helper": "node scripts/deploy-helper.js",
-    "verify-live": "node scripts/verify-live.js"
+    "verify-live": "node scripts/verify-live.js",
+    "audit": "node scripts/comprehensive-audit.js"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.2.14",

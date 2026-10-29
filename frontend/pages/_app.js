@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import '../styles/globals.css';
 import Layout from '../components/Layout';
 import { ToastProvider } from '../components/Toast';
+import { SolicitudModalProvider } from '../components/SolicitudModal';
 
 const GA_ID = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID;
 
@@ -40,7 +41,7 @@ function MyApp({ Component, pageProps }) {
   const isAdminPage = router.pathname.startsWith('/admin');
 
   return (
-    <>
+    <SolicitudModalProvider>
       {isAdminPage ? (
         <ToastProvider><Component {...pageProps} /></ToastProvider>
       ) : (
@@ -61,7 +62,7 @@ function MyApp({ Component, pageProps }) {
           </Layout>
         </>
       )}
-    </>
+    </SolicitudModalProvider>
   );
 }
 

@@ -15,6 +15,7 @@ const fadeUp = {
 
 import { getWaLink } from '../utils/whatsapp';
 import { getGmailLink, getMapsDirectionsLink } from '../utils/links';
+import { useSolicitudModal } from '../components/SolicitudModal';
 
 const WaIcon = ({ size = 16 }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
@@ -23,6 +24,7 @@ const WaIcon = ({ size = 16 }) => (
 );
 
 export default function Contact() {
+  const { openSolicitudModal } = useSolicitudModal();
   const [form, setForm] = useState({ name: '', phone: '', msg: '' });
   const [sent, setSent] = useState(false);
 
@@ -77,20 +79,29 @@ export default function Contact() {
               <h2 className="text-white leading-none tracking-tight mb-7" style={{ ...HEADING, fontSize: 'clamp(2.4rem, 5vw, 4rem)' }}>TAMBIÉN<br />ENCONTRANOS</h2>
               <div className="space-y-4 mb-10">
                 {[
-                  { Icon: Mail, label: 'Correo', v: 'tecnolightsrl@tecnolightsrl.com', href: 'mailto:tecnolightsrl@tecnolightsrl.com?subject=Consulta%20General%20-%20Tecno%20Light%20S.R.L.' },
+                  { Icon: Mail, label: 'Correo', v: 'tecnolightsrl@tecnolightsrl.com', onClick: () => openSolicitudModal({ subject: 'Consulta General - Tecno Light S.R.L.' }) },
                   { Icon: Clock, label: 'Horarios', v: 'Lun a Vie 8:00 - 17:00 hs' },
-                ].map(({ Icon, label, v, href }) => (
+                ].map(({ Icon, label, v, href, onClick }) => (
                   <div key={label} className="flex items-center gap-4">
                     <div className="w-9 h-9 bg-amber-500/10 border border-amber-500/15 rounded-[4px] flex items-center justify-center flex-shrink-0">
                       <Icon size={14} className="text-amber-500" />
                     </div>
                     <div>
                       <div className="text-slate-400 text-[10px] uppercase tracking-widest mb-0.5" style={MONO}>{label}</div>
-                      {href ? (
+                      {onClick ? (
+                        <button
+                          type="button"
+                          onClick={onClick}
+                          className="text-white text-sm font-medium hover:text-amber-500 transition-colors text-left cursor-pointer"
+                          style={BODY}
+                        >
+                          {v}
+                        </button>
+                      ) : href ? (
                         <a
                           href={href}
-                          target={href.startsWith('mailto:') ? '_self' : '_blank'}
-                          rel={href.startsWith('mailto:') ? undefined : 'noopener noreferrer'}
+                          target="_blank"
+                          rel="noopener noreferrer"
                           className="text-white text-sm font-medium hover:text-amber-500 transition-colors"
                           style={BODY}
                         >
@@ -175,7 +186,13 @@ export default function Contact() {
               </h3>
               <p className="text-sm text-slate-400 mb-3" style={BODY}>
                 Fuhr 1282 | Tel: (0341) 4388444 | Cel: 341 636 9053 | Correo:{' '}
-                <a href="mailto:rosario@tecnolightsrl.com?subject=Consulta%20Operativa%20-%20Rosario" target="_self" className="text-amber-500 hover:text-amber-400 transition-colors">rosario@tecnolightsrl.com</a>
+                <button
+                  type="button"
+                  onClick={() => openSolicitudModal({ subject: 'Consulta Operativa - Rosario' })}
+                  className="text-amber-500 hover:text-amber-400 transition-colors cursor-pointer"
+                >
+                  rosario@tecnolightsrl.com
+                </button>
               </p>
               <div className="w-full h-[250px] rounded-[6px] overflow-hidden border border-slate-800">
                 <iframe src="https://www.google.com/maps?q=Fuhr+1282+Rosario+Argentina&output=embed" className="w-full h-full" allowFullScreen="" loading="lazy" title="Sede Operativa Rosario" />
