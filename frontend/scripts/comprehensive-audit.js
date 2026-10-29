@@ -44,12 +44,43 @@ async function runAudit() {
     }
   });
 
-  // 2. CHECK MACHINE MODEL MIMAKI UCJV300-160
-  if (html.includes('Mimaki UCJV300-160')) {
-    passes.push('[MÁQUINA] Mimaki UCJV300-160 encontrada y destacada en el sitio');
+  // 2. CHECK ELIMINATION OF MIMAKI AND ADOPTION OF TRAFFICJET™ XPRESS
+  if (html.toLowerCase().includes('mimaki')) {
+    issues.push('[IMPRESIÓN] Se encontró mención a "Mimaki" (debe estar completamente descartada)');
   } else {
-    issues.push('[MÁQUINA] No se encontró mención a Mimaki UCJV300-160');
+    passes.push('[IMPRESIÓN] 0 menciones a "Mimaki". Limpieza técnica exitosa');
   }
+  if (html.includes('TrafficJet™ Xpress') || html.includes('TrafficJet')) {
+    passes.push('[IMPRESIÓN] Plataforma TrafficJet™ Xpress presente');
+  } else {
+    issues.push('[IMPRESIÓN] No se encontró TrafficJet™ Xpress');
+  }
+  if (html.includes('Serie T-2500')) {
+    passes.push('[VINILOS] Vinilo reflectivo Serie T-2500 presente');
+  } else {
+    issues.push('[VINILOS] No se encontró Serie T-2500');
+  }
+
+  // 2.1 ESTRUCTURA Y MATERIALES (CALIBRE 14 & SIN PESTAÑA)
+  if (html.includes('Calibre 14')) {
+    passes.push('[ESTRUCTURA] Chapa de acero en Calibre 14 presente');
+  } else {
+    issues.push('[ESTRUCTURA] No se encontró Calibre 14');
+  }
+  if (html.toLowerCase().includes('pestaña')) {
+    issues.push('[ESTRUCTURA] Palabra "pestaña" detectada en sustratos');
+  } else {
+    passes.push('[ESTRUCTURA] Libre de término "pestaña" en sustratos');
+  }
+
+  // 2.2 FOTOS 1, 2 Y 3 PRESENTES
+  ['foto1.jpg', 'foto2.jpg', 'foto3.jpg'].forEach(foto => {
+    if (html.includes(foto)) {
+      passes.push(`[RECURSOS FOTOGRÁFICOS] Recurso oficial ${foto} integrado en la sección`);
+    } else {
+      issues.push(`[RECURSOS FOTOGRÁFICOS] Falta integrar recurso ${foto}`);
+    }
+  });
 
   // 3. CHECK WORD "TRAZA"
   const trazaRegex = /\btraza\b|\btrazas\b/i;

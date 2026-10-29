@@ -222,7 +222,7 @@ export default function Layout({ children }) {
               <div className="flex flex-col items-start gap-2.5 mb-6">
                 <span className="text-[11px] uppercase tracking-wider text-slate-400 font-semibold">Tecnología de impresión y laminado:</span>
                 <div className="bg-white/95 rounded-lg px-3.5 py-2 flex items-center gap-3.5 shadow-md border border-white/20">
-                  <span className="text-slate-900 font-black text-[11px] tracking-wide">MIMAKI UCJV300-160</span>
+                  <span className="text-slate-900 font-black text-[11px] tracking-wide">TRAFFICJET™ XPRESS</span>
                   <div className="h-5 w-px bg-slate-300" />
                   <img src="/images/avery-dennison-official.svg" alt="Avery Dennison" className="h-6 w-auto object-contain" />
                 </div>

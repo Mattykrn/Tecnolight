@@ -21,7 +21,7 @@ run('git add -A .', repoRoot);
 run('git status --short', repoRoot);
 
 console.log('=== 2. Git Commit ===');
-const commitMsg = 'Feat: actualizacion de items de la seccion Servicios y Alquiler con la lista oficial provista';
+const commitMsg = 'Feat: integracion de fotos 1, 2 y 3, eliminacion de Mimaki, unificacion de video central y chapa calibre 14';
 run(`git commit -m "${commitMsg}"`, repoRoot);
 
 console.log('=== 3. Git Push to GitHub ===');

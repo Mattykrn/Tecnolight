@@ -28,7 +28,7 @@ import { useSolicitudModal } from '../components/SolicitudModal';
 
 const QUIENES = [
   'Con más de tres décadas de trayectoria ininterrumpida y liderazgo regional, TECNO LIGHT S.R.L. se posiciona como una firma referente en el diseño, manufactura e instalación de sistemas de señalización vial reglamentaria, preventiva, informativa y transitoria.',
-  'Desde nuestra planta industrial ubicada en el Parque Industrial Los Polígonos (Santa Fe Capital), coordinamos procesos productivos de vanguardia: corte láser computarizado, conformado de chapa, tratamiento anticorrosivo mediante pintura epoxi termoconvertible, la plataforma digital de impresión Mimaki UCJV300-160 UV-LED y laminado continuo sobre láminas reflectivas Avery Dennison.',
+  'Desde nuestra planta industrial ubicada en el Parque Industrial Los Polígonos (Santa Fe Capital), coordinamos procesos productivos de vanguardia: corte láser computarizado, conformado de chapa en Calibre 14, tratamiento anticorrosivo mediante pintura epoxi termoconvertible, la plataforma digital de impresión UV-LED TrafficJet™ Xpress y laminado continuo sobre láminas reflectivas Avery Dennison.',
   'Nuestra estructura abarca la provisión mayorista de indumentaria técnica de trabajo y equipamiento de protección personal e industrial (EPP) homologado, además de una división especializada en el alquiler, montaje y logística de vallas de contención para grandes eventos y obras viales, brindando cobertura permanente en Santa Fe, Rosario y todo el litoral argentino.'
 ];
 
@@ -42,18 +42,18 @@ const QUIENES_TAGS = [
 
 const AVERY_DENNISON = {
   kicker: 'Tecnología Reflectiva y Laminado Continuo',
-  title: 'Impresión Digital TraffictJet Xpress',
+  title: 'Impresión Digital TrafficJet™ Xpress',
   description:
-    'Tecno Light S.R.L. imprime con la nueva impresora Mimaki UCJV300-160 con curado instantáneo UV-LED sobre láminas microprismáticas Avery Dennison (OmniCube™, HIP y EGP), combinada con la estación de laminado continuo que sella la película protectora UV antigraffiti. Garantizamos la máxima durabilidad óptica del mercado y respuesta retrorreflectiva a largo plazo.',
+    'Tecno Light S.R.L. imprime con tecnología TrafficJet™ Xpress de curado instantáneo UV-LED sobre láminas microprismáticas Avery Dennison (OmniCube™, HIP y Serie T-2500), combinada con la estación de laminado continuo que sella la película protectora UV antigraffiti. Garantizamos la máxima durabilidad óptica del mercado y respuesta retrorreflectiva a largo plazo.',
   standards: 'Certificación técnica oficial de retrorreflexión (Tipos I, IV, VIII, IX y XI).',
   proceso: [
-    'Impresión digital UV-LED de alta definición mediante la plataforma industrial Mimaki UCJV300-160.',
+    'Impresión digital UV-LED de alta definición mediante la plataforma industrial TrafficJet™ Xpress.',
     'Curado instantáneo en frío por emisión LED, evitando tensiones térmicas sobre los microprismas reflectivos.',
     'Laminado continuo de alta presión con película protectora transparente con filtro UV y barrera antigraffiti.',
-    'Control fotométrico de precisión y transferencia sobre chapa galvanizada, PVC espumado, alto impacto o plástico compacto.'
+    'Control fotométrico de precisión y transferencia sobre chapa galvanizada en Calibre 14, PVC espumado, alto impacto o plástico compacto.'
   ],
   videoDesc:
-    'Registro directo en nuestra planta industrial: proceso centralizado de impresión digital Mimaki UCJV300-160 sobre láminas microprismáticas Avery Dennison y sellado mediante laminado continuo de alta resistencia.',
+    'Registro directo en nuestra planta industrial: proceso centralizado de impresión digital TrafficJet™ Xpress sobre láminas microprismáticas Avery Dennison y sellado mediante laminado continuo de alta resistencia.',
   cards: [
     {
       id: 'omnicube',
@@ -71,7 +71,7 @@ const AVERY_DENNISON = {
       id: 'egp',
       title: 'Serie T-2500 Engineering Grade Prismatic (EGP)',
       description:
-        'Tipo I. Alternativa prismática eficiente para señalización comercial, cartelería informativa y nomenclatura urbana.'
+        'Tipo I. Vinilo microprismático eficiente de alta visibilidad para señalización urbana, cartelería reglamentaria e informativa.'
     },
     {
       id: 'sobrelaminados',
@@ -95,16 +95,44 @@ const AVERY_DENNISON = {
 };
 
 const SENALIZACION = {
-  kicker: 'Diseño Vial y Manufactura Homologada',
-  title: 'Señalización Vial Reglamentaria, Cartelería y Sustratos Normados',
+  kicker: 'Líderes en Señalización Vial',
+  title: 'Fabricación de Señalización Vial y Cartelería Urbana',
   description:
-    'Producción integral de dispositivos viales bajo rigurosas normativas técnicas y estándares internacionales de seguridad vial. Fabricación automatizada sobre sustratos de máxima resistencia: chapa de acero galvanizado en diversos espesores, placas de PVC espumado, polímeros de alto impacto, plástico compacto de alta densidad y perfiles de aluminio tratados con recubrimiento epoxi termoconvertible. Incorporación certificada de láminas microprismáticas Avery Dennison de alta retrorreflexión angular para autopistas, rutas, municipios y complejos industriales.',
+    'Fabricación de señalización vial bajo especificaciones oficiales con terminaciones metalúrgicas de alta calidad. Proceso integral: Diseño, Corte, Soldadura, Pintura y Rotulado.',
+  etapas: [
+    { num: '01', title: 'Diseño', desc: 'Planos técnicos y tipografía vial reglamentaria' },
+    { num: '02', title: 'Corte', desc: 'Mecanizado y corte de sustratos con tolerancias exactas' },
+    { num: '03', title: 'Soldadura', desc: 'Estructuras reforzadas y anclajes resistentes' },
+    { num: '04', title: 'Pintura', desc: 'Tratamiento anticorrosivo y pintura epoxi termoconvertible' },
+    { num: '05', title: 'Rotulado', desc: 'Montaje de vinilo reflectivo microprismático y laminado' }
+  ],
+  fabricacion: [
+    {
+      title: 'Carteles Viales y Transitorios de Obra',
+      desc: 'Señales reglamentarias, preventivas e informativas para rutas, autopistas y desvíos transitorios de obra.'
+    },
+    {
+      title: 'Cartelería para Municipios y Empresas',
+      desc: 'Nomencladores urbanos, pórticos aéreos, carteles de obra y señalética interna para complejos industriales.'
+    },
+    {
+      title: 'Señalización Lumínica: Balizas, Flechas, Tráiler para Desvíos y Chevron',
+      desc: 'Dispositivos luminosos LED de alta visibilidad para canalización nocturna, desvíos y curvas pronunciadas.'
+    },
+    {
+      title: 'Vallas: Delimitadoras de Obra',
+      desc: 'Módulos metálicos de vallado de contención perimetral de alta resistencia para resguardo de frentes de obra.'
+    }
+  ],
   sustratos: [
     {
       title: 'Chapa de Acero Galvanizado',
-      desc: 'Calibres 16, 18 y 20 con pestaña perimetral doble, confiriendo rigidez estática ante vientos intensos.'
+      desc: 'Chapa de acero galvanizado en Calibre 14, confiriendo máxima rigidez estructural, resistencia mecánica y durabilidad ante vientos intensos.'
     },
-    
+    {
+      title: 'PVC Espumado',
+      desc: 'Placas sintéticas livianas e inoxidables, ideales para cartelería urbana e interior.'
+    },
     {
       title: 'Polímeros de Alto Impacto',
       desc: 'Material de absorción elástica frente a golpes, con aditivos de protección UV contra envejecimiento solar.'
@@ -112,29 +140,6 @@ const SENALIZACION = {
     {
       title: 'Plástico Compacto',
       desc: 'Sustrato de alta densidad mecánica y química, libre de mantenimiento y resistente a la intemperie.'
-    }
-  ],
-  groups: [
-    {
-      id: 'carteleria',
-      title: 'Señales Reglamentarias, Preventivas y Estructuras Viales',
-      items: [
-        'Señales reglamentarias, preventivas e informativas con retrorreflexión certificada de alta visibilidad',
-        'Cartelería transitoria de obra, desvíos y balizamiento de alta advertencia para zonas de camino',
-        'Dispositivos electromecánicos viales (banderilleros mecánicos sincronizados para operativos en ruta)',
-        'Sistemas modulares de nomenclatura urbana y señalética de orientación para municipios y comunas',
-        'Pórticos, semipórticos y pasarelas peatonales de gran porte con cálculo estático de resistencia al viento'
-      ]
-    },
-    {
-      id: 'comercial',
-      title: 'Cartelería Corporativa, Plantas Industriales y Flotas',
-      items: [
-        'Señalización de seguridad industrial para plantas fabriles, depósitos y centros logísticos',
-        'Impresión y mecanizado sobre chapa galvanizada, PVC, alto impacto, plástico compacto y acrílicos técnicos',
-        'Kits reflectivos reglamentarios y señalización de seguridad para flotas de transporte y maquinaria pesada',
-        'Asesoramiento técnico, relevamiento planimétrico y diagramación gráfica según especificaciones técnicas'
-      ]
     }
   ]
 };
@@ -148,7 +153,7 @@ const PROCESO = {
     {
       id: 'materia-prima',
       title: '1. MATERIA PRIMA Y DISEÑO',
-      description: 'Selección estricta de chapa de diferentes espesores, PVC espumado, alto impacto y plástico compacto. Elaboración de planos técnicos bajo especificaciones viales aplicables.'
+      description: 'Selección estricta de chapa en Calibre 14, PVC espumado, alto impacto y plástico compacto. Elaboración de planos técnicos bajo especificaciones viales aplicables.'
     },
     {
       id: 'corte-laser',
@@ -162,14 +167,14 @@ const PROCESO = {
     },
     {
       id: 'impresion-final',
-      title: '4. IMPRESIÓN DIGITAL MIMAKI, LAMINADO Y MONTAJE FINAL',
-      description: 'Impresión digital Mimaki UCJV300-160 UV-LED sobre microprismas Avery Dennison, laminado continuo protector antigraffiti, sellado perimetral y control fotométrico previo al despacho.'
+      title: '4. IMPRESIÓN DIGITAL UV-LED, LAMINADO Y MONTAJE FINAL',
+      description: 'Impresión digital UV-LED TrafficJet™ Xpress sobre microprismas Avery Dennison, laminado continuo protector antigraffiti, sellado y control fotométrico previo al despacho.'
     }
   ],
   capacidades: [
     'Planta industrial en el Parque Industrial Los Polígonos (Santa Fe Capital)',
     'Tecnología de corte láser computarizado y líneas de plegado de chapa de precisión',
-    'Impresora digital Mimaki UCJV300-160 UV-LED y estación de laminado continuo',
+    'Plataforma de impresión digital UV-LED TrafficJet™ Xpress y estación de laminado continuo',
     'Flota de unidades móviles y cuadrillas técnicas para logística y montaje en ruta',
     'Sede Comercial en Santa Fe Capital y Sede Operativa en la ciudad de Rosario'
   ]
@@ -487,51 +492,10 @@ function SectionDualCta({
   );
 }
 
-/* Reproductor unificado interactivo para videos fabriles */
-const FACTORY_VIDEOS = [
-  {
-    id: 'proceso-unificado',
-    title: 'Proceso Unificado: Impresora Mimaki UCJV300-160 y Laminado Continuo',
-    tag: 'Planta Fabril Los Polígonos — Santa Fe',
-    src: '/videos/proceso/proceso-laminado-unificado.mp4',
-    poster: '/videos/proceso/proceso-laminado-poster.jpg',
-    description:
-      'Registro directo en planta: video unificado que integra la impresión digital Mimaki UCJV300-160 (TrafficJet™ Xpress) sobre láminas Avery Dennison y el posterior sellado en estación de laminado continuo a presión con barrera protectora UV.'
-  },
-  {
-    id: 'laminado',
-    title: 'Laminado Continuo Protector UV Antigraffiti',
-    tag: 'Estación de Laminado en Planta',
-    src: '/videos/proceso/laminado-proceso.mp4',
-    poster: '/videos/proceso/laminado-poster.jpg',
-    description:
-      'Operación de laminado continuo a presión: aplicación de película protectora UV transparente sobre el gráfico reflectivo, brindando blindaje total contra intemperie y graffiti.'
-  },
-  {
-    id: 'mimaki-impresion',
-    title: 'Impresión Digital Mimaki UCJV300-160 UV-LED',
-    tag: 'Impresión Digital en Frío',
-    src: '/videos/proceso/mimaki-impresion.mp4',
-    poster: '/videos/proceso/mimaki-poster.jpg',
-    description:
-      'Impresión digital UV-LED de alta resolución con curado instantáneo sobre láminas microprismáticas Avery Dennison de máxima graduación óptica.'
-  }
-];
-
-function UnifiedFactoryVideo() {
-  const [activeIdx, setActiveIdx] = React.useState(0);
+/* Reproductor centralizado de video de manufactura y laminado en planta */
+function CentralFactoryVideo() {
   const [playing, setPlaying] = React.useState(false);
   const videoRef = React.useRef(null);
-  const currentVideo = FACTORY_VIDEOS[activeIdx];
-
-  const handleSelect = (index) => {
-    setActiveIdx(index);
-    setPlaying(false);
-    if (videoRef.current) {
-      videoRef.current.pause();
-      videoRef.current.load();
-    }
-  };
 
   const togglePlayback = () => {
     const video = videoRef.current;
@@ -544,38 +508,25 @@ function UnifiedFactoryVideo() {
   };
 
   return (
-    <div className="overflow-hidden rounded-2xl border border-white/10 bg-slate-950/80 shadow-2xl p-5 md:p-6">
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4 pb-4 border-b border-white/10">
-        <div>
-          <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-primary block mb-1">
-            Reproductor Unificado de Planta
-          </span>
-          <h4 className="text-base font-bold text-white">{currentVideo.title}</h4>
-        </div>
-        <span className="text-xs text-slate-400 font-mono self-start sm:self-auto px-2.5 py-1 rounded bg-white/5 border border-white/10">
-          {currentVideo.tag}
-        </span>
-      </div>
-
+    <div className="overflow-hidden rounded-2xl border border-white/10 bg-slate-950/80 shadow-2xl p-3 md:p-4">
       <figure className="relative overflow-hidden rounded-xl border border-white/10 bg-[#0B0D12]">
         <button
           type="button"
           onClick={togglePlayback}
-          aria-label={`${playing ? 'Pausar' : 'Reproducir'} video: ${currentVideo.title}`}
+          aria-label={`${playing ? 'Pausar' : 'Reproducir'} video del proceso de manufactura y laminado continuo en planta`}
           aria-pressed={playing}
-          className="group relative block aspect-[16/9] w-full overflow-hidden bg-black"
+          className="group relative block aspect-[16/9] w-full overflow-hidden bg-black cursor-pointer"
         >
           <video
-            key={currentVideo.src}
             ref={videoRef}
-            src={currentVideo.src}
-            poster={currentVideo.poster}
+            src="/videos/proceso/proceso-laminado-unificado.mp4"
+            poster="/videos/proceso/proceso-laminado-poster.jpg"
             muted
             loop
             playsInline
             controls
             preload="metadata"
-            aria-label={currentVideo.title}
+            aria-label="Proceso de manufactura e impresión digital y laminado continuo en planta"
             className="h-full w-full object-cover"
             onPlay={() => setPlaying(true)}
             onPause={() => setPlaying(false)}
@@ -592,28 +543,9 @@ function UnifiedFactoryVideo() {
         </button>
       </figure>
 
-      <p className="mt-3 text-xs md:text-sm text-slate-400 leading-relaxed">
-        {currentVideo.description}
+      <p className="mt-3 text-xs md:text-sm text-slate-400 leading-relaxed px-1">
+        Registro directo en planta: impresión digital UV-LED TrafficJet™ Xpress sobre láminas microprismáticas Avery Dennison y sellado en estación de laminado continuo a presión.
       </p>
-
-      {/* Selector de clips en el mismo reproductor */}
-      <div className="mt-4 pt-4 border-t border-white/10 flex flex-wrap gap-2">
-        {FACTORY_VIDEOS.map((v, i) => (
-          <button
-            key={v.id}
-            type="button"
-            onClick={() => handleSelect(i)}
-            className={`text-xs px-3.5 py-2 rounded-lg font-semibold transition-all flex items-center gap-2 ${
-              activeIdx === i
-                ? 'bg-primary text-white shadow-md shadow-primary/30'
-                : 'bg-white/5 text-slate-300 hover:bg-white/10 hover:text-white border border-white/5'
-            }`}
-          >
-            <Play size={12} fill={activeIdx === i ? 'currentColor' : 'none'} />
-            <span>{v.title}</span>
-          </button>
-        ))}
-      </div>
     </div>
   );
 }
@@ -662,14 +594,14 @@ export default function Index() {
               ))}
             </div>
 
-            {/* Ficha técnica y Reproductor Unificado de Video */}
+            {/* Ficha técnica y Video Centralizado */}
             <div className="mt-14 grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
               <div className="lg:col-span-5">
                 <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-primary mb-2">
                   En planta — tecnología operativa
                 </p>
                 <h3 className="text-xl md:text-2xl font-bold text-white mb-4">
-                  Impresora Digital Mimaki UCJV300-160 y Laminado Continuo en Planta
+                  Impresión Digital TrafficJet™ Xpress y Laminado Continuo en Planta
                 </h3>
                 <p className="text-sm text-slate-300 leading-relaxed mb-6">
                   {AVERY_DENNISON.videoDesc}
@@ -687,21 +619,112 @@ export default function Index() {
                 </ul>
               </div>
               <div className="lg:col-span-7">
-                <UnifiedFactoryVideo />
+                <CentralFactoryVideo />
+              </div>
+            </div>
+
+            {/* Galería de Producción Real en Planta (Fotos 1, 2 y 3) */}
+            <div className="mt-16 pt-12 border-t border-white/10">
+              <div className="mb-6 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
+                <div>
+                  <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-primary block mb-1">
+                    Producción Real en Planta
+                  </span>
+                  <h3 className="text-xl md:text-2xl font-bold text-white">
+                    Señales Oficiales Terminadas e Impresión Digital Reflectiva
+                  </h3>
+                </div>
+                <span className="text-xs text-slate-400 font-mono">
+                  Planta Los Polígonos — Santa Fe
+                </span>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {/* Foto 1: Señal Niebla / Precaución 60 */}
+                <figure className="group relative overflow-hidden rounded-2xl border border-white/10 bg-slate-950/70 p-3 transition-all hover:border-primary/50 shadow-xl">
+                  <div className="relative aspect-[3/4] w-full overflow-hidden rounded-xl bg-slate-900">
+                    <Image
+                      src="/images/fotos-reales/foto1.jpg"
+                      alt="Cartel vial oficial DPV Santa Fe - En caso de niebla precaución 60 con vinilo reflectivo microprismático"
+                      fill
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      priority
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-80" />
+                    <span className="absolute top-3 left-3 rounded bg-primary/90 px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-white backdrop-blur-sm">
+                      Foto 1 · DPV Santa Fe
+                    </span>
+                  </div>
+                  <figcaption className="p-3">
+                    <h4 className="text-sm font-bold text-white mb-1">Señal Vial Preventiva de Niebla</h4>
+                    <p className="text-xs text-slate-400 leading-relaxed">
+                      Lámina microprismática de alta intensidad Tipo IV (Serie T-6500) sobre chapa Calibre 14 homologada.
+                    </p>
+                  </figcaption>
+                </figure>
+
+                {/* Foto 2: Bifurcación direccional DPV Santa Fe AP 01 (Flechas hacia abajo) */}
+                <figure className="group relative overflow-hidden rounded-2xl border border-white/10 bg-slate-950/70 p-3 transition-all hover:border-primary/50 shadow-xl">
+                  <div className="relative aspect-[3/4] w-full overflow-hidden rounded-xl bg-slate-900">
+                    <Image
+                      src="/images/fotos-reales/foto2.jpg"
+                      alt="Señal vial circular reglamentaria azul de bifurcación direccional con flechas hacia abajo DPV Santa Fe AP 01"
+                      fill
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      priority
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-80" />
+                    <span className="absolute top-3 left-3 rounded bg-blue-600/90 px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-white backdrop-blur-sm">
+                      Foto 2 · DPV AP 01
+                    </span>
+                  </div>
+                  <figcaption className="p-3">
+                    <h4 className="text-sm font-bold text-white mb-1">Señal Reglamentaria Direccional</h4>
+                    <p className="text-xs text-slate-400 leading-relaxed">
+                      Vinilo microprismático reflectivo azul con flechas direccionales hacia abajo, terminación perimetral y sellado continuo.
+                    </p>
+                  </figcaption>
+                </figure>
+
+                {/* Foto 3: Cartel R.N. 226 Estación Transformadora en banco de laminado */}
+                <figure className="group relative overflow-hidden rounded-2xl border border-white/10 bg-slate-950/70 p-3 transition-all hover:border-primary/50 shadow-xl">
+                  <div className="relative aspect-[3/4] w-full overflow-hidden rounded-xl bg-slate-900">
+                    <Image
+                      src="/images/fotos-reales/foto3.jpg"
+                      alt="Cartel vial oficial R.N. N° 226 Estación Transformadora en mesa de trabajo y laminado continuo en planta"
+                      fill
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      priority
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-80" />
+                    <span className="absolute top-3 left-3 rounded bg-emerald-600/90 px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-white backdrop-blur-sm">
+                      Foto 3 · R.N. Nº 226
+                    </span>
+                  </div>
+                  <figcaption className="p-3">
+                    <h4 className="text-sm font-bold text-white mb-1">Cartelería de Obra y Estación de Laminado</h4>
+                    <p className="text-xs text-slate-400 leading-relaxed">
+                      Señal R.N. Nº 226 Estación Transformadora en estación de laminado continuo a presión con sobrelaminado protector UV.
+                    </p>
+                  </figcaption>
+                </figure>
               </div>
             </div>
 
             <SectionDualCta
-              text="Asesoramiento técnico en especificación de láminas reflectivas OmniCube™, HIP y EGP con impresión Mimaki UV-LED y laminado continuo."
-              waText="Hola, solicito asesoramiento técnico sobre impresión digital Mimaki UCJV300-160, láminas Avery Dennison y laminado protector."
+              text="Asesoramiento técnico en especificación de láminas reflectivas OmniCube™, HIP y Serie T-2500 con impresión digital TrafficJet™ Xpress UV-LED y laminado continuo."
+              waText="Hola, solicito asesoramiento técnico sobre impresión digital TrafficJet™ Xpress, láminas Avery Dennison y laminado protector."
               waLabel="Consultar por WhatsApp"
-              emailSubject="Solicitud Técnica y Pliego - Impresión Mimaki y Laminados Avery Dennison"
+              emailSubject="Solicitud Técnica y Pliego - Impresión Digital TrafficJet y Laminados Avery Dennison"
               emailLabel="Solicitud Formal y Pliegos"
             />
           </div>
         </section>
 
-        {/* 3. SEÑALIZACIÓN VIAL Y CARTELERÍA: Sustratos y Normativas */}
+        {/* 3. SEÑALIZACIÓN VIAL Y CARTELERÍA: Fabricación y Sustratos */}
         <section
           id="senalizacion"
           className="py-20 lg:py-28 section-ig-card border-b border-white/5 scroll-mt-28"
@@ -713,8 +736,56 @@ export default function Index() {
               description={SENALIZACION.description}
             />
 
+            {/* Ítems oficiales de Fabricación según folleto */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
+              {SENALIZACION.fabricacion.map((item, idx) => (
+                <div
+                  key={item.title}
+                  className="rounded-2xl border border-white/10 bg-slate-950/60 p-6 hover:border-primary/50 transition-all flex flex-col justify-between"
+                >
+                  <div>
+                    <span className="text-[10px] font-bold tracking-[0.2em] text-primary block mb-3">
+                      LÍNEA 0{idx + 1}
+                    </span>
+                    <h3 className="text-base font-bold text-white mb-2">{item.title}</h3>
+                    <p className="text-xs text-slate-400 leading-relaxed">{item.desc}</p>
+                  </div>
+                  <div className="mt-4 pt-3 border-t border-white/5 flex items-center gap-2 text-primary text-xs font-semibold">
+                    <Check size={14} />
+                    <span>Fabricación a medida</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Proceso en 5 etapas: Diseño, Corte, Soldadura, Pintura y Rotulado */}
+            <div className="mb-12 rounded-2xl border border-white/10 bg-white/[0.02] p-6 lg:p-8">
+              <div className="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                <h3 className="text-xs font-bold uppercase tracking-[0.25em] text-primary">
+                  Proceso de Fabricación Homologado
+                </h3>
+                <span className="text-xs text-slate-400 font-mono">
+                  Diseño · Corte · Soldadura · Pintura · Rotulado
+                </span>
+              </div>
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+                {SENALIZACION.etapas.map((etapa) => (
+                  <div
+                    key={etapa.num}
+                    className="rounded-xl border border-white/10 bg-slate-950/80 p-4 hover:border-primary/40 transition-colors"
+                  >
+                    <span className="text-xs font-extrabold text-primary font-mono block mb-1">
+                      {etapa.num}
+                    </span>
+                    <h4 className="text-sm font-bold text-white mb-1">{etapa.title}</h4>
+                    <p className="text-[11px] text-slate-400 leading-normal">{etapa.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
             {/* Sustratos Normados */}
-            <div className="mb-10">
+            <div>
               <h3 className="text-xs font-bold uppercase tracking-[0.25em] text-primary mb-4">
                 Sustratos Normados de Alta Resistencia
               </h3>
@@ -732,17 +803,8 @@ export default function Index() {
               </div>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-6">
-              {SENALIZACION.groups.map((group) => (
-                <div key={group.id} className="card-corporate p-8">
-                  <h3 className="text-lg font-semibold text-slate-100 mb-5">{group.title}</h3>
-                  <CheckList items={group.items} />
-                </div>
-              ))}
-            </div>
-
             <SectionDualCta
-              text="Fabricación homologada de señalización vial reglamentaria, urbana e industrial sobre sustratos de máxima resistencia."
+              text="Fabricación homologada de señalización vial reglamentaria, urbana e industrial sobre chapa Calibre 14 y sustratos de máxima rigidez."
               waText="Hola, deseo cotizar fabricación de señalización vial reglamentaria, cartelería o estructuras."
               waLabel="Cotizar por WhatsApp"
               emailSubject="Cotización Formal y Pliegos - Señalización Vial y Cartelería"
