@@ -31,7 +31,7 @@ console.log('=== 4. Vercel Project Check ===');
 console.log('Root .vercel exists?:', fs.existsSync(path.join(repoRoot, '.vercel')));
 console.log('Frontend .vercel exists?:', fs.existsSync(path.join(frontendDir, '.vercel')));
 
-const vercelCwd = fs.existsSync(path.join(frontendDir, '.vercel')) ? frontendDir : repoRoot;
+const vercelCwd = repoRoot;
 console.log(`Running Vercel deploy in: ${vercelCwd}`);
 run('npx vercel --prod --yes', vercelCwd);
 
