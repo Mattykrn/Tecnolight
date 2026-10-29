@@ -186,11 +186,13 @@ const SERVICIOS = {
   description:
     'Disponibilidad inmediata de stock, logística integral y cuadrillas técnicas para encauzar desvíos de tránsito, operativos viales y eventos multitudinarios. Cobertura permanente en Santa Fe, Rosario y todo el litoral argentino.',
   eventos: {
-    title: 'Alquiler de Vallas de Contención para Eventos y Obras',
+    title: 'Alquiler de Vallas, Balizamiento y Equipamiento Vial para Obras y Eventos',
     description:
-      'Módulos de vallado de alta resistencia fabricados en acero con terminación epoxi. Coordinamos la logística integral de entrega, montaje estructural, supervisión en sitio y retiro programado según el cronograma operativo en Santa Fe, Rosario y zona de influencia.',
+      'Soluciones integrales de alquiler y logística para desvíos de tránsito, frentes de obra y eventos: módulos de vallado de contención perimetral en acero con terminación epoxi, balizas destellantes LED, conos flexibles de PVC, canalizadores de tránsito y elementos de seguridad vial. Logística coordinada de traslado, montaje técnico y retiro programado en Santa Fe, Rosario y todo el litoral.',
     items: [
       'Vallas de contención de alta resistencia y cerramiento perimetral',
+      'Balizamiento vial diurno y nocturno con tecnología lumínica LED',
+      'Dispositivos de canalización: conos flexibles de PVC y tambores de obra',
       'Logística coordinada de traslado, montaje técnico y retiro ágil',
       'Disponibilidad inmediata de stock en Santa Fe Capital y Rosario'
     ]
@@ -542,10 +544,6 @@ function CentralFactoryVideo() {
           </span>
         </button>
       </figure>
-
-      <p className="mt-3 text-xs md:text-sm text-slate-400 leading-relaxed px-1">
-        Registro directo en planta: impresión digital UV-LED TrafficJet™ Xpress sobre láminas microprismáticas Avery Dennison y sellado en estación de laminado continuo a presión.
-      </p>
     </div>
   );
 }
@@ -918,12 +916,12 @@ export default function Index() {
                       ))}
                     </ul>
                     <a
-                      href={getWaLink('Hola, quiero consultar por alquiler de vallas para un evento o frente de obra.')}
+                      href={getWaLink('Hola, quiero consultar por alquiler de vallas, balizamiento o equipamiento vial para obra/evento.')}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="btn-primary text-sm self-start inline-flex items-center gap-2"
                     >
-                      <span>Consultar vallas para eventos</span>
+                      <span>Consultar alquiler de vallas y equipamiento</span>
                       <ArrowRight size={16} />
                     </a>
                   </div>
