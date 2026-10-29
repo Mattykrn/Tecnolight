@@ -21,7 +21,7 @@ run('git add -A .', repoRoot);
 run('git status --short', repoRoot);
 
 console.log('=== 2. Git Commit ===');
-const commitMsg = 'Feat: modal interactivo de Solicitud Formal y Pliegos para evitar redirecciones de mailto y optimizacion de conversion';
+const commitMsg = 'Feat: actualizacion de items de la seccion Servicios y Alquiler con la lista oficial provista';
 run(`git commit -m "${commitMsg}"`, repoRoot);
 
 console.log('=== 3. Git Push to GitHub ===');

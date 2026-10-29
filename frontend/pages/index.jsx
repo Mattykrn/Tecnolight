@@ -5,11 +5,14 @@ import {
   ArrowRight,
   Check,
   Clock,
+  Construction,
   Mail,
   MapPin,
   MessageCircle,
   PackageCheck,
+  Paintbrush,
   Play,
+  ShieldAlert,
   Truck,
   Wrench
 } from 'lucide-react';
@@ -39,9 +42,9 @@ const QUIENES_TAGS = [
 
 const AVERY_DENNISON = {
   kicker: 'Tecnología Reflectiva y Laminado Continuo',
-  title: 'Impresión Digital Mimaki UCJV300-160 y Láminas Avery Dennison',
+  title: 'Impresión Digital TraffictJet Xpress',
   description:
-    'Tecno Light S.R.L. opera con la avanzada plataforma digital Mimaki UCJV300-160 con curado instantáneo UV-LED sobre láminas microprismáticas Avery Dennison (OmniCube™, HIP y EGP), combinada con la estación de laminado continuo que sella la película protectora UV antigraffiti. Garantizamos la máxima durabilidad óptica del mercado y respuesta retrorreflectiva a largo plazo.',
+    'Tecno Light S.R.L. imprime con la nueva impresora Mimaki UCJV300-160 con curado instantáneo UV-LED sobre láminas microprismáticas Avery Dennison (OmniCube™, HIP y EGP), combinada con la estación de laminado continuo que sella la película protectora UV antigraffiti. Garantizamos la máxima durabilidad óptica del mercado y respuesta retrorreflectiva a largo plazo.',
   standards: 'Certificación técnica oficial de retrorreflexión (Tipos I, IV, VIII, IX y XI).',
   proceso: [
     'Impresión digital UV-LED de alta definición mediante la plataforma industrial Mimaki UCJV300-160.',
@@ -52,12 +55,6 @@ const AVERY_DENNISON = {
   videoDesc:
     'Registro directo en nuestra planta industrial: proceso centralizado de impresión digital Mimaki UCJV300-160 sobre láminas microprismáticas Avery Dennison y sellado mediante laminado continuo de alta resistencia.',
   cards: [
-    {
-      id: 'mimaki',
-      title: 'Mimaki UCJV300-160 (TrafficJet™ Xpress)',
-      description:
-        'Impresora digital oficial Mimaki UCJV300-160 con tecnología UV-LED en frío calibrada exclusivamente para láminas reflectivas Avery Dennison y sistema TrafficJet™ Xpress.'
-    },
     {
       id: 'omnicube',
       title: 'Serie T-11500 OmniCube™ (Grado Diamante)',
@@ -72,7 +69,7 @@ const AVERY_DENNISON = {
     },
     {
       id: 'egp',
-      title: 'Serie T-1500 Engineering Grade Prismatic (EGP)',
+      title: 'Serie T-2500 Engineering Grade Prismatic (EGP)',
       description:
         'Tipo I. Alternativa prismática eficiente para señalización comercial, cartelería informativa y nomenclatura urbana.'
     },
@@ -87,12 +84,6 @@ const AVERY_DENNISON = {
       title: 'Zona de Obras: Series Flexibles WR-6100 y WR-7100',
       description:
         'Línea de prismáticos flexibles de alta adaptabilidad para dispositivos de canalización temporal, tambores y vallas de obra.'
-    },
-    {
-      id: 'sustratos',
-      title: 'Sustratos Normados y Calidad Estructural',
-      description:
-        'Mecanizado e integración sobre chapa de diferentes espesores, PVC espumado, polímeros de alto impacto y plástico compacto con recubrimiento epoxi.'
     },
     {
       id: 'garantia',
@@ -113,10 +104,7 @@ const SENALIZACION = {
       title: 'Chapa de Acero Galvanizado',
       desc: 'Calibres 16, 18 y 20 con pestaña perimetral doble, confiriendo rigidez estática ante vientos intensos.'
     },
-    {
-      title: 'PVC Espumado de Alta Densidad',
-      desc: 'Placas livianas e inoxidables, óptimas para nomenclatura urbana, señalización interior e indicativa.'
-    },
+    
     {
       title: 'Polímeros de Alto Impacto',
       desc: 'Material de absorción elástica frente a golpes, con aditivos de protección UV contra envejecimiento solar.'
@@ -204,31 +192,35 @@ const SERVICIOS = {
   },
   items: [
     {
-      id: 'alquiler',
-      Icon: Truck,
-      title: 'Alquiler y Logística de Traslado',
-      description: 'Alquiler y distribución puntual de vallas y dispositivos de señalización vial directamente en obra o evento.'
+      id: 'alquiler-obras',
+      Icon: Construction,
+      title: 'Alquiler de Señalización para Obras Viales',
+      description: 'Equipamiento transitorio de seguridad y balizamiento para obras viales: conos flexibles, balizas intermitentes LED, carteles de obra y canalizadores de tránsito.'
+    },
+    {
+      id: 'alquiler-vallas',
+      Icon: ShieldAlert,
+      title: 'Alquiler de Vallas para Eventos',
+      description: 'Módulos de vallado de contención perimetral de alta resistencia para eventos multitudinarios, festivales y operativos con logística integral de traslado, armado y desarme.'
+    },
+    {
+      id: 'demarcacion',
+      Icon: Paintbrush,
+      title: 'Demarcación de Calles e Industrias',
+      description: 'Pintura y demarcación vial horizontal reflectiva para calles, avenidas, sendas peatonales, playas logísticas y señalización de seguridad para plantas industriales.'
     },
     {
       id: 'colocacion',
       Icon: Wrench,
-      title: 'Instalación y Anclaje Técnico en Obra',
-      description: 'Montaje de cartelería, reductores de velocidad (lomos de burro), tachas reflectivas y sistemas de iluminación de emergencia.'
-    },
-    {
-      id: 'entrega',
-      Icon: PackageCheck,
-      title: 'Entrega Directa en Ruta u Obrador',
-      description: 'Despacho y entrega puntual de pedidos directamente en el obrador o en el punto kilométrico asignado por la empresa contratista.'
+      title: 'Colocación de Carteles de Obra, Lomos de Burro, Delineadores y Tachas Viales.',
+      description: 'Cuadrillas técnicas para instalación y anclaje en ruta y vía pública de reductores de velocidad, cartelería de obra, delineadores flexibles y tachas reflectivas.'
     }
   ],
   detalles: [
-    'Vallas de seguridad y cerramiento perimetral',
-    'Balizamiento nocturno y señalización luminosa LED',
-    'Conos viales flexibles y canalizadores de tránsito',
-    'Linternas viales y cadenas plásticas de advertencia',
-    'Dispositivos de delineación y tachas reflectivas',
-    'Logística y cuadrillas de servicio permanente en ruta'
+    'Alquiler de Señalización para Obras Viales',
+    'Alquiler de Vallas para Eventos',
+    'Demarcación de Calles e Industrias',
+    'Colocación de Carteles de Obra, Lomos de Burro, Delineadores y Tachas Viales.'
   ],
   instalacionCards: [
     {
@@ -876,35 +868,37 @@ export default function Index() {
                 </div>
 
                 {/* Items de servicio */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                   {SERVICIOS.items.map((item, index) => (
                     <div
                       key={item.id}
-                      className="bg-slate-950/60 border border-primary/20 rounded-xl p-6 hover:border-primary/60 hover:bg-slate-950/80 transition-all"
+                      className="bg-slate-950/60 border border-primary/20 rounded-xl p-6 hover:border-primary/60 hover:bg-slate-950/80 transition-all flex flex-col justify-between"
                     >
-                      <div className="flex items-center justify-between mb-4">
-                        <div className="w-10 h-10 bg-primary/10 border border-primary/20 rounded-lg flex items-center justify-center">
-                          <item.Icon size={18} className="text-primary" />
+                      <div>
+                        <div className="flex items-center justify-between mb-4">
+                          <div className="w-10 h-10 bg-primary/10 border border-primary/20 rounded-lg flex items-center justify-center">
+                            <item.Icon size={18} className="text-primary" />
+                          </div>
+                          <span className="text-primary text-xs font-bold tracking-[0.25em]">
+                            {String(index + 1).padStart(2, '0')}
+                          </span>
                         </div>
-                        <span className="text-primary text-xs font-bold tracking-[0.25em]">
-                          {String(index + 1).padStart(2, '0')}
-                        </span>
+                        <h3 className="text-lg font-semibold text-slate-100 mb-2 leading-snug">{item.title}</h3>
+                        <p className="text-slate-400 text-sm leading-relaxed">{item.description}</p>
                       </div>
-                      <h3 className="text-lg font-semibold text-slate-100 mb-2">{item.title}</h3>
-                      <p className="text-slate-400 text-sm leading-relaxed">{item.description}</p>
                     </div>
                   ))}
                 </div>
 
                 {/* Detalles de equipamiento vial */}
-                <div className="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
                   {SERVICIOS.detalles.map((detalle) => (
                     <div
                       key={detalle}
-                      className="flex items-center gap-2.5 text-xs text-slate-300 bg-white/5 border border-white/10 rounded-lg px-4 py-3"
+                      className="flex items-center gap-2.5 text-xs text-slate-300 bg-white/5 border border-white/10 rounded-lg px-4 py-3 font-medium"
                     >
                       <Check size={14} className="text-primary shrink-0" />
-                      {detalle}
+                      <span>{detalle}</span>
                     </div>
                   ))}
                 </div>

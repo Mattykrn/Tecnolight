@@ -3,7 +3,7 @@ import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { ArrowRight, Award, Shield, MapPin, ArrowUpRight, MessageCircle, Truck, Wrench, PackageCheck } from 'lucide-react';
+import { ArrowRight, Award, Shield, MapPin, ArrowUpRight, MessageCircle, Truck, Wrench, PackageCheck, Construction, ShieldAlert, Paintbrush } from 'lucide-react';
 
 const MONO = { fontFamily: "'Roboto', sans-serif" };
 const HEADING = { fontFamily: "'Raleway', sans-serif", fontWeight: 900, textTransform: 'uppercase' };
@@ -20,19 +20,24 @@ const PROJ_CATS = ['Todo', 'Cartelería', 'Señalización', 'Demarcación', 'Seg
 
 const SERVICIOS = [
   {
-    Icon: Truck,
-    title: 'Alquiler, Traslado y Mantenimiento',
-    description: 'Equipos de señalización vial: balizas, vallas, semáforos y carteles viales.'
+    Icon: Construction,
+    title: 'Alquiler de Señalización para Obras Viales',
+    description: 'Equipos de señalización vial transitoria: conos, balizas intermitentes LED, carteles de obra y canalizadores reflectivos.'
+  },
+  {
+    Icon: ShieldAlert,
+    title: 'Alquiler de Vallas para Eventos',
+    description: 'Vallas de contención de alta resistencia y cerramiento perimetral con traslado, montaje estructural y retiro.'
+  },
+  {
+    Icon: Paintbrush,
+    title: 'Demarcación de Calles e Industrias',
+    description: 'Pintura y demarcación vial horizontal reflectiva de calzadas, sendas peatonales, cordones y naves industriales.'
   },
   {
     Icon: Wrench,
-    title: 'Colocación en Obra',
-    description: 'Colocación de carteles, lomos de burro, tachas reflectivas y luces de emergencia.'
-  },
-  {
-    Icon: PackageCheck,
-    title: 'Entrega en Obra',
-    description: 'Entrega de pedidos en obra o en cualquier ubicación asignada por la empresa contratista.'
+    title: 'Colocación de Carteles de Obra, Lomos de Burro, Delineadores y Tachas Viales.',
+    description: 'Colocación y anclaje técnico en ruta y vía pública de cartelería, reductores de velocidad, delineadores y tachas reflectivas.'
   }
 ];
 
@@ -156,7 +161,7 @@ export default function Projects() {
               <p className="text-muted-foreground leading-relaxed max-w-[680px]" style={BODY}>
                 Alquiler, traslado, mantenimiento y colocación de equipamiento de señalización vial, con entrega en obra o en la ubicación asignada por la empresa contratista.
               </p>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-10">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-10">
                 {SERVICIOS.map(({ Icon, title, description }) => (
                   <div key={title} className="bg-background/60 border border-primary/20 rounded-[6px] p-6 hover:border-primary/60 transition-colors">
                     <div className="w-9 h-9 bg-primary/10 border border-primary/20 rounded-[4px] flex items-center justify-center mb-4">

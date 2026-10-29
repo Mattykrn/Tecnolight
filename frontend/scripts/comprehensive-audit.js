@@ -90,6 +90,21 @@ async function runAudit() {
     passes.push('[VIDEO] Video viejo video_home.mp4 descartado por completo');
   }
 
+  // 5.1 SERVICIOS Y ALQUILER OFFICIAL ITEMS AUDIT
+  const expectedServices = [
+    'Alquiler de Señalización para Obras Viales',
+    'Alquiler de Vallas para Eventos',
+    'Demarcación de Calles e Industrias',
+    'Colocación de Carteles de Obra, Lomos de Burro, Delineadores y Tachas Viales.'
+  ];
+  expectedServices.forEach(srv => {
+    if (html.includes(srv)) {
+      passes.push(`[SERVICIOS] Ítem oficial presente: "${srv}"`);
+    } else {
+      issues.push(`[SERVICIOS] Falta el ítem oficial: "${srv}"`);
+    }
+  });
+
   // 6. BUTTONS & LINKS AUDIT
   // Match all <a> tags
   const aTagRegex = /<a\s+([^>]+)>([\s\S]*?)<\/a>/gi;
