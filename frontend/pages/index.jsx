@@ -551,7 +551,59 @@ export default function Index() {
       <InteractiveRoadHero />
 
       <div className="bg-background text-white">
-        {/* 2. SOLUCIONES REFLECTIVAS Y CATÁLOGO TÉCNICO AVERY DENNISON */}
+        {/* 2. QUIÉNES SOMOS: Presentación Institucional de la Empresa */}
+        <section
+          id="nosotros"
+          className="py-20 lg:py-28 section-solid-dark bg-hex-pattern scroll-mt-28 border-b border-white/5 relative"
+        >
+          <div id="quienes-somos" className="absolute -top-28" aria-hidden="true" />
+          <div className="max-w-site mx-auto px-5 lg:px-10">
+            <SectionTitle
+              kicker="Presentación Institucional"
+              title="Quiénes Somos: +30 Años Liderando la Señalización Vial"
+              description="Con más de tres décadas de trayectoria ininterrumpida y liderazgo regional, TECNO LIGHT S.R.L. integra planta fabril propia, tecnología reflectiva certificada y logística directa en Santa Fe, Rosario y todo el país."
+            />
+
+            {/* Bloque Institucional */}
+            <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 mb-10">
+              <div className="lg:col-span-8 space-y-5 text-slate-300 leading-relaxed text-base md:text-lg">
+                {QUIENES.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
+              </div>
+              <div className="lg:col-span-4">
+                <div className="card-corporate p-6 bg-slate-950/80 border border-primary/20">
+                  <h3 className="text-sm font-semibold uppercase tracking-widest text-primary mb-4">
+                    Presencia y Respaldo
+                  </h3>
+                  <div className="flex flex-wrap gap-2.5">
+                    {QUIENES_TAGS.map((tag) => (
+                      <span
+                        key={tag}
+                        className="px-3.5 py-1.5 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs font-semibold uppercase tracking-widest"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                  <p className="mt-5 text-sm text-slate-400 leading-relaxed">
+                    Planta fabril propia en el Parque Industrial Los Polígonos, equipamiento computarizado y logística de entrega en obra.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <SectionDualCta
+              text="Conozca nuestra planta industrial o solicite asesoramiento técnico y comercial personalizado para su licitación o proyecto vial."
+              waText="Hola, me comunico para conocer más sobre Tecno Light S.R.L. y coordinar asesoramiento técnico."
+              waLabel="Contactar por WhatsApp"
+              emailSubject="Presentación Institucional y Asesoramiento - Tecno Light S.R.L."
+              emailLabel="Solicitud Formal y Pliegos"
+            />
+          </div>
+        </section>
+
+        {/* 3. SOLUCIONES REFLECTIVAS Y CATÁLOGO TÉCNICO AVERY DENNISON */}
         <section
           id="avery-dennison"
           className="section-ig-card border-b border-white/5 py-20 lg:py-28 relative scroll-mt-28"
@@ -1039,47 +1091,17 @@ export default function Index() {
           </div>
         </section>
 
-        {/* 7. QUIÉNES SOMOS Y SEDES OFICIALES: Institucional, Planta Fabril y Contacto */}
+        {/* 8. SEDES OFICIALES Y CANALES DE CONTACTO */}
         <section
-          id="nosotros"
+          id="contacto"
           className="py-20 lg:py-28 section-solid-dark bg-hex-pattern scroll-mt-28 border-b border-white/5"
         >
-          <div id="contacto" className="h-0 scroll-mt-28" aria-hidden="true" />
           <div className="max-w-site mx-auto px-5 lg:px-10">
             <SectionTitle
-              kicker="Institucional & Red Operativa"
-              title="Quiénes Somos, Planta Fabril y Sedes Oficiales"
-              description="Con más de 30 años de experiencia y liderazgo continuo en el litoral argentino, Tecno Light S.R.L. integra planta fabril propia, tecnología reflectiva certificada y atención comercial personalizada en Santa Fe y Rosario."
+              kicker="Red Operativa y Canales Oficiales"
+              title="Sedes de Operación, Planta Fabril y Contacto"
+              description="Atención personalizada y cobertura permanente. Nuestras sedes comerciales, operativas y planta fabril se encuentran preparadas para abastecer proyectos en Santa Fe, Rosario y todo el país."
             />
-
-            {/* Bloque Institucional */}
-            <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 mb-16">
-              <div className="lg:col-span-8 space-y-5 text-slate-300 leading-relaxed">
-                {QUIENES.map((paragraph) => (
-                  <p key={paragraph}>{paragraph}</p>
-                ))}
-              </div>
-              <div className="lg:col-span-4">
-                <div className="card-corporate p-6">
-                  <h3 className="text-sm font-semibold uppercase tracking-widest text-primary mb-4">
-                    Presencia y Respaldo
-                  </h3>
-                  <div className="flex flex-wrap gap-2.5">
-                    {QUIENES_TAGS.map((tag) => (
-                      <span
-                        key={tag}
-                        className="px-3.5 py-1.5 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs font-semibold uppercase tracking-widest"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                  <p className="mt-5 text-sm text-slate-400 leading-relaxed">
-                    Planta fabril propia, producción integral y logística de entrega directa en obra.
-                  </p>
-                </div>
-              </div>
-            </div>
 
             {/* Sedes Oficiales */}
             <div className="mb-12">
@@ -1119,7 +1141,7 @@ export default function Index() {
                         {sede.email && (
                           <button
                             type="button"
-                            onClick={() => openSolicitudModal({ subject: `Consulta Comercial y Técnica - ${sede.title}` })}
+                            onClick={() => openSolicitudModal({ subject: `Consulta Comercial y Técnica - ${sede.city}` })}
                             className="flex items-center gap-2.5 hover:text-primary transition-colors break-all text-left cursor-pointer"
                           >
                             <Mail size={15} className="text-primary shrink-0" />

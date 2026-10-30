@@ -18,23 +18,23 @@ const WaIcon = ({ size = 16 }) => (
 
 const NAV = [
   { label: 'Inicio', href: '/#inicio' },
+  { label: 'Quiénes Somos', href: '/#nosotros' },
   { label: 'Soluciones Reflectivas', href: '/#avery-dennison' },
   { label: 'Señalización Vial', href: '/#senalizacion' },
   { label: 'Proceso en Planta', href: '/#infraestructura' },
   { label: 'Servicios y Alquiler', href: '/#servicios' },
   { label: 'Seguridad y EPP', href: '/#catalogo' },
-  { label: 'Quiénes Somos', href: '/#nosotros' },
   { label: 'Sedes y Contacto', href: '/#contacto' },
 ];
 
 const FOOTER_NAV = [
   { label: 'Inicio', href: '/#inicio' },
+  { label: 'Quiénes Somos', href: '/#nosotros' },
   { label: 'Soluciones Reflectivas Avery Dennison', href: '/#avery-dennison' },
   { label: 'Señalización Vial y Cartelería', href: '/#senalizacion' },
   { label: 'Proceso Industrial en Planta', href: '/#infraestructura' },
   { label: 'Servicios y Alquiler Vial', href: '/#servicios' },
   { label: 'Seguridad Industrial y EPP', href: '/#catalogo' },
-  { label: 'Quiénes Somos', href: '/#nosotros' },
   { label: 'Sedes y Canales Oficiales', href: '/#contacto' },
 ];
 
