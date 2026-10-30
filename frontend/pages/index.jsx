@@ -44,16 +44,10 @@ const AVERY_DENNISON = {
   kicker: 'Tecnología Reflectiva y Laminado Continuo',
   title: 'Impresión Digital TrafficJet™ Xpress',
   description:
-    'Tecno Light S.R.L. imprime con tecnología TrafficJet™ Xpress de curado instantáneo UV-LED sobre láminas microprismáticas Avery Dennison (OmniCube™, HIP y Serie T-2500), combinada con la estación de laminado continuo que sella la película protectora UV antigraffiti. Garantizamos la máxima durabilidad óptica del mercado y respuesta retrorreflectiva a largo plazo.',
+    'Impresión digital TrafficJet™ Xpress sobre láminas microprismáticas Avery Dennison (OmniCube™, HIP y Serie T-2500) con sellado continuo antigraffiti. Máxima retrorreflexión angular y durabilidad óptica certificada.',
   standards: 'Certificación técnica oficial de retrorreflexión (Tipos I, IV, VIII, IX y XI).',
-  proceso: [
-    'Impresión digital UV-LED de alta definición mediante la plataforma industrial TrafficJet™ Xpress.',
-    'Curado instantáneo en frío por emisión LED, evitando tensiones térmicas sobre los microprismas reflectivos.',
-    'Laminado continuo de alta presión con película protectora transparente con filtro UV y barrera antigraffiti.',
-    'Control fotométrico de precisión y transferencia sobre chapa galvanizada en Calibre 14, PVC espumado, alto impacto o plástico compacto.'
-  ],
   videoDesc:
-    'Registro directo en nuestra planta industrial: proceso centralizado de impresión digital TrafficJet™ Xpress sobre láminas microprismáticas Avery Dennison y sellado mediante laminado continuo de alta resistencia.',
+    'Circuito continuo de manufactura en planta: curado instantáneo UV-LED en frío que preserva la estructura óptica de los microprismas y transferencia a presión sobre chapa Calibre 14 con control fotométrico previo al despacho.',
   cards: [
     {
       id: 'omnicube',
@@ -75,9 +69,9 @@ const AVERY_DENNISON = {
     },
     {
       id: 'sobrelaminados',
-      title: 'Sobrelaminados y Laminado Continuo UV',
+      title: 'Sobrelaminados y Sellado UV',
       description:
-        'Películas transparentes con filtro UV y barrera antigraffiti fijadas mediante rodillos continuos de alta presión para blindar la señal contra la intemperie.'
+        'Película transparente con filtro UV y barrera antigraffiti fijada a presión continua para blindar la señal frente a la intemperie.'
     },
     {
       id: 'zona-obras',
@@ -172,11 +166,10 @@ const PROCESO = {
     }
   ],
   capacidades: [
-    'Planta industrial en el Parque Industrial Los Polígonos (Santa Fe Capital)',
-    'Tecnología de corte láser computarizado y líneas de plegado de chapa de precisión',
-    'Plataforma de impresión digital UV-LED TrafficJet™ Xpress y estación de laminado continuo',
-    'Flota de unidades móviles y cuadrillas técnicas para logística y montaje en ruta',
-    'Sede Comercial en Santa Fe Capital y Sede Operativa en la ciudad de Rosario'
+    'Planta industrial de escala fabril en Parque Industrial Los Polígonos',
+    'Flota de unidades móviles y cuadrillas técnicas para montaje en ruta',
+    'Sede Comercial en Santa Fe Capital y Sede Operativa en la ciudad de Rosario',
+    'Capacidad de abastecimiento para licitaciones públicas y frentes viales simultáneos'
   ]
 };
 
@@ -186,15 +179,13 @@ const SERVICIOS = {
   description:
     'Disponibilidad inmediata de stock, logística integral y cuadrillas técnicas para encauzar desvíos de tránsito, operativos viales y eventos multitudinarios. Cobertura permanente en Santa Fe, Rosario y todo el litoral argentino.',
   eventos: {
-    title: 'Alquiler de Vallas, Balizamiento y Equipamiento Vial para Obras y Eventos',
+    title: 'Alquiler y Logística de Vallas de Contención',
     description:
-      'Soluciones integrales de alquiler y logística para desvíos de tránsito, frentes de obra y eventos: módulos de vallado de contención perimetral en acero con terminación epoxi, balizas destellantes LED, conos flexibles de PVC, canalizadores de tránsito y elementos de seguridad vial. Logística coordinada de traslado, montaje técnico y retiro programado en Santa Fe, Rosario y todo el litoral.',
+      'Módulos de cerramiento perimetral fabricados en acero con terminación epoxi. Coordinamos la entrega, montaje estructural y retiro programado según el cronograma de su evento u obra en Santa Fe, Rosario y la región.',
     items: [
-      'Vallas de contención de alta resistencia y cerramiento perimetral',
-      'Balizamiento vial diurno y nocturno con tecnología lumínica LED',
-      'Dispositivos de canalización: conos flexibles de PVC y tambores de obra',
-      'Logística coordinada de traslado, montaje técnico y retiro ágil',
-      'Disponibilidad inmediata de stock en Santa Fe Capital y Rosario'
+      'Estructuras metálicas de alta resistencia y estabilidad perimetral',
+      'Logística de traslado, armado y retiro ágil en sitio',
+      'Disponibilidad permanente de stock en Santa Fe Capital y Rosario'
     ]
   },
   items: [
@@ -202,32 +193,26 @@ const SERVICIOS = {
       id: 'alquiler-obras',
       Icon: Construction,
       title: 'Alquiler de Señalización para Obras Viales',
-      description: 'Equipamiento transitorio de seguridad y balizamiento para obras viales: conos flexibles, balizas intermitentes LED, carteles de obra y canalizadores de tránsito.'
+      description: 'Equipamiento transitorio de seguridad: balizas LED, conos flexibles y canalizadores de tránsito.'
     },
     {
       id: 'alquiler-vallas',
       Icon: ShieldAlert,
       title: 'Alquiler de Vallas para Eventos',
-      description: 'Módulos de vallado de contención perimetral de alta resistencia para eventos multitudinarios, festivales y operativos con logística integral de traslado, armado y desarme.'
+      description: 'Vallado perimetral de contención para resguardo de frentes de obra y eventos multitudinarios.'
     },
     {
       id: 'demarcacion',
       Icon: Paintbrush,
       title: 'Demarcación de Calles e Industrias',
-      description: 'Pintura y demarcación vial horizontal reflectiva para calles, avenidas, sendas peatonales, playas logísticas y señalización de seguridad para plantas industriales.'
+      description: 'Pintura vial horizontal reflectiva para calles, avenidas, sendas peatonales y plantas fabriles.'
     },
     {
       id: 'colocacion',
       Icon: Wrench,
       title: 'Colocación de Carteles de Obra, Lomos de Burro, Delineadores y Tachas Viales.',
-      description: 'Cuadrillas técnicas para instalación y anclaje en ruta y vía pública de reductores de velocidad, cartelería de obra, delineadores flexibles y tachas reflectivas.'
+      description: 'Cuadrillas técnicas para instalación y anclaje en ruta de reductores de velocidad, cartelería y elementos viales.'
     }
-  ],
-  detalles: [
-    'Alquiler de Señalización para Obras Viales',
-    'Alquiler de Vallas para Eventos',
-    'Demarcación de Calles e Industrias',
-    'Colocación de Carteles de Obra, Lomos de Burro, Delineadores y Tachas Viales.'
   ],
   instalacionCards: [
     {
@@ -592,29 +577,18 @@ export default function Index() {
               ))}
             </div>
 
-            {/* Ficha técnica y Video Centralizado */}
+            {/* Proceso en Planta y Video Centralizado */}
             <div className="mt-14 grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
               <div className="lg:col-span-5">
                 <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-primary mb-2">
-                  En planta — tecnología operativa
+                  En planta — proceso operativo
                 </p>
                 <h3 className="text-xl md:text-2xl font-bold text-white mb-4">
-                  Impresión Digital TrafficJet™ Xpress y Laminado Continuo en Planta
+                  Manufactura y Sellado Continuo
                 </h3>
-                <p className="text-sm text-slate-300 leading-relaxed mb-6">
+                <p className="text-sm md:text-base text-slate-300 leading-relaxed">
                   {AVERY_DENNISON.videoDesc}
                 </p>
-                <ul className="space-y-3">
-                  {AVERY_DENNISON.proceso.map((item) => (
-                    <li
-                      key={item}
-                      className="flex items-start gap-3 text-sm text-slate-300 leading-relaxed"
-                    >
-                      <Check size={16} className="text-primary shrink-0 mt-0.5" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
               </div>
               <div className="lg:col-span-7">
                 <CentralFactoryVideo />
@@ -916,12 +890,12 @@ export default function Index() {
                       ))}
                     </ul>
                     <a
-                      href={getWaLink('Hola, quiero consultar por alquiler de vallas, balizamiento o equipamiento vial para obra/evento.')}
+                      href={getWaLink('Hola, quiero consultar por alquiler de vallas para un evento o frente de obra.')}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="btn-primary text-sm self-start inline-flex items-center gap-2"
                     >
-                      <span>Consultar alquiler de vallas y equipamiento</span>
+                      <span>Consultar alquiler de vallas</span>
                       <ArrowRight size={16} />
                     </a>
                   </div>
@@ -946,19 +920,6 @@ export default function Index() {
                         <h3 className="text-lg font-semibold text-slate-100 mb-2 leading-snug">{item.title}</h3>
                         <p className="text-slate-400 text-sm leading-relaxed">{item.description}</p>
                       </div>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Detalles de equipamiento vial */}
-                <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-                  {SERVICIOS.detalles.map((detalle) => (
-                    <div
-                      key={detalle}
-                      className="flex items-center gap-2.5 text-xs text-slate-300 bg-white/5 border border-white/10 rounded-lg px-4 py-3 font-medium"
-                    >
-                      <Check size={14} className="text-primary shrink-0" />
-                      <span>{detalle}</span>
                     </div>
                   ))}
                 </div>
