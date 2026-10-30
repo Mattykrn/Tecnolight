@@ -33,7 +33,7 @@ export default function ProjectDetail({ project }) {
   return (
     <div className="max-w-site mx-auto px-5 lg:px-10 py-32 max-md:py-20">
       <Head>
-        <title>{project.title} | Tecnolight SRL</title>
+        <title>{`${project.title} | Tecno Light S.R.L.`}</title>
         <meta name="description" content={project.description?.substring(0, 160)} />
       </Head>
 

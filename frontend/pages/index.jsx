@@ -1,4 +1,5 @@
 import React from 'react';
+import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 import {
@@ -537,6 +538,14 @@ export default function Index() {
   const { openSolicitudModal } = useSolicitudModal();
   return (
     <>
+      <Head>
+        <title>Tecno Light S.R.L. | Señalización Vial y Cartelería Reflectiva</title>
+        <meta
+          name="description"
+          content="Fabricación y provisión de señalización vial oficial, cartelería reflectiva Avery Dennison, impresión digital TrafficJet™ Xpress, EPP y servicios de alquiler."
+        />
+      </Head>
+
       {/* 1. HERO PRINCIPAL: Logo, +30 años y sellos oficiales Avery Dennison / TrafficJet Xpress */}
       <div id="inicio" className="h-0 scroll-mt-20" aria-hidden="true" />
       <InteractiveRoadHero />
