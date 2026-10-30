@@ -29,7 +29,7 @@ import { useSolicitudModal } from '../components/SolicitudModal';
 
 const QUIENES = [
   'Con más de tres décadas de trayectoria ininterrumpida y liderazgo regional, TECNO LIGHT S.R.L. se posiciona como una firma referente en el diseño, manufactura e instalación de sistemas de señalización vial reglamentaria, preventiva, informativa y transitoria.',
-  'Desde nuestra planta industrial ubicada en el Parque Industrial Los Polígonos (Santa Fe Capital), coordinamos procesos productivos de vanguardia: corte láser computarizado, conformado de chapa en Calibre 14, tratamiento anticorrosivo mediante pintura epoxi termoconvertible, la plataforma digital de impresión UV-LED TrafficJet™ Xpress y laminado continuo sobre láminas reflectivas Avery Dennison.',
+  'Desde nuestra planta industrial ubicada en el Parque Industrial Los Polígonos (Santa Fe Capital), coordinamos procesos productivos de vanguardia: corte láser computarizado, conformado de chapa en Calibre 14, tratamiento anticorrosivo con pintura epoxi de alta resistencia, la plataforma digital de impresión UV-LED TrafficJet™ Xpress y laminado continuo sobre láminas reflectivas Avery Dennison.',
   'Nuestra estructura abarca la provisión mayorista de indumentaria técnica de trabajo y equipamiento de protección personal e industrial (EPP) homologado, además de una división especializada en el alquiler, montaje y logística de vallas de contención para grandes eventos y obras viales, brindando cobertura permanente en Santa Fe, Rosario y todo el litoral argentino.'
 ];
 
@@ -98,7 +98,7 @@ const SENALIZACION = {
     { num: '01', title: 'Diseño', desc: 'Planos técnicos y tipografía vial reglamentaria' },
     { num: '02', title: 'Corte', desc: 'Mecanizado y corte de sustratos con tolerancias exactas' },
     { num: '03', title: 'Soldadura', desc: 'Estructuras reforzadas y anclajes resistentes' },
-    { num: '04', title: 'Pintura', desc: 'Tratamiento anticorrosivo y pintura epoxi termoconvertible' },
+    { num: '04', title: 'Pintura', desc: 'Tratamiento anticorrosivo y aplicación de pintura de alta resistencia' },
     { num: '05', title: 'Rotulado', desc: 'Montaje de vinilo reflectivo microprismático y laminado' }
   ],
   fabricacion: [
@@ -157,8 +157,8 @@ const PROCESO = {
     },
     {
       id: 'pintura-epoxi',
-      title: '3. TRATAMIENTO Y PINTURA EPOXI',
-      description: 'Desengrase, fosfatizado y aplicación electrostática de pintura epoxi termoconvertible con curado térmico controlado, asegurando máxima durabilidad anticorrosiva.'
+      title: '3. TRATAMIENTO Y PINTURA',
+      description: 'Desengrase, fosfatizado y aplicación de pintura anticorrosiva de alta adherencia y máxima resistencia a la intemperie.'
     },
     {
       id: 'impresion-final',

@@ -21,7 +21,7 @@ run('git add -A .', repoRoot);
 run('git status --short', repoRoot);
 
 console.log('=== 2. Git Commit ===');
-const commitMsg = 'Feat: seccion Quienes Somos ubicada inmediatamente tras el Hero, fotos 1 2 y 3, eliminacion de Mimaki, video centralizado y chapa calibre 14';
+const commitMsg = 'Feat: eliminacion de horneado y termoconvertible, pintura epoxi y anticorrosiva de alta resistencia';
 run(`git commit -m "${commitMsg}"`, repoRoot);
 
 console.log('=== 3. Git Push to GitHub ===');

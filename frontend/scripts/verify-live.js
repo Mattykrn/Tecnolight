@@ -17,6 +17,8 @@ https.get('https://tecno-light-v3-irux.vercel.app', (res) => {
     console.log('Has traza (should be false)?:', data.includes('traza'));
     console.log('Has pestaña (should be false)?:', data.includes('pestaña'));
     console.log('Has Convertidores (should be false)?:', data.toLowerCase().includes('convertidores'));
+    console.log('Has horneado (should be false)?:', data.toLowerCase().includes('horneado'));
+    console.log('Has termoconvertible (should be false)?:', data.toLowerCase().includes('termoconvertible'));
   });
 }).on('error', (e) => {
   console.error('Fetch error:', e.message);

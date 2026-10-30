@@ -90,7 +90,7 @@ async function runAudit() {
   }
 
   // 4. CHECK BANNED WORDS
-  const banned = ['IRAM', 'ASTM', 'D4956', 'trabajo de ingeniería', 'distintas tintas', 'horneado', 'CNC'];
+  const banned = ['IRAM', 'ASTM', 'D4956', 'trabajo de ingeniería', 'distintas tintas', 'horneado', 'CNC', 'termoconvertible', 'curado térmico'];
   banned.forEach(word => {
     // case insensitive check with word boundaries where applicable
     const regex = new RegExp(`\\b${word}\\b`, 'i');
