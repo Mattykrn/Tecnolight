@@ -35,8 +35,7 @@ async function runAudit() {
     issues.push(`[HERO] No se encontró la frase exacta "${expectedHeroSubtitle}"`);
   }
 
-  // Check no old hero text
-  ['rigor técnico', 'excelencia industrial'].forEach(oldPhrase => {
+  ['rigor técnico', 'excelencia industrial', 'convertidores y distribuidores'].forEach(oldPhrase => {
     if (html.toLowerCase().includes(oldPhrase)) {
       issues.push(`[HERO] Texto antiguo detectado: "${oldPhrase}"`);
     } else {

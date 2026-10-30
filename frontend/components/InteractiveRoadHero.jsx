@@ -69,10 +69,7 @@ export default function InteractiveRoadHero() {
             Ofrecemos asesoramiento y atención personalizada
           </motion.p>
 
-          <motion.div className="flex flex-col items-center gap-5" variants={itemVariants}>
-            <p className="text-[10px] md:text-[11px] font-bold uppercase tracking-[0.3em] text-slate-400">
-              Convertidores y Distribuidores Oficiales Certificados
-            </p>
+          <motion.div className="flex flex-col items-center gap-4" variants={itemVariants}>
             <div className="flex flex-wrap items-center justify-center gap-3">
               <div className="inline-flex items-center rounded-lg bg-white px-5 py-3 shadow-xl shadow-black/30">
                 <img
