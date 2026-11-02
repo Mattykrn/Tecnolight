@@ -21,7 +21,7 @@ run('git add -A .', repoRoot);
 run('git status --short', repoRoot);
 
 console.log('=== 2. Git Commit ===');
-const commitMsg = 'Feat: eliminacion de horneado y termoconvertible, pintura epoxi y anticorrosiva de alta resistencia';
+const commitMsg = 'Refactor: optimizacion integral y eliminacion de redundancias en contenidos segun principio menos es mas';
 run(`git commit -m "${commitMsg}"`, repoRoot);
 
 console.log('=== 3. Git Push to GitHub ===');

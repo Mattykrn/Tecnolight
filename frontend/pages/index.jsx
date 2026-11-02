@@ -28,17 +28,17 @@ import { useSolicitudModal } from '../components/SolicitudModal';
    ============================================================ */
 
 const QUIENES = [
-  'Con más de tres décadas de trayectoria ininterrumpida y liderazgo regional, TECNO LIGHT S.R.L. se posiciona como una firma referente en el diseño, manufactura e instalación de sistemas de señalización vial reglamentaria, preventiva, informativa y transitoria.',
-  'Desde nuestra planta industrial ubicada en el Parque Industrial Los Polígonos (Santa Fe Capital), coordinamos procesos productivos de vanguardia: corte láser computarizado, conformado de chapa en Calibre 14, tratamiento anticorrosivo con pintura epoxi de alta resistencia, la plataforma digital de impresión UV-LED TrafficJet™ Xpress y laminado continuo sobre láminas reflectivas Avery Dennison.',
-  'Nuestra estructura abarca la provisión mayorista de indumentaria técnica de trabajo y equipamiento de protección personal e industrial (EPP) homologado, además de una división especializada en el alquiler, montaje y logística de vallas de contención para grandes eventos y obras viales, brindando cobertura permanente en Santa Fe, Rosario y todo el litoral argentino.'
+  'TECNO LIGHT S.R.L. es una firma referente en el diseño, manufactura e instalación de sistemas de señalización vial reglamentaria, preventiva, informativa y transitoria.',
+  'En nuestra planta del Parque Industrial Los Polígonos (Santa Fe Capital) desarrollamos procesos de corte láser, conformado de chapa en Calibre 14, tratamiento anticorrosivo con pintura epoxi de alta resistencia, impresión digital UV-LED TrafficJet™ Xpress y laminado continuo sobre láminas reflectivas Avery Dennison.',
+  'Completamos nuestra propuesta con la provisión mayorista de indumentaria técnica y equipamiento de protección personal (EPP) homologado, junto a una división especializada en alquiler y montaje de vallas de contención para grandes eventos y obras viales.'
 ];
 
 const QUIENES_TAGS = [
   '+30 Años de Trayectoria',
   'Planta Fabril Los Polígonos',
-  'Sede Comercial Santa Fe Capital',
+  'Sede Comercial Santa Fe',
   'Sede Operativa Rosario',
-  'Certificación Vial Oficial'
+  'Homologación Vial Oficial'
 ];
 
 const AVERY_DENNISON = {
@@ -70,21 +70,9 @@ const AVERY_DENNISON = {
     },
     {
       id: 'sobrelaminados',
-      title: 'Sobrelaminados y Sellado UV',
+      title: 'Sobrelaminados y Sellado UV Antigraffiti',
       description:
-        'Película transparente con filtro UV y barrera antigraffiti fijada a presión continua para blindar la señal frente a la intemperie.'
-    },
-    {
-      id: 'zona-obras',
-      title: 'Zona de Obras: Series Flexibles WR-6100 y WR-7100',
-      description:
-        'Línea de prismáticos flexibles de alta adaptabilidad para dispositivos de canalización temporal, tambores y vallas de obra.'
-    },
-    {
-      id: 'garantia',
-      title: 'Garantía Oficial y Respaldo Avery Dennison',
-      description:
-        'Certificación técnica oficial, control de calidad por lote y respaldo directo de durabilidad garantizada.'
+        'Película protectora transparente con filtro UV y barrera antigraffiti fijada a presión continua para blindar la señal frente a la intemperie.'
     }
   ]
 };
@@ -93,14 +81,7 @@ const SENALIZACION = {
   kicker: 'Líderes en Señalización Vial',
   title: 'Fabricación de Señalización Vial y Cartelería Urbana',
   description:
-    'Fabricación de señalización vial bajo especificaciones oficiales con terminaciones metalúrgicas de alta calidad. Proceso integral: Diseño, Corte, Soldadura, Pintura y Rotulado.',
-  etapas: [
-    { num: '01', title: 'Diseño', desc: 'Planos técnicos y tipografía vial reglamentaria' },
-    { num: '02', title: 'Corte', desc: 'Mecanizado y corte de sustratos con tolerancias exactas' },
-    { num: '03', title: 'Soldadura', desc: 'Estructuras reforzadas y anclajes resistentes' },
-    { num: '04', title: 'Pintura', desc: 'Tratamiento anticorrosivo y aplicación de pintura de alta resistencia' },
-    { num: '05', title: 'Rotulado', desc: 'Montaje de vinilo reflectivo microprismático y laminado' }
-  ],
+    'Fabricación integral de cartelería y dispositivos viales bajo especificaciones oficiales con terminaciones metalúrgicas de alta rigidez.',
   fabricacion: [
     {
       title: 'Carteles Viales y Transitorios de Obra',
@@ -143,33 +124,33 @@ const PROCESO = {
   kicker: 'Capacidad Fabril y Precisión Operativa',
   title: 'Proceso Industrial Continuo: De la Materia Prima al Producto Final',
   description:
-    'En nuestra planta industrial en el Parque Industrial Los Polígonos (Santa Fe Capital), cada pieza atraviesa un circuito productivo estandarizado en 4 fases con controles de calidad rigurosos.',
+    'Circuito productivo estandarizado en 4 fases continuas en nuestra planta fabril con controles de calidad en cada etapa.',
   stages: [
     {
       id: 'materia-prima',
-      title: '1. MATERIA PRIMA Y DISEÑO',
-      description: 'Selección estricta de chapa en Calibre 14, PVC espumado, alto impacto y plástico compacto. Elaboración de planos técnicos bajo especificaciones viales aplicables.'
+      title: '1. MATERIA PRIMA Y PLANOS TÉCNICOS',
+      description: 'Selección estricta de sustratos homologados y modelado de planos bajo normativas viales aplicables.'
     },
     {
       id: 'corte-laser',
       title: '2. CORTE LÁSER Y PLEGADO',
-      description: 'Mecanizado por corte láser de alta precisión y plegado computarizado de aristas perimetrales, garantizando resistencia mecánica y seguridad en aristas.'
+      description: 'Mecanizado por corte láser de alta precisión y plegado computarizado perimetral para máxima resistencia mecánica.'
     },
     {
       id: 'pintura-epoxi',
-      title: '3. TRATAMIENTO Y PINTURA',
-      description: 'Desengrase, fosfatizado y aplicación de pintura anticorrosiva de alta adherencia y máxima resistencia a la intemperie.'
+      title: '3. TRATAMIENTO Y PINTURA EPOXI',
+      description: 'Desengrase, fosfatizado y aplicación de pintura epoxi anticorrosiva de alta adherencia y durabilidad a la intemperie.'
     },
     {
       id: 'impresion-final',
-      title: '4. IMPRESIÓN DIGITAL UV-LED, LAMINADO Y MONTAJE FINAL',
-      description: 'Impresión digital UV-LED TrafficJet™ Xpress sobre microprismas Avery Dennison, laminado continuo protector antigraffiti, sellado y control fotométrico previo al despacho.'
+      title: '4. IMPRESIÓN DIGITAL UV-LED Y SELLADO',
+      description: 'Impresión TrafficJet™ Xpress sobre láminas Avery Dennison, laminado continuo antigraffiti y control fotométrico previo al despacho.'
     }
   ],
   capacidades: [
-    'Planta industrial de escala fabril en Parque Industrial Los Polígonos',
+    'Planta industrial propia con equipamiento computarizado de alta escala',
     'Flota de unidades móviles y cuadrillas técnicas para montaje en ruta',
-    'Sede Comercial en Santa Fe Capital y Sede Operativa en la ciudad de Rosario',
+    'Sede Comercial en Santa Fe Capital y Sede Operativa en Rosario',
     'Capacidad de abastecimiento para licitaciones públicas y frentes viales simultáneos'
   ]
 };
@@ -178,15 +159,15 @@ const SERVICIOS = {
   kicker: 'Soluciones Operativas y Logística Vial',
   title: 'Servicios y Alquiler: Equipamiento Vial, Balizas, Vallas y Colocación en Ruta',
   description:
-    'Disponibilidad inmediata de stock, logística integral y cuadrillas técnicas para encauzar desvíos de tránsito, operativos viales y eventos multitudinarios. Cobertura permanente en Santa Fe, Rosario y todo el litoral argentino.',
+    'Disponibilidad inmediata de stock, logística integral y cuadrillas técnicas para encauzar desvíos de tránsito, operativos viales y eventos multitudinarios en Santa Fe, Rosario y la región.',
   eventos: {
     title: 'Alquiler y Logística de Vallas de Contención',
     description:
-      'Módulos de cerramiento perimetral fabricados en acero con terminación epoxi. Coordinamos la entrega, montaje estructural y retiro programado según el cronograma de su evento u obra en Santa Fe, Rosario y la región.',
+      'Módulos de cerramiento perimetral fabricados en acero con terminación epoxi. Coordinamos la entrega, montaje estructural y retiro programado según el cronograma de su evento u obra.',
     items: [
-      'Estructuras metálicas de alta resistencia y estabilidad perimetral',
+      'Estructuras metálicas de alta estabilidad y resistencia perimetral',
       'Logística de traslado, armado y retiro ágil en sitio',
-      'Disponibilidad permanente de stock en Santa Fe Capital y Rosario'
+      'Disponibilidad permanente de stock para despliegue inmediato'
     ]
   },
   items: [
@@ -224,19 +205,19 @@ const SERVICIOS = {
     {
       id: 'granporte',
       title: 'Cartelería de Gran Formato y Pórticos Aéreos',
-      description: 'Cálculo de cargas, manufactura y montaje en altura de carteles de gran porte con tecnología microprismática Avery Dennison OmniCube™.'
+      description: 'Cálculo estructural, manufactura y montaje en altura con tecnología microprismática Avery Dennison OmniCube™.'
     },
     {
       id: 'urbana',
       title: 'Demarcación y Vallado para Obras Urbanas',
-      description: 'Canalización de tránsito diurno y nocturno, balizamiento reflectivo y demarcación horizontal para garantizar la seguridad de operarios y usuarios viales.'
+      description: 'Canalización de tránsito diurno y nocturno, balizamiento reflectivo y demarcación horizontal para seguridad de operarios y usuarios viales.'
     }
   ],
   flota: {
     kicker: 'Infraestructura Móvil Especializada',
     title: 'Flota Operativa y Cuadrillas en Ruta',
     description:
-      'Nuestras unidades móviles y vehículos de apoyo técnico trasladan cuadrillas especializadas, cartelería e instrumental de montaje pesado directamente a la ruta, permaneciendo apostadas en obra para una ejecución continua y segura.',
+      'Unidades móviles y vehículos de apoyo técnico trasladan cuadrillas especializadas, cartelería e instrumental de montaje pesado directamente a la ruta.',
     items: [
       {
         src: '/images/flota/sprinter-flota-1.jpg',
@@ -264,7 +245,7 @@ const EPP = {
   kicker: 'Seguridad Industrial y Personal',
   title: 'Seguridad Industrial y EPP: Indumentaria Grafa y Protección Homologada',
   description:
-    'Comercialización mayorista y distribución corporativa de equipos de protección personal (EPP) homologados e indumentaria de trabajo certificada para obras civiles, viales, químicas e industriales. Suministro confiable por lote con logística de entrega directa en obrador o centro de distribución asignado.',
+    'Comercialización mayorista y distribución corporativa de equipos de protección personal (EPP) e indumentaria de trabajo certificada para obras civiles, viales e industriales, con entrega directa en obrador.',
   groups: [
     {
       id: 'indumentaria',
@@ -367,7 +348,6 @@ const EPP = {
         'Chalecos de seguridad vial reglamentarios con bandas reflectivas de alta intensidad',
         'Reductores de velocidad de goma vulcanizada (lomos de burro modulares)',
         'Tachas reflectivas bidireccionales de alta durabilidad en calzada',
-        'Cintas de peligro de alta resistencia y mallas plásticas de contención perimetral',
         'Bandas reflectivas y carteles de advertencia para vehículos de carga'
       ]
     }
@@ -560,8 +540,8 @@ export default function Index() {
           <div className="max-w-site mx-auto px-5 lg:px-10">
             <SectionTitle
               kicker="Presentación Institucional"
-              title="Quiénes Somos: +30 Años Liderando la Señalización Vial"
-              description="Con más de tres décadas de trayectoria ininterrumpida y liderazgo regional, TECNO LIGHT S.R.L. integra planta fabril propia, tecnología reflectiva certificada y logística directa en Santa Fe, Rosario y todo el país."
+              title="Quiénes Somos: Liderazgo en Señalización Vial"
+              description="Más de tres décadas integrando planta industrial propia, tecnología reflectiva certificada y logística directa en todo el país."
             />
 
             {/* Bloque Institucional */}
@@ -587,14 +567,14 @@ export default function Index() {
                     ))}
                   </div>
                   <p className="mt-5 text-sm text-slate-400 leading-relaxed">
-                    Planta fabril propia en el Parque Industrial Los Polígonos, equipamiento computarizado y logística de entrega en obra.
+                    Capacidad fabril instalada, stock permanente y logística de despacho directo a obra.
                   </p>
                 </div>
               </div>
             </div>
 
             <SectionDualCta
-              text="Conozca nuestra planta industrial o solicite asesoramiento técnico y comercial personalizado para su licitación o proyecto vial."
+              text="Coordinamos visitas a planta y brindamos asesoramiento técnico integral para licitaciones y proyectos viales."
               waText="Hola, me comunico para conocer más sobre Tecno Light S.R.L. y coordinar asesoramiento técnico."
               waLabel="Contactar por WhatsApp"
               emailSubject="Presentación Institucional y Asesoramiento - Tecno Light S.R.L."
@@ -748,7 +728,7 @@ export default function Index() {
             </div>
 
             <SectionDualCta
-              text="Asesoramiento técnico en especificación de láminas reflectivas OmniCube™, HIP y Serie T-2500 con impresión digital TrafficJet™ Xpress UV-LED y laminado continuo."
+              text="Especificaciones técnicas, compatibilidad de láminas y muestras para proyectos de señalización vial reflectiva."
               waText="Hola, solicito asesoramiento técnico sobre impresión digital TrafficJet™ Xpress, láminas Avery Dennison y laminado protector."
               waLabel="Consultar por WhatsApp"
               emailSubject="Solicitud Técnica y Pliego - Impresión Digital TrafficJet y Laminados Avery Dennison"
@@ -789,32 +769,6 @@ export default function Index() {
                   </div>
                 </div>
               ))}
-            </div>
-
-            {/* Proceso en 5 etapas: Diseño, Corte, Soldadura, Pintura y Rotulado */}
-            <div className="mb-12 rounded-2xl border border-white/10 bg-white/[0.02] p-6 lg:p-8">
-              <div className="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-                <h3 className="text-xs font-bold uppercase tracking-[0.25em] text-primary">
-                  Proceso de Fabricación Homologado
-                </h3>
-                <span className="text-xs text-slate-400 font-mono">
-                  Diseño · Corte · Soldadura · Pintura · Rotulado
-                </span>
-              </div>
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
-                {SENALIZACION.etapas.map((etapa) => (
-                  <div
-                    key={etapa.num}
-                    className="rounded-xl border border-white/10 bg-slate-950/80 p-4 hover:border-primary/40 transition-colors"
-                  >
-                    <span className="text-xs font-extrabold text-primary font-mono block mb-1">
-                      {etapa.num}
-                    </span>
-                    <h4 className="text-sm font-bold text-white mb-1">{etapa.title}</h4>
-                    <p className="text-[11px] text-slate-400 leading-normal">{etapa.desc}</p>
-                  </div>
-                ))}
-              </div>
             </div>
 
             {/* Sustratos Normados */}
@@ -916,9 +870,6 @@ export default function Index() {
                   title={SERVICIOS.title}
                   description={SERVICIOS.description}
                 />
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-5">
-                  Servicio disponible en Santa Fe, Rosario y todo el litoral argentino
-                </p>
 
                 {/* Alquiler destacado */}
                 <div className="mb-8 grid lg:grid-cols-[1.2fr_1fr] gap-6 rounded-xl border border-primary/40 bg-primary/[0.06] p-6 md:p-8">
@@ -1082,7 +1033,7 @@ export default function Index() {
             </div>
 
             <SectionDualCta
-              text="Provisión técnica y logística mayorista de indumentaria Grafa y equipos de protección personal e industrial homologados por lote o requerimiento de pliego."
+              text="Provisión mayorista de indumentaria Grafa y equipos de protección personal (EPP) homologados por lote para empresas y licitaciones."
               waText="Hola, deseo solicitar cotización mayorista por lote de indumentaria Grafa y equipamiento EPP."
               waLabel="Cotizar por WhatsApp"
               emailSubject="Cotización Mayorista y Pliegos - Seguridad Industrial y EPP"
