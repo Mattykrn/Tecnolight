@@ -5,10 +5,8 @@ import Link from 'next/link';
 import {
   ArrowRight,
   Check,
-  Clock,
   Construction,
   Mail,
-  MapPin,
   MessageCircle,
   PackageCheck,
   Paintbrush,
@@ -20,7 +18,6 @@ import {
 
 import InteractiveRoadHero from '../components/InteractiveRoadHero';
 import { getWaLink } from '../utils/whatsapp';
-import { getMapsDirectionsLink } from '../utils/links';
 import { useSolicitudModal } from '../components/SolicitudModal';
 
 /* ============================================================
@@ -120,6 +117,49 @@ const SENALIZACION = {
   ]
 };
 
+const SENALIZACION_OBRAS_REALES = [
+  {
+    id: 'cartel-obra-avenida-7-jefes',
+    src: '/images/obras-reales/cartel-obra-avenida-7-jefes.jpg',
+    badge: 'Obra Pública · Santa Fe',
+    title: 'Cartel de Obra Pública de Gran Formato',
+    description: 'Puesta en valor de Av. 7 Jefes (Santa Fe). Sustrato de chapa Calibre 14 con tratamiento anticorrosivo e impresión digital microprismática sobre láminas reflectivas Avery Dennison.',
+    specs: ['Chapa Calibre 14', 'Láminas reflectivas Avery Dennison']
+  },
+  {
+    id: 'nomencladores-urbanos-calles',
+    src: '/images/obras-reales/nomencladores-urbanos-calles.jpg',
+    badge: 'Cartelería Urbana',
+    title: 'Nomencladores Urbanos de Doble Faz',
+    description: 'Cartelería de nomenclatura vial urbana (Ayacucho / Dr. Edmundo Rosas). Fabricación en chapa Calibre 14 con láminas reflectivas Avery Dennison para máxima legibilidad diurna y nocturna.',
+    specs: ['Chapa Calibre 14', 'Láminas reflectivas Avery Dennison']
+  },
+  {
+    id: 'lamina-reflectiva-microprismatica-helvecia',
+    src: '/images/obras-reales/lamina-reflectiva-microprismatica-helvecia.jpg',
+    badge: 'Control Óptico en Planta',
+    title: 'Impresión Digital Microprismática',
+    description: 'Producción de cartelería municipal para la Comuna de Helvecia. Terminación sobre chapa Calibre 14 con láminas reflectivas Avery Dennison y sellado protector UV.',
+    specs: ['Chapa Calibre 14', 'Láminas reflectivas Avery Dennison']
+  },
+  {
+    id: 'caballete-seguridad-litoral-gas',
+    src: '/images/obras-reales/caballete-seguridad-litoral-gas.jpg',
+    badge: 'Dispositivos de Seguridad',
+    title: 'Caballete Metálico y Valla Barricada',
+    description: 'Dispositivo móvil de delimitación y seguridad vial para Litoral Gas S.A. Módulo rígido en chapa Calibre 14 con bandas de láminas reflectivas Avery Dennison de alta intensidad.',
+    specs: ['Chapa Calibre 14', 'Láminas reflectivas Avery Dennison']
+  },
+  {
+    id: 'colocacion-reductores-tachas-cuadrilla',
+    src: '/images/obras-reales/colocacion-reductores-tachas-cuadrilla.jpg',
+    badge: 'Trabajos en Calzada',
+    title: 'Cuadrilla Técnica e Intervención Vial',
+    description: 'Operativo en calzada con colocación de reductores de velocidad, tachas viales y señalización vertical sobre chapa Calibre 14 con láminas reflectivas Avery Dennison.',
+    specs: ['Chapa Calibre 14', 'Láminas reflectivas Avery Dennison']
+  }
+];
+
 const PROCESO = {
   kicker: 'Capacidad Fabril y Precisión Operativa',
   title: 'Proceso Industrial Continuo: De la Materia Prima al Producto Final',
@@ -194,23 +234,6 @@ const SERVICIOS = {
       Icon: Wrench,
       title: 'Colocación de Carteles de Obra, Lomos de Burro, Delineadores y Tachas Viales.',
       description: 'Cuadrillas técnicas para instalación y anclaje en ruta de reductores de velocidad, cartelería y elementos viales.'
-    }
-  ],
-  instalacionCards: [
-    {
-      id: 'vertical',
-      title: 'Señalización Vertical e Hincado en Banquinas',
-      description: 'Hincado mecánico de postes de acero galvanizado y fijación de cartelería preventiva y reglamentaria en zonas de camino y autopistas.'
-    },
-    {
-      id: 'granporte',
-      title: 'Cartelería de Gran Formato y Pórticos Aéreos',
-      description: 'Cálculo estructural, manufactura y montaje en altura con tecnología microprismática Avery Dennison OmniCube™.'
-    },
-    {
-      id: 'urbana',
-      title: 'Demarcación y Vallado para Obras Urbanas',
-      description: 'Canalización de tránsito diurno y nocturno, balizamiento reflectivo y demarcación horizontal para seguridad de operarios y usuarios viales.'
     }
   ],
   flota: {
@@ -353,36 +376,6 @@ const EPP = {
     }
   ]
 };
-
-const CONTACTO = [
-  {
-    id: 'santa-fe',
-    label: 'Sede Comercial (Asistencia y Ventas)',
-    city: 'Santa Fe Capital',
-    address: 'Suipacha 3248, Santa Fe Capital',
-    phone: '(0342) 455-3582',
-    phoneHref: 'tel:03424553582',
-    email: 'tecnolightsrl@tecnolightsrl.com'
-  },
-  {
-    id: 'rosario',
-    label: 'Sede Operativa',
-    city: 'Rosario',
-    address: 'Fuhr 1282, Rosario, Santa Fe',
-    phone: '341 636 9053',
-    phoneHref: 'tel:3416369053',
-    email: 'rosario@tecnolightsrl.com'
-  },
-  {
-    id: 'planta',
-    label: 'Planta Fabril (Producción y Conversión)',
-    city: 'Parque Industrial Los Polígonos',
-    address: 'Cnel. Loza 7198, P.I. Los Polígonos, Santa Fe Capital',
-    phone: null,
-    phoneHref: null,
-    email: null
-  }
-];
 
 /* ============================================================
    Componentes UI locales
@@ -790,6 +783,66 @@ export default function Index() {
               </div>
             </div>
 
+            {/* Galería de Trabajos y Cartelería Urbana en Ruta y Vía Pública */}
+            <div className="mt-16 pt-12 border-t border-white/10">
+              <div className="mb-8 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
+                <div>
+                  <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-primary block mb-1">
+                    Trabajos en Ruta y Cartelería Urbana
+                  </span>
+                  <h3 className="text-xl md:text-2xl font-bold text-white">
+                    Registro Visual de Obras Reales e Instalaciones
+                  </h3>
+                </div>
+                <span className="text-xs text-slate-400 font-mono">
+                  Santa Fe · Rosario · Región Litoral
+                </span>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {SENALIZACION_OBRAS_REALES.map((obra) => (
+                  <figure
+                    key={obra.id}
+                    className="group relative overflow-hidden rounded-2xl border border-white/10 bg-slate-950/70 p-4 transition-all hover:border-primary/50 shadow-xl flex flex-col justify-between"
+                  >
+                    <div>
+                      <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl bg-slate-900 mb-4">
+                        <Image
+                          src={obra.src}
+                          alt={obra.title}
+                          fill
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                          className="object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-70" />
+                        <span className="absolute top-3 left-3 rounded bg-primary/90 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-white backdrop-blur-sm shadow">
+                          {obra.badge}
+                        </span>
+                      </div>
+                      <figcaption>
+                        <h4 className="text-base font-bold text-white mb-2">{obra.title}</h4>
+                        <p className="text-xs text-slate-400 leading-relaxed mb-4">
+                          {obra.description}
+                        </p>
+                      </figcaption>
+                    </div>
+
+                    <div className="pt-3 border-t border-white/10 flex flex-wrap gap-2">
+                      {obra.specs.map((spec) => (
+                        <span
+                          key={spec}
+                          className="inline-flex items-center gap-1.5 text-[11px] font-semibold text-primary bg-primary/10 border border-primary/20 rounded-md px-2.5 py-0.5"
+                        >
+                          <Check size={12} className="shrink-0" />
+                          <span>{spec}</span>
+                        </span>
+                      ))}
+                    </div>
+                  </figure>
+                ))}
+              </div>
+            </div>
+
             <SectionDualCta
               text="Fabricación homologada de señalización vial reglamentaria, urbana e industrial sobre chapa Calibre 14 y sustratos de máxima rigidez."
               waText="Hola, deseo cotizar fabricación de señalización vial reglamentaria, cartelería o estructuras."
@@ -857,7 +910,6 @@ export default function Index() {
           id="servicios"
           className="py-20 lg:py-28 section-ig-card border-b border-white/5 scroll-mt-28"
         >
-          <div id="instalacion" className="absolute -top-28" aria-hidden="true" />
           <div className="max-w-site mx-auto px-5 lg:px-10">
             <div className="relative overflow-hidden rounded-3xl border border-primary/30 bg-gradient-to-br from-[#131720] via-slate-950 to-primary/10 p-8 md:p-12 mb-12">
               <div
@@ -938,23 +990,8 @@ export default function Index() {
               </div>
             </div>
 
-            {/* Instalación y Montaje en Ruta */}
-            <div className="mt-12">
-              <SectionTitle
-                kicker="Capacidad de Despliegue en Terreno"
-                title="Instalación, Montaje e Hincado en Rutas y Espacios Urbanos"
-              />
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-                {SERVICIOS.instalacionCards.map((card) => (
-                  <div key={card.id} className="card-corporate p-6">
-                    <h3 className="text-lg font-semibold text-slate-100 mb-2">{card.title}</h3>
-                    <p className="text-slate-400 text-sm leading-relaxed">{card.description}</p>
-                  </div>
-                ))}
-              </div>
-
-              {/* Flota Operativa */}
-              <div className="rounded-2xl border border-white/10 bg-slate-950/60 p-8">
+            {/* Flota Operativa y Cuadrillas en Ruta */}
+            <div className="mt-12 rounded-2xl border border-white/10 bg-slate-950/60 p-8">
                 <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-primary mb-2">
                   {SERVICIOS.flota.kicker}
                 </p>
@@ -989,7 +1026,6 @@ export default function Index() {
                   ))}
                 </div>
               </div>
-            </div>
 
             <SectionDualCta
               text="Solicite cotización inmediata para alquiler de vallas, balizamiento vial o cuadrillas para montaje e instalación en ruta."
@@ -1001,7 +1037,7 @@ export default function Index() {
           </div>
         </section>
 
-        {/* 6. SEGURIDAD INDUSTRIAL Y EPP: Indumentaria Grafa y Protección Homologada */}
+        {/* 6. SEGURIDAD INDUSTRIAL Y EPP*/}
         <section
           id="catalogo"
           className="py-20 lg:py-28 section-ig-card relative overflow-hidden border-b border-white/5 scroll-mt-28"
@@ -1042,133 +1078,7 @@ export default function Index() {
           </div>
         </section>
 
-        {/* 8. SEDES OFICIALES Y CANALES DE CONTACTO */}
-        <section
-          id="contacto"
-          className="py-20 lg:py-28 section-solid-dark bg-hex-pattern scroll-mt-28 border-b border-white/5"
-        >
-          <div className="max-w-site mx-auto px-5 lg:px-10">
-            <SectionTitle
-              kicker="Red Operativa y Canales Oficiales"
-              title="Sedes de Operación, Planta Fabril y Contacto"
-              description="Atención personalizada y cobertura permanente. Nuestras sedes comerciales, operativas y planta fabril se encuentran preparadas para abastecer proyectos en Santa Fe, Rosario y todo el país."
-            />
 
-            {/* Sedes Oficiales */}
-            <div className="mb-12">
-              <h3 className="text-xs font-bold uppercase tracking-[0.25em] text-primary mb-6">
-                Sedes de Operación y Asistencia Técnica
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {CONTACTO.map((sede) => (
-                  <div key={sede.id} className="card-corporate p-6 flex flex-col justify-between">
-                    <div>
-                      <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-primary mb-2">
-                        {sede.label}
-                      </p>
-                      <h4 className="text-lg font-semibold text-slate-100 mb-4">{sede.city}</h4>
-                      <div className="space-y-3 text-sm text-slate-400">
-                        <p className="flex items-start gap-2.5">
-                          <MapPin size={15} className="text-primary shrink-0 mt-0.5" />
-                          <span>{sede.address}</span>
-                        </p>
-                        <a
-                          href={getMapsDirectionsLink(sede.address)}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary hover:text-primary/80 transition-colors"
-                        >
-                          Cómo llegar <ArrowRight size={12} />
-                        </a>
-                        {sede.phone && (
-                          <a
-                            href={sede.phoneHref}
-                            className="flex items-center gap-2.5 hover:text-primary transition-colors"
-                          >
-                            <Clock size={15} className="text-primary shrink-0" />
-                            <span>{sede.phone}</span>
-                          </a>
-                        )}
-                        {sede.email && (
-                          <button
-                            type="button"
-                            onClick={() => openSolicitudModal({ subject: `Consulta Comercial y Técnica - ${sede.city}` })}
-                            className="flex items-center gap-2.5 hover:text-primary transition-colors break-all text-left cursor-pointer"
-                          >
-                            <Mail size={15} className="text-primary shrink-0" />
-                            <span>{sede.email}</span>
-                          </button>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Canales Oficiales Destacados (Email, Instagram, WhatsApp) */}
-            <div className="rounded-2xl border border-white/10 bg-slate-950/70 p-6 md:p-8 mb-6">
-              <h4 className="text-sm font-semibold uppercase tracking-widest text-primary mb-4">
-                Canales Oficiales y Redes
-              </h4>
-              <div className="grid sm:grid-cols-3 gap-4">
-                <button
-                  type="button"
-                  onClick={() => openSolicitudModal({ subject: 'Contacto Institucional y Pliegos - Tecno Light S.R.L.' })}
-                  className="flex items-center gap-3 p-4 rounded-xl border border-white/10 bg-white/[0.02] hover:border-primary/50 hover:bg-white/[0.04] transition-all text-left w-full cursor-pointer group"
-                >
-                  <div className="w-10 h-10 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
-                    <Mail size={20} className="text-primary" />
-                  </div>
-                  <div>
-                    <span className="block text-[10px] uppercase font-bold text-slate-400">Correo Institucional</span>
-                    <span className="text-xs md:text-sm font-semibold text-white break-all">tecnolightsrl@tecnolightsrl.com</span>
-                  </div>
-                </button>
-
-                <a
-                  href="https://www.instagram.com/tecnolight.srl/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 p-4 rounded-xl border border-white/10 bg-white/[0.02] hover:border-[#E1306C] hover:bg-white/[0.04] transition-all group"
-                >
-                  <div className="w-10 h-10 rounded-lg bg-[#E1306C]/10 border border-[#E1306C]/20 flex items-center justify-center shrink-0">
-                    <svg className="w-5 h-5 text-[#FD1D1D] group-hover:scale-110 transition-transform" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <span className="block text-[10px] uppercase font-bold text-slate-400">Instagram Oficial</span>
-                    <span className="text-xs md:text-sm font-semibold text-white">@tecnolight.srl</span>
-                  </div>
-                </a>
-
-                <a
-                  href={getWaLink('Hola, me comunico desde el sitio web de Tecno Light S.R.L.')}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 p-4 rounded-xl border border-white/10 bg-white/[0.02] hover:border-[#25D366] hover:bg-white/[0.04] transition-all group"
-                >
-                  <div className="w-10 h-10 rounded-lg bg-[#25D366]/10 border border-[#25D366]/20 flex items-center justify-center shrink-0">
-                    <MessageCircle size={20} className="text-[#25D366]" />
-                  </div>
-                  <div>
-                    <span className="block text-[10px] uppercase font-bold text-slate-400">WhatsApp Comercial</span>
-                    <span className="text-xs md:text-sm font-semibold text-white">+54 9 342 427-8117</span>
-                  </div>
-                </a>
-              </div>
-            </div>
-
-            <SectionDualCta
-              text="Atención comercial y asesoramiento técnico centralizado. Envíe planos, requerimientos o pliegos para una respuesta inmediata."
-              waText="Hola, me comunico con Tecno Light S.R.L. para realizar una consulta comercial/institucional."
-              waLabel="Contactar por WhatsApp"
-              emailSubject="Contacto Institucional y Pliegos - Tecno Light S.R.L."
-              emailLabel="Enviar Solicitud / Pliego"
-            />
-          </div>
-        </section>
       </div>
     </>
   );

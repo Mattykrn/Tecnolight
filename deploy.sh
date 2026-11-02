@@ -5,7 +5,7 @@ echo "=== 1. Agregando archivos a Git ==="
 git add .
 
 echo "=== 2. Creando commit con la versión actualizada ==="
-git commit -m "Fix: optimizacion de enlaces de contacto (mailto nativo sin pestanas en blanco en PC y WhatsApp estandarizado wa.me)" || echo "Nada nuevo para commitear"
+git commit -m "Feat: galeria de obras reales con chapa Calibre 14 y laminas Avery Dennison en senalizacion, retiro de seccion instalacion y sedes integradas al footer" || echo "Nada nuevo para commitear"
 
 echo "=== 3. Pusheando a GitHub (main) ==="
 git push origin main
