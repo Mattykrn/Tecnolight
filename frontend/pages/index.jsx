@@ -266,7 +266,7 @@ const SERVICIOS = {
 
 const EPP = {
   kicker: 'Seguridad Industrial y Personal',
-  title: 'Seguridad Industrial y EPP: Indumentaria Grafa y Protección Homologada',
+  title: 'Seguridad Industrial y EPP',
   description:
     'Comercialización mayorista y distribución corporativa de equipos de protección personal (EPP) e indumentaria de trabajo certificada para obras civiles, viales e industriales, con entrega directa en obrador.',
   groups: [
