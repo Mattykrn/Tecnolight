@@ -2,11 +2,10 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Mail, MapPin, Phone, Clock, ArrowRight, MessageCircle } from 'lucide-react';
+import { Menu, X, MapPin, Phone, Clock, ArrowRight, MessageCircle } from 'lucide-react';
 
 import { getWaLink } from '../utils/whatsapp';
 import { getMapsDirectionsLink } from '../utils/links';
-import { useSolicitudModal } from './SolicitudModal';
 
 const WA_LINK = getWaLink();
 
@@ -18,7 +17,6 @@ const CONTACTO_SEDES = [
     address: 'Suipacha 3248, Santa Fe Capital',
     phone: '(0342) 455-3582',
     phoneHref: 'tel:03424553582',
-    email: 'tecnolightsrl@tecnolightsrl.com',
     horario: 'Lunes a Viernes de 8:00 a 17:00 hs'
   },
   {
@@ -28,7 +26,6 @@ const CONTACTO_SEDES = [
     address: 'Fuhr 1282, Rosario, Santa Fe',
     phone: '341 636 9053',
     phoneHref: 'tel:3416369053',
-    email: 'rosario@tecnolightsrl.com',
     horario: 'Atención técnica y logística'
   },
   {
@@ -38,7 +35,6 @@ const CONTACTO_SEDES = [
     address: 'Cnel. Loza 7198, P.I. Los Polígonos, Santa Fe Capital',
     phone: null,
     phoneHref: null,
-    email: null,
     horario: 'Producción, corte, impresión y laminado continuo'
   }
 ];
@@ -75,7 +71,6 @@ export default function Layout({ children }) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const router = useRouter();
-  const { openSolicitudModal } = useSolicitudModal();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -289,16 +284,6 @@ export default function Layout({ children }) {
                         <span>Tel: {sede.phone}</span>
                       </a>
                     )}
-                    {sede.email && (
-                      <button
-                        type="button"
-                        onClick={() => openSolicitudModal({ subject: `Consulta Comercial y Técnica - ${sede.city}` })}
-                        className="flex items-center gap-2.5 text-slate-300 hover:text-primary transition-colors break-all text-left cursor-pointer"
-                      >
-                        <Mail size={15} className="text-primary shrink-0" />
-                        <span>{sede.email}</span>
-                      </button>
-                    )}
                     <p className="flex items-center gap-2.5 text-xs text-slate-400">
                       <Clock size={14} className="text-primary shrink-0" />
                       <span>{sede.horario}</span>
@@ -333,20 +318,7 @@ export default function Layout({ children }) {
                 </div>
               </div>
 
-              <div className="lg:col-span-8 grid sm:grid-cols-3 gap-4">
-                <button
-                  type="button"
-                  onClick={() => openSolicitudModal({ subject: 'Contacto Institucional y Pliegos - Tecno Light S.R.L.' })}
-                  className="flex items-center gap-3 p-4 rounded-xl border border-white/10 bg-white/[0.02] hover:border-primary/50 hover:bg-white/[0.04] transition-all text-left w-full cursor-pointer group"
-                >
-                  <div className="w-10 h-10 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
-                    <Mail size={18} className="text-primary" />
-                  </div>
-                  <div>
-                    <span className="block text-[10px] uppercase font-bold text-slate-400">Correo Oficial</span>
-                    <span className="text-xs font-semibold text-white break-all">tecnolightsrl@tecnolightsrl.com</span>
-                  </div>
-                </button>
+              <div className="lg:col-span-8 grid sm:grid-cols-2 gap-4">
 
                 <a
                   href="https://www.instagram.com/tecnolight.srl/"
