@@ -22,7 +22,7 @@ const SERVICIOS = [
   {
     Icon: Construction,
     title: 'Alquiler de Señalización para Obras Viales',
-    description: 'Equipos de señalización vial transitoria: conos, balizas intermitentes LED, carteles de obra y canalizadores reflectivos.'
+    description: 'Equipos de señalización vial transitoria: flechas luminosas, balizas intermitentes LED, carteles de obra y canalizadores reflectivos.'
   },
   {
     Icon: ShieldAlert,

@@ -50,10 +50,6 @@ export default function InteractiveRoadHero() {
           initial="hidden"
           animate="visible"
         >
-          <motion.div variants={itemVariants} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs font-semibold uppercase tracking-widest">
-            +30 Años de Trayectoria
-          </motion.div>
-
           <motion.div className="flex justify-center w-full" variants={itemVariants}>
             <img
               src="/images/logo-tecnolight-white.png"

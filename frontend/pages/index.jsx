@@ -26,27 +26,47 @@ import { useSolicitudModal } from '../components/SolicitudModal';
 
 const QUIENES = [
   'TECNO LIGHT S.R.L. es una firma referente en el diseño, manufactura e instalación de sistemas de señalización vial reglamentaria, preventiva, informativa y transitoria.',
-  'En nuestra planta del Parque Industrial Los Polígonos (Santa Fe Capital) desarrollamos procesos de corte láser, conformado de chapa en Calibre 14, tratamiento anticorrosivo con pintura epoxi de alta resistencia, impresión digital UV-LED TrafficJet™ Xpress y laminado continuo sobre láminas reflectivas Avery Dennison.',
+  'En nuestra planta del Parque Industrial Los Polígonos (Santa Fe Capital) desarrollamos procesos de corte láser, conformado de chapa en calibres 14, 16 y distintos calibres dependiendo el trabajo, tratamiento anticorrosivo con pintura epoxi de alta resistencia, impresión digital UV-LED TrafficJet™ Xpress y laminado continuo sobre láminas reflectivas Avery Dennison.',
   'Completamos nuestra propuesta con la provisión mayorista de indumentaria técnica y equipamiento de protección personal (EPP) homologado, junto a una división especializada en alquiler y montaje de vallas de contención para grandes eventos y obras viales.'
 ];
 
 const QUIENES_TAGS = [
-  '+30 Años de Trayectoria',
   'Planta Fabril Los Polígonos',
   'Sede Comercial Santa Fe',
   'Sede Operativa Rosario',
   'Homologación Vial Oficial'
 ];
 
-const AVERY_DENNISON = {
-  kicker: 'Tecnología Reflectiva y Laminado Continuo',
-  title: 'Impresión Digital TrafficJet™ Xpress',
+const FABRICACION_SENALIZACION = {
+  kicker: 'Pilar 01 · Manufactura Vial, Industrial y Tecnología Reflectiva',
+  title: 'Fabricación de Carteles y Señalización',
   description:
-    'Impresión digital TrafficJet™ Xpress sobre láminas microprismáticas Avery Dennison (OmniCube™, HIP y Serie T-2500) con sellado continuo antigraffiti. Máxima retrorreflexión angular y durabilidad óptica certificada.',
-  standards: 'Certificación técnica oficial de retrorreflexión (Tipos I, IV, VIII, IX y XI).',
-  videoDesc:
-    'Circuito continuo de manufactura en planta: curado instantáneo UV-LED en frío que preserva la estructura óptica de los microprismas y transferencia a presión sobre chapa Calibre 14 con control fotométrico previo al despacho.',
-  cards: [
+    'Centralizamos el diseño, manufactura metalúrgica, impresión digital TrafficJet™ Xpress y laminado continuo sobre láminas microprismáticas Avery Dennison para señales viales reglamentarias, cartelería industrial, urbana y de seguridad.',
+  bullets: [
+    'Impresión digital TrafficJet™ Xpress con tintas UV-LED en colores viales reglamentarios.',
+    'Láminas microprismáticas Avery Dennison (OmniCube™ T-11500, HIP T-6500 y EGP T-2500).',
+    'Laminado continuo en frío con película protectora UV y barrera antigraffiti.',
+    'Fabricación sobre chapa en calibres 14, 16 y distintos calibres dependiendo el trabajo.'
+  ],
+  lineas: [
+    {
+      title: 'Carteles Viales y Transitorios de Obra',
+      desc: 'Señales reglamentarias, preventivas e informativas para rutas, autopistas y desvíos transitorios de obra.'
+    },
+    {
+      title: 'Cartelería Industrial, Municipal y de Seguridad',
+      desc: 'Nomencladores urbanos, pórticos aéreos, carteles de seguridad industrial, evacuación y señalética interna para plantas.'
+    },
+    {
+      title: 'Señalización Lumínica: Balizas, Flechas, Tráiler para Desvíos y Chevron',
+      desc: 'Dispositivos luminosos LED de alta visibilidad para canalización nocturna, desvíos y curvas pronunciadas.'
+    },
+    {
+      title: 'Fabricación de Vallas Delimitadoras de Obra',
+      desc: 'Módulos metálicos de vallado de contención perimetral de alta resistencia para resguardo de frentes de obra.'
+    }
+  ],
+  laminas: [
     {
       id: 'omnicube',
       title: 'Serie T-11500 OmniCube™ (Grado Diamante)',
@@ -67,53 +87,33 @@ const AVERY_DENNISON = {
     },
     {
       id: 'sobrelaminados',
-      title: 'Sobrelaminados y Sellado UV Antigraffiti',
+      title: 'Sobrelaminados y Laminado UV Antigraffiti',
       description:
-        'Película protectora transparente con filtro UV y barrera antigraffiti fijada a presión continua para blindar la señal frente a la intemperie.'
-    }
-  ]
-};
-
-const SENALIZACION = {
-  kicker: 'Líderes en Señalización Vial',
-  title: 'Fabricación de Señalización Vial y Cartelería Urbana',
-  description:
-    'Fabricación integral de cartelería y dispositivos viales bajo especificaciones oficiales con terminaciones metalúrgicas de alta rigidez.',
-  fabricacion: [
-    {
-      title: 'Carteles Viales y Transitorios de Obra',
-      desc: 'Señales reglamentarias, preventivas e informativas para rutas, autopistas y desvíos transitorios de obra.'
-    },
-    {
-      title: 'Cartelería para Municipios y Empresas',
-      desc: 'Nomencladores urbanos, pórticos aéreos, carteles de obra y señalética interna para complejos industriales.'
-    },
-    {
-      title: 'Señalización Lumínica: Balizas, Flechas, Tráiler para Desvíos y Chevron',
-      desc: 'Dispositivos luminosos LED de alta visibilidad para canalización nocturna, desvíos y curvas pronunciadas.'
-    },
-    {
-      title: 'Vallas: Delimitadoras de Obra',
-      desc: 'Módulos metálicos de vallado de contención perimetral de alta resistencia para resguardo de frentes de obra.'
+        'Película protectora transparente con filtro UV y barrera antigraffiti fijada por laminado continuo a presión para blindar la señal frente a la intemperie.'
     }
   ],
-  sustratos: [
+  etapasPlanta: [
     {
-      title: 'Chapa de Acero Galvanizado',
-      desc: 'Chapa de acero galvanizado en Calibre 14, confiriendo máxima rigidez estructural, resistencia mecánica y durabilidad ante vientos intensos.'
+      id: 'corte-laser',
+      title: '1. CORTE LÁSER DE ALTA PRECISIÓN',
+      description: 'Mecanizado y dimensionado por corte láser de alta precisión sobre chapa de acero para máxima resistencia mecánica.'
     },
     {
-      title: 'PVC Espumado',
-      desc: 'Placas sintéticas livianas e inoxidables, ideales para cartelería urbana e interior.'
+      id: 'pintura-epoxi',
+      title: '2. TRATAMIENTO Y PINTURA EPOXI',
+      description: 'Desengrase, fosfatizado y aplicación de pintura epoxi anticorrosiva de alta adherencia y durabilidad a la intemperie.'
     },
     {
-      title: 'Polímeros de Alto Impacto',
-      desc: 'Material de absorción elástica frente a golpes, con aditivos de protección UV contra envejecimiento solar.'
-    },
-    {
-      title: 'Plástico Compacto',
-      desc: 'Sustrato de alta densidad mecánica y química, libre de mantenimiento y resistente a la intemperie.'
+      id: 'impresion-final',
+      title: '3. IMPRESIÓN DIGITAL UV-LED Y LAMINADO',
+      description: 'Impresión TrafficJet™ Xpress sobre láminas Avery Dennison, laminado continuo antigraffiti y control fotométrico previo al despacho.'
     }
+  ],
+  capacidades: [
+    'Planta industrial propia con equipamiento computarizado de alta escala',
+    'Flota de unidades móviles y cuadrillas técnicas para entrega y montaje en ruta',
+    'Sede Comercial en Santa Fe Capital y Sede Operativa en Rosario',
+    'Capacidad de abastecimiento para licitaciones públicas y frentes viales simultáneos'
   ]
 };
 
@@ -123,83 +123,56 @@ const SENALIZACION_OBRAS_REALES = [
     src: '/images/obras-reales/cartel-obra-avenida-7-jefes.jpg',
     badge: 'Obra Pública · Santa Fe',
     title: 'Cartel de Obra Pública de Gran Formato',
-    description: 'Puesta en valor de Av. 7 Jefes (Santa Fe). Sustrato de chapa Calibre 14 con tratamiento anticorrosivo e impresión digital microprismática sobre láminas reflectivas Avery Dennison.',
-    specs: ['Chapa Calibre 14', 'Láminas reflectivas Avery Dennison']
+    description: 'Puesta en valor de Av. 7 Jefes (Santa Fe). Sustrato de chapa en calibres 14, 16 y distintos calibres dependiendo el trabajo con tratamiento anticorrosivo e impresión digital microprismática sobre láminas reflectivas Avery Dennison.',
+    specs: ['Chapa Calibre 14, 16 y según el trabajo', 'Láminas reflectivas Avery Dennison']
   },
   {
     id: 'nomencladores-urbanos-calles',
     src: '/images/obras-reales/nomencladores-urbanos-calles.jpg',
     badge: 'Cartelería Urbana',
     title: 'Nomencladores Urbanos de Doble Faz',
-    description: 'Cartelería de nomenclatura vial urbana (Ayacucho / Dr. Edmundo Rosas). Fabricación en chapa Calibre 14 con láminas reflectivas Avery Dennison para máxima legibilidad diurna y nocturna.',
-    specs: ['Chapa Calibre 14', 'Láminas reflectivas Avery Dennison']
+    description: 'Cartelería de nomenclatura vial urbana (Ayacucho / Dr. Edmundo Rosas). Fabricación en chapa en calibres 14, 16 y distintos calibres dependiendo el trabajo con láminas reflectivas Avery Dennison para máxima legibilidad diurna y nocturna.',
+    specs: ['Chapa Calibre 14, 16 y según el trabajo', 'Láminas reflectivas Avery Dennison']
   },
   {
     id: 'lamina-reflectiva-microprismatica-helvecia',
     src: '/images/obras-reales/lamina-reflectiva-microprismatica-helvecia.jpg',
     badge: 'Control Óptico en Planta',
     title: 'Impresión Digital Microprismática',
-    description: 'Producción de cartelería municipal para la Comuna de Helvecia. Terminación sobre chapa Calibre 14 con láminas reflectivas Avery Dennison y sellado protector UV.',
-    specs: ['Chapa Calibre 14', 'Láminas reflectivas Avery Dennison']
+    description: 'Producción de cartelería municipal para la Comuna de Helvecia. Terminación sobre chapa en calibres 14, 16 y distintos calibres dependiendo el trabajo con láminas reflectivas Avery Dennison y laminado protector UV.',
+    specs: ['Chapa Calibre 14, 16 y según el trabajo', 'Láminas reflectivas Avery Dennison']
   },
   {
     id: 'caballete-seguridad-litoral-gas',
     src: '/images/obras-reales/caballete-seguridad-litoral-gas.jpg',
     badge: 'Dispositivos de Seguridad',
     title: 'Caballete Metálico y Valla Barricada',
-    description: 'Dispositivo móvil de delimitación y seguridad vial para Litoral Gas S.A. Módulo rígido en chapa Calibre 14 con bandas de láminas reflectivas Avery Dennison de alta intensidad.',
-    specs: ['Chapa Calibre 14', 'Láminas reflectivas Avery Dennison']
+    description: 'Dispositivo móvil de delimitación y seguridad vial para Litoral Gas S.A. Módulo rígido en chapa en calibres 14, 16 y distintos calibres dependiendo el trabajo con bandas de láminas reflectivas Avery Dennison de alta intensidad.',
+    specs: ['Chapa Calibre 14, 16 y según el trabajo', 'Láminas reflectivas Avery Dennison']
   },
   {
     id: 'colocacion-reductores-tachas-cuadrilla',
     src: '/images/obras-reales/colocacion-reductores-tachas-cuadrilla.jpg',
     badge: 'Trabajos en Calzada',
     title: 'Cuadrilla Técnica e Intervención Vial',
-    description: 'Operativo en calzada con colocación de reductores de velocidad, tachas viales y señalización vertical sobre chapa Calibre 14 con láminas reflectivas Avery Dennison.',
-    specs: ['Chapa Calibre 14', 'Láminas reflectivas Avery Dennison']
+    description: 'Operativo en calzada con colocación de reductores de velocidad, tachas viales y señalización vertical sobre chapa en calibres 14, 16 y distintos calibres dependiendo el trabajo con láminas reflectivas Avery Dennison.',
+    specs: ['Chapa Calibre 14, 16 y según el trabajo', 'Láminas reflectivas Avery Dennison']
+  },
+  {
+    id: 'vallas-obra-municipalidad-rosario',
+    src: '/images/obras-reales/vallas-obra-municipalidad-rosario.jpg',
+    badge: 'Obra Pública · Rosario',
+    title: 'Vallas Delimitadoras de Obra Urbana',
+    description: 'Lote de vallas metálicas de contención y señalización para Conylog S.R.L. y la Municipalidad de Rosario. Estructuras tubulares y paneles de chapa en calibres 14, 16 y distintos calibres dependiendo el trabajo con láminas reflectivas Avery Dennison.',
+    specs: ['Chapa Calibre 14, 16 y según el trabajo', 'Láminas reflectivas Avery Dennison']
   }
 ];
 
-const PROCESO = {
-  kicker: 'Capacidad Fabril y Precisión Operativa',
-  title: 'Proceso Industrial Continuo: De la Materia Prima al Producto Final',
+const ALQUILER_VALLAS_SEGURIDAD = {
+  kicker: 'Pilar 03 · Soluciones Operativas, Eventos y Logística Vial',
+  title: 'Alquiler de Vallas y Seguridad Vial',
   description:
-    'Circuito productivo estandarizado en 4 fases continuas en nuestra planta fabril con controles de calidad en cada etapa.',
-  stages: [
-    {
-      id: 'materia-prima',
-      title: '1. MATERIA PRIMA Y PLANOS TÉCNICOS',
-      description: 'Selección estricta de sustratos homologados y modelado de planos bajo normativas viales aplicables.'
-    },
-    {
-      id: 'corte-laser',
-      title: '2. CORTE LÁSER Y PLEGADO',
-      description: 'Mecanizado por corte láser de alta precisión y plegado computarizado perimetral para máxima resistencia mecánica.'
-    },
-    {
-      id: 'pintura-epoxi',
-      title: '3. TRATAMIENTO Y PINTURA EPOXI',
-      description: 'Desengrase, fosfatizado y aplicación de pintura epoxi anticorrosiva de alta adherencia y durabilidad a la intemperie.'
-    },
-    {
-      id: 'impresion-final',
-      title: '4. IMPRESIÓN DIGITAL UV-LED Y SELLADO',
-      description: 'Impresión TrafficJet™ Xpress sobre láminas Avery Dennison, laminado continuo antigraffiti y control fotométrico previo al despacho.'
-    }
-  ],
-  capacidades: [
-    'Planta industrial propia con equipamiento computarizado de alta escala',
-    'Flota de unidades móviles y cuadrillas técnicas para montaje en ruta',
-    'Sede Comercial en Santa Fe Capital y Sede Operativa en Rosario',
-    'Capacidad de abastecimiento para licitaciones públicas y frentes viales simultáneos'
-  ]
-};
-
-const SERVICIOS = {
-  kicker: 'Soluciones Operativas y Logística Vial',
-  title: 'Servicios y Alquiler: Equipamiento Vial, Balizas, Vallas y Colocación en Ruta',
-  description:
-    'Disponibilidad inmediata de stock, logística integral y cuadrillas técnicas para encauzar desvíos de tránsito, operativos viales y eventos multitudinarios en Santa Fe, Rosario y la región.',
+    'Disponibilidad inmediata de stock, logística integral y cuadrillas técnicas para cerramientos perimetrales, eventos multitudinarios, encauzamiento de desvíos y operativos viales en Santa Fe, Rosario y la región.',
   eventos: {
     title: 'Alquiler y Logística de Vallas de Contención',
     description:
@@ -212,16 +185,16 @@ const SERVICIOS = {
   },
   items: [
     {
-      id: 'alquiler-obras',
-      Icon: Construction,
-      title: 'Alquiler de Señalización para Obras Viales',
-      description: 'Equipamiento transitorio de seguridad: balizas LED, conos flexibles y canalizadores de tránsito.'
-    },
-    {
       id: 'alquiler-vallas',
       Icon: ShieldAlert,
-      title: 'Alquiler de Vallas para Eventos',
-      description: 'Vallado perimetral de contención para resguardo de frentes de obra y eventos multitudinarios.'
+      title: 'Alquiler de Vallas de Contención para Eventos y Obras',
+      description: 'Vallado metálico perimetral de alta resistencia para resguardo de frentes de obra y eventos multitudinarios.'
+    },
+    {
+      id: 'alquiler-obras',
+      Icon: Construction,
+      title: 'Alquiler de Equipamiento de Seguridad Vial',
+      description: 'Equipamiento transitorio para frentes de obra: balizas LED, flechas luminosas y canalizadores de tránsito.'
     },
     {
       id: 'demarcacion',
@@ -232,31 +205,31 @@ const SERVICIOS = {
     {
       id: 'colocacion',
       Icon: Wrench,
-      title: 'Colocación de Carteles de Obra, Lomos de Burro, Delineadores y Tachas Viales.',
-      description: 'Cuadrillas técnicas para instalación y anclaje en ruta de reductores de velocidad, cartelería y elementos viales.'
+      title: 'Colocación de Lomos de Burro, Delineadores y Tachas Viales',
+      description: 'Cuadrillas técnicas para anclaje y montaje en calzada de reductores de velocidad, delineadores y tachas reflectivas.'
     }
   ],
   flota: {
     kicker: 'Infraestructura Móvil Especializada',
     title: 'Flota Operativa y Cuadrillas en Ruta',
     description:
-      'Unidades móviles y vehículos de apoyo técnico trasladan cuadrillas especializadas, cartelería e instrumental de montaje pesado directamente a la ruta.',
+      'Unidades móviles y vehículos de apoyo técnico trasladan cuadrillas especializadas, vallas e instrumental de montaje pesado directamente al lugar del operativo.',
     items: [
       {
         src: '/images/flota/sprinter-flota-1.jpg',
-        alt: 'Unidad móvil Tecno Light apostada en banquina durante la colocación de cartelería en R.P. 61',
+        alt: 'Unidad móvil Tecno Light apostada en banquina durante operativo en R.P. 61',
         title: 'Operativo en ruta — R.P. 61',
-        tag: 'Hincado de postes y señales'
+        tag: 'Despliegue y logística vial'
       },
       {
         src: '/images/flota/sprinter-flota-2.jpg',
-        alt: 'Cuadrilla especializada realizando montaje de señal reglamentaria junto a la unidad móvil',
+        alt: 'Cuadrilla especializada realizando montaje en obra junto a la unidad móvil',
         title: 'Cuadrilla especializada en obra',
-        tag: 'Montaje de cartelería vertical'
+        tag: 'Montaje y asistencia en ruta'
       },
       {
         src: '/images/flota/sprinter-flota-3.jpg',
-        alt: 'Señal reglamentaria colocada en banquina durante jornada de trabajo en corredor provincial',
+        alt: 'Intervención vial en banquina durante jornada de trabajo en corredor provincial',
         title: 'Instalación y control de aplomo',
         tag: 'Corredores viales de Santa Fe'
       }
@@ -264,8 +237,8 @@ const SERVICIOS = {
   }
 };
 
-const EPP = {
-  kicker: 'Seguridad Industrial y Personal',
+const SEGURIDAD_INDUSTRIAL_EPP = {
+  kicker: 'Pilar 02 · Provisión Mayorista de Indumentaria y Protección Homologada',
   title: 'Seguridad Industrial y EPP',
   description:
     'Comercialización mayorista y distribución corporativa de equipos de protección personal (EPP) e indumentaria de trabajo certificada para obras civiles, viales e industriales, con entrega directa en obrador.',
@@ -357,21 +330,7 @@ const EPP = {
         'Matafuegos de polvo químico ABC y CO₂ (dotación, revisión periódica y recarga)',
         'Gabinetes metálicos, fundas y soportes de pared para extintores',
         'Botiquines reglamentarios de primeros auxilios para obradores y flotas',
-        'Cartelería fotoluminiscente de evacuación y salidas de emergencia'
-      ]
-    },
-    {
-      id: 'seguridad-vial',
-      title: 'Dispositivos de Seguridad Vial e Intervención',
-      wide: true,
-      items: [
-        'Conos viales flexibles de PVC de alta visibilidad y conos con base pesada',
-        'Balizas rotativas, destellantes y estroboscópicas con tecnología LED',
-        'Semáforos portátiles para control de tránsito y luces de emergencia',
-        'Chalecos de seguridad vial reglamentarios con bandas reflectivas de alta intensidad',
-        'Reductores de velocidad de goma vulcanizada (lomos de burro modulares)',
-        'Tachas reflectivas bidireccionales de alta durabilidad en calzada',
-        'Bandas reflectivas y carteles de advertencia para vehículos de carga'
+        'Mantas ignífugas, duchas lavaojos y kits de respuesta ante derrames'
       ]
     }
   ]
@@ -416,39 +375,23 @@ function CheckList({ items }) {
   );
 }
 
-/* Doble CTA institucional obligatorio por sección (WhatsApp + Modal de Correo formal y pliegos) */
+/* CTA institucional por sección (Modal de Correo formal y pliegos) */
 function SectionDualCta({
-  text,
-  waText,
-  waLabel = 'Consultar por WhatsApp',
   emailSubject,
   emailLabel = 'Solicitud Formal y Pliegos',
 }) {
-  const waHref = getWaLink(waText);
   const { openSolicitudModal } = useSolicitudModal();
 
   return (
-    <div className="mt-10 flex flex-col gap-5 rounded-xl border border-white/10 bg-white/[0.02] p-5 md:p-6 lg:flex-row lg:items-center lg:justify-between">
-      {text && <p className="text-sm text-slate-300 leading-relaxed max-w-2xl">{text}</p>}
-      <div className={`flex flex-col sm:flex-row gap-3 ${text ? 'lg:shrink-0' : 'lg:ml-auto'}`}>
-        <a
-          href={waHref}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="btn-whatsapp text-sm inline-flex items-center justify-center gap-2"
-        >
-          <MessageCircle size={16} />
-          <span>{waLabel}</span>
-        </a>
-        <button
-          type="button"
-          onClick={() => openSolicitudModal({ subject: emailSubject, text, emailLabel })}
-          className="inline-flex items-center justify-center gap-2 rounded bg-white/10 border border-white/20 px-5 py-3 text-sm font-semibold text-white hover:bg-white/20 hover:border-primary/50 transition-all cursor-pointer group"
-        >
-          <Mail size={16} className="text-primary group-hover:scale-110 transition-transform" />
-          <span>{emailLabel}</span>
-        </button>
-      </div>
+    <div className="mt-10 flex justify-end">
+      <button
+        type="button"
+        onClick={() => openSolicitudModal({ subject: emailSubject, emailLabel })}
+        className="inline-flex items-center justify-center gap-2 rounded-lg bg-white/10 border border-white/20 px-5 py-3 text-sm font-semibold text-white hover:bg-white/20 hover:border-primary/50 transition-all cursor-pointer group"
+      >
+        <Mail size={16} className="text-primary group-hover:scale-110 transition-transform" />
+        <span>{emailLabel}</span>
+      </button>
     </div>
   );
 }
@@ -515,11 +458,11 @@ export default function Index() {
         <title>Tecno Light S.R.L. | Señalización Vial y Cartelería Reflectiva</title>
         <meta
           name="description"
-          content="Fabricación y provisión de señalización vial oficial, cartelería reflectiva Avery Dennison, impresión digital TrafficJet™ Xpress, EPP y servicios de alquiler."
+          content="Fabricación y provisión de señalización vial oficial, cartelería reflectiva Avery Dennison, impresión digital TrafficJet™ Xpress, Seguridad Industrial y EPP, y servicios de alquiler."
         />
       </Head>
 
-      {/* 1. HERO PRINCIPAL: Logo, +30 años y sellos oficiales Avery Dennison / TrafficJet Xpress */}
+      {/* 1. HERO PRINCIPAL: Logo y sellos oficiales Avery Dennison / TrafficJet Xpress */}
       <div id="inicio" className="h-0 scroll-mt-20" aria-hidden="true" />
       <InteractiveRoadHero />
 
@@ -567,65 +510,122 @@ export default function Index() {
             </div>
 
             <SectionDualCta
-              text="Coordinamos visitas a planta y brindamos asesoramiento técnico integral para licitaciones y proyectos viales."
-              waText="Hola, me comunico para conocer más sobre Tecno Light S.R.L. y coordinar asesoramiento técnico."
-              waLabel="Contactar por WhatsApp"
               emailSubject="Presentación Institucional y Asesoramiento - Tecno Light S.R.L."
               emailLabel="Solicitud Formal y Pliegos"
             />
           </div>
         </section>
 
-        {/* 3. SOLUCIONES REFLECTIVAS Y CATÁLOGO TÉCNICO AVERY DENNISON */}
+        {/* PILAR 1. FABRICACIÓN DE CARTELES Y SEÑALIZACIÓN */}
         <section
-          id="avery-dennison"
+          id="senalizacion"
           className="section-ig-card border-b border-white/5 py-20 lg:py-28 relative scroll-mt-28"
         >
+          <div id="avery-dennison" className="absolute -top-28" aria-hidden="true" />
           <div id="tecnologia" className="absolute -top-28" aria-hidden="true" />
+          <div id="infraestructura" className="absolute -top-28" aria-hidden="true" />
+          <div id="proceso" className="absolute -top-28" aria-hidden="true" />
           <div className="max-w-site mx-auto px-5 lg:px-10">
-            <SectionTitle
-              kicker={AVERY_DENNISON.kicker}
-              title={AVERY_DENNISON.title}
-              description={AVERY_DENNISON.description}
-            />
-            <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-primary/25 bg-primary/5 px-4 py-2 text-xs font-semibold text-slate-300">
-              <Check size={14} className="text-primary" />
-              {AVERY_DENNISON.standards}
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-              {AVERY_DENNISON.cards.map((card, index) => (
-                <article
-                  key={card.id}
-                  className="border border-white/10 bg-white/[0.02] rounded-[4px] p-6 hover:border-primary/40 transition-colors"
-                >
-                  <div className="flex items-center gap-3 mb-4">
-                    <span className="text-[10px] font-bold tracking-[0.2em] text-primary">
-                      {String(index + 1).padStart(2, '0')}
-                    </span>
-                    <div className="h-px flex-1 bg-white/10" />
-                  </div>
-                  <h3 className="text-base font-semibold text-slate-100 mb-2">{card.title}</h3>
-                  <p className="text-sm text-slate-400 leading-relaxed">{card.description}</p>
-                </article>
-              ))}
-            </div>
-
-            {/* Proceso en Planta y Video Centralizado */}
-            <div className="mt-14 grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            {/* Encabezado Principal del Pilar 01 + Video de Manufactura y Laminado */}
+            <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center mb-12">
               <div className="lg:col-span-5">
-                <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-primary mb-2">
-                  En planta — proceso operativo
-                </p>
-                <h3 className="text-xl md:text-2xl font-bold text-white mb-4">
-                  Manufactura y Sellado Continuo
-                </h3>
-                <p className="text-sm md:text-base text-slate-300 leading-relaxed">
-                  {AVERY_DENNISON.videoDesc}
-                </p>
+                <SectionTitle
+                  kicker={FABRICACION_SENALIZACION.kicker}
+                  title={FABRICACION_SENALIZACION.title}
+                  description={FABRICACION_SENALIZACION.description}
+                />
+                <CheckList items={FABRICACION_SENALIZACION.bullets} />
               </div>
               <div className="lg:col-span-7">
                 <CentralFactoryVideo />
+              </div>
+            </div>
+
+            {/* Líneas de Fabricación de Cartelería y Señalización */}
+            <div className="mb-12">
+              <h3 className="text-xs font-bold uppercase tracking-[0.25em] text-primary mb-4">
+                Líneas de Fabricación y Señalización Oficial
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                {FABRICACION_SENALIZACION.lineas.map((item, idx) => (
+                  <div
+                    key={item.title}
+                    className="rounded-2xl border border-white/10 bg-slate-950/60 p-6 hover:border-primary/50 transition-all flex flex-col justify-between"
+                  >
+                    <div>
+                      <span className="text-[10px] font-bold tracking-[0.2em] text-primary block mb-3">
+                        LÍNEA 0{idx + 1}
+                      </span>
+                      <h4 className="text-base font-bold text-white mb-2">{item.title}</h4>
+                      <p className="text-xs text-slate-400 leading-relaxed">{item.desc}</p>
+                    </div>
+                    <div className="mt-4 pt-3 border-t border-white/5 flex items-center gap-2 text-primary text-xs font-semibold">
+                      <Check size={14} />
+                      <span>Fabricación a medida</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Láminas Reflectivas Avery Dennison y Laminado UV */}
+            <div className="mb-12">
+              <h3 className="text-xs font-bold uppercase tracking-[0.25em] text-primary mb-4">
+                Láminas Microprismáticas Avery Dennison y Laminado Continuo
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                {FABRICACION_SENALIZACION.laminas.map((card, index) => (
+                  <article
+                    key={card.id}
+                    className="border border-white/10 bg-white/[0.02] rounded-[4px] p-6 hover:border-primary/40 transition-colors"
+                  >
+                    <div className="flex items-center gap-3 mb-4">
+                      <span className="text-[10px] font-bold tracking-[0.2em] text-primary">
+                        {String(index + 1).padStart(2, '0')}
+                      </span>
+                      <div className="h-px flex-1 bg-white/10" />
+                    </div>
+                    <h4 className="text-base font-semibold text-slate-100 mb-2">{card.title}</h4>
+                    <p className="text-sm text-slate-400 leading-relaxed">{card.description}</p>
+                  </article>
+                ))}
+              </div>
+            </div>
+
+            {/* Proceso Industrial en Planta (3 etapas) + Capacidad Instalada */}
+            <div className="mt-12 pt-12 border-t border-white/10">
+              <div className="mb-6">
+                <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-primary block mb-1">
+                  Circuito Productivo en Planta Los Polígonos
+                </span>
+                <h3 className="text-xl md:text-2xl font-bold text-white">
+                  Proceso Industrial Continuo hasta el Producto Final
+                </h3>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-6">
+                {FABRICACION_SENALIZACION.etapasPlanta.map((stage) => (
+                  <div
+                    key={stage.id}
+                    className="bg-slate-950/60 border border-white/10 rounded-xl p-6 hover:border-primary/50 transition-all"
+                  >
+                    <div className="w-8 h-[3px] bg-primary rounded-full mb-4" />
+                    <h4 className="text-sm font-bold tracking-widest text-white mb-2">{stage.title}</h4>
+                    <p className="text-slate-400 text-sm leading-relaxed">{stage.description}</p>
+                  </div>
+                ))}
+              </div>
+              <div className="bg-slate-950/60 border border-white/10 rounded-2xl p-6 md:p-8">
+                <h4 className="text-xs font-semibold uppercase tracking-widest text-primary mb-4">
+                  Capacidad Instalada y Recursos Operativos
+                </h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-3">
+                  {FABRICACION_SENALIZACION.capacidades.map((cap) => (
+                    <div key={cap} className="flex items-start gap-3 text-sm text-slate-300">
+                      <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
+                      {cap}
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
 
@@ -665,7 +665,7 @@ export default function Index() {
                   <figcaption className="p-3">
                     <h4 className="text-sm font-bold text-white mb-1">Señal Vial Preventiva de Niebla</h4>
                     <p className="text-xs text-slate-400 leading-relaxed">
-                      Lámina microprismática de alta intensidad Tipo IV (Serie T-6500) sobre chapa Calibre 14 homologada.
+                      Lámina microprismática de alta intensidad Tipo IV (Serie T-6500) sobre chapa en calibres 14, 16 y distintos calibres dependiendo el trabajo.
                     </p>
                   </figcaption>
                 </figure>
@@ -689,7 +689,7 @@ export default function Index() {
                   <figcaption className="p-3">
                     <h4 className="text-sm font-bold text-white mb-1">Señal Reglamentaria Direccional</h4>
                     <p className="text-xs text-slate-400 leading-relaxed">
-                      Vinilo microprismático reflectivo azul con flechas direccionales hacia abajo, terminación perimetral y sellado continuo.
+                      Vinilo microprismático reflectivo azul con flechas direccionales hacia abajo, terminación perimetral y laminado continuo.
                     </p>
                   </figcaption>
                 </figure>
@@ -717,69 +717,6 @@ export default function Index() {
                     </p>
                   </figcaption>
                 </figure>
-              </div>
-            </div>
-
-            <SectionDualCta
-              text="Especificaciones técnicas, compatibilidad de láminas y muestras para proyectos de señalización vial reflectiva."
-              waText="Hola, solicito asesoramiento técnico sobre impresión digital TrafficJet™ Xpress, láminas Avery Dennison y laminado protector."
-              waLabel="Consultar por WhatsApp"
-              emailSubject="Solicitud Técnica y Pliego - Impresión Digital TrafficJet y Laminados Avery Dennison"
-              emailLabel="Solicitud Formal y Pliegos"
-            />
-          </div>
-        </section>
-
-        {/* 3. SEÑALIZACIÓN VIAL Y CARTELERÍA: Fabricación y Sustratos */}
-        <section
-          id="senalizacion"
-          className="py-20 lg:py-28 section-ig-card border-b border-white/5 scroll-mt-28"
-        >
-          <div className="max-w-site mx-auto px-5 lg:px-10">
-            <SectionTitle
-              kicker={SENALIZACION.kicker}
-              title={SENALIZACION.title}
-              description={SENALIZACION.description}
-            />
-
-            {/* Ítems oficiales de Fabricación según folleto */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
-              {SENALIZACION.fabricacion.map((item, idx) => (
-                <div
-                  key={item.title}
-                  className="rounded-2xl border border-white/10 bg-slate-950/60 p-6 hover:border-primary/50 transition-all flex flex-col justify-between"
-                >
-                  <div>
-                    <span className="text-[10px] font-bold tracking-[0.2em] text-primary block mb-3">
-                      LÍNEA 0{idx + 1}
-                    </span>
-                    <h3 className="text-base font-bold text-white mb-2">{item.title}</h3>
-                    <p className="text-xs text-slate-400 leading-relaxed">{item.desc}</p>
-                  </div>
-                  <div className="mt-4 pt-3 border-t border-white/5 flex items-center gap-2 text-primary text-xs font-semibold">
-                    <Check size={14} />
-                    <span>Fabricación a medida</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Sustratos Normados */}
-            <div>
-              <h3 className="text-xs font-bold uppercase tracking-[0.25em] text-primary mb-4">
-                Sustratos Normados de Alta Resistencia
-              </h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                {SENALIZACION.sustratos.map((sustrato) => (
-                  <div
-                    key={sustrato.title}
-                    className="p-5 rounded-xl border border-white/10 bg-slate-950/60 hover:border-primary/40 transition-colors"
-                  >
-                    <div className="w-6 h-1 bg-primary rounded-full mb-3" />
-                    <h4 className="text-sm font-semibold text-white mb-2">{sustrato.title}</h4>
-                    <p className="text-xs text-slate-400 leading-relaxed">{sustrato.desc}</p>
-                  </div>
-                ))}
               </div>
             </div>
 
@@ -844,68 +781,51 @@ export default function Index() {
             </div>
 
             <SectionDualCta
-              text="Fabricación homologada de señalización vial reglamentaria, urbana e industrial sobre chapa Calibre 14 y sustratos de máxima rigidez."
-              waText="Hola, deseo cotizar fabricación de señalización vial reglamentaria, cartelería o estructuras."
-              waLabel="Cotizar por WhatsApp"
-              emailSubject="Cotización Formal y Pliegos - Señalización Vial y Cartelería"
+              emailSubject="Cotización Formal y Pliegos - Fabricación de Carteles y Señalización"
               emailLabel="Solicitud Formal y Pliegos"
             />
           </div>
         </section>
 
-        {/* 4. PROCESO INDUSTRIAL EN PLANTA: Las 4 Fases de Manufactura */}
+        {/* PILAR 2. SEGURIDAD INDUSTRIAL Y EPP */}
         <section
-          id="infraestructura"
-          className="py-20 lg:py-28 section-ig-card border-b border-white/5 relative z-10 scroll-mt-28"
+          id="catalogo"
+          className="py-20 lg:py-28 section-ig-card relative overflow-hidden border-b border-white/5 scroll-mt-28"
         >
-          <div id="proceso" className="absolute -top-28" aria-hidden="true" />
+          <div id="seguridad" className="absolute -top-24 scroll-mt-28" aria-hidden="true" />
           <div className="max-w-site mx-auto px-5 lg:px-10">
             <SectionTitle
-              kicker={PROCESO.kicker}
-              title={PROCESO.title}
-              description={PROCESO.description}
+              kicker={SEGURIDAD_INDUSTRIAL_EPP.kicker}
+              title={SEGURIDAD_INDUSTRIAL_EPP.title}
+              description={SEGURIDAD_INDUSTRIAL_EPP.description}
             />
-
-            {/* Las 4 fases */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-              {PROCESO.stages.map((stage) => (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {SEGURIDAD_INDUSTRIAL_EPP.groups.map((group) => (
                 <div
-                  key={stage.id}
-                  className="bg-slate-950/60 border border-white/10 rounded-xl p-6 hover:border-primary/50 transition-all"
+                  key={group.id}
+                  className={`card-corporate p-6 ${group.wide ? 'sm:col-span-2 lg:col-span-3 border-primary/30' : ''}`}
                 >
-                  <div className="w-8 h-[3px] bg-primary rounded-full mb-4" />
-                  <h3 className="text-sm font-bold tracking-widest text-white mb-2">{stage.title}</h3>
-                  <p className="text-slate-400 text-sm leading-relaxed">{stage.description}</p>
+                  <h3 className="text-base font-semibold text-slate-100 mb-4">{group.title}</h3>
+                  <ul className={group.wide ? 'grid sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-2.5' : 'space-y-2.5'}>
+                    {group.items.map((item) => (
+                      <li key={item} className="flex items-start gap-2.5 text-sm text-slate-400 leading-relaxed">
+                        <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               ))}
             </div>
 
-            {/* Capacidad Instalada */}
-            <div className="bg-slate-950/60 border border-white/10 rounded-2xl p-8">
-              <h3 className="text-sm font-semibold uppercase tracking-widest text-primary mb-5">
-                Capacidad Instalada y Recursos Operativos
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-3">
-                {PROCESO.capacidades.map((cap) => (
-                  <div key={cap} className="flex items-start gap-3 text-sm text-slate-300">
-                    <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
-                    {cap}
-                  </div>
-                ))}
-              </div>
-            </div>
-
             <SectionDualCta
-              text="Capacidad técnica y de producción a escala para abastecer licitaciones, corredores viales y proyectos de gran envergadura."
-              waText="Hola, me comunico para consultar por capacidad de fabricación y producción en planta industrial Los Polígonos."
-              waLabel="Consultar por WhatsApp"
-              emailSubject="Consulta de Fabricación y Pliegos - Planta Industrial Los Polígonos"
+              emailSubject="Cotización Mayorista y Pliegos - Seguridad Industrial y EPP"
               emailLabel="Solicitud Formal y Pliegos"
             />
           </div>
         </section>
 
-        {/* 5. SERVICIOS Y ALQUILER: Equipamiento Vial, Balizas, Vallas y Colocación en Ruta */}
+        {/* PILAR 3. ALQUILER DE VALLAS Y SEGURIDAD VIAL */}
         <section
           id="servicios"
           className="py-20 lg:py-28 section-ig-card border-b border-white/5 scroll-mt-28"
@@ -918,9 +838,9 @@ export default function Index() {
               />
               <div className="relative">
                 <SectionTitle
-                  kicker={SERVICIOS.kicker}
-                  title={SERVICIOS.title}
-                  description={SERVICIOS.description}
+                  kicker={ALQUILER_VALLAS_SEGURIDAD.kicker}
+                  title={ALQUILER_VALLAS_SEGURIDAD.title}
+                  description={ALQUILER_VALLAS_SEGURIDAD.description}
                 />
 
                 {/* Alquiler destacado */}
@@ -930,10 +850,10 @@ export default function Index() {
                       Alquiler destacado
                     </p>
                     <h3 className="text-xl md:text-2xl font-bold text-white mb-3">
-                      {SERVICIOS.eventos.title}
+                      {ALQUILER_VALLAS_SEGURIDAD.eventos.title}
                     </h3>
                     <p className="text-sm md:text-base text-slate-300 leading-relaxed">
-                      {SERVICIOS.eventos.description}
+                      {ALQUILER_VALLAS_SEGURIDAD.eventos.description}
                     </p>
                     <Image
                       src="/images/trabajos/vallas-evento.jpg"
@@ -946,28 +866,32 @@ export default function Index() {
                   </div>
                   <div className="flex flex-col justify-between gap-5">
                     <ul className="space-y-2.5">
-                      {SERVICIOS.eventos.items.map((item) => (
+                      {ALQUILER_VALLAS_SEGURIDAD.eventos.items.map((item) => (
                         <li key={item} className="flex items-start gap-2.5 text-sm text-slate-300">
                           <Check size={15} className="text-primary shrink-0 mt-0.5" />
                           {item}
                         </li>
                       ))}
                     </ul>
-                    <a
-                      href={getWaLink('Hola, quiero consultar por alquiler de vallas para un evento o frente de obra.')}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn-primary text-sm self-start inline-flex items-center gap-2"
+                    <button
+                      type="button"
+                      onClick={() =>
+                        openSolicitudModal({
+                          subject: 'Consulta por Alquiler de Vallas de Contención',
+                          emailLabel: 'Consultar alquiler de vallas'
+                        })
+                      }
+                      className="btn-primary text-sm self-start inline-flex items-center gap-2 cursor-pointer"
                     >
                       <span>Consultar alquiler de vallas</span>
                       <ArrowRight size={16} />
-                    </a>
+                    </button>
                   </div>
                 </div>
 
                 {/* Items de servicio */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                  {SERVICIOS.items.map((item, index) => (
+                  {ALQUILER_VALLAS_SEGURIDAD.items.map((item, index) => (
                     <div
                       key={item.id}
                       className="bg-slate-950/60 border border-primary/20 rounded-xl p-6 hover:border-primary/60 hover:bg-slate-950/80 transition-all flex flex-col justify-between"
@@ -992,93 +916,47 @@ export default function Index() {
 
             {/* Flota Operativa y Cuadrillas en Ruta */}
             <div className="mt-12 rounded-2xl border border-white/10 bg-slate-950/60 p-8">
-                <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-primary mb-2">
-                  {SERVICIOS.flota.kicker}
-                </p>
-                <h3 className="text-xl md:text-2xl font-bold text-white mb-2">
-                  {SERVICIOS.flota.title}
-                </h3>
-                <p className="max-w-2xl text-sm text-slate-400 leading-relaxed">
-                  {SERVICIOS.flota.description}
-                </p>
-                <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-4">
-                  {SERVICIOS.flota.items.map((item) => (
-                    <figure
-                      key={item.src}
-                      className="group overflow-hidden rounded-xl border border-white/10 bg-[#0B0D12] transition-colors hover:border-primary/40"
-                    >
-                      <div className="relative aspect-[4/3]">
-                        <Image
-                          src={item.src}
-                          alt={item.alt}
-                          fill
-                          sizes="(max-width: 640px) 100vw, 33vw"
-                          className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-                        />
-                      </div>
-                      <figcaption className="border-t border-white/5 px-4 py-3">
-                        <span className="block text-sm font-semibold text-slate-100">{item.title}</span>
-                        <span className="mt-0.5 block text-[10px] uppercase tracking-[0.18em] text-slate-500">
-                          {item.tag}
-                        </span>
-                      </figcaption>
-                    </figure>
-                  ))}
-                </div>
+              <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-primary mb-2">
+                {ALQUILER_VALLAS_SEGURIDAD.flota.kicker}
+              </p>
+              <h3 className="text-xl md:text-2xl font-bold text-white mb-2">
+                {ALQUILER_VALLAS_SEGURIDAD.flota.title}
+              </h3>
+              <p className="max-w-2xl text-sm text-slate-400 leading-relaxed">
+                {ALQUILER_VALLAS_SEGURIDAD.flota.description}
+              </p>
+              <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-4">
+                {ALQUILER_VALLAS_SEGURIDAD.flota.items.map((item) => (
+                  <figure
+                    key={item.src}
+                    className="group overflow-hidden rounded-xl border border-white/10 bg-[#0B0D12] transition-colors hover:border-primary/40"
+                  >
+                    <div className="relative aspect-[4/3]">
+                      <Image
+                        src={item.src}
+                        alt={item.alt}
+                        fill
+                        sizes="(max-width: 640px) 100vw, 33vw"
+                        className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                      />
+                    </div>
+                    <figcaption className="border-t border-white/5 px-4 py-3">
+                      <span className="block text-sm font-semibold text-slate-100">{item.title}</span>
+                      <span className="mt-0.5 block text-[10px] uppercase tracking-[0.18em] text-slate-500">
+                        {item.tag}
+                      </span>
+                    </figcaption>
+                  </figure>
+                ))}
               </div>
-
-            <SectionDualCta
-              text="Solicite cotización inmediata para alquiler de vallas, balizamiento vial o cuadrillas para montaje e instalación en ruta."
-              waText="Hola, solicito presupuesto para alquiler de vallas, equipamiento vial o colocación en ruta."
-              waLabel="Solicitar por WhatsApp"
-              emailSubject="Solicitud Formal y Pliegos - Alquiler de Vallas y Servicios en Ruta"
-              emailLabel="Solicitud Formal y Pliegos"
-            />
-          </div>
-        </section>
-
-        {/* 6. SEGURIDAD INDUSTRIAL Y EPP*/}
-        <section
-          id="catalogo"
-          className="py-20 lg:py-28 section-ig-card relative overflow-hidden border-b border-white/5 scroll-mt-28"
-        >
-          <div id="seguridad" className="absolute -top-24 scroll-mt-28" aria-hidden="true" />
-          <div className="max-w-site mx-auto px-5 lg:px-10">
-            <SectionTitle
-              kicker={EPP.kicker}
-              title={EPP.title}
-              description={EPP.description}
-            />
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {EPP.groups.map((group) => (
-                <div
-                  key={group.id}
-                  className={`card-corporate p-6 ${group.wide ? 'sm:col-span-2 lg:col-span-3 border-primary/30' : ''}`}
-                >
-                  <h3 className="text-base font-semibold text-slate-100 mb-4">{group.title}</h3>
-                  <ul className={group.wide ? 'grid sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-2.5' : 'space-y-2.5'}>
-                    {group.items.map((item) => (
-                      <li key={item} className="flex items-start gap-2.5 text-sm text-slate-400 leading-relaxed">
-                        <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
             </div>
 
             <SectionDualCta
-              text="Provisión mayorista de indumentaria Grafa y equipos de protección personal (EPP) homologados por lote para empresas y licitaciones."
-              waText="Hola, deseo solicitar cotización mayorista por lote de indumentaria Grafa y equipamiento EPP."
-              waLabel="Cotizar por WhatsApp"
-              emailSubject="Cotización Mayorista y Pliegos - Seguridad Industrial y EPP"
+              emailSubject="Solicitud Formal y Pliegos - Alquiler de Vallas y Seguridad Vial"
               emailLabel="Solicitud Formal y Pliegos"
             />
           </div>
         </section>
-
-
       </div>
     </>
   );

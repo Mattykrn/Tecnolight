@@ -9,7 +9,7 @@ export default function Document() {
         <meta charSet="utf-8" />
         <meta
           name="description"
-          content="Fabricación y provisión integral de señalización vial e industrial, indumentaria de trabajo y elementos de protección personal en Santa Fe."
+          content="Fabricación y provisión integral de señalización vial e industrial, Seguridad Industrial y EPP en Santa Fe."
         />
         <meta name="robots" content="index, follow" />
         <meta
@@ -22,27 +22,25 @@ export default function Document() {
         <meta property="og:site_name" content="Tecno Light S.R.L." />
         <meta property="og:locale" content="es_AR" />
         <meta property="og:url" content="https://www.tecnolight.com.ar" />
-        <meta property="og:title" content="Tecno Light S.R.L. | Señalización Vial, EPP y Servicios en Obra" />
+        <meta property="og:title" content="Tecno Light S.R.L. | Señalización Vial, Seguridad Industrial y EPP" />
         <meta
           property="og:description"
-          content="Fabricación y provisión integral de señalización vial e industrial, indumentaria de trabajo y elementos de protección personal en Santa Fe."
         />
         <meta property="og:image" content="https://www.tecnolight.com.ar/og-image.jpg" />
         <meta property="og:image:secure_url" content="https://www.tecnolight.com.ar/og-image.jpg" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
-        <meta property="og:image:alt" content="Tecno Light S.R.L. | Señalización Vial, EPP y Servicios en Obra" />
+        <meta property="og:image:alt" content="Tecno Light S.R.L. | Señalización Vial, Seguridad Industrial y EPP" />
         <meta property="og:image:type" content="image/jpeg" />
 
         {/* Twitter Cards */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Tecno Light S.R.L. | Señalización Vial, EPP y Servicios en Obra" />
+        <meta name="twitter:title" content="Tecno Light S.R.L. | Señalización Vial, Seguridad Industrial y EPP" />
         <meta
           name="twitter:description"
-          content="Fabricación y provisión integral de señalización vial e industrial, indumentaria de trabajo y elementos de protección personal en Santa Fe."
         />
         <meta name="twitter:image" content="https://www.tecnolight.com.ar/og-image.jpg" />
-        <meta name="twitter:image:alt" content="Tecno Light S.R.L. | Señalización Vial, EPP y Servicios en Obra" />
+        <meta name="twitter:image:alt" content="Tecno Light S.R.L. | Señalización Vial, Seguridad Industrial y EPP" />
 
         {/* Icons & Manifest */}
         <link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml" />

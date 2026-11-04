@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, MapPin, Phone, Clock, ArrowRight, MessageCircle } from 'lucide-react';
+import { Menu, X, MapPin, Phone, Clock, ArrowRight, Mail } from 'lucide-react';
 
 import { getWaLink } from '../utils/whatsapp';
 import { getMapsDirectionsLink } from '../utils/links';
+import { useSolicitudModal } from './SolicitudModal';
 
 const WA_LINK = getWaLink();
 
@@ -17,7 +18,8 @@ const CONTACTO_SEDES = [
     address: 'Suipacha 3248, Santa Fe Capital',
     phone: '(0342) 455-3582',
     phoneHref: 'tel:03424553582',
-    horario: 'Lunes a Viernes de 8:00 a 17:00 hs'
+    email: 'tecnolightsrl@tecnolightsrl.com',
+    horario: 'Lunes a Viernes de 8:00 a 17:00 hs. (Sábados Cerrado)'
   },
   {
     id: 'rosario',
@@ -26,6 +28,7 @@ const CONTACTO_SEDES = [
     address: 'Fuhr 1282, Rosario, Santa Fe',
     phone: '341 636 9053',
     phoneHref: 'tel:3416369053',
+    email: 'rosario@tecnolightsrl.com',
     horario: 'Atención técnica y logística'
   },
   {
@@ -35,7 +38,8 @@ const CONTACTO_SEDES = [
     address: 'Cnel. Loza 7198, P.I. Los Polígonos, Santa Fe Capital',
     phone: null,
     phoneHref: null,
-    horario: 'Producción, corte, impresión y laminado continuo'
+    email: null,
+    horario: 'Producción, corte láser, impresión y laminado continuo'
   }
 ];
 
@@ -48,29 +52,17 @@ const WaIcon = ({ size = 16 }) => (
 const NAV = [
   { label: 'Inicio', href: '/#inicio' },
   { label: 'Quiénes Somos', href: '/#nosotros' },
-  { label: 'Soluciones Reflectivas', href: '/#avery-dennison' },
-  { label: 'Señalización Vial', href: '/#senalizacion' },
-  { label: 'Proceso en Planta', href: '/#infraestructura' },
-  { label: 'Servicios y Alquiler', href: '/#servicios' },
-  { label: 'Seguridad y EPP', href: '/#catalogo' },
-  { label: 'Sedes y Contacto', href: '/#contacto' },
-];
-
-const FOOTER_NAV = [
-  { label: 'Inicio', href: '/#inicio' },
-  { label: 'Quiénes Somos', href: '/#nosotros' },
-  { label: 'Soluciones Reflectivas Avery Dennison', href: '/#avery-dennison' },
-  { label: 'Señalización Vial y Cartelería', href: '/#senalizacion' },
-  { label: 'Proceso Industrial en Planta', href: '/#infraestructura' },
-  { label: 'Servicios y Alquiler Vial', href: '/#servicios' },
+  { label: 'Fabricación de Carteles y Señalización', href: '/#senalizacion' },
   { label: 'Seguridad Industrial y EPP', href: '/#catalogo' },
-  { label: 'Sedes y Canales Oficiales', href: '/#contacto' },
+  { label: 'Alquiler de Vallas y Seguridad Vial', href: '/#servicios' },
+  { label: 'Sedes y Contacto', href: '/#contacto' },
 ];
 
 export default function Layout({ children }) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const router = useRouter();
+  const { openSolicitudModal } = useSolicitudModal();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -232,25 +224,29 @@ export default function Layout({ children }) {
 
       <main className="flex-1">{children}</main>
 
-      {/* Footer Reubicado: Sedes Oficiales, Planta Fabril, Contacto Directo y Canales */}
-      <footer id="contacto" className="section-ig-card border-t border-white/10 py-16 lg:py-20 relative scroll-mt-20">
+      {/* Sección Final Unificada: Sedes de Operación, Planta Fabril y Canales Oficiales (sin footer redundante) */}
+      <section id="contacto" className="section-ig-card border-t border-white/10 py-16 lg:py-20 relative scroll-mt-20">
         <div className="corner-brand-glow"></div>
         <div className="max-w-site mx-auto px-5 lg:px-10">
-          {/* Header Institucional del Footer */}
-          <div className="mb-12 max-w-3xl">
+          {/* Encabezado de Sedes y Canales Oficiales */}
+          <div className="mb-10 max-w-3xl">
             <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-primary mb-2">
               Red Operativa y Canales Oficiales
             </p>
-            <h3 className="text-2xl md:text-3xl font-extrabold tracking-tight text-white uppercase">
+            <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-white uppercase">
               Sedes de Operación, Planta Fabril y Contacto
-            </h3>
+            </h2>
             <p className="mt-3 text-sm md:text-base text-slate-400 leading-relaxed">
               Atención personalizada y cobertura permanente. Nuestras sedes comerciales, operativas y planta fabril se encuentran preparadas para abastecer proyectos en Santa Fe, Rosario y todo el país.
             </p>
           </div>
 
-          {/* Grilla de las 3 Sedes Oficiales */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+          <h3 className="text-xs font-bold uppercase tracking-[0.25em] text-primary mb-4">
+            Sedes de Operación y Asistencia Técnica
+          </h3>
+
+          {/* Grilla de los 3 Cuadros de las Sedes */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
             {CONTACTO_SEDES.map((sede) => (
               <div
                 key={sede.id}
@@ -272,7 +268,7 @@ export default function Layout({ children }) {
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary hover:text-primary/80 transition-colors"
                     >
-                      <span>Cómo llegar en Google Maps</span>
+                      <span>Cómo llegar</span>
                       <ArrowRight size={12} />
                     </a>
                     {sede.phone && (
@@ -281,10 +277,25 @@ export default function Layout({ children }) {
                         className="flex items-center gap-2.5 text-slate-300 hover:text-primary transition-colors"
                       >
                         <Phone size={15} className="text-primary shrink-0" />
-                        <span>Tel: {sede.phone}</span>
+                        <span>{sede.phone}</span>
                       </a>
                     )}
-                    <p className="flex items-center gap-2.5 text-xs text-slate-400">
+                    {sede.email && (
+                      <button
+                        type="button"
+                        onClick={() =>
+                          openSolicitudModal({
+                            subject: `Consulta comercial — ${sede.city}`,
+                            emailLabel: sede.email
+                          })
+                        }
+                        className="flex items-center gap-2.5 text-xs text-slate-300 hover:text-primary transition-colors cursor-pointer text-left"
+                      >
+                        <Mail size={14} className="text-primary shrink-0" />
+                        <span>{sede.email}</span>
+                      </button>
+                    )}
+                    <p className="flex items-center gap-2.5 text-xs text-slate-400 pt-1">
                       <Clock size={14} className="text-primary shrink-0" />
                       <span>{sede.horario}</span>
                     </p>
@@ -294,23 +305,21 @@ export default function Layout({ children }) {
             ))}
           </div>
 
-          {/* Barra de Canales Directos y Tecnologías Oficiales */}
-          <div className="rounded-2xl border border-white/10 bg-slate-950/80 p-6 md:p-8 mb-12">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-              <div className="lg:col-span-4">
-                <div className="mb-4">
-                  <img
-                    src="/images/logo-tecnolight.png"
-                    alt="Tecno Light S.R.L."
-                    className="h-10 w-auto object-contain"
-                  />
-                </div>
-                <p className="text-xs text-slate-400 leading-relaxed mb-4">
-                  Diseño, manufactura e instalación de señalización vial oficial, cartelería reflectiva Avery Dennison, indumentaria Grafa y protección industrial (EPP).
+          {/* Bloque Integrado de Canales Oficiales, Solicitud de Pliegos y Sello Tecnológico */}
+          <div className="card-corporate p-6 md:p-8 bg-slate-950/80 border border-white/10">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+              <div className="lg:col-span-5 space-y-3">
+                <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-primary">
+                  Canales Oficiales y Redes
                 </p>
-                <div className="flex flex-col items-start gap-2">
-                  <span className="text-[10px] uppercase tracking-wider text-slate-400 font-semibold">Tecnología de impresión y sellado:</span>
-                  <div className="bg-white/95 rounded-lg px-3 py-1.5 flex items-center gap-3 shadow-md border border-white/20">
+                <p className="text-sm text-slate-300 leading-relaxed">
+                  Atención comercial y asesoramiento técnico centralizado. Envíe planos, requerimientos o pliegos para una respuesta inmediata.
+                </p>
+                <div className="pt-1 flex flex-wrap items-center gap-3">
+                  <span className="text-[10px] uppercase tracking-wider text-slate-400 font-semibold">
+                    Tecnología de impresión y laminado:
+                  </span>
+                  <div className="bg-white/95 rounded-lg px-3 py-1.5 inline-flex items-center gap-3 shadow-md border border-white/20">
                     <span className="text-slate-900 font-black text-[10px] tracking-wide">TRAFFICJET™ XPRESS</span>
                     <div className="h-4 w-px bg-slate-300" />
                     <img src="/images/avery-dennison-official.svg" alt="Avery Dennison" className="h-5 w-auto object-contain" />
@@ -318,7 +327,25 @@ export default function Layout({ children }) {
                 </div>
               </div>
 
-              <div className="lg:col-span-8 grid sm:grid-cols-2 gap-4">
+              <div className="lg:col-span-7 grid sm:grid-cols-3 gap-4">
+                <button
+                  type="button"
+                  onClick={() =>
+                    openSolicitudModal({
+                      subject: 'Consulta Institucional — Tecno Light S.R.L.',
+                      emailLabel: 'Correo Institucional'
+                    })
+                  }
+                  className="flex items-center gap-3 p-4 rounded-xl border border-white/10 bg-white/[0.02] hover:border-primary/50 hover:bg-white/[0.04] transition-all text-left cursor-pointer group"
+                >
+                  <div className="w-10 h-10 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0">
+                    <Mail size={18} className="text-primary group-hover:scale-110 transition-transform" />
+                  </div>
+                  <div className="min-w-0">
+                    <span className="block text-[10px] uppercase font-bold text-slate-400">Correo Institucional</span>
+                    <span className="block text-xs font-semibold text-white truncate">tecnolightsrl@tecnolightsrl.com</span>
+                  </div>
+                </button>
 
                 <a
                   href="https://www.instagram.com/tecnolight.srl/"
@@ -337,39 +364,29 @@ export default function Layout({ children }) {
                   </div>
                 </a>
 
-                <a
-                  href={getWaLink('Hola, me comunico con Tecno Light S.R.L. para realizar una consulta comercial o técnica.')}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 p-4 rounded-xl border border-white/10 bg-white/[0.02] hover:border-[#25D366] hover:bg-white/[0.04] transition-all group"
+                <button
+                  type="button"
+                  onClick={() =>
+                    openSolicitudModal({
+                      subject: 'Solicitud Formal / Envío de Pliego — Tecno Light S.R.L.',
+                      emailLabel: 'Enviar Solicitud / Pliego'
+                    })
+                  }
+                  className="flex items-center justify-center gap-2 p-4 rounded-xl bg-primary text-white font-bold text-xs uppercase tracking-wider hover:bg-primary/90 transition-all cursor-pointer shadow-lg shadow-primary/20"
                 >
-                  <div className="w-10 h-10 rounded-lg bg-[#25D366]/10 border border-[#25D366]/20 flex items-center justify-center shrink-0">
-                    <MessageCircle size={18} className="text-[#25D366]" />
-                  </div>
-                  <div>
-                    <span className="block text-[10px] uppercase font-bold text-slate-400">WhatsApp Comercial</span>
-                    <span className="text-xs font-semibold text-white">+54 9 342 427-8117</span>
-                  </div>
-                </a>
+                  <Mail size={16} />
+                  <span>Enviar Solicitud / Pliego</span>
+                </button>
               </div>
             </div>
           </div>
 
-          {/* Navegación y Legales */}
-          <div className="pt-7 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
-            <nav className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-xs text-slate-400">
-              {FOOTER_NAV.map((item) => (
-                <Link key={item.label} href={item.href} className="hover:text-primary transition-colors">
-                  {item.label}
-                </Link>
-              ))}
-            </nav>
-            <div className="text-white/30 text-xs text-center md:text-right" style={{ fontFamily: "'Roboto', sans-serif" }}>
-              &copy; 2026 Tecno Light S.R.L. &mdash; CUIT: 30-69238932-4 | Todos los derechos reservados. Rosario &middot; Santa Fe &middot; Argentina
-            </div>
+          {/* Línea única de derechos reservados */}
+          <div className="mt-8 pt-6 border-t border-white/10 text-center text-white/35 text-xs">
+            &copy; 2026 Tecno Light S.R.L. &mdash; CUIT: 30-69238932-4 | Todos los derechos reservados. &middot; Rosario &middot; Santa Fe &middot; Argentina
           </div>
         </div>
-      </footer>
+      </section>
     </div>
   );
 }

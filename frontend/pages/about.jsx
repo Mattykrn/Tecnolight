@@ -53,7 +53,7 @@ export default function About() {
           </div>
 
           <div className="flex flex-wrap gap-2.5 mt-10" style={BODY}>
-            {['+30 Años de Trayectoria', 'Santa Fe Capital', 'Rosario', 'P.I. Los Polígonos', 'Avery Dennison TrafficJet'].map((tag) => (
+            {['Santa Fe Capital', 'Rosario', 'P.I. Los Polígonos', 'Avery Dennison TrafficJet'].map((tag) => (
               <span
                 key={tag}
                 className="px-3.5 py-1.5 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs font-semibold uppercase tracking-widest"
