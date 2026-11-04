@@ -423,7 +423,7 @@ export function SolicitudModalProvider({ children }) {
                 <div className="border-t border-white/10 pt-4 grid grid-cols-1 sm:grid-cols-3 gap-3 text-[11px] text-slate-400">
                   <div>
                     <strong className="text-white block font-semibold">Sede Santa Fe:</strong>
-                    Suipacha 3248 | Tel: (0342) 455-3582
+                    Suipacha 3243 | Tel: (0342) 455-3582
                   </div>
                   <div>
                     <strong className="text-white block font-semibold">Sede Rosario:</strong>

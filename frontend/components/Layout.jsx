@@ -15,7 +15,7 @@ const CONTACTO_SEDES = [
     id: 'santa-fe',
     label: 'Sede Comercial (Asistencia y Ventas)',
     city: 'Santa Fe Capital',
-    address: 'Suipacha 3248, Santa Fe Capital',
+    address: 'Suipacha 3243, Santa Fe Capital',
     phone: '(0342) 455-3582',
     phoneHref: 'tel:03424553582',
     email: 'tecnolightsrl@tecnolightsrl.com',

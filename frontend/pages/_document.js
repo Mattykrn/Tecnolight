@@ -76,7 +76,7 @@ export default function Document() {
               email: 'tecnolightsrl@tecnolightsrl.com',
               address: {
                 '@type': 'PostalAddress',
-                streetAddress: 'Suipacha 3248',
+                streetAddress: 'Suipacha 3243',
                 addressLocality: 'Santa Fe',
                 addressRegion: 'Santa Fe',
                 addressCountry: 'AR',

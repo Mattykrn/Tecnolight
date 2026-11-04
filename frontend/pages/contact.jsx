@@ -172,11 +172,11 @@ export default function Contact() {
               <h3 className="font-semibold text-white mb-1 text-lg flex items-center gap-2" style={HEADING}>
                 <MapPin size={18} className="text-amber-500" /> Sede Comercial — Santa Fe Capital
               </h3>
-              <p className="text-sm text-slate-400 mb-3" style={BODY}>Suipacha 3248 | Tel: (0342) 4553582</p>
+              <p className="text-sm text-slate-400 mb-3" style={BODY}>Suipacha 3243 | Tel: (0342) 4553582</p>
               <div className="w-full h-[250px] rounded-[6px] overflow-hidden border border-slate-800">
-                <iframe src="https://www.google.com/maps?q=Suipacha+3248+Santa+Fe+Argentina&output=embed" className="w-full h-full" allowFullScreen="" loading="lazy" title="Sede Comercial Santa Fe Capital" />
+                <iframe src="https://www.google.com/maps?q=Suipacha+3243+Santa+Fe+Argentina&output=embed" className="w-full h-full" allowFullScreen="" loading="lazy" title="Sede Comercial Santa Fe Capital" />
               </div>
-              <a href={getMapsDirectionsLink('Suipacha 3248, Santa Fe, Argentina')} target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex items-center gap-1.5 text-xs font-semibold text-amber-500 hover:text-amber-400 transition-colors">
+              <a href={getMapsDirectionsLink('Suipacha 3243, Santa Fe, Argentina')} target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex items-center gap-1.5 text-xs font-semibold text-amber-500 hover:text-amber-400 transition-colors">
                 Cómo llegar <ArrowUpRight size={13} />
               </a>
             </div>

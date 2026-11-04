@@ -44,7 +44,7 @@ export default function About() {
               Comercializa además equipamiento de protección personal homologado e indumentaria de trabajo para obras viales, civiles e industriales, y gestiona servicios de alquiler, montaje y mantenimiento de vallas y dispositivos de seguridad en ruta.
             </p>
             <p className="text-sm text-slate-400">
-              Sede Comercial (Asesoramiento técnico y ventas): Suipacha 3248, Santa Fe Capital | Tel: (0342) 455-3582 | Correo:{' '}
+              Sede Comercial (Asesoramiento técnico y ventas): Suipacha 3243, Santa Fe Capital | Tel: (0342) 455-3582 | Correo:{' '}
               <a href="mailto:tecnolightsrl@tecnolightsrl.com?subject=Contacto%20Institucional%20-%20Tecno%20Light%20S.R.L." target="_self" className="text-primary hover:underline">
                 tecnolightsrl@tecnolightsrl.com
               </a><br />
