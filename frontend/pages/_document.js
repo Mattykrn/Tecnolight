@@ -25,6 +25,7 @@ export default function Document() {
         <meta property="og:title" content="Tecno Light S.R.L. | Señalización Vial, Seguridad Industrial y EPP" />
         <meta
           property="og:description"
+          content="Fabricación de carteles y señalización vial reflectiva Avery Dennison, Seguridad Industrial y EPP (venta mayorista y minorista), y alquiler de elementos de seguridad vial."
         />
         <meta property="og:image" content="https://www.tecnolight.com.ar/og-image.jpg" />
         <meta property="og:image:secure_url" content="https://www.tecnolight.com.ar/og-image.jpg" />
@@ -38,6 +39,7 @@ export default function Document() {
         <meta name="twitter:title" content="Tecno Light S.R.L. | Señalización Vial, Seguridad Industrial y EPP" />
         <meta
           name="twitter:description"
+          content="Fabricación de carteles y señalización vial reflectiva Avery Dennison, Seguridad Industrial y EPP (venta mayorista y minorista), y alquiler de elementos de seguridad vial."
         />
         <meta name="twitter:image" content="https://www.tecnolight.com.ar/og-image.jpg" />
         <meta name="twitter:image:alt" content="Tecno Light S.R.L. | Señalización Vial, Seguridad Industrial y EPP" />
@@ -73,7 +75,7 @@ export default function Document() {
               description: 'Provisión de señalización vial, industrial y equipamiento para obras.',
               url: 'https://www.tecnolight.com.ar',
               telephone: '+54-342-455-3582',
-              email: 'tecnolightsrl@tecnolightsrl.com',
+              email: 'tecnolight@tecnolightsrl.com',
               address: {
                 '@type': 'PostalAddress',
                 streetAddress: 'Suipacha 3243',

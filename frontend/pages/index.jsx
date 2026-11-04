@@ -1,15 +1,9 @@
 import React from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
-import Link from 'next/link';
 import {
-  ArrowRight,
   Check,
   Construction,
-  Mail,
-  MessageCircle,
-  PackageCheck,
-  Paintbrush,
   Play,
   ShieldAlert,
   Truck,
@@ -17,17 +11,15 @@ import {
 } from 'lucide-react';
 
 import InteractiveRoadHero from '../components/InteractiveRoadHero';
-import { getWaLink } from '../utils/whatsapp';
-import { useSolicitudModal } from '../components/SolicitudModal';
 
 /* ============================================================
    Datos internos — Contenido institucional, catálogo y servicios
    ============================================================ */
 
 const QUIENES = [
-  'TECNO LIGHT S.R.L. es una firma referente en el diseño, manufactura e instalación de sistemas de señalización vial reglamentaria, preventiva, informativa y transitoria.',
+  'TECNO LIGHT S.R.L. es una firma referente en el diseño, manufactura y provisión de sistemas de señalización vial reglamentaria, preventiva, informativa y transitoria.',
   'En nuestra planta del Parque Industrial Los Polígonos (Santa Fe Capital) desarrollamos procesos de corte láser, conformado de chapa en calibres 14, 16 y distintos calibres dependiendo el trabajo, tratamiento anticorrosivo con pintura epoxi de alta resistencia, impresión digital UV-LED TrafficJet™ Xpress y laminado continuo sobre láminas reflectivas Avery Dennison.',
-  'Completamos nuestra propuesta con la provisión mayorista de indumentaria técnica y equipamiento de protección personal (EPP) homologado, junto a una división especializada en alquiler y montaje de vallas de contención para grandes eventos y obras viales.'
+  'Completamos nuestra propuesta con la venta mayorista y minorista de ropa de trabajo y equipamiento de protección personal (EPP) homologado, junto a una división especializada en el alquiler de elementos de seguridad vial y vallas para eventos en versiones cortas y largas.'
 ];
 
 const QUIENES_TAGS = [
@@ -62,8 +54,8 @@ const FABRICACION_SENALIZACION = {
       desc: 'Dispositivos luminosos LED de alta visibilidad para canalización nocturna, desvíos y curvas pronunciadas.'
     },
     {
-      title: 'Fabricación de Vallas Delimitadoras de Obra',
-      desc: 'Módulos metálicos de vallado de contención perimetral de alta resistencia para resguardo de frentes de obra.'
+      title: 'Fabricación de Vallas para Eventos y Obras',
+      desc: 'Módulos metálicos de vallado perimetral en versiones cortas y largas de alta resistencia para eventos y frentes de obra.'
     }
   ],
   laminas: [
@@ -111,7 +103,7 @@ const FABRICACION_SENALIZACION = {
   ],
   capacidades: [
     'Planta industrial propia con equipamiento computarizado de alta escala',
-    'Flota de unidades móviles y cuadrillas técnicas para entrega y montaje en ruta',
+    'Flota de unidades móviles y cuadrillas técnicas para entrega y asistencia en ruta',
     'Sede Comercial en Santa Fe Capital y Sede Operativa en Rosario',
     'Capacidad de abastecimiento para licitaciones públicas y frentes viales simultáneos'
   ]
@@ -163,57 +155,75 @@ const SENALIZACION_OBRAS_REALES = [
     src: '/images/obras-reales/vallas-obra-municipalidad-rosario.jpg',
     badge: 'Obra Pública · Rosario',
     title: 'Vallas Delimitadoras de Obra Urbana',
-    description: 'Lote de vallas metálicas de contención y señalización para Conylog S.R.L. y la Municipalidad de Rosario. Estructuras tubulares y paneles de chapa en calibres 14, 16 y distintos calibres dependiendo el trabajo con láminas reflectivas Avery Dennison.',
+    description: 'Lote de vallas metálicas delimitadoras y de señalización para Conylog S.R.L. y la Municipalidad de Rosario. Estructuras tubulares y paneles de chapa en calibres 14, 16 y distintos calibres dependiendo el trabajo con láminas reflectivas Avery Dennison.',
     specs: ['Chapa Calibre 14, 16 y según el trabajo', 'Láminas reflectivas Avery Dennison']
   }
 ];
 
 const ALQUILER_VALLAS_SEGURIDAD = {
-  kicker: 'Pilar 03 · Soluciones Operativas, Eventos y Logística Vial',
-  title: 'Alquiler de Vallas y Seguridad Vial',
+  kicker: 'Pilar 03 · Alquiler de Equipamiento Vial, Eventos y Logística en Obra',
+  title: 'Alquiler de Elementos de Seguridad Vial',
   description:
-    'Disponibilidad inmediata de stock, logística integral y cuadrillas técnicas para cerramientos perimetrales, eventos multitudinarios, encauzamiento de desvíos y operativos viales en Santa Fe, Rosario y la región.',
+    'Disponibilidad inmediata de stock, entrega en sitio y logística integral para el alquiler de elementos de seguridad vial, cerramientos perimetrales en eventos multitudinarios y encauzamiento de desvíos de obra en Santa Fe, Rosario y toda la región.',
   eventos: {
-    title: 'Alquiler y Logística de Vallas de Contención',
+    title: 'Vallas para Eventos (Versiones Cortas y Largas)',
     description:
-      'Módulos de cerramiento perimetral fabricados en acero con terminación epoxi. Coordinamos la entrega, montaje estructural y retiro programado según el cronograma de su evento u obra.',
+      'Provisión en alquiler de vallas para eventos disponibles en versiones cortas y largas, fabricadas en acero con terminación epoxi. Coordinamos la entrega, distribución perimetral y retiro programado según el cronograma de su evento u obra.',
     items: [
-      'Estructuras metálicas de alta estabilidad y resistencia perimetral',
-      'Logística de traslado, armado y retiro ágil en sitio',
-      'Disponibilidad permanente de stock para despliegue inmediato'
+      'Disponibilidad inmediata de vallas para eventos en versiones cortas y largas',
+      'Estructuras metálicas de alta estabilidad, encastre rápido y resistencia perimetral',
+      'Logística de traslado, distribución y retiro ágil en sitio para eventos y obras'
     ]
   },
   items: [
     {
-      id: 'alquiler-vallas',
+      id: 'vallas-eventos',
       Icon: ShieldAlert,
-      title: 'Alquiler de Vallas de Contención para Eventos y Obras',
-      description: 'Vallado metálico perimetral de alta resistencia para resguardo de frentes de obra y eventos multitudinarios.'
+      title: 'Vallas para Eventos (Cortas y Largas)',
+      description: 'Módulos metálicos de vallado perimetral disponibles en versiones cortas y largas para eventos públicos, recitales, competencias y obras.'
     },
     {
-      id: 'alquiler-obras',
+      id: 'balizas',
       Icon: Construction,
-      title: 'Alquiler de Equipamiento de Seguridad Vial',
-      description: 'Equipamiento transitorio para frentes de obra: balizas LED, flechas luminosas y canalizadores de tránsito.'
+      title: 'Balizas',
+      description: 'Balizas luminosas intermitentes de alta visibilidad diurna y nocturna para señalización preventiva en frentes de obra y desvíos.'
     },
     {
-      id: 'demarcacion',
-      Icon: Paintbrush,
-      title: 'Demarcación de Calles e Industrias',
-      description: 'Pintura vial horizontal reflectiva para calles, avenidas, sendas peatonales y plantas fabriles.'
+      id: 'flechas-luminicas',
+      Icon: Truck,
+      title: 'Flechas Lumínicas',
+      description: 'Sistemas de flechas lumínicas direccionales LED para encauzamiento vehicular seguro en rutas, autopistas y calzadas reducidas.'
     },
     {
-      id: 'colocacion',
+      id: 'tambores',
+      Icon: ShieldAlert,
+      title: 'Tambores',
+      description: 'Tambores demarcatorios viales con bandas reflectivas prismáticas de alta intensidad para delimitación de zonas de trabajo.'
+    },
+    {
+      id: 'carteles-viales',
+      Icon: Construction,
+      title: 'Carteles Viales',
+      description: 'Alquiler de carteles viales transitorios reglamentarios, preventivos e informativos con pie portacartel para desvíos y obras en calzada.'
+    },
+    {
+      id: 'canalizadores',
+      Icon: Truck,
+      title: 'Canalizadores',
+      description: 'Canalizadores viales New Jersey plásticos y delimitadores encastrables para segregación de carriles y desvíos temporales.'
+    },
+    {
+      id: 'chapones',
       Icon: Wrench,
-      title: 'Colocación de Lomos de Burro, Delineadores y Tachas Viales',
-      description: 'Cuadrillas técnicas para anclaje y montaje en calzada de reductores de velocidad, delineadores y tachas reflectivas.'
+      title: 'Chapones',
+      description: 'Chapones de acero de alta resistencia para cobertura segura de zanjas, excavaciones y paso vehicular o peatonal en obra.'
     }
   ],
   flota: {
     kicker: 'Infraestructura Móvil Especializada',
     title: 'Flota Operativa y Cuadrillas en Ruta',
     description:
-      'Unidades móviles y vehículos de apoyo técnico trasladan cuadrillas especializadas, vallas e instrumental de montaje pesado directamente al lugar del operativo.',
+      'Unidades móviles y vehículos de apoyo técnico trasladan cuadrillas especializadas, vallas para eventos y elementos de seguridad vial directamente al lugar del operativo.',
     items: [
       {
         src: '/images/flota/sprinter-flota-1.jpg',
@@ -223,14 +233,14 @@ const ALQUILER_VALLAS_SEGURIDAD = {
       },
       {
         src: '/images/flota/sprinter-flota-2.jpg',
-        alt: 'Cuadrilla especializada realizando montaje en obra junto a la unidad móvil',
+        alt: 'Cuadrilla especializada realizando asistencia en obra junto a la unidad móvil',
         title: 'Cuadrilla especializada en obra',
-        tag: 'Montaje y asistencia en ruta'
+        tag: 'Logística y asistencia en ruta'
       },
       {
         src: '/images/flota/sprinter-flota-3.jpg',
         alt: 'Intervención vial en banquina durante jornada de trabajo en corredor provincial',
-        title: 'Instalación y control de aplomo',
+        title: 'Despliegue y control en ruta',
         tag: 'Corredores viales de Santa Fe'
       }
     ]
@@ -238,22 +248,22 @@ const ALQUILER_VALLAS_SEGURIDAD = {
 };
 
 const SEGURIDAD_INDUSTRIAL_EPP = {
-  kicker: 'Pilar 02 · Provisión Mayorista de Indumentaria y Protección Homologada',
+  kicker: 'Pilar 02 · Venta Mayorista y Minorista de Ropa de Trabajo y EPP Homologado',
   title: 'Seguridad Industrial y EPP',
   description:
-    'Comercialización mayorista y distribución corporativa de equipos de protección personal (EPP) e indumentaria de trabajo certificada para obras civiles, viales e industriales, con entrega directa en obrador.',
+    'Venta mayorista y minorista de ropa de trabajo certificada y elementos de protección personal (EPP) homologados para empresas, contratistas, obras civiles, viales, industrias y particulares.',
   groups: [
     {
       id: 'indumentaria',
-      title: 'Indumentaria de Trabajo Grafa y Técnica',
+      title: 'Ropa de Trabajo Grafa y Técnica (Mayorista y Minorista)',
       items: [
-        'Pantalones Grafa 70 y Cargo reforzados; bombachas y jeans de obra',
-        'Mamelucos térmicos e ignífugos y ropa de trabajo industrial',
+        'Venta mayorista y minorista de ropa de trabajo para empresas, cuadrillas y particulares',
+        'Pantalones Grafa 70 y Cargo reforzados; bombachas de campo y jeans de obra',
         'Camisas Grafa y Cargo (Aire Libre) con costura de seguridad',
+        'Mamelucos térmicos e ignífugos y ropa de trabajo industrial',
         'Chalecos de alta visibilidad con bandas reflectivas normadas',
         'Indumentaria térmica para trabajos a la intemperie y bajas temperaturas',
-        'Trajes impermeables para lluvia y waders de alta resistencia',
-        'Botas pescadoras y calzado de goma para tareas en agua y barro'
+        'Trajes impermeables para lluvia, waders y botas para agua y barro'
       ]
     },
     {
@@ -375,27 +385,6 @@ function CheckList({ items }) {
   );
 }
 
-/* CTA institucional por sección (Modal de Correo formal y pliegos) */
-function SectionDualCta({
-  emailSubject,
-  emailLabel = 'Solicitud Formal y Pliegos',
-}) {
-  const { openSolicitudModal } = useSolicitudModal();
-
-  return (
-    <div className="mt-10 flex justify-end">
-      <button
-        type="button"
-        onClick={() => openSolicitudModal({ subject: emailSubject, emailLabel })}
-        className="inline-flex items-center justify-center gap-2 rounded-lg bg-white/10 border border-white/20 px-5 py-3 text-sm font-semibold text-white hover:bg-white/20 hover:border-primary/50 transition-all cursor-pointer group"
-      >
-        <Mail size={16} className="text-primary group-hover:scale-110 transition-transform" />
-        <span>{emailLabel}</span>
-      </button>
-    </div>
-  );
-}
-
 /* Reproductor centralizado de video de manufactura y laminado en planta */
 function CentralFactoryVideo() {
   const [playing, setPlaying] = React.useState(false);
@@ -451,14 +440,13 @@ function CentralFactoryVideo() {
 }
 
 export default function Index() {
-  const { openSolicitudModal } = useSolicitudModal();
   return (
     <>
       <Head>
         <title>Tecno Light S.R.L. | Señalización Vial y Cartelería Reflectiva</title>
         <meta
           name="description"
-          content="Fabricación y provisión de señalización vial oficial, cartelería reflectiva Avery Dennison, impresión digital TrafficJet™ Xpress, Seguridad Industrial y EPP, y servicios de alquiler."
+          content="Fabricación y provisión de señalización vial oficial, cartelería reflectiva Avery Dennison, impresión digital TrafficJet™ Xpress, Seguridad Industrial y EPP (venta mayorista y minorista), y alquiler de elementos de seguridad vial."
         />
       </Head>
 
@@ -477,11 +465,11 @@ export default function Index() {
             <SectionTitle
               kicker="Presentación Institucional"
               title="Quiénes Somos: Liderazgo en Señalización Vial"
-              description="Más de tres décadas integrando planta industrial propia, tecnología reflectiva certificada y logística directa en todo el país."
+              description="Integrando planta industrial propia, tecnología reflectiva certificada, laminado continuo y logística directa en todo el país."
             />
 
             {/* Bloque Institucional */}
-            <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 mb-10">
+            <div className="grid lg:grid-cols-12 gap-10 lg:gap-14">
               <div className="lg:col-span-8 space-y-5 text-slate-300 leading-relaxed text-base md:text-lg">
                 {QUIENES.map((paragraph) => (
                   <p key={paragraph}>{paragraph}</p>
@@ -508,11 +496,6 @@ export default function Index() {
                 </div>
               </div>
             </div>
-
-            <SectionDualCta
-              emailSubject="Presentación Institucional y Asesoramiento - Tecno Light S.R.L."
-              emailLabel="Solicitud Formal y Pliegos"
-            />
           </div>
         </section>
 
@@ -728,7 +711,7 @@ export default function Index() {
                     Trabajos en Ruta y Cartelería Urbana
                   </span>
                   <h3 className="text-xl md:text-2xl font-bold text-white">
-                    Registro Visual de Obras Reales e Instalaciones
+                    Registro Visual de Obras Reales e Intervenciones
                   </h3>
                 </div>
                 <span className="text-xs text-slate-400 font-mono">
@@ -779,11 +762,6 @@ export default function Index() {
                 ))}
               </div>
             </div>
-
-            <SectionDualCta
-              emailSubject="Cotización Formal y Pliegos - Fabricación de Carteles y Señalización"
-              emailLabel="Solicitud Formal y Pliegos"
-            />
           </div>
         </section>
 
@@ -799,6 +777,23 @@ export default function Index() {
               title={SEGURIDAD_INDUSTRIAL_EPP.title}
               description={SEGURIDAD_INDUSTRIAL_EPP.description}
             />
+
+            {/* Destacado de modalidad de comercialización mayorista y minorista */}
+            <div className="mb-8 rounded-2xl border border-primary/30 bg-primary/[0.06] p-5 md:p-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+              <div>
+                <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-primary block mb-1">
+                  Modalidad de Comercialización
+                </span>
+                <p className="text-sm md:text-base font-semibold text-white">
+                  Venta de ropa de trabajo e indumentaria laboral tanto mayorista como minorista, con atención directa a empresas, contratistas y particulares.
+                </p>
+              </div>
+              <span className="shrink-0 inline-flex items-center gap-2 rounded-full border border-primary/40 bg-primary/15 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-primary">
+                <Check size={14} />
+                <span>Mayorista y Minorista</span>
+              </span>
+            </div>
+
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {SEGURIDAD_INDUSTRIAL_EPP.groups.map((group) => (
                 <div
@@ -817,15 +812,10 @@ export default function Index() {
                 </div>
               ))}
             </div>
-
-            <SectionDualCta
-              emailSubject="Cotización Mayorista y Pliegos - Seguridad Industrial y EPP"
-              emailLabel="Solicitud Formal y Pliegos"
-            />
           </div>
         </section>
 
-        {/* PILAR 3. ALQUILER DE VALLAS Y SEGURIDAD VIAL */}
+        {/* PILAR 3. ALQUILER DE ELEMENTOS DE SEGURIDAD VIAL */}
         <section
           id="servicios"
           className="py-20 lg:py-28 section-ig-card border-b border-white/5 scroll-mt-28"
@@ -843,11 +833,11 @@ export default function Index() {
                   description={ALQUILER_VALLAS_SEGURIDAD.description}
                 />
 
-                {/* Alquiler destacado */}
-                <div className="mb-8 grid lg:grid-cols-[1.2fr_1fr] gap-6 rounded-xl border border-primary/40 bg-primary/[0.06] p-6 md:p-8">
+                {/* Alquiler destacado: Vallas para Eventos (Cortas y Largas) */}
+                <div className="mb-8 grid lg:grid-cols-[1.2fr_1fr] gap-6 rounded-xl border border-primary/40 bg-primary/[0.06] p-6 md:p-8 items-center">
                   <div>
                     <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-primary mb-2">
-                      Alquiler destacado
+                      Alquiler destacado · Versiones Cortas y Largas
                     </p>
                     <h3 className="text-xl md:text-2xl font-bold text-white mb-3">
                       {ALQUILER_VALLAS_SEGURIDAD.eventos.title}
@@ -857,15 +847,15 @@ export default function Index() {
                     </p>
                     <Image
                       src="/images/trabajos/vallas-evento.jpg"
-                      alt="Vallas de contención instaladas para un evento al aire libre"
+                      alt="Vallas para eventos en versiones cortas y largas instaladas al aire libre"
                       width={1600}
                       height={979}
                       sizes="(max-width: 1024px) 100vw, 55vw"
                       className="mt-5 h-40 w-full rounded-lg border border-primary/20 object-cover md:h-48"
                     />
                   </div>
-                  <div className="flex flex-col justify-between gap-5">
-                    <ul className="space-y-2.5">
+                  <div className="flex flex-col justify-center gap-5">
+                    <ul className="space-y-3">
                       {ALQUILER_VALLAS_SEGURIDAD.eventos.items.map((item) => (
                         <li key={item} className="flex items-start gap-2.5 text-sm text-slate-300">
                           <Check size={15} className="text-primary shrink-0 mt-0.5" />
@@ -873,23 +863,10 @@ export default function Index() {
                         </li>
                       ))}
                     </ul>
-                    <button
-                      type="button"
-                      onClick={() =>
-                        openSolicitudModal({
-                          subject: 'Consulta por Alquiler de Vallas de Contención',
-                          emailLabel: 'Consultar alquiler de vallas'
-                        })
-                      }
-                      className="btn-primary text-sm self-start inline-flex items-center gap-2 cursor-pointer"
-                    >
-                      <span>Consultar alquiler de vallas</span>
-                      <ArrowRight size={16} />
-                    </button>
                   </div>
                 </div>
 
-                {/* Items de servicio */}
+                {/* Grilla de los 7 elementos de seguridad vial en alquiler */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                   {ALQUILER_VALLAS_SEGURIDAD.items.map((item, index) => (
                     <div
@@ -950,11 +927,6 @@ export default function Index() {
                 ))}
               </div>
             </div>
-
-            <SectionDualCta
-              emailSubject="Solicitud Formal y Pliegos - Alquiler de Vallas y Seguridad Vial"
-              emailLabel="Solicitud Formal y Pliegos"
-            />
           </div>
         </section>
       </div>

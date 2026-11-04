@@ -41,12 +41,15 @@ export default function About() {
               En su planta fabril ubicada en el Parque Industrial Los Polígonos (Santa Fe), integra procesos de corte láser computarizado, conformado de chapa de diferentes espesores, PVC, alto impacto, plástico compacto, tratamiento superficial con pintura anticorrosiva de alta resistencia, el sistema oficial de impresión digital reflectiva <strong className="text-white font-bold">Avery Dennison TrafficJet™ Xpress UV-LED</strong> con láminas microprismáticas OmniCube™ (Grado Diamante), de alta intensidad y Serie T-2500, con estación de laminado continuo.
             </p>
             <p>
-              Comercializa además equipamiento de protección personal homologado e indumentaria de trabajo para obras viales, civiles e industriales, y gestiona servicios de alquiler, montaje y mantenimiento de vallas y dispositivos de seguridad en ruta.
+              Comercializa además —tanto de forma mayorista como minorista— equipamiento de protección personal homologado y ropa de trabajo para obras viales, civiles e industriales, y gestiona servicios de alquiler de elementos de seguridad vial y vallas para eventos (versiones cortas y largas).
             </p>
             <p className="text-sm text-slate-400">
-              Sede Comercial (Asesoramiento técnico y ventas): Suipacha 3243, Santa Fe Capital | Tel: (0342) 455-3582 | Correo:{' '}
-              <a href="mailto:tecnolightsrl@tecnolightsrl.com?subject=Contacto%20Institucional%20-%20Tecno%20Light%20S.R.L." target="_self" className="text-primary hover:underline">
-                tecnolightsrl@tecnolightsrl.com
+              Sede Comercial (Asesoramiento técnico y ventas): Suipacha 3243, Santa Fe Capital | Tel: (0342) 455-3582 | Consultas generales:{' '}
+              <a href="mailto:tecnolight@tecnolightsrl.com?subject=Consulta%20Institucional%20-%20Tecno%20Light%20S.R.L." target="_self" className="text-primary hover:underline">
+                tecnolight@tecnolightsrl.com
+              </a>{' '}| Ventas y presupuestos:{' '}
+              <a href="mailto:ventas@tecnolightsrl.com?subject=Presupuesto%20Comercial%20-%20Tecno%20Light%20S.R.L." target="_self" className="text-primary hover:underline">
+                ventas@tecnolightsrl.com
               </a><br />
               Sede Operativa: Fuhr 1282, Rosario | Tel: 341 636 9053 | Planta Fabril: Cnel. Loza 7198, P.I. Los Polígonos, Santa Fe.
             </p>

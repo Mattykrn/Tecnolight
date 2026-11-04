@@ -79,7 +79,8 @@ export default function Contact() {
               <h2 className="text-white leading-none tracking-tight mb-7" style={{ ...HEADING, fontSize: 'clamp(2.4rem, 5vw, 4rem)' }}>TAMBIÉN<br />ENCONTRANOS</h2>
               <div className="space-y-4 mb-10">
                 {[
-                  { Icon: Mail, label: 'Correo', v: 'tecnolightsrl@tecnolightsrl.com', onClick: () => openSolicitudModal({ subject: 'Consulta General - Tecno Light S.R.L.' }) },
+                  { Icon: Mail, label: 'Consultas Generales', v: 'tecnolight@tecnolightsrl.com', onClick: () => openSolicitudModal({ subject: 'Consulta General - Tecno Light S.R.L.', recipientEmail: 'tecnolight@tecnolightsrl.com' }) },
+                  { Icon: Mail, label: 'Ventas y Presupuestos', v: 'ventas@tecnolightsrl.com', onClick: () => openSolicitudModal({ subject: 'Solicitud de Presupuesto - Tecno Light S.R.L.', recipientEmail: 'ventas@tecnolightsrl.com' }) },
                   { Icon: Clock, label: 'Horarios', v: 'Lun a Vie 8:00 - 17:00 hs' },
                 ].map(({ Icon, label, v, href, onClick }) => (
                   <div key={label} className="flex items-center gap-4">

@@ -4,7 +4,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { name, company, phone, email, subject, message } = req.body || {};
+    const { name, company, phone, email, subject, message, recipientEmail } = req.body || {};
 
     if (!name || !phone || !message) {
       return res.status(400).json({
@@ -13,6 +13,11 @@ export default async function handler(req, res) {
       });
     }
 
+    const targetRecipient =
+      recipientEmail === 'tecnolight@tecnolightsrl.com'
+        ? 'tecnolight@tecnolightsrl.com'
+        : 'ventas@tecnolightsrl.com';
+
     const timestamp = new Date().toISOString();
     console.log(`[SOLICITUD RECIBIDA ${timestamp}]`, {
       name,
@@ -20,6 +25,7 @@ export default async function handler(req, res) {
       phone,
       email: email || 'No especificado',
       subject: subject || 'Sin asunto',
+      recipient: targetRecipient,
       message
     });
 
@@ -29,7 +35,7 @@ export default async function handler(req, res) {
       message: 'Solicitud recibida con éxito en Tecno Light S.R.L.',
       data: {
         receivedAt: timestamp,
-        recipient: 'tecnolightsrl@tecnolightsrl.com'
+        recipient: targetRecipient
       }
     });
   } catch (error) {

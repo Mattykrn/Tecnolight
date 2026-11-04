@@ -26,8 +26,8 @@ const SERVICIOS = [
   },
   {
     Icon: ShieldAlert,
-    title: 'Alquiler de Vallas para Eventos',
-    description: 'Vallas de contención de alta resistencia y cerramiento perimetral con traslado, montaje estructural y retiro.'
+    title: 'Alquiler de Vallas para Eventos (Cortas y Largas)',
+    description: 'Vallas para eventos en versiones cortas y largas de alta resistencia con traslado, armado perimetral y retiro.'
   },
   {
     Icon: Paintbrush,

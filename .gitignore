@@ -1,13 +1,10 @@
 node_modules/
 .next/
-.env.local
-.env
+.next-dev/
 *.log
 /dist/
 
-# Editor / IDE
-.vscode/
-.mcp.json
-.markdown-collab/
-.vercel
-.env*
+.next-runtime/
+
+.env.local
+.vercel/

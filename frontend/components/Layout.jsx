@@ -1,45 +1,45 @@
-import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, MapPin, Phone, Clock, ArrowRight, Mail } from 'lucide-react';
+import React, { useState, useEffect } from "react";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X, MapPin, Phone, Clock, ArrowRight, Mail } from "lucide-react";
 
-import { getWaLink } from '../utils/whatsapp';
-import { getMapsDirectionsLink } from '../utils/links';
-import { useSolicitudModal } from './SolicitudModal';
+import { getWaLink } from "../utils/whatsapp";
+import { getMapsDirectionsLink } from "../utils/links";
 
 const WA_LINK = getWaLink();
 
 const CONTACTO_SEDES = [
   {
-    id: 'santa-fe',
-    label: 'Sede Comercial (Asistencia y Ventas)',
-    city: 'Santa Fe Capital',
-    address: 'Suipacha 3243, Santa Fe Capital',
-    phone: '(0342) 455-3582',
-    phoneHref: 'tel:03424553582',
-    email: 'tecnolightsrl@tecnolightsrl.com',
-    horario: 'Lunes a Viernes de 8:00 a 17:00 hs. (Sábados Cerrado)'
+    id: "santa-fe",
+    label: "Sede Comercial (Asistencia y Ventas)",
+    city: "Santa Fe Capital",
+    address: "Suipacha 3243, Santa Fe Capital",
+    phone: "(0342) 455-3582",
+    phoneHref: "tel:03424553582",
+    email: "ventas@tecnolightsrl.com",
+    secondaryEmail: "tecnolight@tecnolightsrl.com",
+    horario: "Lunes a Viernes de 8:00 a 17:00 hs. (Sábados Cerrado)"
   },
   {
-    id: 'rosario',
-    label: 'Sede Operativa',
-    city: 'Rosario',
-    address: 'Fuhr 1282, Rosario, Santa Fe',
-    phone: '341 636 9053',
-    phoneHref: 'tel:3416369053',
-    email: 'rosario@tecnolightsrl.com',
-    horario: 'Atención técnica y logística'
+    id: "rosario",
+    label: "Sede Operativa",
+    city: "Rosario",
+    address: "Fuhr 1282, Rosario, Santa Fe",
+    phone: "341 636 9053",
+    phoneHref: "tel:3416369053",
+    email: "rosario@tecnolightsrl.com",
+    horario: "Atención técnica y logística"
   },
   {
-    id: 'planta',
-    label: 'Planta Fabril (Producción y Conversión)',
-    city: 'Parque Industrial Los Polígonos',
-    address: 'Cnel. Loza 7198, P.I. Los Polígonos, Santa Fe Capital',
+    id: "planta",
+    label: "Planta Fabril (Producción y Conversión)",
+    city: "Parque Industrial Los Polígonos",
+    address: "Cnel. Loza 7198, P.I. Los Polígonos, Santa Fe Capital",
     phone: null,
     phoneHref: null,
     email: null,
-    horario: 'Producción, corte láser, impresión y laminado continuo'
+    horario: "Producción, corte láser, impresión y laminado continuo"
   }
 ];
 
@@ -50,25 +50,24 @@ const WaIcon = ({ size = 16 }) => (
 );
 
 const NAV = [
-  { label: 'Inicio', href: '/#inicio' },
-  { label: 'Quiénes Somos', href: '/#nosotros' },
-  { label: 'Fabricación de Carteles y Señalización', href: '/#senalizacion' },
-  { label: 'Seguridad Industrial y EPP', href: '/#catalogo' },
-  { label: 'Alquiler de Vallas y Seguridad Vial', href: '/#servicios' },
-  { label: 'Sedes y Contacto', href: '/#contacto' },
+  { label: "Inicio", href: "/#inicio" },
+  { label: "Quiénes Somos", href: "/#nosotros" },
+  { label: "Fabricación de Carteles y Señalización", href: "/#senalizacion" },
+  { label: "Seguridad Industrial y EPP", href: "/#catalogo" },
+  { label: "Alquiler de Elementos de Seguridad Vial", href: "/#servicios" },
+  { label: "Sedes y Contacto", href: "/#contacto" }
 ];
 
 export default function Layout({ children }) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const router = useRouter();
-  const { openSolicitudModal } = useSolicitudModal();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   useEffect(() => {
@@ -77,31 +76,31 @@ export default function Layout({ children }) {
 
   useEffect(() => {
     const onKeyDown = (e) => {
-      if (e.key === 'Escape') setMenuOpen(false);
+      if (e.key === "Escape") setMenuOpen(false);
     };
     if (menuOpen) {
-      document.body.style.overflow = 'hidden';
-      window.addEventListener('keydown', onKeyDown);
+      document.body.style.overflow = "hidden";
+      window.addEventListener("keydown", onKeyDown);
     } else {
-      document.body.style.overflow = '';
+      document.body.style.overflow = "";
     }
     return () => {
-      document.body.style.overflow = '';
-      window.removeEventListener('keydown', onKeyDown);
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", onKeyDown);
     };
   }, [menuOpen]);
 
   const handleNavClick = (e, href) => {
     setMenuOpen(false);
-    if (href.startsWith('/#')) {
-      const hash = href.replace('/#', '');
-      if (router.pathname === '/') {
+    if (href.startsWith("/#")) {
+      const hash = href.replace("/#", "");
+      if (router.pathname === "/") {
         e.preventDefault();
         setTimeout(() => {
           const el = document.getElementById(hash);
           if (el) {
-            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            window.history.replaceState(null, '', `/#${hash}`);
+            el.scrollIntoView({ behavior: "smooth", block: "start" });
+            window.history.replaceState(null, "", `/#${hash}`);
           }
         }, 80);
       }
@@ -117,7 +116,7 @@ export default function Layout({ children }) {
         rel="noopener noreferrer"
         aria-label="Contactar por WhatsApp"
         className="fixed bottom-6 right-5 z-50 flex items-center gap-2.5 bg-[#25D366] text-white font-bold text-sm px-5 py-3.5 rounded-full shadow-2xl hover:bg-[#1db954] transition-all hover:scale-105 active:scale-95"
-        style={{ boxShadow: '0 6px 28px rgba(37,211,102,0.4), 0 2px 8px rgba(0,0,0,0.4)' }}
+        style={{ boxShadow: "0 6px 28px rgba(37,211,102,0.4), 0 2px 8px rgba(0,0,0,0.4)" }}
       >
         <WaIcon size={19} />
         <span className="hidden sm:inline">WhatsApp</span>
@@ -126,7 +125,7 @@ export default function Layout({ children }) {
       {/* Header fijo: logo a la izquierda y menú a la derecha */}
       <header
         className={`fixed inset-x-0 top-0 z-50 border-b border-white/8 transition-colors duration-300 ${
-          scrolled ? 'bg-[#0A0C12]/95 backdrop-blur-xl shadow-lg shadow-black/40' : 'bg-[#0A0C12]'
+          scrolled ? "bg-[#0A0C12]/95 backdrop-blur-xl shadow-lg shadow-black/40" : "bg-[#0A0C12]"
         }`}
       >
         <div className="max-w-site mx-auto px-5 lg:px-10 flex items-center justify-between h-16 lg:h-[72px]">
@@ -167,7 +166,7 @@ export default function Layout({ children }) {
       <div
         onClick={() => setMenuOpen(false)}
         className={`fixed inset-0 z-[60] bg-black/60 backdrop-blur-sm transition-opacity duration-200 ${
-          menuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+          menuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
         aria-hidden="true"
       />
@@ -176,10 +175,10 @@ export default function Layout({ children }) {
       <AnimatePresence>
         {menuOpen && (
           <motion.aside
-            initial={{ x: '100%' }}
+            initial={{ x: "100%" }}
             animate={{ x: 0 }}
-            exit={{ x: '100%' }}
-            transition={{ type: 'tween', ease: [0.16, 1, 0.3, 1], duration: 0.28 }}
+            exit={{ x: "100%" }}
+            transition={{ type: "tween", ease: [0.16, 1, 0.3, 1], duration: 0.28 }}
             className="fixed top-0 right-0 h-full w-80 max-w-[85vw] z-[70] bg-[#0D0F15] border-l border-white/10 shadow-2xl flex flex-col"
             aria-label="Menú de navegación"
           >
@@ -224,7 +223,7 @@ export default function Layout({ children }) {
 
       <main className="flex-1">{children}</main>
 
-      {/* Sección Final Unificada: Sedes de Operación, Planta Fabril y Canales Oficiales (sin footer redundante) */}
+      {/* Pie de página unificado: Sedes de Operación, Planta Fabril y Contacto */}
       <section id="contacto" className="section-ig-card border-t border-white/10 py-16 lg:py-20 relative scroll-mt-20">
         <div className="corner-brand-glow"></div>
         <div className="max-w-site mx-auto px-5 lg:px-10">
@@ -281,19 +280,16 @@ export default function Layout({ children }) {
                       </a>
                     )}
                     {sede.email && (
-                      <button
-                        type="button"
-                        onClick={() =>
-                          openSolicitudModal({
-                            subject: `Consulta comercial — ${sede.city}`,
-                            emailLabel: sede.email
-                          })
-                        }
-                        className="flex items-center gap-2.5 text-xs text-slate-300 hover:text-primary transition-colors cursor-pointer text-left"
-                      >
+                      <p className="flex items-center gap-2.5 text-xs text-slate-300">
                         <Mail size={14} className="text-primary shrink-0" />
                         <span>{sede.email}</span>
-                      </button>
+                      </p>
+                    )}
+                    {sede.secondaryEmail && (
+                      <p className="flex items-center gap-2.5 text-xs text-slate-300">
+                        <Mail size={14} className="text-primary shrink-0" />
+                        <span>{sede.secondaryEmail}</span>
+                      </p>
                     )}
                     <p className="flex items-center gap-2.5 text-xs text-slate-400 pt-1">
                       <Clock size={14} className="text-primary shrink-0" />
@@ -305,7 +301,7 @@ export default function Layout({ children }) {
             ))}
           </div>
 
-          {/* Bloque Integrado de Canales Oficiales, Solicitud de Pliegos y Sello Tecnológico */}
+          {/* Bloque Integrado de Canales Oficiales y Sello Tecnológico */}
           <div className="card-corporate p-6 md:p-8 bg-slate-950/80 border border-white/10">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
               <div className="lg:col-span-5 space-y-3">
@@ -313,7 +309,7 @@ export default function Layout({ children }) {
                   Canales Oficiales y Redes
                 </p>
                 <p className="text-sm text-slate-300 leading-relaxed">
-                  Atención comercial y asesoramiento técnico centralizado. Envíe planos, requerimientos o pliegos para una respuesta inmediata.
+                  Atención comercial y asesoramiento técnico centralizado para consultas institucionales, ventas y presupuestos.
                 </p>
                 <div className="pt-1 flex flex-wrap items-center gap-3">
                   <span className="text-[10px] uppercase tracking-wider text-slate-400 font-semibold">
@@ -328,24 +324,25 @@ export default function Layout({ children }) {
               </div>
 
               <div className="lg:col-span-7 grid sm:grid-cols-3 gap-4">
-                <button
-                  type="button"
-                  onClick={() =>
-                    openSolicitudModal({
-                      subject: 'Consulta Institucional — Tecno Light S.R.L.',
-                      emailLabel: 'Correo Institucional'
-                    })
-                  }
-                  className="flex items-center gap-3 p-4 rounded-xl border border-white/10 bg-white/[0.02] hover:border-primary/50 hover:bg-white/[0.04] transition-all text-left cursor-pointer group"
-                >
+                <div className="flex items-center gap-3 p-4 rounded-xl border border-white/10 bg-white/[0.02]">
                   <div className="w-10 h-10 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0">
-                    <Mail size={18} className="text-primary group-hover:scale-110 transition-transform" />
+                    <Mail size={18} className="text-primary" />
                   </div>
                   <div className="min-w-0">
-                    <span className="block text-[10px] uppercase font-bold text-slate-400">Correo Institucional</span>
-                    <span className="block text-xs font-semibold text-white truncate">tecnolightsrl@tecnolightsrl.com</span>
+                    <span className="block text-[10px] uppercase font-bold text-slate-400">Consultas Generales</span>
+                    <span className="block text-xs font-semibold text-white truncate">tecnolight@tecnolightsrl.com</span>
                   </div>
-                </button>
+                </div>
+
+                <div className="flex items-center gap-3 p-4 rounded-xl border border-white/10 bg-white/[0.02]">
+                  <div className="w-10 h-10 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0">
+                    <Mail size={18} className="text-primary" />
+                  </div>
+                  <div className="min-w-0">
+                    <span className="block text-[10px] uppercase font-bold text-slate-400">Ventas y Presupuestos</span>
+                    <span className="block text-xs font-semibold text-white truncate">ventas@tecnolightsrl.com</span>
+                  </div>
+                </div>
 
                 <a
                   href="https://www.instagram.com/tecnolight.srl/"
@@ -363,20 +360,6 @@ export default function Layout({ children }) {
                     <span className="text-xs font-semibold text-white">@tecnolight.srl</span>
                   </div>
                 </a>
-
-                <button
-                  type="button"
-                  onClick={() =>
-                    openSolicitudModal({
-                      subject: 'Solicitud Formal / Envío de Pliego — Tecno Light S.R.L.',
-                      emailLabel: 'Enviar Solicitud / Pliego'
-                    })
-                  }
-                  className="flex items-center justify-center gap-2 p-4 rounded-xl bg-primary text-white font-bold text-xs uppercase tracking-wider hover:bg-primary/90 transition-all cursor-pointer shadow-lg shadow-primary/20"
-                >
-                  <Mail size={16} />
-                  <span>Enviar Solicitud / Pliego</span>
-                </button>
               </div>
             </div>
           </div>
