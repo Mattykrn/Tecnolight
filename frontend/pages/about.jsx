@@ -41,7 +41,7 @@ export default function About() {
               En su planta fabril ubicada en el Parque Industrial Los Polígonos (Santa Fe), integra procesos de corte láser computarizado, conformado de chapa de diferentes espesores, PVC, alto impacto, plástico compacto, tratamiento superficial con pintura anticorrosiva de alta resistencia, el sistema oficial de impresión digital reflectiva <strong className="text-white font-bold">Avery Dennison TrafficJet™ Xpress UV-LED</strong> con láminas microprismáticas OmniCube™ (Grado Diamante), de alta intensidad y Serie T-2500, con estación de laminado continuo.
             </p>
             <p>
-              Comercializa además —tanto de forma mayorista como minorista— equipamiento de protección personal homologado y ropa de trabajo para obras viales, civiles e industriales, y gestiona servicios de alquiler de elementos de seguridad vial y vallas para eventos (versiones cortas y largas).
+              Comercializa además —tanto de forma mayorista como minorista— equipamiento de protección personal homologado y ropa de trabajo para obras viales, civiles e industriales, y gestiona servicios de alquiler de elementos de seguridad vial, vallas para eventos (2 x 1,3) y chapones (2x1,5 metros).
             </p>
             <p className="text-sm text-slate-400">
               Sede Comercial (Asesoramiento técnico y ventas): Suipacha 3243, Santa Fe Capital | Tel: (0342) 455-3582 | Consultas generales:{' '}

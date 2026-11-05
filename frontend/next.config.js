@@ -1,7 +1,7 @@
 /** @type {import("next").NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  distDir: process.env.NODE_ENV === "development" ? ".next-runtime" : ".next",
+  distDir: process.env.NODE_ENV === "development" ? ".next-live" : ".next",
   eslint: {
     ignoreDuringBuilds: true,
   },

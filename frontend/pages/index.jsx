@@ -19,7 +19,7 @@ import InteractiveRoadHero from '../components/InteractiveRoadHero';
 const QUIENES = [
   'TECNO LIGHT S.R.L. es una firma referente en el diseño, manufactura y provisión de sistemas de señalización vial reglamentaria, preventiva, informativa y transitoria.',
   'En nuestra planta del Parque Industrial Los Polígonos (Santa Fe Capital) desarrollamos procesos de corte láser, conformado de chapa en calibres 14, 16 y distintos calibres dependiendo el trabajo, tratamiento anticorrosivo con pintura epoxi de alta resistencia, impresión digital UV-LED TrafficJet™ Xpress y laminado continuo sobre láminas reflectivas Avery Dennison.',
-  'Completamos nuestra propuesta con la venta mayorista y minorista de ropa de trabajo y equipamiento de protección personal (EPP) homologado, junto a una división especializada en el alquiler de elementos de seguridad vial y vallas para eventos en versiones cortas y largas.'
+  'Completamos nuestra propuesta con la venta mayorista y minorista de ropa de trabajo y equipamiento de protección personal (EPP) homologado, junto a una división especializada en el alquiler de elementos de seguridad vial, vallas para eventos (2 m x 1,3 m), vallas metálicas para obras (cortas de 1,5 mts. y largas de 3 mts.) y chapones (2 m x 1,5 m).'
 ];
 
 const QUIENES_TAGS = [
@@ -35,7 +35,7 @@ const FABRICACION_SENALIZACION = {
   description:
     'Centralizamos el diseño, manufactura metalúrgica, impresión digital TrafficJet™ Xpress y laminado continuo sobre láminas microprismáticas Avery Dennison para señales viales reglamentarias, cartelería industrial, urbana y de seguridad.',
   bullets: [
-    'Impresión digital TrafficJet™ Xpress con tintas UV-LED en colores viales reglamentarios.',
+    'Impresión digital con impresora Mimaki UCJV300-160 TrafficJet™ Xpress con tintas UV-LED en colores viales reglamentarios.',
     'Láminas microprismáticas Avery Dennison (OmniCube™ T-11500, HIP T-6500 y EGP T-2500).',
     'Laminado continuo en frío con película protectora UV y barrera antigraffiti.',
     'Fabricación sobre chapa en calibres 14, 16 y distintos calibres dependiendo el trabajo.'
@@ -55,7 +55,7 @@ const FABRICACION_SENALIZACION = {
     },
     {
       title: 'Fabricación de Vallas para Eventos y Obras',
-      desc: 'Módulos metálicos de vallado perimetral en versiones cortas y largas de alta resistencia para eventos y frentes de obra.'
+      desc: 'Módulos metálicos de vallado perimetral para eventos (2 m x 1,3 m) y obras viales (cortas de 1,5 mts. y largas de 3 mts.).'
     }
   ],
   laminas: [
@@ -164,23 +164,23 @@ const ALQUILER_VALLAS_SEGURIDAD = {
   kicker: 'Pilar 03 · Alquiler de Equipamiento Vial, Eventos y Logística en Obra',
   title: 'Alquiler de Elementos de Seguridad Vial',
   description:
-    'Disponibilidad inmediata de stock, entrega en sitio y logística integral para el alquiler de elementos de seguridad vial, cerramientos perimetrales en eventos multitudinarios y encauzamiento de desvíos de obra en Santa Fe, Rosario y toda la región.',
+    'Disponibilidad inmediata de stock, entrega en sitio y logística integral para el alquiler de elementos de seguridad vial y encauzamiento de desvíos de obra en Santa Fe, Rosario y toda la región.',
   eventos: {
-    title: 'Vallas para Eventos (Versiones Cortas y Largas)',
+    title: 'Vallas para Eventos (2 m x 1,3 m)',
     description:
-      'Provisión en alquiler de vallas para eventos disponibles en versiones cortas y largas, fabricadas en acero con terminación epoxi. Coordinamos la entrega, distribución perimetral y retiro programado según el cronograma de su evento u obra.',
+      'Provisión en alquiler de vallas para eventos (2 m x 1,3 m), fabricadas en acero con terminación epoxi. Coordinamos la entrega, distribución perimetral y retiro programado según el cronograma de su evento u obra.',
     items: [
-      'Disponibilidad inmediata de vallas para eventos en versiones cortas y largas',
+      'Disponibilidad inmediata de vallas para eventos (2 m x 1,3 m)',
       'Estructuras metálicas de alta estabilidad, encastre rápido y resistencia perimetral',
       'Logística de traslado, distribución y retiro ágil en sitio para eventos y obras'
     ]
   },
   items: [
     {
-      id: 'vallas-eventos',
+      id: 'vallas-obras',
       Icon: ShieldAlert,
-      title: 'Vallas para Eventos (Cortas y Largas)',
-      description: 'Módulos metálicos de vallado perimetral disponibles en versiones cortas y largas para eventos públicos, recitales, competencias y obras.'
+      title: 'Vallas Metálicas para Obras',
+      description: 'Vallas metálicas para obras (cortas de 1,5 mts. y largas de 3 mts.) de alta resistencia para frentes de obra, desvíos y cerramientos viales.'
     },
     {
       id: 'balizas',
@@ -215,8 +215,8 @@ const ALQUILER_VALLAS_SEGURIDAD = {
     {
       id: 'chapones',
       Icon: Wrench,
-      title: 'Chapones',
-      description: 'Chapones de acero de alta resistencia para cobertura segura de zanjas, excavaciones y paso vehicular o peatonal en obra.'
+      title: 'Chapones (2 m x 1,5 m)',
+      description: 'Chapones de acero de alta resistencia (2 m x 1,5 m) para cobertura segura de zanjas, excavaciones y paso vehicular o peatonal en obra.'
     }
   ],
   flota: {
@@ -778,22 +778,6 @@ export default function Index() {
               description={SEGURIDAD_INDUSTRIAL_EPP.description}
             />
 
-            {/* Destacado de modalidad de comercialización mayorista y minorista */}
-            <div className="mb-8 rounded-2xl border border-primary/30 bg-primary/[0.06] p-5 md:p-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-              <div>
-                <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-primary block mb-1">
-                  Modalidad de Comercialización
-                </span>
-                <p className="text-sm md:text-base font-semibold text-white">
-                  Venta de ropa de trabajo e indumentaria laboral tanto mayorista como minorista, con atención directa a empresas, contratistas y particulares.
-                </p>
-              </div>
-              <span className="shrink-0 inline-flex items-center gap-2 rounded-full border border-primary/40 bg-primary/15 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-primary">
-                <Check size={14} />
-                <span>Mayorista y Minorista</span>
-              </span>
-            </div>
-
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {SEGURIDAD_INDUSTRIAL_EPP.groups.map((group) => (
                 <div
@@ -833,11 +817,11 @@ export default function Index() {
                   description={ALQUILER_VALLAS_SEGURIDAD.description}
                 />
 
-                {/* Alquiler destacado: Vallas para Eventos (Cortas y Largas) */}
+                {/* Alquiler destacado: Vallas para Eventos (2 x 1,3) */}
                 <div className="mb-8 grid lg:grid-cols-[1.2fr_1fr] gap-6 rounded-xl border border-primary/40 bg-primary/[0.06] p-6 md:p-8 items-center">
                   <div>
                     <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-primary mb-2">
-                      Alquiler destacado · Versiones Cortas y Largas
+                      Alquiler destacado · Medida (2 m x 1,3 m)
                     </p>
                     <h3 className="text-xl md:text-2xl font-bold text-white mb-3">
                       {ALQUILER_VALLAS_SEGURIDAD.eventos.title}
@@ -847,7 +831,7 @@ export default function Index() {
                     </p>
                     <Image
                       src="/images/trabajos/vallas-evento.jpg"
-                      alt="Vallas para eventos en versiones cortas y largas instaladas al aire libre"
+                      alt="Vallas para eventos (2m x 1,3m) instaladas al aire libre"
                       width={1600}
                       height={979}
                       sizes="(max-width: 1024px) 100vw, 55vw"
@@ -883,7 +867,9 @@ export default function Index() {
                           </span>
                         </div>
                         <h3 className="text-lg font-semibold text-slate-100 mb-2 leading-snug">{item.title}</h3>
-                        <p className="text-slate-400 text-sm leading-relaxed">{item.description}</p>
+                        {item.description && (
+                          <p className="text-slate-400 text-sm leading-relaxed">{item.description}</p>
+                        )}
                       </div>
                     </div>
                   ))}

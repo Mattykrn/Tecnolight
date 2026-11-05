@@ -6,5 +6,5 @@ node_modules/
 
 .next-runtime/
 
-.env.local
 .vercel/
+.next-live/
