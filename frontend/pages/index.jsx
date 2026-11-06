@@ -180,7 +180,7 @@ const ALQUILER_VALLAS_SEGURIDAD = {
       id: 'vallas-obras',
       Icon: ShieldAlert,
       title: 'Vallas Metálicas para Obras',
-      description: 'Vallas metálicas para obras (cortas de 1,5 mts. y largas de 3 mts.) de alta resistencia para frentes de obra, desvíos y cerramientos viales.'
+      description: 'Módulos metálicos de vallado perimetral en versiones cortas (1,5 m) y largas (3 m) de alta resistencia para frentes de obra, desvíos y cerramientos viales.'
     },
     {
       id: 'balizas',
